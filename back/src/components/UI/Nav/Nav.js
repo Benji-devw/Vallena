@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import Link from './Links/Link';
-import Links from './Links/Links'
+import Link from '../Link/Link';
 
 const Nav = () => {
   const [navClass, setNavClass] = useState('');
@@ -23,7 +22,7 @@ const Nav = () => {
   return (
     <nav className={`navbar navbar-expand-md bg-light ${navClass}`}>
       <div className='container'>
-        <a className='navbar-brand' href='/'>
+        <a className='navbar-brand' href='!#'>
           <span>Root</span>
           <i className='fas fa-circle ml-1' />
         </a>
@@ -71,11 +70,6 @@ const Nav = () => {
                 Contact
               </Link>
             </li>
-
-            <li className='nav-item'>
-            <Links />
-            </li>
-
           </ul>
         </div>
       </div>

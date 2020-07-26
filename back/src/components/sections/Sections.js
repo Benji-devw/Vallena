@@ -8,7 +8,6 @@ import ProductsCards from './Products/Products_Cards';
 // import Contact from './Contact/Contact';
 // import MapMarker from './MapMarker/MapMarker';
 
-
 const sections = () => {
   return (
     <Fragment>

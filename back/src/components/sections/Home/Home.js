@@ -2,7 +2,7 @@ import React from 'react';
 
 import Section from '../../../HOC/Section';
 import bgImage from '../../../assets/img/home_bg.jpg';
-// import Link from '../../UI/Link/Link';
+import Link from '../../UI/Link/Link';
 
 const home = () => {
   return (
@@ -18,12 +18,12 @@ const home = () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
               laborum minus molestiae.
             </h2>
-            {/* <Link target='about' classes='btn btn-primary rounded-0 mr-2'>
+            <Link target='about' classes='btn btn-primary rounded-0 mr-2'>
               Learn More
             </Link>
             <Link target='contact' classes='btn btn-light text-dark rounded-0'>
               Contact Us
-            </Link> */}
+            </Link>
           </div>
         </div>
       </div>

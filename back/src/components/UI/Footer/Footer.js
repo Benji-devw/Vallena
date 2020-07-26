@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import Link from '../Link/Link';
+import Link from '../Link/Link';
 
 const footer = () => {
   return (
@@ -30,7 +30,7 @@ const footer = () => {
               <h6>Quick Links</h6>
             </div>
             <div className='footer-content'>
-              {/* <ul className='list-group quick-links'>
+              <ul className='list-group quick-links'>
                 <li>
                   <Link target='home' offset={-120}>
                     Home
@@ -48,7 +48,7 @@ const footer = () => {
                 <li>
                   <Link target='contact'>Contact</Link>
                 </li>
-              </ul> */}
+              </ul>
             </div>
           </div>
           <div className='col-sm-6 col-md-6 col-lg-3 mb-5'>

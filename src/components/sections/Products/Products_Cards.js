@@ -12,12 +12,8 @@ const ProductCards = props => {
   // ..donc data => objet destructuré => chaque tableau est un produits 
   const data = props.produit
 
-  // const categ = props.cate
-  // console.log('categ', categ)
-
   return (
     <>
-
         <Col md={3} key={data._id} className='mt-5 mb-5'>
 
           <div className='card rounded-0'>
@@ -27,6 +23,7 @@ const ProductCards = props => {
               <p className='card-text'>
                 {data.descriptionProduct}
               </p>
+              <b>{data.categoryProduct}</b>
 
               {/* Destructuration => envoi vers un autre component */}
               {/* <ModalProduct
@@ -44,8 +41,6 @@ const ProductCards = props => {
         </Col>
 
     </>
-
-
 
   );
 };

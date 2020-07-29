@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap'
 // import {  Checkbox, Grid, Icon, Menu, Segment, Sidebar } from 'semantic-ui-react'
 import useFetchAllProducts from '../../../apiCall/ProductsFetchCall'
@@ -8,29 +8,40 @@ import ProductList from './Products_List'
 import Section from '../../../HOC/Section';
 
 
-// const SideMenu = () => {
-//   const [loading, links] = useFetchAllProducts()
-//   const loadCategory = i => {
-//     console.log(i)
-//   }
-
-//   return 
-
-// }
-
-const DisplayProducts = () => {
-  // const [visible, setVisible] = React.useState(true)
-
-  // Objet Product
+const SideMenu = ({loadCategory}) => {
   const [loading, products] = useFetchAllProducts()
 
-  const filteredProducts = products
+  const filterCategory = c => { return c }
+
+  return (
+    <div>
+      <ul>
+        {(products.map((link, index) => (
+          <li key={link._id} >{filterCategory(link.categoryProduct)} </li>
+        )))}
+
+        {/* Result =
+                Masks
+                Teddy
+                Teddy
+                Backpack
+                Pencil case
+                Pencil case
+                Pencil case */}
+      </ul>
+    </div>
+  )
+}
 
 
 
-  if (loading) {
-    return 'chargement...'
-  }
+const DisplayProducts = () => {
+  
+  // Objet Product
+  const [loading, products] = useFetchAllProducts()
+  // console.log('products', products)
+  
+  if (loading) { return 'chargement...'  }
 
   return (
     <Section id='blog'>
@@ -45,37 +56,20 @@ const DisplayProducts = () => {
           </h6>
         </div>
 
-
           <Row>
             <Col sm={2}>
-              {/* <SideMenu /> */}
+              <SideMenu />
             </Col>
           </Row>
           <Row>
             <Col>
-            <ProductList products={filteredProducts} />
+              <ProductList products={products}/>
             </Col>
           </Row>
 
-
-  
       </Container>
     </Section>
   );
 };
 
 export default DisplayProducts;
-
-
-
-
-
-
-// const test = [];
-//         links.forEach((link, index) => {
-//           test.push(
-//             <li key={link._id} onClick={() => loadCategory(index)}>
-//             {link.categoryProduct}
-//                </li>
-//             )})
-//   return (<ul>{console.log(test)}</ul>)

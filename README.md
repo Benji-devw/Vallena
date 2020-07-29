@@ -22,3 +22,21 @@ Mohamed Azouaoui
 
 ## License
 This code is released under the MIT license.
+
+
+
+
+### Produit Catégories ###
+
+Titre
+Description
+Prix			:: number
+Catégories
+Dimensions
+Poids
+Quantité 		: number
+Stocks 			: bool
+Promotion		: bool
+Créer par :
+Date de création
+

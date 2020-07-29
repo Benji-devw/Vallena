@@ -2,17 +2,24 @@
   height: calc(100vh - 450px);
   position: relative;
   margin-top: 26px;
+  min-height: 300px;
 
   @media (min-width: 768px) {
     margin-top: 40px;
+    min-height: 300px;
+
   }
-  > div {
+
+  >div {
     height: 100%;
   }
+
   .home-content {
     height: 100%;
     background-position: center;
     background-size: cover;
+
+
     &:before {
       content: '';
       display: inline-block;
@@ -24,12 +31,14 @@
       background-color: #003267;
       opacity: 0.7;
     }
+
     .intro {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       position: relative;
       z-index: 2;
+
       .title {
         font-weight: bold;
 
@@ -37,6 +46,7 @@
           font-size: 4rem;
         }
       }
+
       .sub-title {
         font-weight: normal;
         max-width: 700px;

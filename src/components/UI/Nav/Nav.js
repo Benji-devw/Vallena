@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import Link from './Links/Link';
-import Links from './Links/Links'
+import LinksAdmin from './Links/LinksAdmin'
 
 const Nav = () => {
   const [navClass, setNavClass] = useState('');
@@ -56,11 +56,11 @@ const Nav = () => {
                 About
               </Link>
             </li>
-            <li className='nav-item'>
+            {/* <li className='nav-item'>
               <Link target='services' classes='nav-link'>
                 Services
               </Link>
-            </li>
+            </li> */}
             <li className='nav-item'>
               <Link target='blog' classes='nav-link'>
                 Blog
@@ -73,7 +73,7 @@ const Nav = () => {
             </li>
 
             <li className='nav-item'>
-            <Links />
+              <LinksAdmin />
             </li>
 
           </ul>

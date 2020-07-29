@@ -1,14 +1,5 @@
 import React from 'react'
-import {
-  Checkbox,
-  Grid,
-  Header,
-  Icon,
-  Image,
-  Menu,
-  Segment,
-  Sidebar,
-} from 'semantic-ui-react'
+import { Checkbox, Grid, Header, Icon, Image, Menu, Segment, Sidebar} from 'semantic-ui-react'
 
 const SidebarExampleDimmed = () => {
   const [visible, setVisible] = React.useState(false)
@@ -25,9 +16,7 @@ const SidebarExampleDimmed = () => {
 
       <Grid.Column>
         <Sidebar.Pushable as={Segment}>
-          <Sidebar
-            as={Menu}
-            animation='overlay'
+          <Sidebar as={Menu} animation='overlay' 
             icon='labeled'
             inverted
             onHide={() => setVisible(false)}

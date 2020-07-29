@@ -30,6 +30,13 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
             descriptionProduct: '',
             priceProduct: '',
             categoryProduct: '',
+
+            sizeProduct: '',
+            weightProduct: '',
+            quantityProduct: '',
+            stockProduct: '',
+            promotionProduct: '',
+            
             reporterProduct: ''
         }
     }
@@ -51,14 +58,34 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
     handleChangeInputCategoryProduct = async event => {
         const categoryProduct = event.target.value
         this.setState({ categoryProduct })
+    }    
+    handleChangeInputSizeProduct = async event => {
+        const sizeProduct = event.target.value
+        this.setState({ sizeProduct })
+    }    
+    handleChangeInputWeightProduct = async event => {
+        const weightProduct = event.target.value
+        this.setState({ weightProduct })
+    }   
+    handleChangeInputQuantityProduct = async event => {
+        const quantityProduct = event.target.value
+        this.setState({ quantityProduct })
+    }    
+    handleChangeInputStockProduct = async event => {
+        const stockProduct = event.target.value
+        this.setState({ stockProduct })
+    }   
+     handleChangeInputPromotionProduct = async event => {
+        const promotionProduct = event.target.value
+        this.setState({ promotionProduct })
     }
     handleChangeInputReporterProduct = async event => {
         const reporterProduct = event.target.value
         this.setState({ reporterProduct })
     }
     handleUpdateProduct = async () => {
-        const { id, titleProduct, descriptionProduct, categoryProduct, priceProduct, reporterProduct } = this.state
-        const payload = { titleProduct, descriptionProduct, categoryProduct, priceProduct, reporterProduct }
+        const { id, titleProduct, descriptionProduct, categoryProduct, sizeProduct, weightProduct, quantityProduct, stockProduct, promotionProduct, priceProduct, reporterProduct } = this.state
+        const payload = { titleProduct, descriptionProduct, categoryProduct, priceProduct, sizeProduct, weightProduct, quantityProduct, stockProduct, promotionProduct, reporterProduct }
 
         // recup valeurs des state et update BDD
         await apiCall.updateProductById(id, payload).then(res => {      // Lien => src/apiCall/index.js
@@ -68,6 +95,11 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                 descriptionProduct: '',
                 priceProduct: '',
                 categoryProduct: '',
+                sizeProduct: '',
+                weightProduct: '',
+                quantityProduct: '',
+                stockProduct: '',
+                promotionProduct: '',
                 reporterProduct: ''
             })
             window.location = "/dashboard";
@@ -85,12 +117,17 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
             descriptionProduct: product.data.data.descriptionProduct,
             priceProduct: product.data.data.priceProduct,
             categoryProduct: product.data.data.categoryProduct,
+            sizeProduct: product.data.data.sizeProduct,
+            weightProduct: product.data.data.weightProduct,
+            quantityProduct: product.data.data.quantityProduct,
+            stockProduct: product.data.data.stockProduct,
+            promotionProduct: product.data.data.promotionProduct,
             reporterProduct: product.data.data.reporterProduct,
         })
     }
 
     render() {
-        const { titleProduct, descriptionProduct, priceProduct, categoryProduct, reporterProduct } = this.state
+        const { titleProduct, descriptionProduct, priceProduct, categoryProduct, sizeProduct, weightProduct, quantityProduct, stockProduct, promotionProduct, reporterProduct } = this.state
         return (
             <Wrapper>
                 <Title>Update product</Title>
@@ -132,6 +169,53 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                         <option>Couverture</option>
                         <option>Bavoir</option>
                         <option>Doudou</option>
+                    </Form.Control>
+                </Form.Group>
+
+                <Label>Taille </Label>
+                <InputText
+                    type="text"
+                    value={sizeProduct}
+                    onChange={this.handleChangeInputSizeProduct}
+                />
+
+                <Label>Poids </Label>
+                <InputText
+                    type="text"
+                    value={weightProduct}
+                    onChange={this.handleChangeInputWeightProduct}
+                />
+
+                <Label>Quantité </Label>
+                <InputText
+                    type="number"
+                    value={quantityProduct}
+                    onChange={this.handleChangeInputQuantityProduct}
+                />
+
+                <Form.Group controlId="exampleForm.ControlSelect1">
+                    <Form.Label>Stock</Form.Label>
+                    <Form.Control
+                        as="select"
+                        value={stockProduct}
+                        onChange={this.handleChangeInputStockProduct}
+                    >
+                        <option></option>
+                        <option>Oui</option>
+                        <option>Non</option>
+                    </Form.Control>
+                </Form.Group>
+
+                <Form.Group controlId="exampleForm.ControlSelect2">
+                    <Form.Label>Promotion</Form.Label>
+                    <Form.Control
+                        as="select"
+                        value={promotionProduct}
+                        onChange={this.handleChangeInputPromotionProduct}
+                    >
+                        <option></option>
+                        <option>Oui</option>
+                        <option>Non</option>
                     </Form.Control>
                 </Form.Group>
                 

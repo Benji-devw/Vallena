@@ -16,7 +16,7 @@ function App() {
   return (
     <>
       <Router>
-        forceRefresh={true}   {/* Effet de rechagement de page */}
+        {/* forceRefresh={true}   Effet de rechagement de page */}
 
         <Header />
 

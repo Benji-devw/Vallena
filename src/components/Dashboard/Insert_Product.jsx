@@ -38,8 +38,16 @@ export class InsertProduct extends Component {
             descriptionProduct: '',
             priceProduct: '',
             categoryProduct: '',
+
+            sizeProduct: '',
+            weightProduct: '',
+            quantityProduct: '',
+            stockProduct: '',
+            promotionProduct: '',
+
             reporterProduct: ''
         }
+        this.handleChangeInputStockProduct = this.handleChangeInputStockProduct.bind(this);
     }
 
     handleChangeInputTitleProduct = async event => {
@@ -53,13 +61,10 @@ export class InsertProduct extends Component {
             : this.state.descriptionProduct
 
         this.setState({ descriptionProduct })
-    }    
-    
-    handleChangeInputPriceProduct = async event => {
-        const priceProduct = event.target.validity.valid
-            ? event.target.value
-            : this.state.priceProduct
+    }
 
+    handleChangeInputPriceProduct = async event => {
+        const priceProduct = event.target.value
         this.setState({ priceProduct })
     }
 
@@ -68,14 +73,52 @@ export class InsertProduct extends Component {
         this.setState({ categoryProduct })
     }
 
+    handleChangeInputSizeProduct = async event => {
+        const sizeProduct = event.target.value
+        this.setState({ sizeProduct })
+    }
+
+    handleChangeInputWeightProduct = async event => {
+        const weightProduct = event.target.value
+        this.setState({ weightProduct })
+    }
+
+    handleChangeInputQuantityProduct = async event => {
+        const quantityProduct = event.target.value
+        console.log('quantityProduct', quantityProduct)
+        this.setState({ quantityProduct })
+    }
+
+    handleChangeInputStockProduct = async event => {
+        const stockProduct = event.target.value
+        this.setState({ stockProduct })
+    //     const target = event.target;
+    //     const value = target.name === 'stockProduct' ? target.checked : target.value;
+    //     const name = target.name;
+    //     this.setState({
+    //         [name]: value
+    //     });
+    }
+
+    handleChangeInputPromotionProduct = async event => {
+        const promotionProduct = event.target.value
+        this.setState({ promotionProduct })
+        // const target = event.target;
+        // const value = target.name === 'promotionProduct' ? target.checked : target.value;
+        // const name = target.name;
+        // this.setState({
+        //     [name]: value
+        // });
+    }
+
     handleChangeInputReporterProduct = async event => {
         const reporterProduct = event.target.value
         this.setState({ reporterProduct })
     }
 
     handleIncludeNewProduct = async () => {
-        const { titleProduct, descriptionProduct, priceProduct, categoryProduct, reporterProduct } = this.state
-        const payload = { titleProduct, descriptionProduct, priceProduct, categoryProduct, reporterProduct}
+        const { titleProduct, descriptionProduct, priceProduct, categoryProduct, sizeProduct, weightProduct, quantityProduct, stockProduct, promotionProduct, reporterProduct } = this.state
+        const payload = { titleProduct, descriptionProduct, priceProduct, categoryProduct, sizeProduct, weightProduct, quantityProduct, stockProduct, promotionProduct, reporterProduct }
 
         await apiCall.insertProduct(payload).then(res => {          // liens => src/api/index.js
             window.alert(`NewProduct inserted successfully`)
@@ -84,16 +127,24 @@ export class InsertProduct extends Component {
                 descriptionProduct: '',
                 priceProduct: '',
                 categoryProduct: '',
+                sizeProduct: '',
+                weightProduct: '',
+                quantityProduct: '',
+                stockProduct: '',
+                promotionProduct: '',
                 reporterProduct: ''
             })
         })
     }
 
     render() {
-        const { titleProduct, descriptionProduct, priceProduct, categoryProduct, reporterProduct } = this.state
+        const { titleProduct, descriptionProduct, priceProduct, categoryProduct, sizeProduct, weightProduct, quantityProduct, stockProduct, promotionProduct, reporterProduct } = this.state
+
 
         return (
+
             <Wrapper>
+
                 <Title>Create Product</Title>
 
                 <Label>Title : </Label>
@@ -104,11 +155,11 @@ export class InsertProduct extends Component {
                 />
 
                 <Label>General Information : </Label>
-                <Form.Control as="textarea" rows="3" 
+                <Form.Control as="textarea" rows="3"
                     value={descriptionProduct}
                     onChange={this.handleChangeInputDescriptionProduct}
-                
-                />                
+
+                />
 
                 <Label>Price : </Label>
                 <InputText
@@ -119,11 +170,12 @@ export class InsertProduct extends Component {
 
                 <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label>Catégories</Form.Label>
-                    <Form.Control 
-                        as="select" 
+                    <Form.Control
+                        as="select"
                         value={categoryProduct}
                         onChange={this.handleChangeInputCategoryProduct}
                     >
+                        <option></option>
                         <option>Masques</option>
                         <option>Pochettes</option>
                         <option>Trousse</option>
@@ -134,6 +186,53 @@ export class InsertProduct extends Component {
                         <option>Couverture</option>
                         <option>Bavoir</option>
                         <option>Doudou</option>
+                    </Form.Control>
+                </Form.Group>
+
+                <Label>Taille </Label>
+                <InputText
+                    type="text"
+                    value={sizeProduct}
+                    onChange={this.handleChangeInputSizeProduct}
+                />
+
+                <Label>Poids </Label>
+                <InputText
+                    type="text"
+                    value={weightProduct}
+                    onChange={this.handleChangeInputWeightProduct}
+                />               
+
+                <Label>Quantité </Label>
+                <InputText
+                    type="number"
+                    value={quantityProduct}
+                    onChange={this.handleChangeInputQuantityProduct}
+                /> 
+    
+                <Form.Group controlId="exampleForm.ControlSelect1">
+                    <Form.Label>Stock</Form.Label>
+                    <Form.Control
+                        as="select"
+                        value={stockProduct}
+                        onChange={this.handleChangeInputStockProduct}
+                    >
+                        <option></option>
+                        <option>Oui</option>
+                        <option>Non</option>
+                    </Form.Control>
+                </Form.Group>  
+                
+                <Form.Group controlId="exampleForm.ControlSelect2">
+                    <Form.Label>Promotion</Form.Label>
+                    <Form.Control
+                        as="select"
+                        value={promotionProduct}
+                        onChange={this.handleChangeInputPromotionProduct}
+                    >
+                        <option></option>
+                        <option>Oui</option>
+                        <option>Non</option>
                     </Form.Control>
                 </Form.Group>
 

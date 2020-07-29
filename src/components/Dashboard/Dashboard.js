@@ -4,6 +4,8 @@ import { disconnect } from "../../utils/Logout";
 import { ListProducts }from './List_Product'
 import { InsertProduct }from './Insert_Product'
 
+// import Users from '../test'
+
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
@@ -31,6 +33,10 @@ export class Dashboard extends Component {
           </Row>
           <Row>
             <Col><InsertProduct /></Col>
+          </Row>
+
+          <Row>
+            {/* <Users /> */}
           </Row>
           
         

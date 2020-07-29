@@ -8,7 +8,7 @@ const Collapse = styled.div.attrs({ className: 'collpase navbar-collapse', })``
 const List = styled.div.attrs({ className: 'navbar-nav mr-auto', })``
 const Item = styled.div.attrs({ className: 'collpase navbar-collapse', })``
 
-class Links extends Component {
+class LinksAdmin extends Component {
     
     render() {
 
@@ -51,4 +51,4 @@ class Links extends Component {
     }
 }
 
-export default Links
+export default LinksAdmin

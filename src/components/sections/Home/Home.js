@@ -4,7 +4,7 @@ import Section from '../../../HOC/Section';
 import bgImage from '../../../assets/img/home_bg.jpg';
 // import Link from '../../UI/Link/Link';
 
-const home = () => {
+const Home = () => {
   return (
     <Section id='home'>
       <div>
@@ -31,4 +31,4 @@ const home = () => {
   );
 };
 
-export default home;
+export default Home;

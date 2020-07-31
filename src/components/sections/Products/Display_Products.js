@@ -51,7 +51,7 @@ const DisplayProducts = () => {
 
   // Effet de bord
   useEffect(() => {
-    console.log(isFiltering)
+    // console.log(isFiltering)
   
   })
   

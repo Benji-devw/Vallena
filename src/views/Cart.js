@@ -1,14 +1,17 @@
 import React, { Fragment } from "react";
+import Cart from '../components/Cart/Cart'
+import Footer from '../components/UI/Footer/Footer'
 
-
-const Cart = () => {
-  
-
+const CartShopping = () => {
   return (
     <Fragment>
-      <h1>Page Panier</h1>
 
+     <main>
+       <Cart />
+     </main>
+     
+      <Footer />
     </Fragment>
   );
 }
-export default Cart;
+export default CartShopping;

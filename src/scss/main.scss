@@ -5,13 +5,18 @@
 // @import '~@fortawesome/fontawesome-free/scss/regular';
 // @import '~@fortawesome/fontawesome-free/scss/brands';
 
+// Components
 @import './partials/header';
+@import './partials/cart';
+@import './partials/sidebarFilter';
+
+// Sections
 @import './partials/home';
 @import './partials/about';
 @import './partials/services';
 @import './partials/facts';
 @import './partials/blog';
-@import './partials/sidebarFilter';
+
 @import './partials/footer';
 
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');

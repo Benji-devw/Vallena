@@ -18,12 +18,17 @@ npm start
 ```
 
 ## Author
-Mohamed Azouaoui
+Navarro
 
 ## License
 This code is released under the MIT license.
 
 
+
+### npm i :
+
+	npm install react-icons --save
+		https://react-icons.github.io/
 
 
 ### Produit Catégories ###

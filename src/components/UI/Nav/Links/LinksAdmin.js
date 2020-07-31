@@ -37,9 +37,6 @@ class LinksAdmin extends Component {
             <React.Fragment>
                 <Collapse>
                     <List>
-                        <Item>
-                            <Link to="./vanduul" className="nav-link"> Vanduul </Link>
-                        </Item>
 
                         {/* Login/Logout/Dashboard */}
                         <Item><Greeting /></Item>

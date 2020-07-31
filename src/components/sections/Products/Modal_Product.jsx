@@ -1,10 +1,16 @@
 import React, { useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { Row, Col, Button } from 'react-bootstrap'
+import moment from 'moment'
+
+import { MdAddShoppingCart } from 'react-icons/md';
+
+
 
 const ModalProduct = props => {
-	// console.log(props)
+	const data = props.datas
 	const [show, setShow] = useState(false);
+	const [count, setCount] = useState(1)
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
@@ -17,33 +23,61 @@ const ModalProduct = props => {
 
 			<Modal show={show} onHide={handleClose} size="lg" animation={true} aria-labelledby="contained-modal-title-vcenter" centered>
 				
-				<Modal.Header>
-					<Modal.Title><h2>{props.title}</h2></Modal.Title>
-				</Modal.Header>
+				{/* <Modal.Header>
+					<Modal.Title><h2>{data.titleProduct}</h2></Modal.Title>
+					<p className='section-title'>Categorie : <span> {data.categoryProduct}</span> </p>
+				</Modal.Header> */}
 				
 				<Modal.Body className="pt-3">
-					<h3 className='section-title'>Category : <span> {props.category}</span> </h3>
 					<br />
-					<Row>
+					<Row className="text-center mb-5">
 						<Col>
-							<h5 className='card-title'>Message :</h5>
-							<p>{props.description}</p>
+							<p>{data.descriptionProduct}</p>
 						</Col>
-						<Col><h3 className='section-title'>Screen :</h3>
+					</Row>
+					<Row>
+						<Col lg={8}>
+							{/* <h5 className='section-title'>Screen :</h5> */}
 							<img src={props.img} alt="none" className="img-fluid" />
+						</Col>
+						<Col lg={4}>
+							<h3>{data.titleProduct}</h3>
+							<h5>€ {data.priceProduct}</h5>
+
+							<button type="button" className="btn btn-sm btn-secondary"
+								onClick={() => setCount(count > 1 ? count -1 : 1)}
+							>-</button>
+
+							<span className="btn btn-light qty">{count}</span>
+
+							<button type="button" className="btn btn-sm btn-secondary"
+								onClick={() => setCount(count +1) }
+
+								
+							>+</button>
+
+							<MdAddShoppingCart size="2em" className="ml-3"
+								onClick={handleClose}
+							/>
+
 						</Col>
 					</Row>
 					<br />
-					<h3 className='section-title'>Posted : <span>{props.date}</span> </h3>
-					<h3 className='section-title'>By : <span>{props.reporter}</span></h3>
 				</Modal.Body>
 
-				<Modal.Footer>
-					<Button variant="outline-dark" size="sm" onClick={handleClose}>
-						Close
-					</Button>
-				</Modal.Footer>
-
+					<Row lg="12" className="m-3">
+						<Col xs="10">
+							<p className='section-title text-left'>Posted : 
+								By : <span>{data.reporterProduct}</span>
+								<br />
+								<span>{moment(data.createdAt).startOf().fromNow()}</span> 
+							</p>
+						</Col>
+						<Col xs="2">
+							<Button variant="outline-dark mx-right" size="sm" onClick={handleClose}> Close </Button>
+						</Col>
+					</Row>
+			
 			</Modal>
 		</>
 	);

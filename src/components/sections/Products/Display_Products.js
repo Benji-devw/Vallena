@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState, useEffect} from 'react';
 import { Container, Row, Col } from 'react-bootstrap'
 // import {  Checkbox, Grid, Icon, Menu, Segment, Sidebar } from 'semantic-ui-react'
 import useFetchAllProducts from '../../../apiCall/ProductsFetchCall'
@@ -11,23 +11,18 @@ import Section from '../../../HOC/Section';
 const SideMenu = ({loadCategory}) => {
   const [loading, products] = useFetchAllProducts()
 
-  const filterCategory = c => { return c }
+  if(loading) {return 'chargement...'}
+
+  // Delete Duplicate Category
+  const categorySet = new Set(products.map((p) => p.categoryProduct));
+  const categories = Array.from(categorySet).sort();
 
   return (
     <div>
       <ul>
-        {(products.map((link, index) => (
-          <li key={link._id} >{filterCategory(link.categoryProduct)} </li>
+        {(categories.map((category, index) => (
+          <li key={index} >{category} </li>
         )))}
-
-        {/* Result =
-                Masks
-                Teddy
-                Teddy
-                Backpack
-                Pencil case
-                Pencil case
-                Pencil case */}
       </ul>
     </div>
   )
@@ -39,7 +34,26 @@ const DisplayProducts = () => {
   
   // Objet Product
   const [loading, products] = useFetchAllProducts()
-  // console.log('products', products)
+
+  // Search filters
+  const [isFiltering, setFiltering] = useState(false)
+  const [filtered, setFiltered] = useState(false)
+ 
+  const filterResults = (input) => {
+    let fullList = products.flat()
+      let result = fullList.filter(item => {
+        const name = item.titleProduct.toLowerCase()
+        const term = input.toLowerCase()
+        return name.indexOf(term) > -1
+      })
+    setFiltered(result)
+  }
+
+  // Effet de bord
+  useEffect(() => {
+    console.log(isFiltering)
+  
+  })
   
   if (loading) { return 'chargement...'  }
 
@@ -59,11 +73,26 @@ const DisplayProducts = () => {
           <Row>
             <Col sm={2}>
               <SideMenu />
+
+            <form className="form-inline my-2 my-lg-0">
+              <button className="btn btn-sm btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              <input className="form-control input-group-sm mr-sm-2"
+                type="search"
+                placeholder="Search..."
+                aria-label="Search"
+                onChange={(e) => {
+                  // filterResults(e.target.value)
+                  setFiltering(e.target.value.length > 0)
+                  filterResults(e.target.value)
+                }}
+              />
+            </form>
+
             </Col>
           </Row>
           <Row>
             <Col>
-              <ProductList products={products}/>
+            <ProductList products={isFiltering ? filtered : products}/>
             </Col>
           </Row>
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Col } from 'react-bootstrap'
-// import moment from 'moment'
-// import ModalProduct from './Modal_Product'
+import ModalProduct from './Modal_Product'
 
 import blogImage1 from '../../../assets/img/blog1.jpg';
 
@@ -26,15 +25,10 @@ const ProductCards = props => {
               <b>{data.categoryProduct}</b>
 
               {/* Destructuration => envoi vers un autre component */}
-              {/* <ModalProduct
-                category={list.categoryProduct}
-                title={list.titleProduct}
-                description={list.descriptionProduct}
-                price={list.priceProduct}
-                reporter={list.reporterProduct}
+              <ModalProduct datas={data}
                 img={blogImage1}
-                date={moment(list.createdAt).startOf().fromNow()}
-              /> */}
+
+              />
 
             </div>
           </div>

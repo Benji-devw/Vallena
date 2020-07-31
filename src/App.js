@@ -8,9 +8,9 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import { Dashboard } from './components/Dashboard/Dashboard'
 import { ProductUpdate } from './components/Dashboard/Update_Product'
 
+import Cart from './views/Cart'
 import Layout from './components/Layout/Layout';
-import Vanduul from './pages/Vanduul'
-
+// import Cart from './views/Cart'
 
 function App() {
   return (
@@ -18,11 +18,16 @@ function App() {
       <Router>
         {/* forceRefresh={true}   Effet de rechagement de page */}
 
+        {/* Call HEADER */}
         <Header />
 
+
         <Switch>
+          
+          <Route path="/cart" exact component={Cart} />
+
           <Route path="/" exact component={Layout} />
-          <Route path="/vanduul" component={Vanduul} />
+          {/* <Route path="/Cart" exact component={Cart} /> */}
 
           <Route path="/newsHome/update/:id" exact component={ProductUpdate} />
 
@@ -37,9 +42,7 @@ function App() {
         </Switch>
       </Router>
 
-
       {/* <Layout />          Components */}
-
 
     </>
     );

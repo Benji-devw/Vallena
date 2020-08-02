@@ -1,9 +1,31 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateCart, removeFromCart } from '../../lib/actions'
+
 import { Container, Row, Col } from 'react-bootstrap'
 import Section from '../../HOC/Section';
 
 
-const RowCart = () => {
+const RowCart = props => {
+  const {id, quantity, details} = props.item    // Redux
+  const item = details
+
+  const [qty, setQty] = useState(quantity)  
+  const dispatch = useDispatch()				        // Dispatch l'item du store localement pr le lire
+
+  const update = (action) => {
+    if (action === 'increment') { setQty(qty + 1)}
+    if (action === 'decrement') { setQty(qty - 1)}
+  }
+
+  useEffect(() => {                 // est executé lors d'un chagement local du component
+    dispatch(updateCart(id, qty))   // change la quantity dans le panier lors de " increment et decrement "
+  }, [dispatch, id, qty])
+
+  const remove = id => {
+    dispatch(removeFromCart(id))
+  }
+
   return (
     <tr>
       <td>
@@ -14,29 +36,40 @@ const RowCart = () => {
           alt="citrons"
         />
       </td>
-      <td>ref</td>
-      <td>€0.00</td>
+      <td>{item.titleProduct}</td>
+      <td>€ {item.priceProduct}</td>
       <td>
         <div className="btn-group" role="group" aria-label="Basic example">
           <button
             type="button"
-            className="btn btn-secondary">
-            -
+            className="btn btn-secondary"
+            onClick={() => {
+              if (qty > 1) { 
+                update('decrement')
+              }
+            }}
+            > -
             </button>
-          <span className="btn btn-light">1</span>
+          <span className="btn btn-light">{qty}</span>
           <button
             type="button"
-            className="btn btn-secondary">
-            +
+            className="btn btn-secondary"
+            onClick={() => {
+              update('increment')
+            }}
+            > +
             </button>
         </div>
       </td>
-      <td>€2.99</td>
+      <td>€{qty * item.priceProduct}</td>
       <td>
         <button
           type="button"
-          className="btn btn-danger remove">
-          X
+          className="btn btn-danger remove"
+          onClick={() => {
+            remove(id)
+          }}
+          > X
           </button>
       </td>
     </tr>
@@ -44,6 +77,13 @@ const RowCart = () => {
 }
 
 const Table = () => {
+  const items = useSelector(state => state.items)
+  // console.log('items', items)
+
+  useEffect(() => {
+    // console.log(`you have ${items.length} in yourcart`)
+  });
+
   return (
     <table>
       <thead>
@@ -56,14 +96,31 @@ const Table = () => {
         </tr>
       </thead>
       <tbody>
-        <RowCart />
-        <RowCart />
+        {items.map(item => {
+          return (<RowCart key={item.id} item={item}/>)
+        })}
       </tbody>
     </table>
   );
 }
 
 const CartPage = () => {
+  const items = useSelector(state => state.items)
+
+  const [subTotal, setSubTotal] = useState(0.00)
+  const [total, setTotal] = useState(0.00)
+  const shipping = 5.50
+
+  useEffect(() => {
+    let totals = items.map(item => {
+      return item.quantity * item.details.priceProduct
+    })
+
+    setSubTotal(totals.reduce((item1, item2) => item1 + item2, 0))
+    setTotal(subTotal + shipping)
+  }, [items, subTotal, total]);
+
+
   return (
     <Fragment>
       <Section id='cart'>
@@ -79,7 +136,9 @@ const CartPage = () => {
 
         <Row className="cart-content">
           <Col sm={8}>
-            <Table />
+
+            <Table items={items}/>
+
           </Col>
           <Col sm={4}>
 
@@ -89,11 +148,11 @@ const CartPage = () => {
               <li className="list-group-item">
                 <ul className="list-group flex">
                   <li className="text-left">Subtotal</li>
-                  <li className="text-right">€0.00</li>
+                  <li className="text-right">€{subTotal.toFixed(2)}</li>
                 </ul>
                 <ul className="list-group flex">
                   <li className="text-left">shipping</li>
-                  <li className="text-right">€0.00</li>
+                    <li className="text-right">€ {shipping.toFixed(2)}</li>
                 </ul>
                 {/* <ul className="list-group flex">
                   <li className="coupon crimson">
@@ -105,7 +164,7 @@ const CartPage = () => {
               <li className="list-group-item ">
                 <ul className="list-group flex">
                   <li className="text-left">Total</li>
-                  <li className="text-right">€€0.00</li>
+                    <li className="text-right">€{subTotal ===  0.00 ? "0.00 ": total.toFixed(2) }</li>
                 </ul>
               </li>
             </ul>

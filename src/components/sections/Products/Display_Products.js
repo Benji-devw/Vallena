@@ -30,7 +30,8 @@ const SideMenu = ({loadCategory}) => {
 
 
 
-const DisplayProducts = () => {
+const DisplayProducts = props => {
+
   
   // Objet Product
   const [loading, products] = useFetchAllProducts()

@@ -8,24 +8,24 @@ import blogImage1 from '../../../assets/img/blog1.jpg';
 const ProductCards = props => {
 
   // Destructuration de tous les attributs passé ds les props
-  // ..donc data => objet destructuré => chaque tableau est un produits 
-  const data = props.produit
+  // ..donc item => objet destructuré => chaque tableau est un produits 
+  const item = props.produit
 
   return (
     <>
-        <Col md={3} key={data._id} className='mt-5 mb-5'>
+        <Col md={3} key={item._id} className='mt-5 mb-5'>
 
           <div className='card rounded-0'>
             <img src={blogImage1} className='card-img-top' alt='Blog 1' />
             <div className='card-body'>
-              <h5 className='card-title'>{data.titleProduct}</h5>
+              <h5 className='card-title'>{item.titleProduct}</h5>
               <p className='card-text'>
-                {data.descriptionProduct}
+                {item.descriptionProduct}
               </p>
-              <b>{data.categoryProduct}</b>
+              <b>{item.categoryProduct}</b>
 
               {/* Destructuration => envoi vers un autre component */}
-              <ModalProduct datas={data}
+              <ModalProduct item={item}
                 img={blogImage1}
 
               />

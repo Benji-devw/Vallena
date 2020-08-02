@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 import LinkScroll from './Links/Link_Scroll';
-import LinksAdmin from './Links/LinksAdmin'
+import LinksAdmin from './Links/LinksAdmin';
 
 import { RiShoppingCart2Line } from 'react-icons/ri';
 
 const Nav = () => {
   const [navClass, setNavClass] = useState('');
   const [toggeledNav, settoggeledNav] = useState(false);
+
+  // Redux => Lit le state de redux et recup le nbr d'objet ds le panier
+  const items = useSelector(state => state.items)
 
   const toggleNav = () => {
     settoggeledNav(!toggeledNav);
@@ -64,7 +68,7 @@ const Nav = () => {
             <li>
               <Link to="/cart">
                 <RiShoppingCart2Line size="1.7em"/>
-                <span className="badge badge-pill badge-success">1</span>
+                <span className="badge badge-pill badge-success">{items.length > 0 && items.length}</span>
               </Link>
             </li>
 

@@ -1,11 +1,10 @@
 import React, { Fragment } from "react";
 
 // import Header from '../components/UI/Header/Header';
-import Sections from '../components/sections/Sections';
-import Footer from '../components/UI/Footer/Footer';
+import Sections from '../../components/sections/Sections';
+import Footer from '../../components/UI/Footer/Footer';
 
-const Layout = () => {
-  
+const Layout = props => {
 
   return (
     <Fragment>

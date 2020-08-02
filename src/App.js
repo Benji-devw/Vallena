@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Header from './components/UI/Header/Header';
-import Layout from './views/Layout'
-import CartPage from './views/Cart'
+import Layout from './views/components/Layout'
+import CartPage from './views/components/Cart'
 
 import { Login } from './components/Users/Login/Login'
 import { Signup } from './components/Users/Signup/Signup'
@@ -11,11 +11,17 @@ import { Dashboard } from './components/Dashboard/Dashboard'
 import { ProductUpdate } from './components/Dashboard/Update_Product'
 
 
-
 // import Layout from './components/Layout/Layout';
 // import Cart from './views/Cart'
 
-function App() {
+const App = props => {
+  const { items, saveLocalStorage } = props
+
+  useEffect(() => {     // s'execute quand il y a un changement ds l'etat local des items(Cart) (qty, delete, ...)
+      // savegarde du panier dans le navigateur
+    saveLocalStorage(items)
+  }, [saveLocalStorage, items])
+
   return (
     <>
       <Router>
@@ -27,11 +33,12 @@ function App() {
         {/* <Route path="/" component={Layout} /> */}
         {/* <Route path="/cart" component={Cart} /> */}
 
-
         <Switch>
 
+          <Route path="/" exact component={() => <Layout
 
-          <Route path="/" exact component={Layout} />
+                                                />
+                                          }/>
           <Route path="/cart" exact component={CartPage} />
 
           <Route path="/login" exact component={Login} />

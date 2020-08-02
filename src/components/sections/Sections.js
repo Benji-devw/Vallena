@@ -9,7 +9,7 @@ import DisplayProducts from './Products/Display_Products';
 // import MapMarker from './MapMarker/MapMarker';
 
 
-const sections = () => {
+const sections = props => {
   return (
     <Fragment>
       <Home />

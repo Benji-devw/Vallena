@@ -40,24 +40,20 @@ const RowCart = props => {
       <td>€ {item.priceProduct}</td>
       <td>
         <div className="btn-group" role="group" aria-label="Basic example">
-          <button
-            type="button"
-            className="btn btn-secondary"
+          <button className="btn btn-secondary"
+            type="button" 
             onClick={() => {
               if (qty > 1) { 
                 update('decrement')
               }
-            }}
-            > -
+            }} > -
             </button>
           <span className="btn btn-light">{qty}</span>
-          <button
+          <button className="btn btn-secondary"
             type="button"
-            className="btn btn-secondary"
             onClick={() => {
               update('increment')
-            }}
-            > +
+            }} > +
             </button>
         </div>
       </td>
@@ -69,7 +65,7 @@ const RowCart = props => {
           onClick={() => {
             remove(id)
           }}
-          > X
+          > x
           </button>
       </td>
     </tr>
@@ -79,21 +75,19 @@ const RowCart = props => {
 const Table = () => {
   const items = useSelector(state => state.items)
   // console.log('items', items)
-
   useEffect(() => {
     // console.log(`you have ${items.length} in yourcart`)
   });
-
   return (
     <table>
-      <thead>
+      <thead> 
         <tr>
           <th width="200">Product</th>
           <th width="80">Reference</th>
           <th width="150">Price</th>
           <th width="150">Quantity</th>
           <th width="200">Total</th>
-        </tr>
+        </tr> 
       </thead>
       <tbody>
         {items.map(item => {
@@ -171,7 +165,7 @@ const CartPage = () => {
             <button
               type="button"
               className="btn btn-outline-danger btn-lg btn-block checkout bg-crimson"
-              disabled={true}
+              disabled={ !items.length }
             >
               Payer
             </button>

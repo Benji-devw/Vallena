@@ -36,7 +36,7 @@ export function removeFromCart (id) {
    }
 }
 
-// savegarde du panier dans le navigateur
+// savegarde du panier dans le navigateur ( localStorage )
 export function saveCart (items) {
    return {
       type: actions.SAVE_CART,

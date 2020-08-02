@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Header from './components/UI/Header/Header';
 import Layout from './views/components/Layout'
 import CartPage from './views/components/Cart'
+import Checkout from './views/components/checkout'
 
 import { Login } from './components/Users/Login/Login'
 import { Signup } from './components/Users/Signup/Signup'
@@ -35,11 +36,9 @@ const App = props => {
 
         <Switch>
 
-          <Route path="/" exact component={() => <Layout
-
-                                                />
-                                          }/>
+          <Route path="/" exact component={() => <Layout /> }/>
           <Route path="/cart" exact component={CartPage} />
+          <Route path="/checkout" exact component={Checkout} />
 
           <Route path="/login" exact component={Login} />
           <Route path="/Signup" exact component={Signup} />

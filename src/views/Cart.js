@@ -1,15 +1,15 @@
 import React, { Fragment } from "react";
-import Cart from '../../components/Cart/Cart'
-import Footer from '../../components/UI/Footer/Footer'
+import CartClient from '../components/Cart/Cart_Client'
+import Footer from '../components/UI/Footer/Footer'
 
 const CartShopping = () => {
   return (
     <Fragment>
 
      <main>
-       <Cart />
+        <CartClient />
      </main>
-     
+    
       <Footer />
     </Fragment>
   );

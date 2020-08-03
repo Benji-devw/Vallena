@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateCart, removeFromCart } from '../../lib/actions'
+import { Link } from 'react-router-dom';
 
 import { Container, Row, Col } from 'react-bootstrap'
 import Section from '../../HOC/Section';
@@ -72,7 +73,7 @@ const RowCart = props => {
   );
 }
 
-const Table = () => {
+const TableCart = () => {
   const items = useSelector(state => state.items)
   // console.log('items', items)
   useEffect(() => {
@@ -98,7 +99,7 @@ const Table = () => {
   );
 }
 
-const CartPage = () => {
+const CartClient = () => {
   const items = useSelector(state => state.items)
 
   const [subTotal, setSubTotal] = useState(0.00)
@@ -118,8 +119,8 @@ const CartPage = () => {
   return (
     <Fragment>
       <Section id='cart'>
-        <Container className="m-5 p-5">
-        <Row className="cart-header">
+        <Container>
+        <Row className="cart-header mx-auto p-3">
           <Col>
             <div className='intro text-center'>
               <h1 className='title'>Vos Commandes : </h1>
@@ -131,7 +132,7 @@ const CartPage = () => {
         <Row className="cart-content">
           <Col sm={8}>
 
-            <Table items={items}/>
+            <TableCart items={items}/>
 
           </Col>
           <Col sm={4}>
@@ -162,13 +163,14 @@ const CartPage = () => {
                 </ul>
               </li>
             </ul>
-            <button
+            <Link
+              to="/checkout"
               type="button"
               className="btn btn-outline-danger btn-lg btn-block checkout bg-crimson"
               disabled={ !items.length }
             >
               Payer
-            </button>
+            </Link>
   
           </Col>
         </Row>
@@ -178,4 +180,4 @@ const CartPage = () => {
   );
 };
 
-export default CartPage;
+export default CartClient;

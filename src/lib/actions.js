@@ -7,7 +7,8 @@ export const actions = {
    ADD_TO_CART: "ADD_TO_CART",
    UPDATE_CART: "UPDATE_CART",
    REMOVE_FROM_CART: "REMOVE_FROM_CART",
-   SAVE_CART: "SAVE_CART"
+   SAVE_CART: "SAVE_CART",
+   RESET_CART: "RESET_CART"
 }
 
 /*
@@ -41,5 +42,11 @@ export function saveCart (items) {
    return {
       type: actions.SAVE_CART,
       payload: {items: items}
+   }
+}
+
+export function resetCart () {
+   return {
+      type: actions.RESET_CART,
    }
 }

@@ -1,10 +1,15 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Header from './components/UI/Header/Header';
-import Layout from './views/components/Layout'
-import CartPage from './views/components/Cart'
-import Checkout from './views/components/checkout'
 
+import ClientProfileContext from './lib/ClientProfileContext'
+import Checkout from './views/checkout'
+import Payment from './components/Checkout/payment'
+import Confirm from './components/Checkout/confirm'
+
+import Layout from './views/Layout'
+import CartPage from './views/Cart'
+
+import Header from './components/UI/Header/Header';
 import { Login } from './components/Users/Login/Login'
 import { Signup } from './components/Users/Signup/Signup'
 import { PrivateRoute } from "./components/PrivateRoute";
@@ -26,19 +31,18 @@ const App = props => {
   return (
     <>
       <Router>
-        {/* forceRefresh={true}   Effet de rechagement de page */}
+        <ClientProfileContext>
 
-        {/* Call HEADER */}
         <Header />
-
-        {/* <Route path="/" component={Layout} /> */}
-        {/* <Route path="/cart" component={Cart} /> */}
 
         <Switch>
 
           <Route path="/" exact component={() => <Layout /> }/>
           <Route path="/cart" exact component={CartPage} />
+          
           <Route path="/checkout" exact component={Checkout} />
+          <Route path="/payment" exact component={Payment} />
+          <Route path="/confirm" exact component={Confirm} />
 
           <Route path="/login" exact component={Login} />
           <Route path="/Signup" exact component={Signup} />
@@ -49,6 +53,8 @@ const App = props => {
           <Route path="/" component={() => <div className="mt-5 text-center"><h1>Erreur 404</h1></div>} />
 
         </Switch>
+
+        </ClientProfileContext>
       </Router>
 
       {/* <Layout />          Components */}

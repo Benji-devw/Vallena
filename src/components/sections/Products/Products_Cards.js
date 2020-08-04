@@ -10,6 +10,7 @@ const ProductCards = props => {
   // Destructuration de tous les attributs passé ds les props
   // ..donc item => objet destructuré => chaque tableau est un produits 
   const item = props.produit
+  console.log('item', item)
 
   return (
     <>

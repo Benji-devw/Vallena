@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Container, Row, Col } from 'react-bootstrap'
 // import {  Checkbox, Grid, Icon, Menu, Segment, Sidebar } from 'semantic-ui-react'
-import useFetchAllProducts from '../../../apiCall/ProductsFetchCall'
+import {useFetchAllProducts} from '../../../apiCall/FetchCall'
 
 import ProductList from './Products_List'
 
@@ -41,6 +41,7 @@ const DisplayProducts = props => {
   const [filtered, setFiltered] = useState(false)
  
   const filterResults = (input) => {
+    
     let fullList = products.flat()
       let result = fullList.filter(item => {
         const name = item.titleProduct.toLowerCase()

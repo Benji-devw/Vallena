@@ -9,16 +9,16 @@ import Section from '../../HOC/Section';
 const InfosClient = () => {
    const [isValid, setValid] = useState(false)
 
-   const value = useContext(ClientProfileContext);
+   const client = useContext(ClientProfileContext);
    const {
-      nom,
-      prenom,
-      email,
-      adresse,
-      cp,
-      ville,
+      nomClient,
+      prenomClient,
+      emailClient,
+      adresseClient,
+      cpClient,
+      villeClient,
      setClientProfileContext
-   } = value
+   } = client
 
    const validate = () => {
       let errors = []
@@ -55,8 +55,8 @@ const InfosClient = () => {
                      <Form.Row>
                         <Form.Group as={Col} controlId="formGridName">
                            <Form.Control placeholder="Nom" className="form-control-input"
-                              name="nom"
-                              defaultValue={nom}
+                              name="nomClient"
+                              defaultValue={nomClient}
                               onChange={e => {
                                  setClientProfileContext ({ [e.target.name]: e.target.value} )
                               }} 
@@ -65,8 +65,8 @@ const InfosClient = () => {
 
                         <Form.Group as={Col} controlId="formGridFirstName">
                            <Form.Control placeholder="Prénom" className="form-control-input"
-                              name="prenom"
-                              defaultValue={prenom}
+                              name="prenomClient"
+                              defaultValue={prenomClient}
                               onChange={e => {
                                  setClientProfileContext({ [e.target.name]: e.target.value } )
                               }} 
@@ -77,8 +77,8 @@ const InfosClient = () => {
                      <Form.Row>
                            <Form.Group as={Col} controlId="formGridEmail">
                               <Form.Control placeholder="Email" className="form-control-input"
-                                 name="email"
-                                 defaultValue={email}
+                                 name="emailClient"
+                                 defaultValue={emailClient}
                                  onChange={e => {
                                     setClientProfileContext({ [e.target.name]: e.target.value} )
                                  }} 
@@ -88,8 +88,8 @@ const InfosClient = () => {
                      <br />
                      <Form.Group controlId="formGridAddress1">
                         <Form.Control placeholder="Adresse de livraison" className="form-control-input"
-                           name="adresse"
-                           defaultValue={adresse}
+                           name="adresseClient"
+                           defaultValue={adresseClient}
                            onChange={e => {
                               setClientProfileContext({ [e.target.name]: e.target.value })
                            }}
@@ -100,8 +100,8 @@ const InfosClient = () => {
                      <Form.Row>
                         <Form.Group as={Col} controlId="formGridCity">
                            <Form.Control placeholder="Code Postal" className="form-control-input"
-                              name="cp"
-                              defaultValue={cp}
+                              name="cpClient"
+                              defaultValue={cpClient}
                               onChange={e => {
                                  setClientProfileContext({ [e.target.name]: e.target.value })
                               }}
@@ -110,8 +110,8 @@ const InfosClient = () => {
 
                         <Form.Group as={Col} controlId="formGridState">
                            <Form.Control placeholder="Ville" className="form-control-input"
-                              name="ville"
-                              defaultValue={ville}
+                              name="villeClient"
+                              defaultValue={villeClient}
                               onChange={e => {
                                  setClientProfileContext({ [e.target.name]: e.target.value })
                               }}

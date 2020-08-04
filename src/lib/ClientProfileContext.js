@@ -1,23 +1,23 @@
 import React, { createContext, useState } from 'react'
 
 export const ClientProfileContext = createContext ({
-   nom: "",
-   prenom: "",
-   email: "",
-   adresse: "",
-   cp: "",
-   ville: "",
+   nomClient: "",
+   prenomClient: "",
+   emailClient: "",
+   adresseClient: "",
+   cpClient: "",
+   villeClient: "",
    setClientProfileContext: info => {}
 })
 
 const ClientProfileContextProvider = ({ children }) => {
    const clientProfileState = {
-      nom: "",
-      prenom: "",
-      email: "",
-      adresse: "",
-      cp: "",
-      ville: "",
+      nomClient: "",
+      prenomClient: "",
+      emailClient: "",
+      adresseClient: "",
+      cpClient: "",
+      villeClient: "",
       setClientProfileContext: info =>
          setClientProfile (prevState => ({
          ...prevState,

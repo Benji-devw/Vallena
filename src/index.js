@@ -13,11 +13,11 @@ import * as serviceWorker from './serviceWorker';
 
 
 // log the initial state
-console.log(store.getState())
-const unsubscribe = store.subscribe(() => console.log(store.getState()))
+// console.log(store.getState())
+// const unsubscribe = store.subscribe(() => console.log(store.getState()))
 // store.dispatch(addtoCart({name: 'citron'}, 2 ))
 // store.dispatch(addtoCart( {name: 'kiwi'}, 5))
-unsubscribe()
+// unsubscribe()
 
 
 ReactDOM.render(

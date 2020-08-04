@@ -176,20 +176,20 @@ export class ListProducts extends Component {
 			}
 
 			return (
-					<Wrapper>
-							<Title>List NewHome</Title>
-							{showTable && (
-									<ReactTable
-											data={products}
-											columns={columns}
-											loading={isLoading}
-											defaultPageSize={10}
-											showPageSizeOptions={true}
-											minRows={0}
-									/>
-							)}
-							
-					</Wrapper>
+				<Wrapper>
+					<Title>Liste des Produits</Title>
+					{showTable && (
+						<ReactTable
+							data={products}
+							columns={columns}
+							loading={isLoading}
+							defaultPageSize={10}
+							showPageSizeOptions={true}
+							minRows={0}
+						/>
+					)}
+						
+				</Wrapper>
 			)
 	}
 }

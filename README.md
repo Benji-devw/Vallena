@@ -45,3 +45,13 @@ Promotion		: bool
 Créer par :
 Date de création
 
+
+### STRIPE ###
+
+ben.nav@pm.me 		Navnav1337&
+
+pk_test_51HByVWAkOHy2ySzJ6pDEd2IqFEpveJBaanEqrf1DKGjNTNMM9vyB4Ehw2R5n12jd8mObnQGwOTDcQoDE7bOiSoxB00UwSgbNZN
+
+sk_test_51HByVWAkOHy2ySzJsKYxCeY58qLO7YLFNdYnhHjuOsIeyxdtfbVNYC3w8D1IhTlYwl21Bm3XIGQnMasxTNiAA2bZ00Mfy71kn6
+
+

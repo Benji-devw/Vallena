@@ -37,6 +37,7 @@ export default function onlineStoreApp(state = initialState, action) {
          saveToLocalStorage(action.payload.items)
          return state
 
+      // Reset Cart 
       case actions.RESET_CART:
          saveToLocalStorage([])
          return Object.assign({}, state, {

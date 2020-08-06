@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment } from "react";
 import { Button } from 'react-bootstrap';
 import { disconnect } from "../../utils/Logout";
 import { ListProducts }from './List_Product'
@@ -16,6 +16,10 @@ export const Dashboard = () => {
   const [loading, orders] = useFetchAllOrders()
   
     var logout = disconnect;
+
+    if (loading) {
+      return 'Chargement ...'
+    }
 
     return (
       <Fragment>

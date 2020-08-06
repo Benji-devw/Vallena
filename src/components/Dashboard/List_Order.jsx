@@ -36,7 +36,7 @@ export const ListOrder = props => {
 
    return (
       <>
-         <Card key={order._id} className={order.status.finish ? "border-primary m-5" : "border-success m-5" } id="card-cmd" >
+         <Card key={order._id} className={order.status.finish ? "border-success m-5" : "border-primary m-5" } id="card-cmd" >
 
             <Row style={{ marginTop: "-20px", marginBottom: '0px' }} className='text-right'>
                <Col>
@@ -52,8 +52,8 @@ export const ListOrder = props => {
                      onChange={handleCheckboxChangeFinish}
 
                   />
-                  <Button onClick={valid} className="btn-sm p-1 ml-3" style={{fontSize:".8em", marginTop:"-10px"}}>Confirmer</Button>
-                  <Button onClick={update} className="btn-sm p-1 ml-3" style={{fontSize:".8em", marginTop:"-10px"}}>Envoyer</Button>
+                  <Button onClick={valid} className="btn-sm p-1 ml-3" style={{fontSize:".8em", marginTop:"-10px"}}>Confirm</Button>
+                  <Button onClick={update} className="btn-sm p-1 ml-3" style={{fontSize:".8em", marginTop:"-10px"}}>Save</Button>
                </Col>
             </Row>
             <Card.Header>

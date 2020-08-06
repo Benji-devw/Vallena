@@ -1,14 +1,14 @@
 import React, { Fragment, useContext, useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Container, Row, Col } from 'react-bootstrap';
 
 import { ClientProfileContext } from '../../lib/ClientProfileContext';
-import { useSelector, useDispatch } from 'react-redux';
-import { resetCart } from '../../lib/actions';
+// import { resetCart } from '../../lib/actions';
+import InfosClient from './infos_Client'
 
-// import Stripe from './stripe'
-import apiCallStripe from '../../apiCall/Stripe_Api'
+import Stripe from './stripe'
+// import apiCallStripe from '../../apiCall/Stripe_Api'
 
-import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'react-bootstrap';
 
 import Section from '../../HOC/Section';
 
@@ -29,19 +29,21 @@ const Payment = () => {
       setTotal(subTotal + shipping)
    }, [items, subTotal, total]);
    const totalCmd = { total: total, shipping: shipping }
-   
-   const dispatch = useDispatch()
-   const reset = () => {
-      dispatch(resetCart())
-   }
-   
+   // console.log('totalCmd', totalCmd)
 
-   const postOrder = async () => {
-      const payload = { items, client, totalCmd, status }
-      await apiCallStripe.insertOrder(payload).then(res => {
-         window.alert(`NewProduct inserted successfully`)
-      })
-   }
+   
+   
+   // const dispatch = useDispatch()
+   // const reset = () => {
+   //    dispatch(resetCart())
+   // }
+   
+   // const postOrder = async () => {
+   //    const payload = { items, client, totalCmd, status }
+   //    await apiCallStripe.insertOrder(payload).then(res => {
+   //       window.alert(`NewProduct inserted successfully`)
+   //    })
+   // }
    
    return (
       <Fragment>
@@ -59,19 +61,22 @@ const Payment = () => {
                <Row>
                   <Col sm={8}>
 
+                     {/* <InfosClient /> */}
+                     <Stripe total={totalCmd} client={client} items={items}/>
 
-                     {/* <Stripe /> */}
+                     4242424242424242
+                     ben.nav@pm.me
 
-                     <Link to="/confirm" className={`btn btn-outline-success float-right`}
+                     {/* <Link to="/confirm" className={`btn btn-outline-success float-right`}
                         onClick={() => {
                            // reset()
                            postOrder()
                         }}
                      > Payer
-                     </Link>
+                     </Link> */}
                   </Col>
                   <Col sm={3}>
-
+                  <div id="card-payment-total">
                      <h4>Commande :</h4>
                         <hr />
                      <p className="text-left">Subtotal</p>
@@ -89,7 +94,7 @@ const Payment = () => {
                      <p>{client.nomClient} {client.prenomClient}</p>
                      <p>{client.adresseClient}</p>
                      <p>{client.cpClient} - {client.villeClient}</p>
-                  
+                  </div>
                   </Col>
                </Row>
 

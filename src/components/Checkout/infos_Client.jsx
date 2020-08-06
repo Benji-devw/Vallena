@@ -1,13 +1,10 @@
 import React, { Fragment, useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { Container, Row, Col, Form } from 'react-bootstrap'
+import { Row, Col, Form } from 'react-bootstrap'
 
 import { ClientProfileContext } from '../../lib/ClientProfileContext'
-import Section from '../../HOC/Section';
-
 
 const InfosClient = () => {
-   const [isValid, setValid] = useState(false)
+   // const [isValid, setValid] = useState(false)
 
    const client = useContext(ClientProfileContext);
    const {
@@ -28,8 +25,8 @@ const InfosClient = () => {
          !input.value ? errors.push(input) : errors.length && errors.pop()
       })
       // console.log(errors)
-      setValid(!errors.length)
-      console.log('errors.length', errors.length)
+      // setValid(!errors.length)
+      // console.log('errors.length', errors.length)
    }
 
    useEffect(() => {
@@ -38,19 +35,14 @@ const InfosClient = () => {
 
    return (
       <Fragment>
-         <Section>
-            <Container id="infosClient">
-
-               <Row className="infosClient-header">
-                  <Col>
-                     <div className='intro text-center'>
-                        <h1 className='title'> Vos informations </h1>
-                     </div>
-                  </Col>
-               </Row>
-
                <Row>
-                  <Col md={6} className="mx-auto p-3">
+                  <Col>
+                     <h4 className='title text-center'> Vos informations </h4>
+                  </Col>
+
+               </Row>
+               <Row>
+                  <Col md={8} className="mx-auto p-3">
                   <Form>
                      <Form.Row>
                         <Form.Group as={Col} controlId="formGridName">
@@ -119,17 +111,13 @@ const InfosClient = () => {
                         </Form.Group>
                      </Form.Row>
 
-                     <Link to="/payment" className={`${ !isValid && 'disabled' } btn btn-outline-success float-right`}
-                        
-                     >
+                     {/* <Link to="/payment" className={`${ !isValid && 'disabled' } btn btn-outline-success float-right`}>
                         Confirmer
-                     </Link>
+                     </Link> */}
                   </Form>
                   </Col>
                </Row>
 
-            </Container>
-         </Section>
       </Fragment>
    )
 }

@@ -164,7 +164,7 @@ const CartClient = () => {
               </li>
             </ul>
             <Link
-              to="/checkout"
+              to="/payment"
               type="button"
               className="btn btn-outline-danger btn-lg btn-block checkout bg-crimson"
               disabled={ !items.length }

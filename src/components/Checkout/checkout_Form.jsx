@@ -1,13 +1,18 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios'
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { Col, Form  } from 'react-bootstrap'
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { useDispatch } from 'react-redux';
+import { resetCart } from '../../lib/actions';
+
 import { ClientProfileContext } from '../../lib/ClientProfileContext'
 import apiCallStripe from '../../apiCall/Stripe_Api'
+import apiCall from '../../apiCall/Products_Api'
 
 const CheckoutForm = props => {
    
-   
+   const dispatch = useDispatch()
+
    // Format Total
    const amountTotal = props.amount.total
    function formatNumber(num) {
@@ -18,6 +23,7 @@ const CheckoutForm = props => {
 
    // Format Description Produits
    const items = props.itemsCmd
+
    const itemsMap = new Set(items.map((e) => { return e.details._id }))
    const listItems = Array.from(itemsMap);
    const itemsName = JSON.stringify(listItems)
@@ -30,24 +36,24 @@ const CheckoutForm = props => {
    const nameClient = JSON.stringify(clientNom)
    // console.log('ClientName', nomClient)
 
+   // Context info Client
    const client = useContext(ClientProfileContext);
    const {
       nomClient,
       prenomClient,
-      emailClient,
+      // emailClient,
       adresseClient,
       cpClient,
       villeClient,
       setClientProfileContext
    } = client
 
-   const [validPostOrder, setvalidPostOrder] = useState(false)
-   console.log('validPostOrder', validPostOrder)
+
    const [succeeded] = useState(false);
    const [error, setError] = useState(null);
    const [processing] = useState('');
    const [disabled, setDisabled] = useState(true);
-   const [clientSecret, setClientSecret] = useState('');
+   // const [clientSecret, setClientSecret] = useState('');
 
    const [email, setEmail] = useState('');
    const stripe = useStripe();
@@ -59,30 +65,23 @@ const CheckoutForm = props => {
    const status = { inProgress: true, finish: false };
    const totalCmd = props.amount
 
+
  
    const handleSubmit = async (event) => {
       // Block native form submission.
       event.preventDefault();
-
-      if (!stripe || !elements) {
-         // Stripe.js has not loaded yet. Make sure to disable
-         // form submission until Stripe.js has loaded.
+      if (!stripe || !elements) { // Stripe.js has not loaded yet. Make sure to disable form submission until Stripe.js has loaded.
          return;
       }
-
-      // Get a reference to a mounted CardElement. Elements knows how
-      // to find your CardElement because there can only ever be one of
-      // each type of element.
+      // Get a reference to a mounted CardElement. Elements knows how to find your CardElement because there can only ever be one of  each type of element.
       const cardElement = elements.getElement(CardElement);
-
       // Use your card Element with other Stripe.js APIs
       const { error, paymentMethod } = await stripe.createPaymentMethod({
          type: 'card',
          card: cardElement,
       });
 
-      if (error) {
-         console.log('[error]', error);
+      if (error) { console.log('[error]', error);
       } else {
          // console.log('[PaymentMethod]', paymentMethod);
          const { id } = paymentMethod;
@@ -92,27 +91,36 @@ const CheckoutForm = props => {
             amount: formatTotal,
             description: `${nameClient} ${firstNameClient} - ${itemsName}`,
             receipt_email: email,
-            // metadata: {
-            //    product_uuid: `${items}`            // Description Dashboard
-            // },
-            // billing_details: {
-            //    name: ev.target.name.value
-            // }
          })
          .then( data => {
             console.log('data', data)
-            setClientSecret(data.clientSecret);
-            setvalidPostOrder(true)
+            // setClientSecret(data.clientSecret)
 
-          
-               const payload = { items, client, totalCmd, status }
-               apiCallStripe.insertOrder(payload).then(res => {
-                  window.alert(`NewProduct inserted successfully`)
-                  console.log("Order enregistré")
-               })
-      
+            // Update quantity in db
+            // setObject in newItems
+            const test = (items.map(item => {
+               const newProductQuantity = item.details.quantityProduct - item.quantity;
+               return {
+                  ...item.details, quantityProduct: newProductQuantity
+               }
+            }))
+            // Update quantityProduct in db
+            test.map(change => (
+               <> {apiCall.updateProductById(change._id, change).then(res => { console.log('update quantityProduct in db OK !!! ') })
+               } </>
+            ))
 
-            
+            // Send order in db
+            const payload = { items, client, totalCmd, status }
+            apiCallStripe.insertOrder(payload).then(res => {
+               window.alert(`NewProduct inserted successfully`)
+               console.log("Order enregistré")
+               const reset = () => {
+                  dispatch(resetCart())
+               }
+               return reset()
+            })
+
          });
       }
    };
@@ -130,7 +138,6 @@ const CheckoutForm = props => {
 
    return (
       <>
-         {/* <button onClick={postOrder}>TEST</button> */}
       <Form id="payment-form" onSubmit={handleSubmit}>
          <Form.Row>
             <Form.Group as={Col} controlId="formGridName">

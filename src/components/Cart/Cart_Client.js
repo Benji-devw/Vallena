@@ -15,7 +15,7 @@ const RowCart = props => {
   const dispatch = useDispatch()				        // Dispatch l'item du store localement pr le lire
 
   const update = (action) => {
-    if (action === 'increment') { setQty(qty + 1)}
+    if (action === 'increment') { setQty(item.quantityProduct > qty ? qty + 1 : qty)}
     if (action === 'decrement') { setQty(qty - 1)}
   }
 
@@ -75,7 +75,7 @@ const RowCart = props => {
 
 const TableCart = () => {
   const items = useSelector(state => state.items)
-  // console.log('items', items)
+  console.log('items', items)
   useEffect(() => {
     // console.log(`you have ${items.length} in yourcart`)
   });

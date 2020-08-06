@@ -1,5 +1,5 @@
 import React, { Fragment, useContext, useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import { ClientProfileContext } from '../../lib/ClientProfileContext';
@@ -14,7 +14,6 @@ import Section from '../../HOC/Section';
 const Payment = () => {
    const client = useContext(ClientProfileContext)
    const items = useSelector(state => state.items)
-   const status = { inProgress: true, finish: false};
 
    const [subTotal, setSubTotal] = useState(0.00)
    const [total, setTotal] = useState(0.00)
@@ -29,17 +28,6 @@ const Payment = () => {
    const totalCmd = { total: total, shipping: shipping }
    // console.log('totalCmd', totalCmd)
    
-   // const dispatch = useDispatch()
-   // const reset = () => {
-   //    dispatch(resetCart())
-   // }
-   
-   // const postOrder = async () => {
-   //    const payload = { items, client, totalCmd, status }
-   //    await apiCallStripe.insertOrder(payload).then(res => {
-   //       window.alert(`NewProduct inserted successfully`)
-   //    })
-   // }
    
    return (
       <Fragment>

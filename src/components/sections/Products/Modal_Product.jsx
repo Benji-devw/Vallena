@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+
 import { addtoCart } from '../../../lib/actions'
 
 import Modal from 'react-bootstrap/Modal'
@@ -9,12 +10,16 @@ import moment from 'moment'
 import { MdAddShoppingCart } from 'react-icons/md';
 
 
-
 const ModalProduct = ({ item }) => {
-	// console.log('items', items)
+	const itemsCart = useSelector(state => state.items)
+	// console.log('item', item._id)
+	// console.log('itemsCart', itemsCart)
 
+	// Show Modal
 	const [show, setShow] = useState(false);
-	
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
+
 	// Redux
 	const [qty, setQty] = useState(1)
 	const dispatch = useDispatch()				// Dispatch l'item du store localement pr le lire
@@ -22,8 +27,11 @@ const ModalProduct = ({ item }) => {
 		dispatch(addtoCart(item, quantity))
 	}
 
-	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
+	// Filtre add() si déja dans le panier
+	const searchIdProduct = itemsCart.map(e => e.details._id)
+	const foundId = searchIdProduct.includes(item._id)
+
+
 
 	return (
 		<>
@@ -53,20 +61,25 @@ const ModalProduct = ({ item }) => {
 						<Col lg={4}>
 							<h3>{item.titleProduct}</h3>
 							<h5>€ {item.priceProduct}</h5>
+							<p>{item.quantityProduct} en stock</p>
 
-							<button type="button" className="btn btn-sm btn-secondary"
-								onClick={() => setQty(qty > 1 ? qty -1 : 1)}
-							>-</button>
 
-							<span className="btn btn-light qty">{qty}</span>
-
-							<button type="button" className="btn btn-sm btn-secondary"
-								onClick={() => setQty(qty +1) }
-							>+</button>
-
-							<MdAddShoppingCart size="2em" className="ml-3"
-								onClick={() => add(item, qty)}
-							/>
+							{item.quantityProduct > 1 ? 	// Affichage à la volée avec opérateur ternaire
+							<>
+								{!foundId ? 
+									<div className="addToCart">
+										<button type="button" className="btn btn-sm btn-secondary"
+											onClick={() => setQty(qty > 1 ? qty -1 : 1)}		// tant que qty est supp a 1 ? qty -1 sinon return 1
+										>-</button>
+										<span className="btn btn-light qty">{qty}</span>
+										<button type="button" className="btn btn-sm btn-secondary"
+											onClick={() => setQty(item.quantityProduct > qty ? qty + 1 : qty)}
+										>+</button>
+										<MdAddShoppingCart size="2em" className="ml-3" style={{cursor: "pointer"}}
+											onClick={() => add(item, qty)} />
+									</div>
+								: <p>Est déjà dans votre panier !</p> }
+							</> : <p>Rupture !</p>}
 
 						</Col>
 					</Row>

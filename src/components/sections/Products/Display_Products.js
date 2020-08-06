@@ -11,7 +11,7 @@ import Section from '../../../HOC/Section';
 const SideMenu = ({loadCategory}) => {
   const [loading, products] = useFetchAllProducts()
 
-  if(loading) {return 'chargement...'}
+  if(loading) {return 'Recherche des catégories ...'}
 
   // Delete Duplicate Category
   const categorySet = new Set(products.map((p) => p.categoryProduct));
@@ -30,11 +30,12 @@ const SideMenu = ({loadCategory}) => {
 
 
 
-const DisplayProducts = props => {
+const DisplayProducts = () => {
 
   
   // Objet Product
   const [loading, products] = useFetchAllProducts()
+  // console.log('products', products)
 
   // Search filters
   const [isFiltering, setFiltering] = useState(false)

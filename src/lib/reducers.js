@@ -9,7 +9,8 @@ const saveToLocalStorage = object => {
 // 2 
 const initialState = {
    // si ds le navigateur application il y a un item on renvoi l'item sinon un tableau vide
-   items: JSON.parse(localStorage.getItem("items")) !== null ? JSON.parse(localStorage.getItem("items")) : []
+   items: JSON.parse(localStorage.getItem("items")) !== null ? JSON.parse(localStorage.getItem("items")) : [],
+   confirmOrder: []
 }
 
 export default function onlineStoreApp(state = initialState, action) {
@@ -43,6 +44,7 @@ export default function onlineStoreApp(state = initialState, action) {
          return Object.assign({}, state, {
             items : []
          })
+
 
       default : return state
    }

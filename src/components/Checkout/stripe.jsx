@@ -7,6 +7,7 @@ import CheckoutForm from './checkout_Form'
 const promise = loadStripe("pk_test_dkqruS4Wn9fEWEMrRQ7qKBtV00iZ2mBdzz")
 
 const Stripe = props => {
+   // console.log('props', props)
    // Recup Props Client
    const items = props.items
    const clientDatas = { 
@@ -24,7 +25,7 @@ const Stripe = props => {
       <Fragment>
 
          <Elements stripe={promise}>
-            <CheckoutForm amount={props.total} client={clientDatas} itemsCmd={items}/>
+            <CheckoutForm amount={props.total} client={clientDatas} itemsCmd={items} status={props.status}/>
          </Elements>
       </Fragment>
    )

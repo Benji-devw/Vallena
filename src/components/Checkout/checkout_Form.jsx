@@ -2,10 +2,11 @@ import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios'
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { Col, Form  } from 'react-bootstrap'
-
 import { ClientProfileContext } from '../../lib/ClientProfileContext'
+import apiCallStripe from '../../apiCall/Stripe_Api'
 
 const CheckoutForm = props => {
+   
    
    // Format Total
    const amountTotal = props.amount.total
@@ -39,22 +40,6 @@ const CheckoutForm = props => {
       villeClient,
       setClientProfileContext
    } = client
-   console.log('client', client)
-
-   const validate = () => {
-      let errors = []
-      const inputs = document.querySelectorAll(".form-control-input")
-      // console.log('inputs', inputs)
-      inputs.forEach(input => {
-         !input.value ? errors.push(input) : errors.length && errors.pop()
-      })
-      // console.log(errors)
-      // setValid(!errors.length)
-      // console.log('errors.length', errors.length)
-   }
-   useEffect(() => {
-      validate()
-   })
 
    const [validPostOrder, setvalidPostOrder] = useState(false)
    console.log('validPostOrder', validPostOrder)
@@ -68,6 +53,13 @@ const CheckoutForm = props => {
    const stripe = useStripe();
    const elements = useElements();
 
+   // console.log('items', items)
+   // console.log('client', client)
+   // console.log('status', status)
+   const status = { inProgress: true, finish: false };
+   const totalCmd = props.amount
+
+ 
    const handleSubmit = async (event) => {
       // Block native form submission.
       event.preventDefault();
@@ -107,10 +99,20 @@ const CheckoutForm = props => {
             //    name: ev.target.name.value
             // }
          })
-         .then(data => {
+         .then( data => {
             console.log('data', data)
             setClientSecret(data.clientSecret);
             setvalidPostOrder(true)
+
+          
+               const payload = { items, client, totalCmd, status }
+               apiCallStripe.insertOrder(payload).then(res => {
+                  window.alert(`NewProduct inserted successfully`)
+                  console.log("Order enregistré")
+               })
+      
+
+            
          });
       }
    };
@@ -123,9 +125,13 @@ const CheckoutForm = props => {
    };
 
 
-   return (
-      <Form id="payment-form" onSubmit={handleSubmit}>
 
+
+
+   return (
+      <>
+         {/* <button onClick={postOrder}>TEST</button> */}
+      <Form id="payment-form" onSubmit={handleSubmit}>
          <Form.Row>
             <Form.Group as={Col} controlId="formGridName">
                <Form.Control placeholder="Nom" className="form-control-input"
@@ -210,7 +216,7 @@ const CheckoutForm = props => {
             />
 
          <CardElement id="card-element" onChange={handleChange} />
-         <button  disabled={processing || disabled || succeeded} id="submit" >
+               <button  disabled={processing || disabled || succeeded} id="submit" >
             <span id="button-text">
                {processing ? ( <div className="spinner" id="spinner"></div> ) : ( "Confirmer" )}
             </span>
@@ -228,6 +234,7 @@ const CheckoutForm = props => {
          </p>
          </Form.Group>
       </Form>
+      </>
    );
 };
 export default CheckoutForm

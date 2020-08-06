@@ -3,11 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import { ClientProfileContext } from '../../lib/ClientProfileContext';
-// import { resetCart } from '../../lib/actions';
-import InfosClient from './infos_Client'
+
 
 import Stripe from './stripe'
-// import apiCallStripe from '../../apiCall/Stripe_Api'
 
 
 import Section from '../../HOC/Section';
@@ -30,8 +28,6 @@ const Payment = () => {
    }, [items, subTotal, total]);
    const totalCmd = { total: total, shipping: shipping }
    // console.log('totalCmd', totalCmd)
-
-   
    
    // const dispatch = useDispatch()
    // const reset = () => {
@@ -76,7 +72,7 @@ const Payment = () => {
                      </Link> */}
                   </Col>
                   <Col sm={3}>
-                  <div id="card-payment-total">
+                  
                      <h4>Commande :</h4>
                         <hr />
                      <p className="text-left">Subtotal</p>
@@ -94,7 +90,7 @@ const Payment = () => {
                      <p>{client.nomClient} {client.prenomClient}</p>
                      <p>{client.adresseClient}</p>
                      <p>{client.cpClient} - {client.villeClient}</p>
-                  </div>
+                  
                   </Col>
                </Row>
 

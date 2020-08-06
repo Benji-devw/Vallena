@@ -8,7 +8,9 @@ export const actions = {
    UPDATE_CART: "UPDATE_CART",
    REMOVE_FROM_CART: "REMOVE_FROM_CART",
    SAVE_CART: "SAVE_CART",
-   RESET_CART: "RESET_CART"
+   RESET_CART: "RESET_CART",
+
+   CONFIRM_ORDER: "CONFIRM_ORDER"
 }
 
 /*
@@ -48,5 +50,11 @@ export function saveCart (items) {
 export function resetCart () {
    return {
       type: actions.RESET_CART,
+   }
+}
+
+export function confirmOrder() {
+   return {
+      type: actions.CONFIRM_ORDER,
    }
 }

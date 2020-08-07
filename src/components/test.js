@@ -1,69 +1,142 @@
 import React from 'react'
-import apiCall from '../apiCall/Products_Api'
-
-//    constructor(props) {
-//       super(props)
-//       this.state = {
-//          products: [],
-//          isLoading: false,
-//       }
-//    }
-//    componentDidMount = async () => {
-//       this.setState({ isLoading: true })
-
-//       await apiCall.getAllProducts().then(products => {
-//          this.setState({
-//             products: products.data.data,
-//             isLoading: false,
-//          })
-//       })
-//    }
 
 
+export default class ProductFilter extends React.Component {
+   constructor() {
+      super();
 
-//CHAINING MAP AND FILTER WITH REACT PROPS TO RENDER LISTS
-class Users extends React.Component {
-      constructor(props) {
-      super(props)
+      this.handleFormInput = this.handleFormInput.bind(this);
+
       this.state = {
-         products: [],
-         isLoading: false,
+         series: 0,
+         abv: 0
       }
    }
-   componentDidMount = async () => {
-      this.setState({ isLoading: true })
 
-      await apiCall.getAllProducts().then(products => {
-         this.setState({
-            products: products.data.data,
-            isLoading: false,
-         })
+   handleFormInput(series, abv) {
+      this.setState({
+         series: series,
+         abv: abv
       })
    }
 
-
    render() {
-     const produits = this.state.products
+      const products = [
+         { name: 'IPA', abv: 5.5, series: 'Year-Round Ales' },
+         { name: 'White Rascal', abv: 5.7, series: 'Year-Round Ales' },
+         { name: "Joe's Pilsner", abv: 3.5, series: 'Year-Round Ales' },
+         { name: "Ellie's Brown Ale", abv: 5.2, series: 'Year-Round Ales' },
+         { name: 'Out of Bounds Stout', abv: 4.5, series: 'Year-Round Ales' },
+         { name: 'The Maharaja', abv: 6.5, series: 'Dictator Series' },
+         { name: 'The Kaiser', abv: 6.5, series: 'Dictator Series' },
+         { name: 'The Czar', abv: 7.5, series: 'Dictator Series' },
+         { name: 'Hog Heavens', abv: 5.5, series: 'Holy Trinity' },
+         { name: 'The Reverend', abv: 6.8, series: 'Holy Trinity' },
+         { name: 'Salvation', abv: 6.4, series: 'Holy Trinity' }
+      ];
+
       return (
-         <div>
-            <h3>En stock : </h3>
-
-               {produits.map(t => (
-                  <ul>
-                  
-                     {t.filter(u => u.stockProducts === 'oui').map(u => <li>{console.log(u.titleProducts)}</li>)}
-                  </ul>
-               ))}
-
-
-{/* 
-            <h3> Enemies </h3>
-            <ul>
-               {// This is why filtering boolean values can be fun. One character changes everything.
-                  this.state.products.filter(u => !u.friend).map(u => <li>{u.name}</li>)}
-            </ul> */}
+         <div className="filter">
+            <ProductFilterMenu
+               series={this.state.series}
+               abv={this.state.abv}
+               onFormInput={this.handleFormInput}
+            />
+            <ProductFilterResults
+               products={products}
+               series={this.state.series}
+               abv={this.state.abv}
+            />
          </div>
       )
    }
 }
-export default Users
+
+class ProductFilterMenu extends React.Component {
+   constructor() {
+      super();
+      this.handleChange = this.handleChange.bind(this);
+   }
+
+   handleChange() {
+      this.props.onFormInput(
+         this.refs['seriesInput'].getDOMNode().value,
+         this.refs['abvInput'].getDOMNode().checked
+      );
+   }
+
+   render() {
+      return (
+         <form className="filter-menu">
+            <label htmlFor="abvInput">Sort By ABV</label>
+            <input id="abvInput" type="checkbox" checked={this.props.abv} ref="abvInput" onChange={this.handleChange} />
+            <label htmlFor="seriesInput">Filter By Series</label>
+            <select id="seriesInput" ref="seriesInput" onChange={this.handleChange}>
+               <option value="All">All</option>
+               <option value="Year-Round Ales">Year-Round Ales</option>
+               <option value="Dictator Series">Dictator Series</option>
+               <option value="Holy Trinity">Holy Trinity</option>
+            </select>
+         </form>
+      );
+   }
+}
+
+class ProductFilterResults extends React.Component {
+   constructor() {
+      super();
+   }
+
+   render() {
+      var results = [];
+
+      if (this.props.abv === true) {
+         this.props.products.sort((a, b) => {
+            return b.abv - a.abv;
+         })
+      }
+
+      this.props.products.map((product, index) => {
+         if (this.props.series === 0 || this.props.series === 'All') {
+            results.push(<ProductCards key={index} product={product} />);
+         }
+         else if (product.series === this.props.series) {
+            results.push(<ProductCards key={index} product={product} />);
+         }
+      });
+
+      return (
+         <div className="filter-results">
+            <ul className="blocks blocks_3up">
+               {results}
+            </ul>
+         </div>
+      )
+   }
+}
+
+class ProductCards extends React.Component {
+   constructor() {
+      super();
+   }
+
+   render() {
+      return (
+         <li>
+            <div className="feature">
+               <div className="feature-hd">
+                  <h2 className="hdg hdg_2">{this.props.product.name}</h2>
+               </div>
+               <div className="feature-bd">
+                  <p>{this.props.product.series}</p>
+               </div>
+               <div className="feature-ft">
+                  <p>{this.props.product.abv}% ABV</p>
+               </div>
+            </div>
+         </li>
+      )
+   }
+}
+
+

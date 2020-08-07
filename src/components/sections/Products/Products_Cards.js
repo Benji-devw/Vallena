@@ -10,12 +10,12 @@ const ProductCards = props => {
   // Destructuration de tous les attributs passé ds les props
   // ..donc item => objet destructuré => chaque tableau est un produits 
   const item = props.produit
-  // console.log('item', item)
+
+
 
   return (
     <>
         <Col md={3} key={item._id} className='mt-5 mb-5'>
-
           <div className='card rounded-0'>
             <img src={blogImage1} className='card-img-top' alt='Blog 1' />
             <div className='card-body'>

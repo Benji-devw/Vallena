@@ -54,11 +54,11 @@ const ModalProduct = ({ item }) => {
 						</Col>
 					</Row>
 					<Row>
-						<Col lg={8}>
+						<Col md={8}>
 							{/* <h5 className='section-title'>Screen :</h5> */}
 							<img src={item.img} alt="none" className="img-fluid" />
 						</Col>
-						<Col lg={4}>
+						<Col md={4}>
 							<h3>{item.titleProduct}</h3>
 							<h5>€ {item.priceProduct}</h5>
 							<p>{item.quantityProduct} en stock</p>

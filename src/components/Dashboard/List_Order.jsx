@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Row, Col, Card, Button } from 'react-bootstrap'
 
-import apiCallStripe from '../../apiCall/Stripe_Api'
+import apiCallStripe from '../../apiCall/Orders_Api'
 
 
 export const ListOrder = props => {

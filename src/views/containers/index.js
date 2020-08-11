@@ -1,3 +1,4 @@
+// Le container est connecté aux actions via la fonction connect(), et a pour rôle de mettre à jour l'interface graphique.
 import { connect } from 'react-redux'
 import  App from '../../App'
 

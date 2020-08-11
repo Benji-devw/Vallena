@@ -2,21 +2,22 @@ import axios from 'axios'
 
 const apiCall = axios.create({
     baseURL: 'http://localhost:8800/api',
+    // baseURL: 'http://localhost:4000/api',
 })
 
+const insertProduct = payload => apiCall.post(`/upload-images`, payload)            // Lien => Api=>productRouter.js/insertProduct
+const updateProductById = (id, payload) => apiCall.put(`/update/${id}`, payload)    // Lien => Api=>productRouter.js/updateProduct
+const getProducts = payload => apiCall.get(`/`, payload)                            // Lien => Api=>productRouter.js./getProducts
+const getProductById = id => apiCall.get(`/${id}`)
+const deleteProductById = id => apiCall.delete(`/${id}`)
 
-const insertProduct = payload => apiCall.post(`/product`, payload)      // Lien avec Api=>productRouter.js (artid'eche/Api/products/routes)
-const getAllProducts = payload => apiCall.get(`/products`, payload)
-const updateProductById = (id, payload) => apiCall.put(`/product/${id}`, payload)       // Lien => Api=>productRouter.js
-const deleteProductById = id => apiCall.delete(`/product/${id}`)
-const getProductById = id => apiCall.get(`/product/${id}`)
 
 const apis = {
     insertProduct,
-    getAllProducts,
     updateProductById,
-    deleteProductById,
+    getProducts,
     getProductById,
+    deleteProductById,
 }
 
 export default apis

@@ -1,4 +1,6 @@
+// Le reducer a pour rôle d'utiliser l'action pour mettre à jour le global state.
 // Recupère les valeurs de action.js et les passe a ./containers/index.js
+// Effectuer les mises à jour sur le  state
 
 import { actions } from './actions'
 
@@ -6,7 +8,7 @@ import { actions } from './actions'
 const saveToLocalStorage = object => {
    localStorage.setItem("items", JSON.stringify(object))
 }
-// 2 
+// 2
 const initialState = {
    // si ds le navigateur application il y a un item on renvoi l'item sinon un tableau vide
    items: JSON.parse(localStorage.getItem("items")) !== null ? JSON.parse(localStorage.getItem("items")) : [],

@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useContext } from 'react';
+import React, { Fragment, useEffect, useContext } from 'react';
 import { Row, Col, Form } from 'react-bootstrap'
 
 import { ClientProfileContext } from '../../lib/ClientProfileContext'

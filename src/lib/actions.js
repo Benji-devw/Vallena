@@ -1,7 +1,8 @@
 // Creation des veleurs item et quantity que l'on passe a reducers en payload
-
+// Action (objet) est appelée par un  container dont la mission sera de mettre à jour l'interface en utilisant les actions et en récupérant les states
 /*
  * action types
+ * type est obligatoire pour chaque  action
  */
 export const actions = {
    ADD_TO_CART: "ADD_TO_CART",
@@ -14,7 +15,7 @@ export const actions = {
 }
 
 /*
- * action creators
+ * Action creator
  */
 const uid = () => Math.random().toString(34).slice(2)
 export function addtoCart (item, quantity) {

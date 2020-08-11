@@ -52,10 +52,10 @@ const Nav = () => {
           <ul className='navbar-nav ml-auto'>
             
             <li className='nav-item'>
-              <LinkScroll target='/home' offset={-120} classes='nav-link'> Home </LinkScroll>
+              <LinkScroll target='home' offset={-120} classes='nav-link'> Home </LinkScroll>
             </li>
             <li className='nav-item'>
-              <LinkScroll target='/blog' classes='nav-link'> Blog </LinkScroll>
+              <LinkScroll target='blog' classes='nav-link'> Blog </LinkScroll>
             </li>
             <li className='nav-item'>
               <LinkScroll target='about' classes='nav-link'> About </LinkScroll>

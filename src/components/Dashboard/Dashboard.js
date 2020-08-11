@@ -1,8 +1,9 @@
 import React, { Fragment } from "react";
-import { Button } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import { disconnect } from "../../utils/Logout";
 import { ListProducts }from './List_Product'
 import { InsertProduct }from './Insert_Product'
+
 
 import { ListOrder } from './List_Order'
 
@@ -24,6 +25,7 @@ export const Dashboard = () => {
     return (
       <Fragment>
       <Section calssName="pl-5 pr-5 ml-5 mr-5">
+        <Container>
 
         <h1 className="display-4 mt-5 mb-2 text-center">Dashboard</h1>
 
@@ -33,6 +35,7 @@ export const Dashboard = () => {
           </Button>
 
           <Row>
+
             <Col lg={12}><InsertProduct /></Col>
             
             <Col lg={12}><ListProducts /></Col>
@@ -48,6 +51,7 @@ export const Dashboard = () => {
           
         </div>
 
+        </Container>
         </Section>
       </Fragment>
     );

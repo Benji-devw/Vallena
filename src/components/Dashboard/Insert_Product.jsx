@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import apiCall from '../../apiCall/Products_Api'
+import {Form, Col} from 'react-bootstrap'
 
-import Form from 'react-bootstrap/Form'
 
 import styled from 'styled-components'
 
@@ -11,11 +11,7 @@ const Title = styled.h1.attrs({
 
 const Wrapper = styled.div.attrs({
     className: 'form-group',
-})`
-    margin: 0 30px;
-`
-const Label = styled.label` margin: 5px;
-`
+})` margin: 0 30px; `
 const InputText = styled.input.attrs({ className: 'form-control', })`
     margin: 5px;
 `
@@ -23,38 +19,23 @@ const Button = styled.button.attrs({ className: `btn btn-primary`, })`
     margin: 15px 15px 15px 5px;
 `
 
-// const CancelButton = styled.a.attrs({
-//     className: `btn btn-danger`,
-// })`
-//     margin: 15px 15px 15px 5px;
-// `
-
 export class InsertProduct extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
-            titleProduct: '',
-            descriptionProduct: '',
-            priceProduct: '',
-            categoryProduct: '',
-
-            sizeProduct: '',
-            weightProduct: '',
-            quantityProduct: '',
-            stockProduct: '',
-            promotionProduct: '',
-
-            reporterProduct: ''
+            titleProduct: '',        descriptionProduct: '',
+            priceProduct: '',        categoryProduct: '',
+            sizeProduct: '',         weightProduct: '',
+            quantityProduct: '',     reporterProduct: '',
+            promotionProduct: false, stockProduct: true,
+            visible: true,           notes: 0,
+            comments: [],           imgCollection: ''
         }
-        this.handleChangeInputStockProduct = this.handleChangeInputStockProduct.bind(this);
     }
-
+    
     handleChangeInputTitleProduct = async event => {
-        const titleProduct = event.target.value
-        this.setState({ titleProduct })
+        this.setState({ titleProduct: event.target.value})
     }
-
     handleChangeInputDescriptionProduct = async event => {
         const descriptionProduct = event.target.validity.valid
             ? event.target.value
@@ -62,189 +43,237 @@ export class InsertProduct extends Component {
 
         this.setState({ descriptionProduct })
     }
-
     handleChangeInputPriceProduct = async event => {
-        const priceProduct = event.target.value
-        this.setState({ priceProduct })
+        this.setState({ priceProduct: event.target.value})
     }
-
-    handleChangeInputCategoryProduct = async event => {
-        const categoryProduct = event.target.value
-        this.setState({ categoryProduct })
+    handleChangeInputCategoryProduct = async event => { 
+        this.setState({ categoryProduct: event.target.value})
     }
-
     handleChangeInputSizeProduct = async event => {
-        const sizeProduct = event.target.value
-        this.setState({ sizeProduct })
+        this.setState({ sizeProduct: event.target.value })
     }
-
     handleChangeInputWeightProduct = async event => {
-        const weightProduct = event.target.value
-        this.setState({ weightProduct })
+        this.setState({ weightProduct: event.target.value })
     }
-
     handleChangeInputQuantityProduct = async event => {
-        const quantityProduct = event.target.value
-        console.log('quantityProduct', quantityProduct)
-        this.setState({ quantityProduct })
+        this.setState({ quantityProduct: event.target.value })
     }
-
     handleChangeInputStockProduct = async event => {
-        const stockProduct = event.target.value
-        this.setState({ stockProduct })
-    //     const target = event.target;
-    //     const value = target.name === 'stockProduct' ? target.checked : target.value;
-    //     const name = target.name;
-    //     this.setState({
-    //         [name]: value
-    //     });
+        this.setState({ stockProduct: event.target.checked })
     }
-
     handleChangeInputPromotionProduct = async event => {
-        const promotionProduct = event.target.value
-        this.setState({ promotionProduct })
-        // const target = event.target;
-        // const value = target.name === 'promotionProduct' ? target.checked : target.value;
-        // const name = target.name;
-        // this.setState({
-        //     [name]: value
-        // });
+        this.setState({ promotionProduct: event.target.checked })
     }
-
     handleChangeInputReporterProduct = async event => {
-        const reporterProduct = event.target.value
-        this.setState({ reporterProduct })
+        this.setState({ reporterProduct: event.target.value })
+    }
+    handleChangeCheckboxVisible = (e) => {
+        this.setState({ visible: e.target.checked })
+    }
+    handleChangeImgCollection = event => {
+        this.setState({ imgCollection: event.target.files })
     }
 
-    handleIncludeNewProduct = async () => {
-        const { titleProduct, descriptionProduct, priceProduct, categoryProduct, sizeProduct, weightProduct, quantityProduct, stockProduct, promotionProduct, reporterProduct } = this.state
-        const payload = { titleProduct, descriptionProduct, priceProduct, categoryProduct, sizeProduct, weightProduct, quantityProduct, stockProduct, promotionProduct, reporterProduct }
 
-        await apiCall.insertProduct(payload).then(res => {          // liens => src/api/index.js
-            window.alert(`NewProduct inserted successfully`)
-            this.setState({
-                titleProduct: '',
-                descriptionProduct: '',
-                priceProduct: '',
-                categoryProduct: '',
-                sizeProduct: '',
-                weightProduct: '',
-                quantityProduct: '',
-                stockProduct: '',
-                promotionProduct: '',
-                reporterProduct: ''
+    handleIncludeNewProduct = async (e) => {
+        e.preventDefault()
+        
+        const { imgCollection, titleProduct, descriptionProduct, priceProduct, categoryProduct, sizeProduct, weightProduct, quantityProduct, stockProduct, promotionProduct, reporterProduct, visible, notes, comments } = this.state
+        
+        if (!!titleProduct && !!descriptionProduct && !!priceProduct && categoryProduct && sizeProduct && weightProduct && quantityProduct && reporterProduct)
+        {  
+
+            var formData = new FormData();
+            for (const key of Object.keys(this.state.imgCollection)) {              // Crée un nouvel objet FormData et construit une paires clé/valeur représentant les champs du formulaire et leurs valeurs,
+                formData.append('imgCollection', this.state.imgCollection[key])     // Ajoute une nouvelle valeur à une clé existante dans un objet FormData, ou ajoute la clé si elle n'existe pas encore.
+            }
+
+            formData.append('titleProduct', titleProduct)
+            formData.append('descriptionProduct', descriptionProduct)
+            formData.append('priceProduct', priceProduct)
+            formData.append('categoryProduct', categoryProduct)
+            formData.append('sizeProduct', sizeProduct)
+            formData.append('weightProduct', weightProduct)
+            formData.append('quantityProduct', quantityProduct)
+            formData.append('stockProduct', stockProduct)
+            formData.append('promotionProduct', promotionProduct)
+            formData.append('reporterProduct', reporterProduct)
+            formData.append('visible', visible)
+            formData.append('notes', notes)
+            formData.append('comments', comments)
+            
+
+            apiCall.insertProduct(formData).then(res => {
+                console.log('2 res.data......', res.data)
             })
-        })
+        }
+        
     }
+
 
     render() {
-        const { titleProduct, descriptionProduct, priceProduct, categoryProduct, sizeProduct, weightProduct, quantityProduct, stockProduct, promotionProduct, reporterProduct } = this.state
-
+        const { imgCollection } = this.state
 
         return (
-
             <Wrapper>
+                <Form>
 
                 <Title>Create Product</Title>
 
-                <Label>Title : </Label>
-                <InputText
-                    type="text"
-                    value={titleProduct}
-                    onChange={this.handleChangeInputTitleProduct}
-                />
+                <Form.Row className="justify-content-md-center">
+                    <Form.Group>
+                        <Form.File
+                            className="position-relative"
+                            id="custom-file"
+                            label="Inserer des images"
+                            type="file"
+                            name="imgCollection"
+                            onChange={this.handleChangeImgCollection} 
+                            multiple
+                            feedbackTooltip
+                            custom
+                            required
+                        />
+                    </Form.Group>
+                </Form.Row> 
 
-                <Label>General Information : </Label>
-                <Form.Control as="textarea" rows="3"
-                    value={descriptionProduct}
-                    onChange={this.handleChangeInputDescriptionProduct}
 
-                />
+                <Form.Row className="justify-content-md-center">
+                    <Form.Group as={Col} md="4" controlId="validationCustom01">
+                        <Form.Control
+                            placeholder="Nom du produit"
+                            type="text"
+                            defaultValue={this.state.titleProduct}
+                            onChange={this.handleChangeInputTitleProduct}
+                            required
+                        />
+                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    </Form.Group>
 
-                <Label>Price : </Label>
-                <InputText
-                    type="number"
-                    value={priceProduct}
-                    onChange={this.handleChangeInputPriceProduct}
-                />
+                    <Form.Group as={Col} md="4" controlId="validationCustom02">
 
-                <Form.Group controlId="exampleForm.ControlSelect1">
-                    <Form.Label>Catégories</Form.Label>
-                    <Form.Control
-                        as="select"
-                        value={categoryProduct}
-                        onChange={this.handleChangeInputCategoryProduct}
-                    >
-                        <option></option>
-                        <option>Masques</option>
-                        <option>Pochettes</option>
-                        <option>Trousse</option>
-                        <option>Dingettes</option>
-                        <option>Panière</option>
-                        <option>Attache tétine</option>
-                        <option>Sac à dos</option>
-                        <option>Couverture</option>
-                        <option>Bavoir</option>
-                        <option>Doudou</option>
-                    </Form.Control>
-                </Form.Group>
+                        <Form.Control
+                            label="Catégorie"
+                            as="select"
+                            onChange={this.handleChangeInputCategoryProduct}
+                            required
+                        >
+                            <option></option>
+                            <option>Masques</option>
+                            <option>Pochettes</option>
+                            <option>Trousse</option>
+                            <option>Dingettes</option>
+                            <option>Panière</option>
+                            <option>Attache tétine</option>
+                            <option>Sac à dos</option>
+                            <option>Couverture</option>
+                            <option>Bavoir</option>
+                            <option>Doudou</option>
+                        </Form.Control>
+                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    </Form.Group>
+                </Form.Row>
 
-                <Label>Taille </Label>
-                <InputText
-                    type="text"
-                    value={sizeProduct}
-                    onChange={this.handleChangeInputSizeProduct}
-                />
 
-                <Label>Poids </Label>
-                <InputText
-                    type="text"
-                    value={weightProduct}
-                    onChange={this.handleChangeInputWeightProduct}
-                />               
+                <Form.Row className="justify-content-md-center">
+                    <Form.Group as={Col} md="8" controlId="validationCustom03">
+                        <Form.Control as="textarea" rows="5"
+                            placeholder="Description de produit..."
+                            defaultValue={this.state.descriptionProduct}
+                            onChange={this.handleChangeInputDescriptionProduct}
+                            required
+                        />
+                    </Form.Group>
+                </Form.Row>
 
-                <Label>Quantité </Label>
-                <InputText
-                    type="number"
-                    value={quantityProduct}
-                    onChange={this.handleChangeInputQuantityProduct}
-                /> 
+
+                <Form.Row className="justify-content-md-center">
+                    <Form.Group as={Col} md="3" controlId="validationCustom04">
+                        <InputText
+                            placeholder="Prix..."
+                            type="number"
+                            defaultValue={this.state.priceProduct}
+                            onChange={this.handleChangeInputPriceProduct}
+                            required
+                        />
+                    </Form.Group>
+
+                    <Form.Group as={Col} md="3" controlId="validationCustom05">
+                        <InputText
+                            placeholder='Taille... "xs/xxl..." "3 x 7 mm..."'
+                            type="text"
+                            defaultValue={this.state.sizeProduct}
+                            onChange={this.handleChangeInputSizeProduct}
+                            required
+                        />
+                    </Form.Group>
+
+                    <Form.Group as={Col} md="3" controlId="validationCustom06">
+                        <InputText
+                            placeholder='Poids... "2" "0.3"'
+                            type="text"
+                            defaultValue={this.state.weightProduct}
+                            onChange={this.handleChangeInputWeightProduct}
+                            required
+                        />               
+                    </Form.Group>
+
+                    <Form.Group as={Col} md="3" controlId="validationCustom07">
+                        <InputText
+                            placeholder="Quantité..."
+                            type="number"
+                            defaultValue={this.state.quantityProduct}
+                            onChange={this.handleChangeInputQuantityProduct}
+                            required
+                        />  
+                    </Form.Group>
+                </Form.Row>
     
-                <Form.Group controlId="exampleForm.ControlSelect1">
-                    <Form.Label>Stock</Form.Label>
-                    <Form.Control
-                        as="select"
-                        value={stockProduct}
-                        onChange={this.handleChangeInputStockProduct}
-                    >
-                        <option></option>
-                        <option>Oui</option>
-                        <option>Non</option>
-                    </Form.Control>
-                </Form.Group>  
+
+                <Form.Row className="justify-content-md-center">
+                    <Form.Group as={Col} md="3" controlId="exampleForm.ControlSelect8">
+                        <InputText
+                            placeholder="Crée par ..."
+                            type="text"
+                            defaultValue={this.state.reporterProduct}
+                            onChange={this.handleChangeInputReporterProduct}
+                            required
+                        />
+                    </Form.Group>
+                </Form.Row>
+
+
+                <Form.Row className="justify-content-md-center">
+                    <Form.Group as={Col} md="2" controlId="exampleForm.ControlSelect9">
+                        <Form.Check type="checkbox"
+                            label="Visible"
+                            defaultChecked={this.state.visible}
+                            onChange={this.handleChangeCheckboxVisible}
+                        />
+                    </Form.Group>  
+                    
+                    <Form.Group as={Col} md="2" controlId="exampleForm.ControlSelect10">
+                        <Form.Check type="checkbox"
+                            label="En stock"
+                            defaultChecked={this.state.stockProduct}
+                            onChange={this.handleChangeInputStockProduct}
+                        />
+                    </Form.Group> 
+                    
+                    <Form.Group as={Col} md="2" controlId="exampleForm.ControlSelect11">
+                        <Form.Check type="checkbox"
+                            label="En Promotion"
+                            defaultChecked={this.state.promotionProduct}
+                            onChange={this.handleChangeInputPromotionProduct}
+                        />
+                    </Form.Group>
+                    
+                </Form.Row>
                 
-                <Form.Group controlId="exampleForm.ControlSelect2">
-                    <Form.Label>Promotion</Form.Label>
-                    <Form.Control
-                        as="select"
-                        value={promotionProduct}
-                        onChange={this.handleChangeInputPromotionProduct}
-                    >
-                        <option></option>
-                        <option>Oui</option>
-                        <option>Non</option>
-                    </Form.Control>
-                </Form.Group>
 
-                <Label>Reporter : </Label>
-                <InputText
-                    type="text"
-                    value={reporterProduct}
-                    onChange={this.handleChangeInputReporterProduct}
-                />
+                <Button onClick={this.handleIncludeNewProduct}>Envoyer</Button>
 
-                <Button onClick={this.handleIncludeNewProduct}>Add NewProduct</Button>
-                {/* <CancelButton href={'/newsHome/list'}>Cancel</CancelButton> */}
+                </Form>
             </Wrapper>
         )
     }

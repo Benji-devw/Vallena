@@ -48,7 +48,7 @@ const App = props => {
           <Route path="/Signup" exact component={Signup} />
 
           <PrivateRoute path="/dashboard" component={Dashboard} />
-          <Route path="/newsHome/update/:id" exact component={ProductUpdate} />
+          <Route path="/update/:id" exact component={ProductUpdate} />   {/* Lien => Update_Product.js */}
 
           <Route path="/" component={() => <div className="mt-5 text-center"><h1>Erreur 404</h1></div>} />
 

@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { resetCart } from '../../lib/actions';
 
 import { ClientProfileContext } from '../../lib/ClientProfileContext'
-import apiCallStripe from '../../apiCall/Stripe_Api'
+import apiCallStripe from '../../apiCall/Orders_Api'
 import apiCall from '../../apiCall/Products_Api'
 
 const CheckoutForm = props => {

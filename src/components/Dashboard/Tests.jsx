@@ -4,6 +4,7 @@ import ReactTable from 'react-table'
 import apiCall from '../../apiCall/Products_Api'
 
 import styled from 'styled-components'
+import Axios from 'axios'
 
 
 const Title = styled.h1.attrs({
@@ -24,8 +25,12 @@ const Delete = styled.div`
 class UpdateProduct extends Component {
 	updProduct = event => {
 		event.preventDefault()
+
+		
 		window.location.href = `/update/${this.props.id}`		// Lien => app.js
+
 	}
+
 	render() {
 		return <Update onClick={this.updProduct}>Update</Update>
 	}
@@ -34,40 +39,48 @@ class UpdateProduct extends Component {
 class DeleteProduct extends Component {
 	delproduct = event => {
 		event.preventDefault()
-		if ( window.confirm( `Do tou want to delete the new ${this.props.id} permanently?`, )) {
+
+		if (
+			window.confirm(
+				`Do tou want to delete the new ${this.props.id} permanently?`,
+			)
+		) {
 			apiCall.deleteProductById(this.props.id)
 			window.location.reload()
 		}
 	}
+
 	render() {
 			return <Delete onClick={this.delproduct}>Delete</Delete>
 	}
 }
 
-export class ListProducts extends Component {
+export class ListProductsTest extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-				products: [],
+				newProducts: [],
 				columns: [],
 				isLoading: false,
 		}
 	}
 
-	componentDidMount = async () => {
+	componentDidMount = () => {
 			this.setState({ isLoading: true })
 
-			await apiCall.getProducts().then(product => {
-				console.log('products', product)
+		Axios.get('http://localhost:4000/api').then(newProduct => {
+				// console.log('newProducts', newProduct)
 					this.setState({
-							products: product.data.products,
+							newProducts: newProduct.data.users,
 							isLoading: false,
 					})
 			})
 	}
 
 	render() {
-			const { products, isLoading } = this.state
+			const { newProducts, isLoading } = this.state
+
+			// console.log(this.state.newProducts[0])
 
 			// Tableau REACT
 			const columns = [
@@ -81,6 +94,7 @@ export class ListProducts extends Component {
 							accessor: 'titleProduct',
 							filterable: true,
 					},
+					
 					{
 							Header: 'Description',
 							accessor: 'descriptionProduct',
@@ -159,24 +173,21 @@ export class ListProducts extends Component {
 					},
 			]
 
-			let showTable = true
-			if (!products.length) {
-					showTable = false
-			}
+
 
 			return (
 				<Wrapper>
 					<Title>Liste des Produits</Title>
-					{showTable && (
+		
 						<ReactTable
-							data={products}
+							data={newProducts}
 							columns={columns}
 							loading={isLoading}
 							defaultPageSize={10}
 							showPageSizeOptions={true}
 							minRows={0}
 						/>
-					)}
+			
 						
 				</Wrapper>
 			)

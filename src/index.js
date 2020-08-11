@@ -13,7 +13,7 @@ import * as serviceWorker from './serviceWorker';
 
 
 // log the initial state
-// console.log(store.getState())
+// console.log('Store', store.getState())
 // const unsubscribe = store.subscribe(() => console.log(store.getState()))
 // store.dispatch(addtoCart({name: 'citron'}, 2 ))
 // store.dispatch(addtoCart( {name: 'kiwi'}, 5))
@@ -21,7 +21,8 @@ import * as serviceWorker from './serviceWorker';
 
 
 ReactDOM.render(
-   <Provider store={store}>
+   // <Provider /> rend le Redux storedisponible pour tous les composants imbriqués qui ont été encapsulés dans la connect()fonction.
+   <Provider store={store}>      
       <AppContainer />
    </Provider>
 , document.getElementById('root'));

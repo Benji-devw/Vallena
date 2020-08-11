@@ -75,7 +75,7 @@ const RowCart = props => {
 
 const TableCart = () => {
   const items = useSelector(state => state.items)
-  console.log('items', items)
+  // console.log('items', items)
   useEffect(() => {
     // console.log(`you have ${items.length} in yourcart`)
   });

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { addtoCart } from '../../../lib/actions'
@@ -23,6 +23,7 @@ const ModalProduct = ({ item }) => {
 	// Redux
 	const [qty, setQty] = useState(1)
 	const dispatch = useDispatch()				// Dispatch l'item du store localement pr le lire
+	// utilise dispatch pour envoyer item et quantity au store
 	const add = (item, quantity) => {
 		dispatch(addtoCart(item, quantity))
 	}

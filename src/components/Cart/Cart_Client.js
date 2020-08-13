@@ -1,9 +1,9 @@
 import React, { Fragment, useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateCart, removeFromCart } from '../../lib/actions'
 import { Link } from 'react-router-dom';
-
 import { Container, Row, Col } from 'react-bootstrap'
+
+import { updateCart, removeFromCart } from '../../lib/actions'
 import Section from '../../HOC/Section';
 
 
@@ -28,48 +28,49 @@ const RowCart = props => {
   }
 
   return (
-    <tr>
-      <td>
+    <>
+ 
         <img
-          width="70"
-          height="70"
-          src={process.env.PUBLIC_URL + `/assets/0/citron.png`}
-          alt="citrons"
+          height="100"
+          src={item.imgCollection[0]}
+          alt="none"
         />
-      </td>
-      <td>{item.titleProduct}</td>
-      <td>€ {item.priceProduct}</td>
-      <td>
-        <div className="btn-group" role="group" aria-label="Basic example">
-          <button className="btn btn-secondary"
-            type="button" 
-            onClick={() => {
+     
+      {item.titleProduct}
+      € {item.priceProduct}
+        
+        <div className="cart-qty">
+          <button className="btn-cart-qty"
+          type="button"
+              onClick={() => {
               if (qty > 1) { 
                 update('decrement')
               }
-            }} > -
-            </button>
-          <span className="btn btn-light">{qty}</span>
-          <button className="btn btn-secondary"
+            }} > <b>-</b>
+          </button>
+
+          <span className="qty">{qty}</span>
+
+          <button className="btn-cart-qty"
             type="button"
-            onClick={() => {
-              update('increment')
-            }} > +
-            </button>
+              onClick={() => {
+                update('increment')
+              }} > <b>+</b>
+          </button>
         </div>
-      </td>
-      <td>€{qty * item.priceProduct}</td>
-      <td>
+
+   
+      €{qty * item.priceProduct}
+      
         <button
           type="button"
-          className="btn btn-danger remove"
+          className="btn-cart-remove"
           onClick={() => {
             remove(id)
           }}
-          > x
-          </button>
-      </td>
-    </tr>
+          > <b>x</b>
+        </button>
+    </>
   );
 }
 
@@ -80,22 +81,11 @@ const TableCart = () => {
     // console.log(`you have ${items.length} in yourcart`)
   });
   return (
-    <table>
-      <thead> 
-        <tr>
-          <th width="200">Product</th>
-          <th width="80">Reference</th>
-          <th width="150">Price</th>
-          <th width="150">Quantity</th>
-          <th width="200">Total</th>
-        </tr> 
-      </thead>
-      <tbody>
+    <Col>
         {items.map(item => {
           return (<RowCart key={item.id} item={item}/>)
         })}
-      </tbody>
-    </table>
+    </Col>
   );
 }
 

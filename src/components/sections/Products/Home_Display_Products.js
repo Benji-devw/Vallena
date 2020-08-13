@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 // import {  Checkbox, Grid, Icon, Menu, Segment, Sidebar } from 'semantic-ui-react';
 import {useFetchAllProducts} from '../../../apiCall/FetchCall';
 
-import ProductList from './Products_List';
+import HomeListProducts from './Home_List_Products';
 
 import Section from '../../../HOC/Section';
 
@@ -25,17 +25,18 @@ import Section from '../../../HOC/Section';
 // }
 
 
-const DisplayProducts = () => {
+const HomeDisplayProducts = () => {
 
   // Objet Product
   const [loading, products] = useFetchAllProducts()
-  console.log('products', products)
+  // console.log('products', products)
 
   if (loading) { return 'chargement...'  }
 
   return (
-    <Section id='blog'>
-      <Container className='pt-2 pb-5'>
+    <Container id='home-display-products' fluid>
+    <Section>
+  
 
         <div className='section-header pt-5 pb-5 text-center'>
           <h3 className='section-title'>
@@ -52,15 +53,13 @@ const DisplayProducts = () => {
 
             </Col>
           </Row> */}
-          <Row>
-            <Col>
-            <ProductList products={products} />
-            </Col>
-          </Row>
+  
+            <HomeListProducts products={products} />
+     
 
-      </Container>
     </Section>
+    </Container>
   );
 };
 
-export default DisplayProducts;
+export default HomeDisplayProducts;

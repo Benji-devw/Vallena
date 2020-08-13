@@ -11,8 +11,49 @@
     height: 100%;
   }
 
-  .cart-header {
-    color: #4e4e4e !important;
+
+
+  .cart-qty {
+    .btn-cart-qty {
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 20px;
+      color: rgb(168, 168, 168);
+      transition-duration: .5s;
+
+      &:focus {
+       outline: none;
+      }
+      &:hover {
+        color: black;
+        transition-duration: .5s;
+      }
+    }
+
+    span {
+      width: 30px;
+      cursor: default;
+      padding: 5px;
+      background: #F1F1F1;
+      border-radius: 5px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
+  }
+
+  .btn-cart-remove {
+    color: rgba(255, 0, 0, 0.513);
+      border: none;
+      background: none;
+      font-size: 20px;
+      transition-duration: .5s;
+      outline: none;
+      
+      &:hover {
+        color: red;
+        transition-duration: .5s;
+      }
   }
 
 

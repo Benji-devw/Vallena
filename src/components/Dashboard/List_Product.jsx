@@ -77,6 +77,28 @@ export class ListProducts extends Component {
 							filterable: true,
 					},
 					{
+						Header: '',
+						accessor: '',
+						Cell: function (props) {
+							return (
+								<span>
+									<DeleteProduct id={props.original._id} />
+								</span>
+							)
+						},
+					},
+					{
+						Header: '',
+						accessor: '',
+						Cell: function (props) {
+							return (
+								<span>
+									<UpdateProduct id={props.original._id} />
+								</span>
+							)
+						},
+					},
+					{
 							Header: 'Nom',
 							accessor: 'titleProduct',
 							filterable: true,
@@ -135,28 +157,7 @@ export class ListProducts extends Component {
 							Header: 'Date',
 							accessor: 'createdAt',
 					},
-					{
-							Header: '',
-							accessor: '',
-							Cell: function(props) {
-									return (
-											<span>
-													<DeleteProduct id={props.original._id} />
-											</span>
-									)
-							},
-					},
-					{
-							Header: '',
-							accessor: '',
-							Cell: function(props) {
-									return (
-											<span>
-													<UpdateProduct id={props.original._id} />
-											</span>
-									)
-							},
-					},
+
 			]
 
 			let showTable = true

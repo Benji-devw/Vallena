@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addtoCart } from '../../../lib/actions'
-
 import Modal from 'react-bootstrap/Modal'
 import { Row, Col, Button } from 'react-bootstrap'
 import moment from 'moment'
 
 import { MdAddShoppingCart } from 'react-icons/md';
 
+import { addtoCart } from '../../../lib/actions'
+import ControlledCarousel from './carousel'
 
-const ModalProduct = ({ item }) => {
+
+const HomeModalProducts = ({ item }) => {
 	const itemsCart = useSelector(state => state.items)
 	// console.log('item', item._id)
 	// console.log('itemsCart', itemsCart)
@@ -24,6 +25,7 @@ const ModalProduct = ({ item }) => {
 	const [qty, setQty] = useState(1)
 	const dispatch = useDispatch()				// Dispatch l'item du store localement pr le lire
 	// utilise dispatch pour envoyer item et quantity au store
+	
 	const add = (item, quantity) => {
 		dispatch(addtoCart(item, quantity))
 	}
@@ -33,53 +35,43 @@ const ModalProduct = ({ item }) => {
 	const foundId = searchIdProduct.includes(item._id)
 
 
-
 	return (
-		<>
-			<Button variant="outline-primary" size="sm" onClick={handleShow}>
-					More info
-			</Button>
+		<div className="modal-home">
+			<img onClick={handleShow} src={item.imgCollection[0]} className='img-product img-fluid' alt='imgProduct' />
 
 			<Modal show={show} onHide={handleClose} size="lg" animation={true} aria-labelledby="contained-modal-title-vcenter" centered>
 				
-				{/* <Modal.Header>
-					<Modal.Title><h2>{item.titleProduct}</h2></Modal.Title>
-					<p className='section-title'>Categorie : <span> {item.categoryProduct}</span> </p>
-				</Modal.Header> */}
-				
-				<Modal.Body className="pt-3">
-					<br />
-					<Row className="text-center mb-5">
-						<Col>
-							<p>{item.descriptionProduct}</p>
+				<Modal.Body style={{padding: "0"}}>
+					<Row className="p-0">
+						<Col md={12} id="img-modal">
+							<ControlledCarousel images={item.imgCollection} />
+							{/* <img src={item.imgCollection[0]}  alt="none" className="img-fluid" /> */}
 						</Col>
-					</Row>
-					<Row>
-						<Col md={8}>
-							{/* <h5 className='section-title'>Screen :</h5> */}
-							<img src={item.img} alt="none" className="img-fluid" />
-						</Col>
-						<Col md={4}>
+						<Col className="modal-corp" md={12}>
 							<h3>{item.titleProduct}</h3>
 							<h5>€ {item.priceProduct}</h5>
 							<p>{item.quantityProduct} en stock</p>
-
-
+						</Col>
+						<Col>
 							{item.quantityProduct > 1 ? 	// Affichage à la volée avec opérateur ternaire
 							<>
 								{!foundId ? 
-									<div className="addToCart">
-										<button type="button" className="btn btn-sm btn-secondary"
-											onClick={() => setQty(qty > 1 ? qty -1 : 1)}		// tant que qty est supp a 1 ? qty -1 sinon return 1
-										>-</button>
-										<span className="btn btn-light qty">{qty}</span>
-										<button type="button" className="btn btn-sm btn-secondary"
-											onClick={() => setQty(item.quantityProduct > qty ? qty + 1 : qty)}
-										>+</button>
-										<MdAddShoppingCart size="2em" className="ml-3" style={{cursor: "pointer"}}
-											onClick={() => add(item, qty)} />
-									</div>
-								: <p>Est déjà dans votre panier !</p> }
+										<div className="addToCart">
+											<div className="btn-qty-modal"
+												onClick={() => setQty(qty > 1 ? qty -1 : 1)}		// tant que qty est supp a 1 ? qty -1 sinon return 1
+											>-</div>
+
+											<span className="btn btn-light qty">{qty}</span>
+
+											<div className="btn-qty-modal"
+												onClick={() => setQty(item.quantityProduct > qty ? qty + 1 : qty)}
+											>+</div>
+
+											<MdAddShoppingCart size="2em" className="ml-3" style={{cursor: "pointer"}}
+												onClick={() => add(item, qty)} />
+
+										</div>
+									: <p>Est déjà dans votre panier !</p> }
 							</> : <p>Rupture !</p>}
 
 						</Col>
@@ -101,7 +93,7 @@ const ModalProduct = ({ item }) => {
 					</Row>
 			
 			</Modal>
-		</>
+		</div>
 	);
 }
-export default ModalProduct
+export default HomeModalProducts

@@ -71,6 +71,27 @@ export class InsertProduct extends Component {
         this.setState({ visible: e.target.checked })
     }
     handleChangeImgCollection = event => {
+        var preview = document.querySelector('#preview')
+        var files = document.querySelector('input[type=file]').files;
+        preview.innerHTML = '<div id="preview"></div>'
+        const readAndPreview = (file) => {
+            // Veillez à ce que `file.name` corresponde à nos critères d’extension
+            if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
+                var reader = new FileReader();
+                reader.addEventListener("load", function () {
+                    var image = new Image();
+                    image.height = 200;
+                    image.title = file.name;
+                    image.className = "imgPreview m-3"
+                    image.src = this.result;
+                    preview.appendChild(image);
+                }, false);
+                reader.readAsDataURL(file);
+            }
+        }
+        if (files) {
+            [].forEach.call(files, readAndPreview);
+        }
         this.setState({ imgCollection: event.target.files })
     }
 
@@ -78,11 +99,10 @@ export class InsertProduct extends Component {
     handleIncludeNewProduct = async (e) => {
         e.preventDefault()
         
-        const { imgCollection, titleProduct, descriptionProduct, priceProduct, categoryProduct, sizeProduct, weightProduct, quantityProduct, stockProduct, promotionProduct, reporterProduct, visible, notes, comments } = this.state
+        const { titleProduct, descriptionProduct, priceProduct, categoryProduct, sizeProduct, weightProduct, quantityProduct, stockProduct, promotionProduct, reporterProduct, visible, notes, comments } = this.state
         
         if (!!titleProduct && !!descriptionProduct && !!priceProduct && categoryProduct && sizeProduct && weightProduct && quantityProduct && reporterProduct)
         {  
-
             var formData = new FormData();
             for (const key of Object.keys(this.state.imgCollection)) {              // Crée un nouvel objet FormData et construit une paires clé/valeur représentant les champs du formulaire et leurs valeurs,
                 formData.append('imgCollection', this.state.imgCollection[key])     // Ajoute une nouvelle valeur à une clé existante dans un objet FormData, ou ajoute la clé si elle n'existe pas encore.
@@ -102,7 +122,6 @@ export class InsertProduct extends Component {
             formData.append('notes', notes)
             formData.append('comments', comments)
             
-
             apiCall.insertProduct(formData).then(res => {
                 console.log('2 res.data......', res.data)
             })
@@ -110,33 +129,13 @@ export class InsertProduct extends Component {
         
     }
 
-
     render() {
-        const { imgCollection } = this.state
 
         return (
             <Wrapper>
                 <Form>
 
                 <Title>Create Product</Title>
-
-                <Form.Row className="justify-content-md-center">
-                    <Form.Group>
-                        <Form.File
-                            className="position-relative"
-                            id="custom-file"
-                            label="Inserer des images"
-                            type="file"
-                            name="imgCollection"
-                            onChange={this.handleChangeImgCollection} 
-                            multiple
-                            feedbackTooltip
-                            custom
-                            required
-                        />
-                    </Form.Group>
-                </Form.Row> 
-
 
                 <Form.Row className="justify-content-md-center">
                     <Form.Group as={Col} md="4" controlId="validationCustom01">
@@ -267,7 +266,28 @@ export class InsertProduct extends Component {
                             onChange={this.handleChangeInputPromotionProduct}
                         />
                     </Form.Group>
-                    
+                </Form.Row>
+
+                <Form.Row className="justify-content-md-center">
+                    <Form.Group>
+                        <Form.File
+                            className="position-relative"
+                            id="custom-file"
+                            label="Inserer des images"
+                            type="file"
+                            name="imgCollection"
+                            onChange={this.handleChangeImgCollection} 
+                            multiple
+                            feedbackTooltip
+                            custom
+                            required
+                        />
+                    </Form.Group>
+                </Form.Row> 
+
+                <Form.Row className="justify-content-md-center p-3">
+                    <div id="preview"></div>
+
                 </Form.Row>
                 
 

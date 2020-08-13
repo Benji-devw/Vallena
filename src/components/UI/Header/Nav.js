@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-
 import { Link } from 'react-router-dom';
 
 import LinkScroll from './Links/Link_Scroll';
@@ -8,13 +7,15 @@ import LinksAdmin from './Links/LinksAdmin';
 
 import { RiShoppingCart2Line } from 'react-icons/ri';
 
-const Nav = () => {
+
+  const Nav = props => {
+
+    
   const [navClass, setNavClass] = useState('');
   const [toggeledNav, settoggeledNav] = useState(false);
 
   // Redux => Lit le state de redux et recup le nbr d'objet ds le panier
   const items = useSelector(state => state.items)
-
   const toggleNav = () => {
     settoggeledNav(!toggeledNav);
   };

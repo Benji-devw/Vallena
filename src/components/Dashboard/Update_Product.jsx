@@ -73,8 +73,35 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
         this.setState({ visible: e.target.checked })
     }
     handleChangeImgCollection = event => {
+        // console.log('event.target.files', event.target.files)
+        var preview = document.querySelector('#preview')
+        var files = document.querySelector('input[type=file]').files;
+        var displayimgC = document.querySelector('.displayImgCollection')
+        
+        preview.innerHTML = '<div id="preview"></div>'
+        displayimgC.style.visibility = 'hidden'
+        displayimgC.style.height = "0px"
+        const readAndPreview = (file) => {
+            // Veillez à ce que `file.name` corresponde à nos critères d’extension
+            if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
+                var reader = new FileReader();
+                reader.addEventListener("load", function () {
+                    var image = new Image();
+                    image.height = 200;
+                    image.title = file.name;
+                    image.className = "imgPreview m-3"
+                    image.src = this.result;
+                    preview.appendChild(image);
+                }, false);
+                reader.readAsDataURL(file);
+            }
+        }
+        if (files) {
+            [].forEach.call(files, readAndPreview);
+        }
         this.setState({ imgCollection: event.target.files })
     }
+
    
 
     handleUpdateProduct = (e) => {
@@ -87,6 +114,7 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
             // Variable en json => parser avant de .append() ds dataForm
         const newCollection = this.state.imgCollection
         const copyCollection = this.state.imgCollectionCopy
+        console.log('copyCollection', copyCollection)
 
 
         if (newCollection !== copyCollection) {
@@ -94,14 +122,9 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
             for (const key of Object.keys(newCollection)) {              // Crée un nouvel objet FormData et construit une paires clé/valeur représentant les champs du formulaire et leurs valeurs,
                 formData.append('imgCollection', newCollection[key])     // Ajoute une nouvelle valeur à une clé existante dans un objet FormData, ou ajoute la clé si elle n'existe pas encore.
             }
-        } else if (copyCollection.length > 0) {
-            console.log('Equal')
-            formData.append('imgCollection', JSON.parse(copyCollection))
-        } else {
-            window.alert('Il faut réinsérer les images !')
-            return false;
         }
-
+        
+        // formData.append('imgCollection', newCollection)
         formData.append('titleProduct', titleProduct)
         formData.append('descriptionProduct', descriptionProduct)
         formData.append('priceProduct', priceProduct)
@@ -118,7 +141,7 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                                                             // ROUTE => serverURL/server.js/router.js/:id
         apiCall.updateProductById(id, formData)         // Lien => src/apiCall/index.js
             .then(res => {    
-                console.log('2 UPDATE res.data......', res.body)
+                console.log('2 UPDATE res.data......', res)
                 window.alert(`Modification OK !`)
             }).catch(() => { window.alert('Un problème est survenu !') } )
 
@@ -153,46 +176,20 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
 
 
 
-    componentWillMount = () => {
-        const names = []
-        for (let i = 0; i < this.state.imgCollection.length; i++) {
-            this.state.imgCollection.push(<img src={this.state.imgCollection[i]} key={new Date()} alt="img" className="img-responsive" style={{ height: '200px' }} />);
-        } 
-    }
-
-
-
-
     render() {
-        console.log(this.state.imgCollection)
-
        const {imgCollection} = this.state
-     
+       const imgDisplay = []
+
+        for (let i = 0; i < imgCollection.length; i++) {
+            imgDisplay.push(<img src={imgCollection[i]} key={[i]} alt="img" className="img-responsive m-3" style={{ height: '200px' }} />);
+        }
+
         return (
             <Wrapper>
                 <Container>
-                <Form>
+                <Form>  
 
                 <Title className="mt-5">Update product</Title>
-
-                <Form.Row className="justify-content-md-center">
-                    <Form.Group>
-                        <Form.File
-                            className="position-relative"
-                            id="custom-file"
-                            label="Inserer des images"
-                            type="file"
-                            name="imgCollection"
-                            onChange={this.handleChangeImgCollection} 
-                            accept="image/*"
-                            multiple
-                            feedbackTooltip
-                            custom
-                            required
-                        />
-                    </Form.Group>
-                </Form.Row> 
-
 
                 <Form.Row className="justify-content-md-center">
                     <Form.Group as={Col} md="4" controlId="validationCustom01">
@@ -330,12 +327,36 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                     </Form.Group>
                     
                 </Form.Row>
-                
 
+                    <Form.Row className="justify-content-md-center">
+                        <Form.Group>
+                            <Form.File defaultValue={imgCollection}
+                                className="position-relative"
+                                id="custom-file"
+                                label="Inserer des images"
+                                type="file"
+                                name="imgCollection"
+                                onChange={this.handleChangeImgCollection}
+                                accept="image/*"
+                                multiple
+                                feedbackTooltip
+                                custom
+                                required
+                            />
+                        </Form.Group>
+                        </Form.Row> 
+                        <Form.Row className="justify-content-md-center p-3">
+                            <div id="preview"></div>
+                            <div className="displayImgCollection">
+                                {imgDisplay}
+                            </div>
+
+                        </Form.Row>
+                        
                 <Button onClick={this.handleUpdateProduct}>Update product</Button>
                 <CancelButton href={'/Dashboard'}>Cancel</CancelButton>
 
-                </Form>
+            </Form>
             </Container>
             </Wrapper>
         )

@@ -12,13 +12,16 @@ const saveToLocalStorage = object => {
 const initialState = {
    // si ds le navigateur application il y a un item on renvoi l'item sinon un tableau vide
    items: JSON.parse(localStorage.getItem("items")) !== null ? JSON.parse(localStorage.getItem("items")) : [],
-   confirmOrder: []
 }
 
 export default function onlineStoreApp(state = initialState, action) {
    switch(action.type) {
-      
+         // Créer une copie ds le store av Object.assign(...)
       case actions.ADD_TO_CART : return Object.assign({}, state, { items: [...state.items, action.payload]});
+
+      case actions.SET_VISIBILITY_FILTER : return Object.assign({}, state, { 
+         visibility: action.payload
+      });
 
       case actions.UPDATE_CART : return Object.assign({}, state, {
          items: state.items.map(item => {

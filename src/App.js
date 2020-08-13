@@ -16,10 +16,6 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import { Dashboard } from './components/Dashboard/Dashboard'
 import { ProductUpdate } from './components/Dashboard/Update_Product'
 
-
-// import Layout from './components/Layout/Layout';
-// import Cart from './views/Cart'
-
 const App = props => {
   const { items, saveLocalStorage } = props
 
@@ -34,6 +30,7 @@ const App = props => {
         <ClientProfileContext>
 
         <Header />
+
 
         <Switch>
 
@@ -56,11 +53,7 @@ const App = props => {
 
         </ClientProfileContext>
       </Router>
-
-      {/* <Layout />          Components */}
-
     </>
     );
 }
-
 export default App;

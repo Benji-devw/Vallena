@@ -15,7 +15,7 @@
 
 .sidebar {
   width: 300px !important;
-  max-height: 500px !important;
+  max-height: 100% !important;
 
   .menu {
     max-height: 200px !important;
@@ -24,5 +24,4 @@
 
 .ui .segment {
   border: none;
-  background: #eeeff085;
 }

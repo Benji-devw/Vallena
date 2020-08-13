@@ -10,8 +10,8 @@ export const actions = {
    REMOVE_FROM_CART: "REMOVE_FROM_CART",
    SAVE_CART: "SAVE_CART",
    RESET_CART: "RESET_CART",
+   SET_VISIBILITY_FILTER: 'SET_VISIBILITY_FILTER',
 
-   CONFIRM_ORDER: "CONFIRM_ORDER"
 }
 
 /*
@@ -54,8 +54,9 @@ export function resetCart () {
    }
 }
 
-export function confirmOrder() {
+export function openSidebar(visi) {
    return {
-      type: actions.CONFIRM_ORDER,
+      type: actions.SET_VISIBILITY_FILTER,
+      payload: {visi}
    }
 }

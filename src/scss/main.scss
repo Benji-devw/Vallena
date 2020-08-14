@@ -6,10 +6,13 @@
 
 // Home
 @import './partials/home';
-@import './partials/home-modal-products';
-@import './partials/home-display-products';
-@import './partials/home-card';
 
+//Shop
+@import './partials/shop-display-products';
+@import './partials/shop-modal-products';
+@import './partials/shop-card';
+
+// Content
 @import './partials/about';
 @import './partials/facts';
 
@@ -24,8 +27,6 @@
 // Sections
 
 
-
-
 @import './partials/footer';
 
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
@@ -37,98 +38,203 @@
 body {
   height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: $light-bg;
 }
 
 main {
   width: 100%;
 }
 
-h3 {
+h1 {
   font-family: usual, sans-serif;
-  font-weight: bold;
+  font-size: 4rem;
+  color: $light-color;
 }
+
+// h2 {
+//   font-family: usual, sans-serif;
+//   font-size: 3rem;
+//   color: $yellow-color;
+//   font-weight: 200;
+// }
+
+// h3 {
+//   font-family: usual, sans-serif;
+//   font-size: 1.3rem;
+//   font-weight: 100;
+//   color: rgba(255, 255, 255, 0.7);
+//   // text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+
+// }
+
+h4 {
+  font-family: usual, sans-serif;
+  font-size: 1.3rem;
+  font-weight: 100;
+  color: rgba(255, 255, 255, 0.5);
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+}
+
+h6 {
+  font-family: usual, sans-serif;
+  font-size: 1.3rem;
+  font-weight: 100;
+  color: $dark-color;
+
+}
+
 input {
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
 }
 
-.section-header {
+// span {
+//   color: $span;
+// }
+
+.section-header-light {
   .section-title {
+    font-family: satisfy, sans-serif;
+    font-weight: 100;
+    font-style: normal;
+
+
+    font-size: 8rem;
+    color: $light-color;
+
+    @media screen and (max-width: 492px) {
+      font-size: 2.2rem;
+    }
+  }
+
+  .subtitle {
+    font-family: usual, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 100;
+    color: $light-color;
+
+    @media screen and (max-width: 492px) {
+      font-size: .9rem;
+    }
+  }
+}
+
+.section-header-dark {
+  .section-title {
+    font-family: usual, sans-serif;
+    font-size: 4rem;
+    color: $dark-color;
+
+    @media screen and (max-width: 492px) {
+      font-size: 2.2rem;
+    }
+
+  }
+
+  .subtitle {
+    font-family: usual, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 100;
+    color: $dark-color;
+
+    @media screen and (max-width: 492px) {
+      font-size: .9rem;
+    }
+  }
+}
+
+.section-content-light {
+  padding-top: 4rem;
+  height: 200px;
+
+  .section-title {
+    font-family: usual, sans-serif;
+    font-size: 3rem;
+    color: $yellow-color;
+    font-weight: 200;
+
+    @media screen and (max-width: 492px) {
+      font-size: 2.2rem;
+    }
+
+  }
+
+  .subtitle {
+    font-family: usual, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 100;
+    color: $dark-color;
+    text-shadow: 2px 2px 2px rgba(255, 255, 255, .8);
+
+    @media screen and (max-width: 492px) {
+      font-size: 1rem;
+    }
+  }
+}
+
+.section-content-dark {
+  padding-top: 4rem;
+  margin-bottom: 4rem;
+  height: 200px;
+
+  .section-title {
+    font-family: usual, sans-serif;
+    font-size: 3rem;
+    color: $yellow-color;
+    font-weight: 200;
+
+    @media screen and (max-width: 492px) {
+      font-size: 2.2rem;
+    }
+  }
+
+  .subtitle {
+    font-family: usual, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 100;
+    color: $light-color;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, .8);
+
+    @media screen and (max-width: 492px) {
+      font-size: 1rem;
+    }
+  }
+}
+
+
+.category-shop {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+
+  .card-category {
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: $category;
+
+    padding: 10px;
+    display: inline-block;
+    text-shadow: 1px 1px 2px white;
+    list-style: none;
+    transition-duration: .3s;
+  }
+
+  .active {
+    display: inline-block;
+
+
+    list-style: none;
+    cursor: pointer;
+    padding: 10px;
+
+    color: $categoryActive;
     font-weight: bold;
-    color: #4e4e4e;
-    font-family: 'Raleway', sans-serif;
-    position: relative;
-    margin-bottom: 2rem;
+    font-size: 1.2rem;
 
-    span {
-      color: $span;
-    }
-
-    &:after {
-      content: '';
-      content: '';
-      display: block;
-      height: 3px;
-      width: 70px;
-      background: $span;
-      position: absolute;
-      top: 45px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
+    padding-left: 15px;
+    transition-duration: .3s;
   }
-
-  .section-subtitle {
-    max-width: 700px;
-    color: #6f6f6f;
-    font-size: 0.9rem;
-  }
-}
-
-
-
-
-#card-cmd {
-  background-color: #fff;
-  border: 1px solid $border;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-  // -moz-box-shadow: 2px 2px 10px gray inset;
-  // -webkit-box-shadow: 2px 2px 50px gray inset;
-}
-
-
-// border: 1px solid rgba(0, 0, 0, 0.2);
-// box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-
-
-.category-home {
-
-.card-category {
-  cursor: pointer;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: $category;
-
-  padding: 10px;
-  display: inline-block;
-  text-shadow: 1px 1px 2px white;
-  list-style: none;
-  transition-duration: .3s;
-}
-
-.active {
-  display: inline-block;
-
-
-  list-style: none;
-  cursor: pointer;
-  padding: 10px;
-
-  color: $categoryActive;
-  font-weight: bold;
-  font-size: 1.2rem;
- 
-  padding-left: 15px;
-  transition-duration: .3s;
-}
 
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Section from '../../../HOC/Section';
-import bgImage from '../../../assets/img/facts_bg.jpg';
+import bgImage from '../../../assets/img/ardeche.jpg';
 
 const Facts = () => {
   return (

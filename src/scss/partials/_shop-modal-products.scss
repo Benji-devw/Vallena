@@ -1,0 +1,50 @@
+  .modal-backdrop {
+    opacity: .98 !important;
+  }
+
+  .modal-backdrop {
+    width: 100%;
+    height: 100%;
+  }
+
+  .modal {
+    padding: 10px;
+  }
+
+
+  .btn-qty-modal {
+    width: 30px;
+    cursor: pointer;
+    font-size: 20px;
+    color: rgb(168, 168, 168);
+    padding: 10px;
+  
+    :hover {
+      color: black;
+      transition-duration: .5s;
+    }
+  }
+
+
+
+
+
+  
+.modal-corp{
+
+  .modal-content {
+    background: red;
+  }
+
+    .modal-body {
+      padding: 0 !important;
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+    }
+
+    .img-modal {
+      padding-right: 0 !important;
+    }
+
+    
+}

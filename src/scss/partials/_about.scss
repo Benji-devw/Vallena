@@ -1,26 +1,37 @@
 #about {
-  height: 100vh;
-  background: #FFF;
-  border-top: 1px solid rgba(0, 0, 0, 0.4);
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5) inset;
+  height: 96vh;
+  min-height: 400px;
+  background: $backgroundS;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  box-shadow: 1px 1px 30px rgba(0, 0, 0, 1) inset;
+
+  @media screen and (max-width: 492px) {
+    height: 80vh;
+  }
 
   .aboutImage {
-    width: 100%;
-    max-height: 300px;
-    overflow: hidden;
+    height: 96vh;
+
 
     img {
-      width: 100%;
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+      max-height: 500px;
       object-fit: cover;
-      object-position: center;
+      object-position: bottom;
+
+      @media screen and (max-width: 992px) {
+        max-height: 400px;
+        bottom: 250px;
+        right: 0%;
+      }
+
+      @media screen and (max-width: 414px) {
+        bottom: 370px;
+      }
+
     }
   }
 
-  .about-description {
-    font-size: 0.9rem;
-    color: #6f6f6f;
-  }
-  .test {
-    height: 100vh;
-  }
 }

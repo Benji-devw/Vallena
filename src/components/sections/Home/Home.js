@@ -1,32 +1,28 @@
 import React from 'react';
 
 import Section from '../../../HOC/Section';
-import bgImage from '../../../assets/img/home_bg.jpg';
+import bgImage from '../../../assets/img/coffee-and-laptop.jpg';
 // import Link from '../../UI/Link/Link';
 
 const Home = () => {
   return (
     <Section id='home'>
-      <div>
+
         <div
           className='home-content p-5'
           style={{ backgroundImage: `url(${bgImage})` }}
         >
-          <div className='intro container text-center text-light'>
-            <h1 className='title'>WELCOME</h1>
-            <h2 className='sub-title mb-4'>
+
+          <div className='section-header-light intro container text-center'>
+            <h1 className='section-title'>valelena.fr</h1>
+            <h3 className='subtitle text-center mb-4'>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
               laborum minus molestiae.
-            </h2>
-            {/* <Link target='about' classes='btn btn-primary rounded-0 mr-2'>
-              Learn More
-            </Link>
-            <Link target='contact' classes='btn btn-light text-dark rounded-0'>
-              Contact Us
-            </Link> */}
+            </h3>
           </div>
+
         </div>
-      </div>
+
     </Section>
   );
 };

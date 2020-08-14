@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-scroll';
 
 const LinkScroll = props => {
+
   return (
     <Link
       className={props.classes}
@@ -10,7 +11,7 @@ const LinkScroll = props => {
       to={props.target}
       spy={true}
       smooth={true}
-      offset={props.offset || -45}
+      offset={props.offset || -40}
       duration={500}
     >
       {props.children}

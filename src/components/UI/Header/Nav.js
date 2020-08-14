@@ -8,9 +8,8 @@ import LinksAdmin from './Links/LinksAdmin';
 import { RiShoppingCart2Line } from 'react-icons/ri';
 
 
-  const Nav = props => {
+const Nav = props => {
 
-    
   const [navClass, setNavClass] = useState('');
   const [toggeledNav, settoggeledNav] = useState(false);
 
@@ -30,10 +29,10 @@ import { RiShoppingCart2Line } from 'react-icons/ri';
     });
   }, []);
   return (
-    <nav className={`navbar navbar-expand-md bg-light ${navClass}`}>
+    <nav className={`navbar navbar-expand-md ${navClass}`}>
       <div className='container'>
 
-        <Link to='/' className='navbar-brand'> <span>Root</span> </Link>
+        <Link to='/' className='navbar-brand'> <span>Valelana.fr</span> </Link>
 
         <div className={`navbar-toggler nav-icon ${(() => {
             if (toggeledNav) return 'open';
@@ -56,7 +55,7 @@ import { RiShoppingCart2Line } from 'react-icons/ri';
               <LinkScroll target='home' offset={-120} classes='nav-link'> Home </LinkScroll>
             </li>
             <li className='nav-item'>
-              <LinkScroll target='blog' classes='nav-link'> Blog </LinkScroll>
+              <LinkScroll target='shop' classes='nav-link'> Shop </LinkScroll>
             </li>
             <li className='nav-item'>
               <LinkScroll target='about' classes='nav-link'> About </LinkScroll>

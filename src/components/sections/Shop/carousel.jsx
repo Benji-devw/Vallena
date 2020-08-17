@@ -6,7 +6,6 @@ import Carousel from 'react-bootstrap/Carousel'
 const ControlledCarousel = props => {
 	const [index, setIndex] = useState(0);
 	const imgs = props.images
-	// console.log('imgs', imgs)
 
 	const handleSelect = (selectedIndex, e) => {
 		setIndex(selectedIndex);

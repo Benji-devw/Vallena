@@ -58,7 +58,7 @@ export const ListOrder = props => {
                   <Button onClick={update} className="btn-sm p-1 ml-3" style={{fontSize:".8em", marginTop:"-15px"}}>Save</Button>
                </Col>
             </Row>
-            <Card.Header className={order.status.finish != true ? '' : 'bg-success'}>
+            <Card.Header className={order.status.finish !== true ? '' : 'bg-success'}>
                <Row>
                   <Col md={6} className="text-left">
                      Client : <span className="text-primary"><b> {order.client.nomClient} {order.client.prenomClient} </b></span> <br />

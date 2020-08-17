@@ -1,7 +1,25 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Row, Col } from 'react-bootstrap';
-import ShopModalProducts from './Shop_Modal_Product'
+import styled from 'styled-components'
 
+const Show = styled.div`
+	cursor: pointer;
+`
+
+
+
+class UpdateProduct extends Component {
+  // Evite de passer par <Link to={}> et regle le problème de pertes de props au refresh
+  showProduct = event => {
+    event.preventDefault()
+    window.location.href = `/product/${this.props.id}`		// Lien => app.js
+  }
+  render() {
+    // console.log(this.props.id)
+    // console.log(this.props.children)
+    return <Show onClick={this.showProduct}>{this.props.children}</Show>
+  }
+}
 
 const ProductItems = ({ state: { products, displayCategory } }) => {
   // console.log(displayCategory)
@@ -14,10 +32,14 @@ return (
       .map((datas, t) => (
         <Col lg={3} key={datas._id} id="card-shop" draggable="false" className='col-md-4 col-sm-6 text-center'>
           <div className='card-border'>
-
-            <ShopModalProducts
+            
+            <UpdateProduct id={datas._id} >
+            <img src={datas.imgCollection[0]} className="img-fluid" alt={datas.titleProduct}/>
+            </UpdateProduct>
+            
+            {/* <ShopModalProducts
               item={datas}
-            />
+            /> */}
             <div className='card-title'> {datas.titleProduct} </div>
             <div className='card-category'>{datas.categoryProduct} </div>
             <div className='card-price'> <b>{datas.priceProduct}</b> €</div>

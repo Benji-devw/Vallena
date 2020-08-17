@@ -23,14 +23,28 @@ export class InsertProduct extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            catProduct: [],
             titleProduct: '',        descriptionProduct: '',
             priceProduct: '',        categoryProduct: '',
             sizeProduct: '',         weightProduct: '',
             quantityProduct: '',     reporterProduct: '',
             promotionProduct: false, stockProduct: true,
             visible: true,           notes: 0,
-            comments: [],           imgCollection: ''
+            comments: [],           imgCollection: '',
+            isLoading: false
         }
+    }
+
+    componentDidMount = async () => {
+        this.setState({ isLoading: true })
+
+        await apiCall.getProducts().then(product => {
+            // console.log('products', product.data.products)
+            this.setState({
+                catProduct: product.data.products,
+                isLoading: false,
+            })
+        })
     }
     
     handleChangeInputTitleProduct = async event => {
@@ -46,7 +60,7 @@ export class InsertProduct extends Component {
     handleChangeInputPriceProduct = async event => {
         this.setState({ priceProduct: event.target.value})
     }
-    handleChangeInputCategoryProduct = async event => { 
+    handleChangeInputCategoryProduct = async event => {
         this.setState({ categoryProduct: event.target.value})
     }
     handleChangeInputSizeProduct = async event => {
@@ -124,12 +138,22 @@ export class InsertProduct extends Component {
             
             apiCall.insertProduct(formData).then(res => {
                 console.log('2 res.data......', res.data)
+                window.alert('Produit Ajouté !')
             })
         }
         
     }
 
+
+
+
+
+
     render() {
+        // Filter catProduct
+        const catSuggest = this.state.catProduct
+        const categorySet = new Set(catSuggest.map(p => p.categoryProduct));
+        const categories = Array.from(categorySet).sort();
 
         return (
             <Wrapper>
@@ -142,11 +166,9 @@ export class InsertProduct extends Component {
                         <Form.Control
                             placeholder="Nom du produit"
                             type="text"
-                            defaultValue={this.state.titleProduct}
                             onChange={this.handleChangeInputTitleProduct}
                             required
                         />
-                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     </Form.Group>
 
                     <Form.Group as={Col} md="4" controlId="validationCustom02">
@@ -155,21 +177,21 @@ export class InsertProduct extends Component {
                             label="Catégorie"
                             as="select"
                             onChange={this.handleChangeInputCategoryProduct}
-                            required
                         >
                             <option></option>
-                            <option>Masques</option>
-                            <option>Pochettes</option>
-                            <option>Trousse</option>
-                            <option>Dingettes</option>
-                            <option>Panière</option>
-                            <option>Attache tétine</option>
-                            <option>Sac à dos</option>
-                            <option>Couverture</option>
-                            <option>Bavoir</option>
-                            <option>Doudou</option>
+                            {categories.map((category, index) => (
+                                <option key={index}>{category}</option>
+                            ))}
+
                         </Form.Control>
-                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="4" controlId="validationCustom33">
+                        <Form.Control
+                            placeholder="Créer une catégorie"
+                            type="text"
+                            onChange={this.handleChangeInputCategoryProduct}
+                            
+                        />
                     </Form.Group>
                 </Form.Row>
 
@@ -178,7 +200,6 @@ export class InsertProduct extends Component {
                     <Form.Group as={Col} md="8" controlId="validationCustom03">
                         <Form.Control as="textarea" rows="5"
                             placeholder="Description de produit..."
-                            defaultValue={this.state.descriptionProduct}
                             onChange={this.handleChangeInputDescriptionProduct}
                             required
                         />
@@ -191,7 +212,6 @@ export class InsertProduct extends Component {
                         <InputText
                             placeholder="Prix..."
                             type="number"
-                            defaultValue={this.state.priceProduct}
                             onChange={this.handleChangeInputPriceProduct}
                             required
                         />
@@ -201,7 +221,6 @@ export class InsertProduct extends Component {
                         <InputText
                             placeholder='Taille... "xs/xxl..." "3 x 7 mm..."'
                             type="text"
-                            defaultValue={this.state.sizeProduct}
                             onChange={this.handleChangeInputSizeProduct}
                             required
                         />
@@ -211,7 +230,6 @@ export class InsertProduct extends Component {
                         <InputText
                             placeholder='Poids... "2" "0.3"'
                             type="text"
-                            defaultValue={this.state.weightProduct}
                             onChange={this.handleChangeInputWeightProduct}
                             required
                         />               
@@ -221,7 +239,6 @@ export class InsertProduct extends Component {
                         <InputText
                             placeholder="Quantité..."
                             type="number"
-                            defaultValue={this.state.quantityProduct}
                             onChange={this.handleChangeInputQuantityProduct}
                             required
                         />  
@@ -234,7 +251,6 @@ export class InsertProduct extends Component {
                         <InputText
                             placeholder="Crée par ..."
                             type="text"
-                            defaultValue={this.state.reporterProduct}
                             onChange={this.handleChangeInputReporterProduct}
                             required
                         />
@@ -246,7 +262,6 @@ export class InsertProduct extends Component {
                     <Form.Group as={Col} md="2" controlId="exampleForm.ControlSelect9">
                         <Form.Check type="checkbox"
                             label="Visible"
-                            defaultChecked={this.state.visible}
                             onChange={this.handleChangeCheckboxVisible}
                         />
                     </Form.Group>  
@@ -254,7 +269,6 @@ export class InsertProduct extends Component {
                     <Form.Group as={Col} md="2" controlId="exampleForm.ControlSelect10">
                         <Form.Check type="checkbox"
                             label="En stock"
-                            defaultChecked={this.state.stockProduct}
                             onChange={this.handleChangeInputStockProduct}
                         />
                     </Form.Group> 
@@ -262,7 +276,6 @@ export class InsertProduct extends Component {
                     <Form.Group as={Col} md="2" controlId="exampleForm.ControlSelect11">
                         <Form.Check type="checkbox"
                             label="En Promotion"
-                            defaultChecked={this.state.promotionProduct}
                             onChange={this.handleChangeInputPromotionProduct}
                         />
                     </Form.Group>
@@ -280,7 +293,7 @@ export class InsertProduct extends Component {
                             multiple
                             feedbackTooltip
                             custom
-                            required
+                            // required
                         />
                     </Form.Group>
                 </Form.Row> 

@@ -1,5 +1,7 @@
 #card-shop {
   padding: 15px;
+  transition: all 1s linear;
+  background: transparent;
 
   user-select: none;
   -webkit-user-drag: none;
@@ -57,6 +59,9 @@
 
     cursor: pointer;
     border-radius: 5px;
+    // :hover {
+    //   transform: scale(3.2);
+    // }
   }
 
 }

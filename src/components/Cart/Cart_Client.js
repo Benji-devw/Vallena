@@ -7,6 +7,7 @@ import { updateCart, removeFromCart } from '../../lib/actions'
 import Section from '../../HOC/Section';
 
 
+
 const RowCart = props => {
   const {id, quantity, details} = props.item    // Redux
   const item = details
@@ -21,12 +22,15 @@ const RowCart = props => {
 
   useEffect(() => {                 // est executé lors d'un chagement local du component
     dispatch(updateCart(id, qty))   // change la quantity dans le panier lors de " increment et decrement "
+    
+    const body = document.querySelector('.header');
+    body.scrollIntoView({ behavior: 'smooth' }, 0)
   }, [dispatch, id, qty])
 
   const remove = id => {
     dispatch(removeFromCart(id))
   }
-
+  
   return (
     <>
  
@@ -139,11 +143,6 @@ const CartClient = () => {
                   <li className="text-left">shipping</li>
                     <li className="text-right">€ {shipping.toFixed(2)}</li>
                 </ul>
-                {/* <ul className="list-group flex">
-                  <li className="coupon crimson">
-                    <small> '&gt' Add Coupon Code</small>
-                  </li>
-                </ul> */}
               </li>
 
               <li className="list-group-item ">

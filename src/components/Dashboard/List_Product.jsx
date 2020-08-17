@@ -58,7 +58,7 @@ export class ListProducts extends Component {
 			this.setState({ isLoading: true })
 
 			await apiCall.getProducts().then(product => {
-				console.log('products', product)
+				// console.log('products', product)
 					this.setState({
 							products: product.data.products,
 							isLoading: false,

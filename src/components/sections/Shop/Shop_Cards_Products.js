@@ -4,7 +4,7 @@ import ShopModalProducts from './Shop_Modal_Product'
 
 
 const ProductItems = ({ state: { products, displayCategory } }) => {
-  console.log(displayCategory)
+  // console.log(displayCategory)
 return (
   <Row>
     {/* map sur products => recup categoryProduct => les filtre et créer un new tab des valeur qui remplisse les condition de filter sinon categoryProduct === "all" */}
@@ -32,11 +32,11 @@ return (
 }
 
 const ListeCategory =  (productCategoriesList, setCategory, state) => {
-  console.log('state', state)
+  // console.log('state', state)
   return (
     <div className="category-shop">
     {productCategoriesList.map((category, i) => (
-      <li key={i} className={category == state.displayCategory ? 'category-shop active' : 'category-shop card-category' }
+      <li key={i} className={category === state.displayCategory ? 'category-shop active' : 'category-shop card-category' }
       onClick={() => setCategory(category)}           // setCategory clické au state.displayCategory ds Main
     >
       {category}

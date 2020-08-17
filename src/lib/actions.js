@@ -1,4 +1,4 @@
-// Creation des veleurs item et quantity que l'on passe a reducers en payload
+// Creation des actions (valeurs: item ,quantity, product ) que l'on passe a reducers en payload
 // Action (objet) est appelée par un  container dont la mission sera de mettre à jour l'interface en utilisant les actions et en récupérant les states
 /*
  * action types
@@ -9,6 +9,7 @@ export const actions = {
    UPDATE_CART: "UPDATE_CART",
    REMOVE_FROM_CART: "REMOVE_FROM_CART",
    SAVE_CART: "SAVE_CART",
+   SAVE_PRODUCT: "SAVE_PRODUCT",
    RESET_CART: "RESET_CART",
    SET_VISIBILITY_FILTER: 'SET_VISIBILITY_FILTER',
 
@@ -51,6 +52,13 @@ export function saveCart (items) {
 export function resetCart () {
    return {
       type: actions.RESET_CART,
+   }
+}
+// Save product => ./Shop_Product => recup product au refresh
+export function saveProduct(product) {
+   return {
+      type: actions.SAVE_PRODUCT,
+      payload: { product: product }
    }
 }
 

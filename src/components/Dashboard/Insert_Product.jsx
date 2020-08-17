@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import apiCall from '../../apiCall/Products_Api'
-import {Form, Col} from 'react-bootstrap'
+import {Container, Form, Col} from 'react-bootstrap'
 
 
 import styled from 'styled-components'
@@ -156,6 +156,7 @@ export class InsertProduct extends Component {
         const categories = Array.from(categorySet).sort();
 
         return (
+            <Container>
             <Wrapper>
                 <Form>
 
@@ -308,6 +309,7 @@ export class InsertProduct extends Component {
 
                 </Form>
             </Wrapper>
+            </Container>
         )
     }
 }

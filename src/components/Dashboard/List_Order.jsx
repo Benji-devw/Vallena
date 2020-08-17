@@ -7,6 +7,7 @@ import apiCallStripe from '../../apiCall/Orders_Api'
 export const ListOrder = props => {
 
    const [order, setOrder ] = useState(props.commandes)
+   
 
    const [ inProgressCheck, setInProgress] = useState(true)
    const [ finishCheck, setFinish] = useState(false)
@@ -35,10 +36,10 @@ export const ListOrder = props => {
    }
 
    return (
-      <>
+
          <Card key={order._id} className={order.status.finish ? "border-success m-5" : "border-primary m-5" } id="card-cmd" >
 
-            <Row style={{ marginTop: "-20px", marginBottom: '0px' }} className='text-right'>
+            <Row style={{ marginTop: "-21px", marginBottom: '0px' }} className='text-right'>
                <Col>
                   Préparation : {order.status.inProgress}
                   <input type="checkbox" className="mr-3"
@@ -52,11 +53,12 @@ export const ListOrder = props => {
                      onChange={handleCheckboxChangeFinish}
 
                   />
-                  <Button onClick={valid} className="btn-sm p-1 ml-3" style={{fontSize:".8em", marginTop:"-10px"}}>Confirm</Button>
-                  <Button onClick={update} className="btn-sm p-1 ml-3" style={{fontSize:".8em", marginTop:"-10px"}}>Save</Button>
+                  <Button onClick={() =>  valid} className="btn-sm p-1 ml-3" style={{fontSize:".8em", marginTop:"-15px"}}>Confirm</Button>
+                  
+                  <Button onClick={update} className="btn-sm p-1 ml-3" style={{fontSize:".8em", marginTop:"-15px"}}>Save</Button>
                </Col>
             </Row>
-            <Card.Header>
+            <Card.Header className={order.status.finish != true ? '' : 'bg-success'}>
                <Row>
                   <Col md={6} className="text-left">
                      Client : <span className="text-primary"><b> {order.client.nomClient} {order.client.prenomClient} </b></span> <br />
@@ -106,7 +108,7 @@ export const ListOrder = props => {
             )}
          </Card>
 
-      </>
+
 
    );
    }

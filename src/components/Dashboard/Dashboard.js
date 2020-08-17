@@ -25,7 +25,6 @@ export const Dashboard = () => {
     return (
       <Fragment>
       <Section calssName="pl-5 pr-5 ml-5 mr-5">
-        <Container>
 
         <h1 className="display-4 mt-5 mb-2 text-center">Dashboard</h1>
 
@@ -51,7 +50,7 @@ export const Dashboard = () => {
           
         </div>
 
-        </Container>
+
         </Section>
       </Fragment>
     );

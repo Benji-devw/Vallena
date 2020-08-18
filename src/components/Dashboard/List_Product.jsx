@@ -134,14 +134,17 @@ export class ListProducts extends Component {
 						filterable: true,
 					},
 					{
+						id: 'stock',
 						Header: 'En stock',
-						accessor: 'stockProduct',
+						accessor: d => d.stockProduct.toString(),
 						filterable: true,
+					
 					},
 					{
-							Header: 'Promotion',
-							accessor: 'promotionProduct',
-							filterable: true,
+						id: 'promotion',
+						Header: 'Promotion',
+						accessor: d => d.promotionProduct.toString(),
+						filterable: true,
 					},
 					{
 						Header: 'Crée par',
@@ -149,14 +152,11 @@ export class ListProducts extends Component {
 						filterable: true,
 					},
 					// {
-					//     Header: 'Time',
-					//     accessor: 'time',
-					//     Cell: props => <span>{props.value.join(' / ')}</span>,
-					// },
-					{
-							Header: 'Date',
-							accessor: 'createdAt',
-					},
+					// 	id: 'date',
+					// 	Header: 'Date',
+					// 	accessor: d => d.createdAt.toString(),
+					// 	filterable: true,
+					// }
 
 			]
 

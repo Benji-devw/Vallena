@@ -3,15 +3,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import { MdAddShoppingCart } from 'react-icons/md';
 import apiCall from '../../../apiCall/Products_Api'
 import moment from 'moment'
+import { Container } from 'react-bootstrap';
 
 import { addtoCart } from '../../../lib/actions'
-
+import secureImg from '../../../assets/img/payment-secu.jpg'
 import ControlledCarousel from './carousel'
 
 
 
 
 const ShopProductView = props => {
+   console.log('props', props)
 
    const [data, setData] = useState({})
    const itemsCart = useSelector(state => state.items)
@@ -40,39 +42,68 @@ const ShopProductView = props => {
 
    return(
       <>
-         <div className="p-0 text-center">
-            <div md={12} id="img-modal">
+         <div id="product-shop" className="">
 
-               {<ControlledCarousel images={imgs} />}
+            <section className="product-shop-0">
+               <article className="row align-items-center no-gutters">
 
-            </div>
-            <div className="modal-corp" md={12}>
-               <h3>{data.titleProduct}</h3>
-               <h5>€ {data.priceProduct}</h5>
-               <p>{data.quantityProduct} en stock</p>
-            </div>
+                  <div className="col-md-8 product-shop-left-0 text-center">
+                     {/* {<ControlledCarousel images={imgs} />} */}
+                     <img src={imgs[0]} alt="img0" className="img-0 img-fluid" />
+                  </div>
 
-            {data.quantityProduct > 1 ? 	// Affichage à la volée avec opérateur ternaire
-               <>
-                  {!findId ?
-                     <div className="addToCart">
-                        <div className="btn-qty-modal"
-                           onClick={() => setQty(qty > 1 ? qty - 1 : 1)}		// tant que qty est supp a 1 ? qty -1 sinon return 1
-                        >-</div>
+                  <div className="col-md-4 product-shop-right-0">
+                     <div className="infos-body">
 
-                        <span className="btn btn-light qty">{qty}</span>
+                        <h2 className="title">{data.titleProduct}</h2>
+                        <p className="avis">avis(0)</p>
+                        <p className="description">{data.descriptionProduct}</p>
+                        <hr />
+                        <div className='price'>  <b>€ {data.priceProduct}</b> <p>En stock : {data.quantityProduct}</p> </div>
+                        <hr />
+                        {data.quantityProduct > 1 ? 	// Affichage à la volée avec opérateur ternaire
+                        <>
+                           {!findId ?
+                              <div className="addToCart">
+                                 <div className="btn-qty-cart"
+                                    onClick={() => setQty(qty > 1 ? qty - 1 : 1)}		// tant que qty est supp a 1 ? qty -1 sinon return 1
+                                 >-</div>
 
-                        <div className="btn-qty-modal"
-                           onClick={() => setQty(data.quantityProduct > qty ? qty + 1 : qty)}
-                        >+</div>
+                                 <span className="btn btn-light qty">{qty}</span>
 
-                        <MdAddShoppingCart size="2em" className="ml-3" style={{ cursor: "pointer" }}
-                           onClick={() => add(data, qty)} />
+                                 <div className="btn-qty-cart"
+                                    onClick={() => setQty(data.quantityProduct > qty ? qty + 1 : qty)}
+                                 >+</div>
 
+                                 <MdAddShoppingCart size="2em" className="ml-3" style={{ cursor: "pointer" }}
+                                    onClick={() => add(data, qty)} />
+
+                              </div>
+                           : <p>Dans votre panier !</p>}
+                        </> : <p>Rupture !</p>}
+                        <div className="payment-secur">
+                           <img src={secureImg} alt="payment-method" className="payment-secure" style={{height: "100px"}} />
+                        </div>
                      </div>
-                     : <p>Dans votre panier !</p>}
-               </> : <p>Rupture !</p>}
-       
+                  </div>
+               </article>
+            </section>
+               
+            <section className="product-shop-1">
+               <article className="row align-items-center no-gutters">
+
+                  <div className="col-md-4 product-right-1">
+                        <h3>Du text ici ...</h3>
+                  </div>
+                  <div className="col-md-8 product-left-1">
+                     <img src={imgs[1]} alt="imgs1" className="img-1 img-fluid" />
+                  </div>
+
+               </article>
+            </section>
+
+
+
          </div>
    
          <div lg="12" className="m-3">
@@ -88,72 +119,3 @@ const ShopProductView = props => {
    )
 }
 export default ShopProductView
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export class ShopProductView extends React.Component {
-//    constructor(props) {
-//       super(props)
-
-//       this.state = {
-//          id: this.props.match.params.id,
-//          imgCollection: '', imgCollectionCopy: '',
-//          titleProduct: '', descriptionProduct: '',
-//          priceProduct: '', categoryProduct: '',
-//          sizeProduct: '', weightProduct: '',
-//          quantityProduct: '', reporterProduct: '',
-//          promotionProduct: false, stockProduct: true,
-//          visible: true, notes: 0, comments: [],
-//       }
-//    }
-
-
-//    componentDidMount = async () => {
-//       const { id } = this.state
-//       const product = await apiCall.getProductById(id)        // Lien => src/apiCall/index.js
-//       console.log('product', product)
-//       // 2 - Rempli les input avec les valeurs
-//       this.setState({
-//          imgCollection: product.data.data.imgCollection,
-//          imgCollectionCopy: product.data.data.imgCollection,
-
-//          titleProduct: product.data.data.titleProduct,
-//          descriptionProduct: product.data.data.descriptionProduct,
-//          priceProduct: product.data.data.priceProduct,
-//          categoryProduct: product.data.data.categoryProduct,
-//          sizeProduct: product.data.data.sizeProduct,
-//          weightProduct: product.data.data.weightProduct,
-//          quantityProduct: product.data.data.quantityProduct,
-//          stockProduct: product.data.data.stockProduct,
-//          promotionProduct: product.data.data.promotionProduct,
-//          reporterProduct: product.data.data.reporterProduct,
-//          visible: product.data.data.visible,
-//       })
-
-//    }
-
-
-
-//    render() {
-//       console.log(this.props)
-//       return (
-         
-//          <>
-//          <p>{this.props.children}</p>
-            
-//          </>
-//       )
-//    }
-// }
-// export default ShopProductView;

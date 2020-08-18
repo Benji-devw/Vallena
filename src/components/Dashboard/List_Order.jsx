@@ -53,8 +53,7 @@ export const ListOrder = props => {
                      onChange={handleCheckboxChangeFinish}
 
                   />
-                  <Button onClick={() =>  valid} className="btn-sm p-1 ml-3" style={{fontSize:".8em", marginTop:"-15px"}}>Confirm</Button>
-                  
+                  <Button onClick={valid} className="btn-sm p-1 ml-3" style={{fontSize:".8em", marginTop:"-15px"}}>Confirm</Button>
                   <Button onClick={update} className="btn-sm p-1 ml-3" style={{fontSize:".8em", marginTop:"-15px"}}>Save</Button>
                </Col>
             </Row>

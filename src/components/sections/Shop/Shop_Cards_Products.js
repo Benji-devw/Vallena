@@ -15,9 +15,9 @@ class UpdateProduct extends Component {
     window.location.href = `/product/${this.props.id}`		// Lien => app.js
   }
   render() {
-    // console.log(this.props.id)
+    console.log(this.props.test)
     // console.log(this.props.children)
-    return <Show onClick={this.showProduct}>{this.props.children}</Show>
+    return <Show test={this.props.test} onClick={this.showProduct}>{this.props.children}</Show>
   }
 }
 
@@ -33,7 +33,7 @@ return (
         <Col lg={3} key={datas._id} id="card-shop" draggable="false" className='col-md-4 col-sm-6 text-center'>
           <div className='card-border'>
             
-            <UpdateProduct id={datas._id} >
+            <UpdateProduct id={datas._id} test={datas} >
             <img src={datas.imgCollection[0]} className="img-fluid" alt={datas.titleProduct}/>
             </UpdateProduct>
             

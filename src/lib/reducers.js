@@ -4,14 +4,14 @@
 
 import { actions } from './actions'
 
-// 1 - savegarde du panier dans le navigateur (application)
+// 1 - Savegarde du panier et product dans le navigateur (application)
 const saveToLocalStorage = object => {
    localStorage.setItem("items", JSON.stringify(object))
 }
 const saveProductToLocalStorage = object => {
    localStorage.setItem("product", JSON.stringify(object))
 }
-// 2
+// 2 - Initialisation du panier et product localStorage
 const initialState = {
    // si ds le navigateur application il y a un item on renvoi l'item sinon un tableau vide
    items: JSON.parse(localStorage.getItem("items")) !== null ? JSON.parse(localStorage.getItem("items")) : [],

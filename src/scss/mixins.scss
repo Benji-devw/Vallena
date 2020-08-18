@@ -1,57 +1,70 @@
-
 /*** MIXIN
 ************/
-@mixin font_base($family: $helvetica-Bd, $size, $weight: bold, $transform: uppercase) {
-     font: {
-          family:   $family;
-          size:     $size;
-          weight:   $weight;
-     }
-     text: {
-          transform: $transform;
-     }
-}
 
-@mixin under_title {
-     content: '';
-     width: 70px;
-     height: 4px;
-     background: white;
-     position: relative;
-     bottom: 0;
-     left: 15px;
-}
-
-@mixin post_its($bottom: 0, $left: 0) {
-     &::after {
-          @include scal-rota($rotate: -10deg);
-          content: '';
-          background: #789cb1;
-          position: absolute;
-          display: block;
-          background-size: 60px 46px;
-          height: 36px;
-          width: 70px;
-          bottom: $bottom;
-          left: $left;
-          z-index: -1;
+@mixin background($imgpath, $position:center, $repeat: no-repeat, $backgrounS: 30% ) {
+     background: {
+          image: url($imgpath);
+          position: $position;
+          repeat: $repeat;
+          background-size: $backgrounS;
      }
 }
 
-@mixin scal-rota($size: 1, $rotate: 0) {
-     @include transform(scale($size) rotate($rotate));
-}
-@mixin transform($transform) {
-     -ms-transform: $transform;
-     -webkit-transform: $transform;
-     -o-transform: $transform;
-     -moz-transform: $transform;
-     transform: $transform;
-}
-@mixin transition-duration($time: 1s) {
-     -webkit-transition-duration: $time;
-     transition-duration: $time;
-}
+
+// @mixin font_base($family: $helvetica-Bd, $size, $weight: bold, $transform: uppercase) {
+//      font: {
+//           family: $family;
+//           size: $size;
+//           weight: $weight;
+//      }
+
+//      text: {
+//           transform: $transform;
+//      }
+// }
+
+// @mixin under_title {
+//      content: '';
+//      width: 70px;
+//      height: 4px;
+//      background: white;
+//      position: relative;
+//      bottom: 0;
+//      left: 15px;
+// }
+
+// @mixin post_its($bottom: 0, $left: 0) {
+//      &::after {
+//           @include scal-rota($rotate: -10deg);
+//           content: '';
+//           background: #789cb1;
+//           position: absolute;
+//           display: block;
+//           background-size: 60px 46px;
+//           height: 36px;
+//           width: 70px;
+//           bottom: $bottom;
+//           left: $left;
+//           z-index: -1;
+//      }
+// }
+
+// @mixin scal-rota($size: 1, $rotate: 0) {
+//      @include transform(scale($size) rotate($rotate));
+// }
+
+// @mixin transform($transform) {
+//      -ms-transform: $transform;
+//      -webkit-transform: $transform;
+//      -o-transform: $transform;
+//      -moz-transform: $transform;
+//      transform: $transform;
+// }
+
+// @mixin transition-duration($time: 1s) {
+//      -webkit-transition-duration: $time;
+//      transition-duration: $time;
+// }
 
 
 
@@ -65,5 +78,3 @@
 //           @debug " bShadow = #{$value}";
 //      }
 // }
-
-

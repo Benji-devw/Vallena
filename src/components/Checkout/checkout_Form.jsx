@@ -83,7 +83,7 @@ const CheckoutForm = props => {
 
       if (error) { console.log('[error]', error);
       } else {
-         // console.log('[PaymentMethod]', paymentMethod);
+         console.log('[PaymentMethod]', paymentMethod);
          const { id } = paymentMethod;
 
          await axios.post("http://localhost:4242/charge", {
@@ -96,30 +96,36 @@ const CheckoutForm = props => {
             console.log('data', data)
             // setClientSecret(data.clientSecret)
 
-            // Update quantity in db
+            // Calcul newQuantity for db
             // setObject in newItems
+            console.log(items)
             const test = (items.map(item => {
                const newProductQuantity = item.details.quantityProduct - item.quantity;
+               console.log('newProductQuantity', newProductQuantity)
                return {
                   ...item.details, quantityProduct: newProductQuantity
                }
             }))
             // Update quantityProduct in db
             test.map(change => (
-               <> {apiCall.updateProductById(change._id, change).then(res => { console.log('update quantityProduct in db OK !!! ') })
+               <> 
+               {console.log('change', change)}
+               
+               {apiCall.updateProductById(change._id, change).then(res => { console.log(res) })
                } </>
             ))
 
             // Send order in db
-            const payload = { items, client, totalCmd, status }
-            apiCallStripe.insertOrder(payload).then(res => {
-               window.alert(`NewProduct inserted successfully`)
-               console.log("Order enregistré")
-               const reset = () => {
-                  dispatch(resetCart())
-               }
-               return reset()
-            })
+            // const payload = { items, client, totalCmd, status }
+            // apiCallStripe.insertOrder(payload).then(res => {
+            //    console.log('res', res)
+            //    window.alert(`NewProduct inserted successfully`)
+            //    console.log("Order enregistré")
+            //    const reset = () => {
+            //       dispatch(resetCart())
+            //    }
+            //    return reset()
+            // })
 
          });
       }

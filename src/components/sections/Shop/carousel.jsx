@@ -14,16 +14,16 @@ const ControlledCarousel = props => {
 	return (
 		<Carousel activeIndex={index} onSelect={handleSelect}>
 			{ imgs.map((e, i)=> (
-			<Carousel.Item key={i} style={{maxHeight: '450px'}}>
+			<Carousel.Item key={i}>
 			<img
 				className="img-fluid"
 				src={e}
 				alt="First slide"
 			/>
-			<Carousel.Caption>
+			{/* <Carousel.Caption>
 				<h3>First slide label</h3>
 				<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-			</Carousel.Caption>
+			</Carousel.Caption> */}
 			</Carousel.Item>
 		)) 
 		}

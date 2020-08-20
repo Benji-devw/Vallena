@@ -15,7 +15,7 @@ class UpdateProduct extends Component {
     window.location.href = `/product/${this.props.id}`		// Lien => app.js
   }
   render() {
-    console.log(this.props.test)
+    // console.log(this.props.test)
     // console.log(this.props.children)
     return <Show test={this.props.test} onClick={this.showProduct}>{this.props.children}</Show>
   }

@@ -12,7 +12,7 @@ const ShopDisplayProducts = () => {
   const [loading, products] = useFetchAllProducts()
   // console.log('products', products)
 
-  window.scrollTo({top: 500, behavior: 'smooth'})
+  window.scrollTo({top: 500})
   if (loading) { return 'chargement...'  }
 
   return (

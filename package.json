@@ -7,6 +7,7 @@
     "@stripe/stripe-js": "^1.8.0",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
+    "fs": "0.0.1-security",
     "modal": "^1.2.0",
     "moment": "^2.27.0",
     "react": "^16.8.6",

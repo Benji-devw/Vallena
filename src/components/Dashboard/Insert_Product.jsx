@@ -30,7 +30,7 @@ export class InsertProduct extends Component {
             quantityProduct: '',     reporterProduct: '',
             promotionProduct: false, stockProduct: true,
             visible: true,           notes: 0,
-            comments: [],           imgCollection: '',
+            comments: ['premier commentaire'],           imgCollection: '',
             isLoading: false
         }
     }
@@ -143,9 +143,6 @@ export class InsertProduct extends Component {
         }
         
     }
-
-
-
 
 
 

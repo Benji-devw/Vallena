@@ -3,17 +3,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { MdAddShoppingCart } from 'react-icons/md';
 import apiCall from '../../../apiCall/Products_Api'
 import moment from 'moment'
-import { Container } from 'react-bootstrap';
 
 import { addtoCart } from '../../../lib/actions'
 import secureImg from '../../../assets/img/payment-secu.jpg'
-import ControlledCarousel from './carousel'
+// import ControlledCarousel from './carousel'
 
 
 
 
 const ShopProductView = props => {
-   console.log('props', props)
+   // console.log('props', props)
 
    const [data, setData] = useState({})
    const itemsCart = useSelector(state => state.items)

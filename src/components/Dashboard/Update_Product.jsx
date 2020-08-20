@@ -25,13 +25,17 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
 
         this.state = {
             id: this.props.match.params.id,
-            imgCollection: '',      imgCollectionCopy: '',
+            imgCollection: [],      imgCollectionCopy: [],
             titleProduct: '',       descriptionProduct: '',
             priceProduct: '',       categoryProduct: '',
             sizeProduct: '',        weightProduct: '',
             quantityProduct: '',    reporterProduct: '',
-            promotionProduct: false, stockProduct: true,
-            visible: true, notes: 0, comments: [], 
+
+            visible: true, 
+            stockProduct: true,
+            promotionProduct: true, 
+
+            notes: [], comments: [], 
         }
         this.handleChangeImgCollection = this.handleChangeImgCollection.bind(this)
     }
@@ -83,7 +87,7 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
         displayimgC.style.height = "0px"
         const readAndPreview = (file) => {
             // Veillez à ce que `file.name` corresponde à nos critères d’extension
-            if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
+            if (/\.(jpe?g|png|jpg|gif)$/i.test(file.name)) {
                 var reader = new FileReader();
                 reader.addEventListener("load", function () {
                     var image = new Image();
@@ -111,20 +115,22 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
         const id = this.state.id
         const { titleProduct, descriptionProduct, priceProduct, categoryProduct, sizeProduct, weightProduct, quantityProduct, stockProduct, promotionProduct, reporterProduct, visible } = this.state
         
-            // Variable en json => parser avant de .append() ds dataForm
+            
         const newCollection = this.state.imgCollection
+        console.log('newCollection', newCollection)
         const copyCollection = this.state.imgCollectionCopy
-        console.log('copyCollection', copyCollection)
+        // console.log('copyCollection', copyCollection)
 
-
-        if (newCollection !== copyCollection) {
-            console.log('Different')
-            for (const key of Object.keys(newCollection)) {              // Crée un nouvel objet FormData et construit une paires clé/valeur représentant les champs du formulaire et leurs valeurs,
-                formData.append('imgCollection', newCollection[key])     // Ajoute une nouvelle valeur à une clé existante dans un objet FormData, ou ajoute la clé si elle n'existe pas encore.
-            }
+    
+        console.log('diff')
+        for (const key of Object.keys(newCollection)) {              // Crée un nouvel objet FormData et construit une paires clé/valeur représentant les champs du formulaire et leurs valeurs,
+            formData.append('imgCollection', newCollection[key])     // Ajoute une nouvelle valeur à une clé existante dans un objet FormData, ou ajoute la clé si elle n'existe pas encore.
         }
-        
-        // formData.append('imgCollection', newCollection)
+        for (const key of Object.keys(copyCollection)) {              // Crée un nouvel objet FormData et construit une paires clé/valeur représentant les champs du formulaire et leurs valeurs,
+            formData.append('copyCollection', copyCollection[key])     // Ajoute une nouvelle valeur à une clé existante dans un objet FormData, ou ajoute la clé si elle n'existe pas encore.
+        }
+
+        // formData.append('copyCollection', copyCollection)
         formData.append('titleProduct', titleProduct)
         formData.append('descriptionProduct', descriptionProduct)
         formData.append('priceProduct', priceProduct)
@@ -138,12 +144,12 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
         formData.append('visible', visible)
 
 
-                                                            // ROUTE => serverURL/server.js/router.js/:id
+                                                       // ROUTE => serverURL/server.js/router.js/:id
         apiCall.updateProductById(id, formData)         // Lien => src/apiCall/index.js
-            .then(res => {    
+        .then(res => {    
                 console.log('2 UPDATE res.data......', res)
                 window.alert(`Modification OK !`)
-            }).catch(() => { window.alert('Un problème est survenu !') } )
+            }).catch(() => {  } ) 
 
         // window.location = "/dashboard";
 
@@ -153,7 +159,7 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
     componentDidMount = async () => {
         const { id } = this.state
         const product = await apiCall.getProductById(id)        // Lien => src/apiCall/index.js
-        console.log('product', product)
+        // console.log('product', product)
         // 2 - Rempli les input avec les valeurs
         this.setState({
             imgCollection: product.data.data.imgCollection,
@@ -178,6 +184,9 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
 
     render() {
        const {imgCollection} = this.state
+    //    console.log('imgCollection', imgCollection)
+    //    console.log('imgCollectioncopy', imgCollectionCopy)
+
        const imgDisplay = []
 
         for (let i = 0; i < imgCollection.length; i++) {
@@ -305,7 +314,7 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                     <Form.Group as={Col} md="2" controlId="exampleForm.ControlSelect9">
                         <Form.Check type="checkbox"
                             label="Visible"
-                            defaultChecked={this.state.visible}
+                            checked={this.state.visible}
                             onChange={this.handleChangeCheckboxVisible}
                         />
                     </Form.Group>  
@@ -313,7 +322,7 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                     <Form.Group as={Col} md="2" controlId="exampleForm.ControlSelect10">
                         <Form.Check type="checkbox"
                             label="En stock"
-                            defaultChecked={this.state.stockProduct}
+                            checked={this.state.stockProduct}
                             onChange={this.handleChangeInputStockProduct}
                         />
                     </Form.Group> 
@@ -321,7 +330,7 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                     <Form.Group as={Col} md="2" controlId="exampleForm.ControlSelect11">
                         <Form.Check type="checkbox"
                             label="En Promotion"
-                            defaultChecked={this.state.promotionProduct}
+                            checked={this.state.promotionProduct}
                             onChange={this.handleChangeInputPromotionProduct}
                         />
                     </Form.Group>

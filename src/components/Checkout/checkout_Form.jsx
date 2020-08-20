@@ -9,8 +9,10 @@ import { ClientProfileContext } from '../../lib/ClientProfileContext'
 import apiCallStripe from '../../apiCall/Orders_Api'
 import apiCall from '../../apiCall/Products_Api'
 
+
+
 const CheckoutForm = props => {
-   
+
    const dispatch = useDispatch()
 
    // Format Total
@@ -66,7 +68,22 @@ const CheckoutForm = props => {
    const totalCmd = props.amount
 
 
- 
+   const handleUpdateProduct = (id, data) => {
+      var formData = new FormData();
+      formData.append('quantityProduct', data.quantityProduct)
+      // ROUTE => serverURL/server.js/router.js/:id
+      apiCall.updateProductById(id, formData)         // Lien => src/apiCall/index.js
+         .then(res => {
+            console.log('Quantity update Done !', res)
+            window.alert(`Modification OK !`)
+         }).catch(() => { })
+      // window.location = "/dashboard";
+   }
+
+
+
+
+
    const handleSubmit = async (event) => {
       // Block native form submission.
       event.preventDefault();
@@ -99,33 +116,32 @@ const CheckoutForm = props => {
             // Calcul newQuantity for db
             // setObject in newItems
             console.log(items)
-            const test = (items.map(item => {
+            const calcul = (items.map(item => {
                const newProductQuantity = item.details.quantityProduct - item.quantity;
-               console.log('newProductQuantity', newProductQuantity)
+               // console.log('newProductQuantity', newProductQuantity)
                return {
                   ...item.details, quantityProduct: newProductQuantity
                }
             }))
             // Update quantityProduct in db
-            test.map(change => (
+            calcul.map(change => (
                <> 
-               {console.log('change', change)}
-               
-               {apiCall.updateProductById(change._id, change).then(res => { console.log(res) })
-               } </>
+               {/* {console.log('change', change)} */}
+               {handleUpdateProduct(change._id, change)} 
+               </>
             ))
 
             // Send order in db
-            // const payload = { items, client, totalCmd, status }
-            // apiCallStripe.insertOrder(payload).then(res => {
-            //    console.log('res', res)
-            //    window.alert(`NewProduct inserted successfully`)
-            //    console.log("Order enregistré")
-            //    const reset = () => {
-            //       dispatch(resetCart())
-            //    }
-            //    return reset()
-            // })
+            const payload = { items, client, totalCmd, status }
+            apiCallStripe.insertOrder(payload).then(res => {
+               console.log('res', res)
+               window.alert(`New Order inserted Done !`)
+               console.log("Order enregistré")
+               const reset = () => {
+                  dispatch(resetCart())
+               }
+               return reset()
+            })
 
          });
       }

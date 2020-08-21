@@ -21,6 +21,10 @@ export const ListOrder = props => {
       setFinish ( checkbTwo )
    }
 
+   const formatDate = data => {
+      return data.toString().replace(/T/, ' ').replace(/\..+/, '')
+   }
+
    const valid = () => {
       setOrder(order => ({...order, status: {
          inProgress: inProgressCheck,
@@ -65,7 +69,7 @@ export const ListOrder = props => {
                      Adresses : <span className="text-primary"> {order.client.adresseClient} - {order.client.cpClient} - {order.client.villeClient} </span>
                   </Col>
                   <Col md={6} className="text-left">
-                     Date cmd : <b>{order.createdAt}</b> <br />
+                  Date cmd : <b>{formatDate(order.createdAt)}</b> <br />
                      Nbr d'article : <b>{order.items.length}</b> <br />
                      FraisP : <b>{order.totalCmd.shipping}</b> € -- TOTAL : <b>{order.totalCmd.total}</b> €
                   </Col>

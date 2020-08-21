@@ -1,18 +1,13 @@
 import React, { Fragment } from 'react';
-
-import InfosClient from '../components/Checkout/infos_Client'
+import Payment from '../components/Checkout/payment'
 import Footer from '../components/UI/Footer/Footer'
 
-
 const Checkout = () => {
-
    return (
       <Fragment>
-
          <main>
-            <InfosClient />
+            <Payment />
          </main>
-
          <Footer />
       </Fragment>
    )

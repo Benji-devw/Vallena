@@ -3,7 +3,6 @@ import { Container } from 'react-bootstrap';
 
 import ShopListProducts from './Shop_List_Products';
 import {useFetchAllProducts} from '../../../apiCall/FetchCall';
-import Section from '../../../HOC/Section';
 
 
 const ShopDisplayProducts = () => {
@@ -16,7 +15,7 @@ const ShopDisplayProducts = () => {
   if (loading) { return 'chargement...'  }
 
   return (
-    <Section id='shop'>
+    <section id='shop'>
       <Container id='shop-display-products' fluid >
   
         <div className='section-content-light text-center'>
@@ -32,7 +31,7 @@ const ShopDisplayProducts = () => {
      
 
     </Container>
-    </Section>
+    </section>
   );
 };
 

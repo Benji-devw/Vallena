@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap'
 
 import { updateCart, removeFromCart } from '../../lib/actions'
-import Section from '../../HOC/Section';
 
 
 
@@ -111,8 +110,8 @@ const CartClient = () => {
 
 
   return (
-    <Fragment>
-      <Section id='cart'>
+    <Fragment>     
+      <section id='cart'>
         <Container>
         <Row className="cart-header mx-auto p-3">
           <Col>
@@ -164,9 +163,8 @@ const CartClient = () => {
           </Col>
         </Row>
         </Container>
-      </Section>
+      </section>
     </Fragment>
   );
 };
-
 export default CartClient;

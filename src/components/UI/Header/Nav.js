@@ -8,7 +8,7 @@ import LinksAdmin from './Links/LinksAdmin';
 import { RiShoppingCart2Line } from 'react-icons/ri';
 
 
-const Nav = props => {
+const Nav = () => {
 
   const [navClass, setNavClass] = useState('');
   const [toggeledNav, settoggeledNav] = useState(false);

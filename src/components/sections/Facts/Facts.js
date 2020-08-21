@@ -1,11 +1,9 @@
 import React from 'react';
-
-import Section from '../../../HOC/Section';
 import bgImage from '../../../assets/img/ardeche.jpg';
 
 const Facts = () => {
   return (
-    <Section id='facts'>
+    <section id='facts'>
       <div
         className='facts-container'
         style={{ backgroundImage: `url(${bgImage})` }}
@@ -43,7 +41,7 @@ const Facts = () => {
           </div>
         </div>
       </div>
-    </Section>
+    </section>
   );
 };
 

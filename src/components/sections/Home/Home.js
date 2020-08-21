@@ -1,12 +1,9 @@
 import React from 'react';
-
-import Section from '../../../HOC/Section';
 import bgImage from '../../../assets/img/coffee-and-laptop.jpg';
-// import Link from '../../UI/Link/Link';
 
 const Home = () => {
   return (
-    <Section id='home'>
+    <section id='home'>
 
         <div
           className='home-content p-5'
@@ -25,7 +22,7 @@ const Home = () => {
 
         </div>
 
-    </Section>
+    </section>
   );
 };
 

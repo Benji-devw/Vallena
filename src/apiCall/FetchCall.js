@@ -1,5 +1,5 @@
 import { useLayoutEffect, useState } from 'react';
-import apiCallStripe from './Orders_Api'
+import apiCallOrders from './Orders_Api'
 import apiCall from './Products_Api'
 
 
@@ -35,7 +35,7 @@ export function useFetchAllOrders() {
     // Appel
     useLayoutEffect(() => {
         (async () => {
-            apiCallStripe.getAllOrders()
+            apiCallOrders.getAllOrders()
                 .then(orders => {
                     // console.log('orders', orders)
                     setState({

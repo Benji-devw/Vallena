@@ -2,8 +2,7 @@ import React, { Fragment } from "react";
 import Sections from '../components/sections/Sections';
 import Footer from '../components/UI/Footer/Footer';
 
-const Layout = props => {
-  
+const Layout = () => {
   return (
     <Fragment>
 

@@ -2,12 +2,10 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import ClientProfileContext from './lib/ClientProfileContext'
-import Checkout from './views/checkout'
-import Payment from './components/Checkout/payment'
-import Confirm from './components/Checkout/confirm'
 
 import Layout from './views/Layout'
 import CartPage from './views/Cart'
+import Checkout from './views/checkout'
 
 import Header from './components/UI/Header/Header';
 import { Login } from './components/Users/Login/Login'
@@ -33,15 +31,12 @@ const App = props => {
 
         <Header />
 
-
         <Switch>
 
           <Route path="/" exact component={() => <Layout /> }/>
           <Route path="/cart" exact component={CartPage} />
           
-          <Route path="/checkout" exact component={Checkout} />
-          <Route path="/payment" exact component={Payment} />
-          <Route path="/confirm" exact component={Confirm} />
+          <Route path="/payment" exact component={Checkout} />
 
           <Route path="/login" exact component={Login} />
           <Route path="/Signup" exact component={Signup} />

@@ -7,9 +7,8 @@ import { InsertProduct }from './Insert_Product'
 
 import { ListOrder } from './List_Order'
 
-import Section from '../../HOC/Section'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+import {Row, Col } from 'react-bootstrap'
+
 
 import {useFetchAllOrders} from '../../apiCall/FetchCall'
 
@@ -24,7 +23,7 @@ export const Dashboard = () => {
 
     return (
       <Fragment>
-      <Section calssName="pl-5 pr-5 ml-5 mr-5">
+      <section className="pl-5 pr-5 ml-5 mr-5">
 
         <h1 className="display-4 mt-5 mb-2 text-center">Dashboard</h1>
 
@@ -51,7 +50,7 @@ export const Dashboard = () => {
         </div>
 
 
-        </Section>
+        </section>
       </Fragment>
     );
   }

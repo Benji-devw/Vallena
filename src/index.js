@@ -6,10 +6,9 @@ import './scss/main.scss';
 // Redux
 import { Provider } from 'react-redux'
 import { store } from './lib/store'
-import { AppContainer } from './views/containers/index'
+import { AppContainer } from './views/appContainer'
 
 // import App from './App';
-import * as serviceWorker from './serviceWorker';
 // import {openSidebar} from './lib/actions'
 
 // log the initial state
@@ -27,8 +26,3 @@ ReactDOM.render(
       <AppContainer />
    </Provider>
 , document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();

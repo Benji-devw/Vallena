@@ -1,11 +1,10 @@
 import React from 'react';
 import {Container} from 'react-bootstrap'
-import Section from '../../../HOC/Section';
 import aboutImage from '../../../assets/img/thumb-1920-544085.png';
 
 const about = () => {
   return (
-    <Section id='about'>
+    <section id='about'>
       <Container fluid>
 
       <div className="row no-gutters justify-content-center align-items-center text-center">
@@ -26,7 +25,7 @@ const about = () => {
     </div>
 
      </Container>
-    </Section>
+    </section>
   );
 };
 

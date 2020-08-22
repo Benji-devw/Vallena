@@ -3,22 +3,20 @@
 @import "./mixins.scss";
 // @import url(//db.onlinewebfonts.com/c/174b2ec3d1b18323f2021ce3fdda6028?family=SamsungOne);
 
-@font-face {
-  font-family: "SamsungOne";
-  src: url("./@font-face/174b2ec3d1b18323f2021ce3fdda6028.eot") format("embedded-opentype"), url("./@font-face/174b2ec3d1b18323f2021ce3fdda6028.woff2") format("woff2"), url("./@font-face/174b2ec3d1b18323f2021ce3fdda6028.woff") format("woff"), url("./@font-face/174b2ec3d1b18323f2021ce3fdda6028.ttf") format("truetype"), url("./@font-face/174b2ec3d1b18323f2021ce3fdda6028.svg") format("svg");
-}
-
+// Effects
+@import './appGuruz.scss';
 
 // Views
 
 
 // Home
 @import './partials/home';
+@import './partials/sidebar-home';
+@import './partials/sidebar-client';
 
 //Shop
 @import './partials/shop-display-products';
-// @import './partials/shop-modal-products';
-@import './partials/shop-card';
+@import './partials/shop-list-product';
 @import './partials/shop-product';
 
 // Content
@@ -28,8 +26,6 @@
 
 // Components
 @import './partials/header';
-@import './partials/cart';
-@import './partials/sidebarFilter';
 @import './partials/payment';
 @import './partials/payment-form';
 
@@ -43,11 +39,13 @@
 
 
 
+html {
+  // scroll-behavior: smooth;
+}
 
 body {
   // height: 100vh;
-  // font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-family: "SamsungOne";
+  font-family: usual, sans-serif;
   background-color: $light-bg;
 }
 
@@ -100,6 +98,30 @@ input {
 // span {
 //   color: $span;
 // }
+
+
+.badge-cart {
+  position: relative;
+  text-align: center;
+  right: 1rem;
+  bottom: .7rem;
+  font-size: .8rem;
+  padding: .2rem .4rem;
+}
+
+
+.backTo {
+  margin: .95rem;
+  font-size: .9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  opacity: .9;
+  cursor: pointer;
+
+  &:hover {
+    color: #057EFF;
+  }
+}
 
 .section-header-light {
   .section-title {

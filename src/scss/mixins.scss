@@ -1,7 +1,7 @@
 /*** MIXIN
 ************/
 
-@mixin background($imgpath, $position:center, $repeat: no-repeat, $backgrounS: 30% ) {
+@mixin background($imgpath, $position:center, $repeat: no-repeat, $backgrounS: 30%) {
      background: {
           image: url($imgpath);
           position: $position;

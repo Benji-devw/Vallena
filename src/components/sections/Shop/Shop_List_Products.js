@@ -1,28 +1,69 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
+import { Row, Col } from 'react-bootstrap';
+import formatCurrency from '../../../utils/utils';
 
-import ShopCardProducts from './Shop_Cards_Products'
+// import { connect } from 'react-redux';
+// import {fetchProducts} from '../actions/productActions';
 
-
-const ShopListProducts = props => {
-  // data
-  const products = props.products
-
-  // get unique category items
-  // Fonction One line = () => 
-  const uniqueItems = (x, i, array) => array.indexOf(x) === i;
-  const PRODUCT_CATEGORIES = products.map(prod => prod.categoryProduct).filter(    // filter() crée et retourne un nouveau tableau contenant tous les éléments du tableau d'origine qui remplissent une condition déterminée par la fonction callback
-  uniqueItems
-  );
-  PRODUCT_CATEGORIES.push("all");
-  PRODUCT_CATEGORIES.sort();
+// import styled from 'styled-components'
+// const Img = styled.img` height: 15rem; `
 
 
-  return (
-    <>
-      <h5>Produit en boutique :<b>{products.length}</b> </h5>
-      <ShopCardProducts products={products} productCategoriesList={PRODUCT_CATEGORIES}/>
-    </>
-  );
-};
 
-export default ShopListProducts;
+class ListProducts extends Component {
+   constructor(props) {
+      super(props);
+      this.state = {
+         products: null,
+      }
+      this.myRef = React.createRef()  
+   }
+   scrollToMyRef = () => window.scrollTo(0, this.myRef.offsetTop)
+
+   render() {
+
+
+ 
+
+      return (
+         <>
+            {
+            !this.props.products ? 
+               (<div>Loading...</div> )
+            :
+               (<Row id="shop" ref={this.myRef} className="justify-content-center no-gutters">
+   
+                  {this.props.products.map(product => (
+                     <Col lg={3} key={product._id} id="card-shop" draggable="false" className='col-xl-3 col-md-4 col-sm-4 text-center'>
+                        <div className='card-border'>
+
+                           {/* Link call ProductScreen.js */}
+                           <div className="card-hover">
+                              <Link to={`/product/${product._id}`}>
+                                 <img src={product.imgCollection[0]} className="img-fluid" alt={product.titleProduct} />
+                                 <div className='card-title'> {product.titleProduct} </div>
+                              </Link>
+                           </div>
+                              
+
+                           <div className='card-category'>{product.categoryProduct} </div>
+                           {/* <div className='card-price'> <b>{product.priceProduct}</b> €</div> */}
+                           <div>{formatCurrency(product.priceProduct)}</div>
+                           <div className='card-quantity'>stock : <b>{product.quantityProduct}</b> </div>
+                           <div className='card-avis'> avis (0)</div>
+                        </div>
+                        <div className="borderb mt-3"></div>
+                     </Col>
+                  ))}
+               </Row>)
+            }
+            
+         </>
+      );
+   }
+}
+export default ListProducts
+// export default connect((state) => ({products: state.products.items}), {
+//    fetchProducts,
+// })(Products);

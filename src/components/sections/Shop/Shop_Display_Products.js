@@ -52,7 +52,7 @@ class DisplayProducts extends React.Component {
   }
 
   filterProducts = (event) => {
-    console.log('event', event.target.value)
+   //  console.log('event', event.target.value)
     if (event.target.value === "All") {
       this.setState({category: event.target.value, products: this.state.test});
     } else {
@@ -70,21 +70,22 @@ class DisplayProducts extends React.Component {
    render() {
 
       return (
-         <div className="shop">
-            <main className="row no-gutters content">
-        
-                  <div className="col">
-                     <Filter 
-                        count={this.state.products.length} 
-                        category={this.state.category}
-                        catList={this.state.test}
+         <div className="shop-display">
+                 
+             <main className="row no-gutters content">
 
-                        sort={this.state.sort}
-                        sortProducts={this.sortProducts}
-                        filterProducts={this.filterProducts}
-                     />
-                     <ListProducts products={this.state.products}  />
-                  </div>
+               <div className="col">
+                  <Filter 
+                     count={this.state.products.length} 
+                     category={this.state.category}
+                     catList={this.state.test}
+
+                     sort={this.state.sort}
+                     sortProducts={this.sortProducts}
+                     filterProducts={this.filterProducts}
+                  />
+                  <ListProducts products={this.state.products}  />
+               </div>
         
             </main>
          </div>

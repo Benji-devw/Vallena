@@ -1,57 +1,59 @@
 #card-shop {
-  padding: 15px;
+
   transition: all 1s linear;
-  background: transparent;
+  margin: 3rem;
+  border: 1px solid rgba(0, 0, 0, 0.452);
+  padding: 2rem;
 
-  user-select: none;
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
+  background-color: rgba(16, 121, 182, 0.479);
 
-  .borderb {
-    margin-right: 20px;
-    margin-left: 20px;
-    height: 1px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
 
-  .card-hover a {
+  border-radius: 30% / 50%;
+
+
+}
+
+
+
+
+
+
+.imgforsvg {
+  height: 210px;
+  width: 310px;
+  pointer-events: none;
+}
+
+
+
+.svg-head {}
+
+.svg-card {
+
+  padding: 20px;
+  height: 500px;
+  width: 340px;
+  overflow: none;
+  -webkit-filter: drop-shadow(10px 15px 3px rgba(0, 0, 0, .4));
+  -moz-filter: drop-shadow(10px 15px 3px rgba(0, 0, 0, .4));
+  -ms-filter: drop-shadow(10px 15px 3px rgba(0, 0, 0, .4));
+  -o-filter: drop-shadow(10px 15px 3px rgba(0, 0, 0, .4));
+  filter: drop-shadow(10px 15px 3px rgba(0, 0, 0, .4));
+
+  path {}
+
+  text {
+    pointer-events: none;
     color: $dark-color;
-    &:hover {
-      cursor: pointer;
-      color: orangered;
-      text-decoration: none;
-      transition-duration: .5s;
-
-    }
-
-    img {
-      cursor: pointer;
-      border-radius: 5px;
-      transition-duration: 1s;
-
-      &:hover {
-        transform: scale(1.1);
-        transition-duration: 1s;
-      }
-    }
-
-    .card-title {
-      padding-top: 5px;
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-
-
+    
   }
 
-  .card-body {
-    padding: 5px;
-
+  .svg-title {
+    font-size: 2rem;
+    font-weight: bold;
   }
 
-  .card-category {
+  .category {
     color: #6f6f6f;
     padding: 0;
     font-size: .7rem;
@@ -59,27 +61,57 @@
     text-transform: uppercase;
 
   }
-
-
-
-  .card-quantity {
+  .stock {
     font-size: 0.9rem;
   }
 
-  .card-price {
+  .price {
     font-size: 1.5rem;
   }
 
-  .card-avis {
+  .avis {
     font-size: .8em;
   }
 
-  .card-text {
-    font-size: 0.9rem;
+
+
+  #gradient-vertical {
+    opacity: 1;
+    --color-stop-1: #00c3ff;
+    --color-stop-2: #ffff1c;
+    --color-stop-3: #ff821c;
 
   }
 
+  #gradient-vertical-visible {
+    opacity: 0;
+    -webkit-transition: 1s, opacity 2.5s ease-in-out;
+    -moz-transition: 1s, opacity 2.5s ease-in-out;
+    -ms-transition: 1s, opacity 2.5s ease-in-out;
+    -o-transition: 1s, opacity 2.5s ease-in-out;
+    transition: 1s, opacity 2.5s ease-in-out;
+    --color-stop-1: #00c3ff;
+    --color-stop-2: #ffff1c;
+    --color-stop-3: #ffff1c;
 
+  }
 
+  #gradient-vertical-visible:hover {
+    opacity: 1;
+    -webkit-transition: .7s;
+    -moz-transition: .7s;
+    -ms-transition: .7s;
+    -o-transition: .7s;
+    transition: d .7s, opacity .3s;
+    d: path("M 0 400 Q 0 400 0 50 Q 150 0 300 50 C 300 50 300 400 300 400 Q 150 450 0 400 ");
+  }
 
 }
+
+
+
+
+// Card SVG
+// M 50 450 Q 50 450 50 100 Q 200 150 350 100 C 350 100 350 450 350 450 Q 200 400 50 450 
+// Card hover
+// M 50 450 Q 50 450 50 100 Q 200 50 350 100 C 350 100 350 450 350 450 Q 200 500 50 450

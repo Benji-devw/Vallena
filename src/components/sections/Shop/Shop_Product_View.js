@@ -51,82 +51,81 @@ const ProductView = props => {
 
    return (
       <>
+         <section id="product-shop">
 
-            <section id="product-shop">
+            <article className="row product-shop-0 align-items-middle no-gutters">
 
-               <article className="row product-shop-0 align-items-middle no-gutters">
+               <div className="col-md-8 align-self-center product-shop-left-0 text-center">
+                  {<ControlledCarousel images={imgs} />}
+                  {/* <img src={imgs[0]} alt="img0" className="img-0 img-fluid" /> */}
+               </div>
 
-                  <div className="col-md-8 align-self-center product-shop-left-0 text-center">
-                     {<ControlledCarousel images={imgs} />}
-                     {/* <img src={imgs[0]} alt="img0" className="img-0 img-fluid" /> */}
-                  </div>
+               <div className="col-md-4 align-self-center product-shop-right-0">
+                  <div className="infos-body">
+                     <div className="">
+                     <h2 className="title">{data.titleProduct}</h2>
+                     <p className="avis">avis(0)</p>
+                     <p className="description">{data.descriptionProduct}</p>
+                     </div>
+                     <hr />
+                     <div className='price D2'>
+                           <b>€ {data.priceProduct}</b> 
+                           </div>
+                     <hr />
+                     {data.quantityProduct > 1 ? 	// Affichage à la volée avec opérateur ternaire
+                     <div className="add-cart-content flipInX">
+                           {!findId ?
+                              <div className="addToCart">
+                                 <div className="btn-qty-cart"
+                                    onClick={() => setQty(qty > 1 ? qty - 1 : 1)}		// tant que qty est supp a 1 ? qty -1 sinon return 1
+                                 >-</div>
 
-                  <div className="col-md-4 align-self-center product-shop-right-0">
-                     <div className="infos-body">
-                        <div className="">
-                        <h2 className="title">{data.titleProduct}</h2>
-                        <p className="avis">avis(0)</p>
-                        <p className="description">{data.descriptionProduct}</p>
-                        </div>
-                        <hr />
-                        <div className='price D2'>
-                             <b>€ {data.priceProduct}</b> 
-                             </div>
-                        <hr />
-                        {data.quantityProduct > 1 ? 	// Affichage à la volée avec opérateur ternaire
-                        <div className="add-cart-content flipInX">
-                              {!findId ?
-                                 <div className="addToCart">
-                                    <div className="btn-qty-cart"
-                                       onClick={() => setQty(qty > 1 ? qty - 1 : 1)}		// tant que qty est supp a 1 ? qty -1 sinon return 1
-                                    >-</div>
+                                 <span className="btn btn-light qty">{qty}</span>
 
-                                    <span className="btn btn-light qty">{qty}</span>
+                                 <div className="btn-qty-cart"
+                                    onClick={() => setQty(data.quantityProduct > qty ? qty + 1 : qty)}
+                                 >+</div>
 
-                                    <div className="btn-qty-cart"
-                                       onClick={() => setQty(data.quantityProduct > qty ? qty + 1 : qty)}
-                                    >+</div>
-
-                                    <MdAddShoppingCart size="2em" className="ml-3" style={{ cursor: "pointer" }}
-                                       onClick={() => {
-                                       add(data, qty)
-                                       }
-                                       } />
-                                 <p className="m-2"> {data.quantityProduct} en stock</p> 
+                                 <MdAddShoppingCart size="2em" className="ml-3" style={{ cursor: "pointer" }}
+                                    onClick={() => {
+                                    add(data, qty)
+                                    }
+                                    } />
+                              <p className="m-2"> {data.quantityProduct} en stock</p> 
+                              </div>
+                              : 
+                              <>
+                                 <div className="backTo">
+                                    <i className="icon list arrow left mr-3"
+                                    onClick={() => {
+                                       history.goBack()
+                                    }}><span>Dans votre panier!</span></i>
                                  </div>
-                                 : 
-                                 <>
-                                    <div className="backTo">
-                                       <i className="icon list arrow left mr-3"
-                                       onClick={() => {
-                                          history.goBack()
-                                       }}><span>Dans votre panier!</span></i>
-                                    </div>
 
-                                 
-                                 </>
-                                 }
-                           </div> : <p className="flipInX" style={{color:"red"}}>Rupture !</p>}
-                        <div className="payment-secur">
-                           <img src={secureImg} alt="payment-method" className="payment-secure" style={{ height: "100px" }} />
-                        </div>
+                              
+                              </>
+                              }
+                        </div> : <p className="flipInX" style={{color:"red"}}>Rupture !</p>}
+                     <div className="payment-secur">
+                        <img src={secureImg} alt="payment-method" className="payment-secure" style={{ height: "100px" }} />
                      </div>
                   </div>
-               </article>
-            </section>
+               </div>
+            </article>
+         </section>
 
-            <section className="product-shop-1">
-               <article className="row align-items-center no-gutters">
+         <section className="product-shop-1">
+            <article className="row align-items-center no-gutters">
 
-                  <div className="col-md-4 product-right-1">
-                     <h3>Du text ici ...</h3>
-                  </div>
-                  <div className="col-md-8 product-left-1">
-                     <img src={imgs[1]} alt="imgs1" className="img-1 img-fluid" />
-                  </div>
+               <div className="col-md-4 product-right-1">
+                  <h3>Du text ici ...</h3>
+               </div>
+               <div className="col-md-8 product-left-1">
+                  <img src={imgs[1]} alt="imgs1" className="img-1 img-fluid" />
+               </div>
 
-               </article>
-            </section>
+            </article>
+         </section>
 
 
 

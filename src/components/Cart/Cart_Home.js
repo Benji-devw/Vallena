@@ -130,7 +130,7 @@ function CartHome() {
             <h3 className='title text-center'>Commandes : </h3>
         </Col>
       </Row>
-      <Row className="cart-content">
+      <Row className="cart-content no-gutters">
         <Col >
           <TableCart items={items} />
         </Col>

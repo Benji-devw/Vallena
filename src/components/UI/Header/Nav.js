@@ -58,7 +58,7 @@ const Nav = props => {
                   <LinkScroll target='home' offset={-120} classes='nav-link'> Home </LinkScroll>
                 </li>
                 <li className='nav-item'>
-                  <LinkScroll target='shop' classes='nav-link'> Shop </LinkScroll>
+                  <LinkScroll target='shop-display' classes='nav-link'> Shop </LinkScroll>
                 </li>
                 <li className='nav-item'>
                   <LinkScroll target='about' classes='nav-link'> About </LinkScroll>

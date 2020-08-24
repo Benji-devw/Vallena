@@ -8,7 +8,7 @@ import CartHome from '../components/Cart/Cart_Home'
 
 const Layout = () => {
 
-  const [sidebarToggle, setSidebarOpen] = useState(true)
+  const [sidebarToggle, setSidebarOpen] = useState(false)
   const items = useSelector(state => state.items)
 
   const closeSidebar = () => {
@@ -38,7 +38,7 @@ const Layout = () => {
                 </div>
 
             </div>
-
+ 
             <CartHome />
             
           </aside>

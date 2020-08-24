@@ -1,12 +1,12 @@
 /*** MIXIN
 ************/
 
-@mixin background($imgpath, $position:center, $repeat: no-repeat, $backgrounS: 30%) {
+@mixin background($imgpath, $position:center, $repeat: no-repeat) {
      background: {
           image: url($imgpath);
           position: $position;
           repeat: $repeat;
-          background-size: $backgrounS;
+      
      }
 }
 

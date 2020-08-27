@@ -7,7 +7,7 @@ import { Row } from 'react-bootstrap';
 // const Img = styled.img` height: 15rem; `
 
 import SvgCard from './components/Svg_Card'
-
+import SvgCardVintage from './components/Svg_Card_vintage'
 
 class ListProducts extends Component {
    constructor(props) {
@@ -28,13 +28,13 @@ class ListProducts extends Component {
             !this.props.products ? 
                (<div>Loading...</div> )
             :
-               (<Row id="shop-list" ref={this.myRef} className="justify-content-center no-gutters">
+                  (<div id="shop-list" ref={this.myRef} className="row justify-content-center align-items-center no-gutters">
              
                   {this.props.products.map(product => (
                      product.visible && 
-                        <SvgCard key={product._id} product={product}/>
+                     <SvgCard key={product._id} product={product}/>
                   ))}
-               </Row>)
+               </div>)
             }
             
          </>

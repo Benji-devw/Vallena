@@ -72,9 +72,8 @@ class DisplayProducts extends React.Component {
       return (
          <div className="shop-display">
                  
-             <main className="row no-gutters content">
+             <main className="no-gutters content">
 
-               <div className="col">
                   <Filter 
                      count={this.state.products.length} 
                      category={this.state.category}
@@ -85,7 +84,6 @@ class DisplayProducts extends React.Component {
                      filterProducts={this.filterProducts}
                   />
                   <ListProducts products={this.state.products}  />
-               </div>
         
             </main>
          </div>

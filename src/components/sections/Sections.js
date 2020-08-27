@@ -9,6 +9,8 @@ import Facts from './Facts/Facts';
 const sections = () => {
   return (
     <Fragment>
+      {/* <div className="background-animate"></div> */}
+
       <Home />
       <DisplayProducts />
       <About />

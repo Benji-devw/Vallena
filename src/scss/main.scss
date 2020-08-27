@@ -18,6 +18,7 @@
 @import './partials/shop-display-products';
 @import './partials/shop-list-product';
 @import './partials/shop-product';
+@import './partials/shop-card-vintage';
 
 // Content
 @import './partials/about';
@@ -39,9 +40,9 @@
 
 
 
-html {
-  // scroll-behavior: smooth;
-}
+// html {
+//   scroll-behavior: smooth;
+// }
 
 body {
   // height: 100vh;
@@ -59,12 +60,6 @@ h1 {
   color: $dark-color;
 }
 
-// h2 {
-//  
-//   font-size: 3rem;
-//   color: $yellow-color;
-//   font-weight: 200;
-// }
 
 // h3 {
 //  
@@ -95,8 +90,25 @@ input {
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
 }
 
-// span {
-//   color: $span;
+// .background-animate {
+//   position: absolute;
+//   z-index: -5;
+//   margin-top: 2rem;
+//   height: 100%;
+//   width: 100%;
+
+//   // @include background('./img/Sans-titre---2.jpg');
+//   background: url('./img/SandBox.svg');
+//   background-size: contain;
+//   background-repeat: no-repeat;
+
+//   @media screen and (max-width: 768px) {
+//     right: 0;
+//     background-position: top 0 right -22rem;
+//     width: 200%;
+//   }
+
+
 // }
 
 
@@ -130,7 +142,7 @@ input {
     font-family: satisfy, sans-serif;
     font-style: normal;
     font-size: 7rem;
-    color: $light-color;
+    color: $dark-color;
 
     @media screen and (max-width: 492px) {
       font-size: 4rem;
@@ -141,7 +153,7 @@ input {
     font-family: usual, sans-serif;
     font-size: 1.1rem;
     font-weight: 100;
-    color: $light-color;
+    color: $dark-color;
 
     @media screen and (max-width: 492px) {
       font-size: .9rem;
@@ -229,6 +241,23 @@ input {
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .category-shop {

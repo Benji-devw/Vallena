@@ -5,7 +5,7 @@ export default class Filter extends Component {
    
    render() {
       return (
-         <div className="filter">
+         <div className="col filter">
             <div className="filter-result">{this.props.count} Products</div>
             <div className="filter-sort">
                Order 

@@ -32,7 +32,7 @@ const SvgCard = props => {
                   <path
                      id="gradient-vertical"
                      fill="url(#gradient-vertical)"
-                     stroke="rgba(0, 0, 0, .2"
+                     stroke="rgba(0, 0, 0, .2)"
                      d="M 0 400 Q 0 400 0 50 Q 150 100 300 50 C 300 50 300 400 300 400 Q 150 350 0 400"
                   /> 
                   <path

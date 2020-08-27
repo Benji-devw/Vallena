@@ -6,10 +6,8 @@ const Home = () => {
     <section id='home'>
 
         <div
-          className='home-content'
-          // style={{ backgroundImage: `url(${bgImage})` }}
-        >
-          <div className="background-animate"></div>
+          className='home-content'>
+          {/* <div className="background-animate"></div> */}
 
           <div className='section-header-light intro container text-center'>
             <h1 className='section-title'>

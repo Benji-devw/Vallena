@@ -1,3 +1,10 @@
+.shop-list {
+  background: #ca5116;
+}
+
+
+
+
 #card-shop {
 
   transition: all 1s linear;
@@ -5,16 +12,13 @@
   border: 1px solid rgba(0, 0, 0, 0.452);
   padding: 2rem;
 
-  background-color: rgba(16, 121, 182, 0.479);
+  // background-color: rgba(16, 121, 182, 0.479);
 
 
   border-radius: 30% / 50%;
 
 
 }
-
-
-
 
 
 
@@ -34,10 +38,6 @@
   height: 500px;
   width: 340px;
   overflow: none;
-  -webkit-filter: drop-shadow(10px 15px 3px rgba(0, 0, 0, .4));
-  -moz-filter: drop-shadow(10px 15px 3px rgba(0, 0, 0, .4));
-  -ms-filter: drop-shadow(10px 15px 3px rgba(0, 0, 0, .4));
-  -o-filter: drop-shadow(10px 15px 3px rgba(0, 0, 0, .4));
   filter: drop-shadow(10px 15px 3px rgba(0, 0, 0, .4));
 
   path {}
@@ -45,7 +45,7 @@
   text {
     pointer-events: none;
     color: $dark-color;
-    
+
   }
 
   .svg-title {
@@ -61,6 +61,7 @@
     text-transform: uppercase;
 
   }
+
   .stock {
     font-size: 0.9rem;
   }
@@ -77,9 +78,9 @@
 
   #gradient-vertical {
     opacity: 1;
-    --color-stop-1: #00c3ff;
-    --color-stop-2: #ffff1c;
-    --color-stop-3: #ff821c;
+    --color-stop-1: #ca5116;
+    --color-stop-2: #f9b384;
+    --color-stop-3: #F1F1F1;
 
   }
 
@@ -90,9 +91,9 @@
     -ms-transition: 1s, opacity 2.5s ease-in-out;
     -o-transition: 1s, opacity 2.5s ease-in-out;
     transition: 1s, opacity 2.5s ease-in-out;
-    --color-stop-1: #00c3ff;
-    --color-stop-2: #ffff1c;
-    --color-stop-3: #ffff1c;
+    --color-stop-1: #ca5116;
+    --color-stop-2: #F1F1F1;
+    --color-stop-3: #f9b384;
 
   }
 

@@ -1,23 +1,25 @@
 #home {
-  height: calc(70vh);
-  position: relative;
-  margin-top: 26px;
-  min-height: 300px;
-  overflow: hidden;
 
-  @media (min-width: 768px) {
-    margin-top: 40px;
-    min-height: 300px;
 
-  }
-
-  >div {
-    height: 96%;
+  @media screen and (min-width: 2200px) {
+    height: 1300px;
   }
 
   .home-content {
-    height: 100%;
-    padding: 0;
+    height: 900px;
+    
+    background: url('./img/SandBox.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+
+    @media screen and (max-width: 1400px) {
+      height: 600px;
+    }
+    @media screen and (min-width: 2200px) {
+      height: 1300px;
+    }
+
 
     .intro {
       position: absolute;
@@ -26,23 +28,6 @@
       transform: translateY(-50%);
       position: relative;
       z-index: 2;
-    }
-
-    .background-animate {
-      position: absolute;
-      z-index: 1;
-      height: 100%;
-      width: 100%;
-      @include background('./img/coffee-and-laptop.jpg');
-      background-size: cover;
-
-      // animation: slide 30s infinite alternate;
-      // @keyframes slide {
-      //   from { transform: scale(1);  }
-      //   to {  transform: scale(1.2); }
-      // }
-
-
     }
 
 

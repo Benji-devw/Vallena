@@ -1,28 +1,46 @@
-import React from 'react';
+import React, { Component } from 'react';
+// import { connect } from 'react-redux';
+// import {fetchProducts} from '../actions/productActions';
 
-import ShopCardProducts from './Shop_Cards_Products'
+// import styled from 'styled-components'
+// const Img = styled.img` height: 15rem; `
 
+import SvgCard from './components/Svg_Card'
+// import SvgCardVintage from './components/Svg_Card_vintage'
 
-const ShopListProducts = props => {
-  // data
-  const products = props.products
+class ListProducts extends Component {
+   constructor(props) {
+      super(props);
+      this.state = {
+         products: null,
+      }
+      this.myRef = React.createRef()  
+   }
+   scrollToMyRef = () => window.scrollTo(0, this.myRef.offsetTop)
+   
 
-  // get unique category items
-  // Fonction One line = () => 
-  const uniqueItems = (x, i, array) => array.indexOf(x) === i;
-  const PRODUCT_CATEGORIES = products.map(prod => prod.categoryProduct).filter(    // filter() crée et retourne un nouveau tableau contenant tous les éléments du tableau d'origine qui remplissent une condition déterminée par la fonction callback
-  uniqueItems
-  );
-  PRODUCT_CATEGORIES.push("all");
-  PRODUCT_CATEGORIES.sort();
+   render() {
 
-
-  return (
-    <>
-      <h5>Produit en boutique :<b>{products.length}</b> </h5>
-      <ShopCardProducts products={products} productCategoriesList={PRODUCT_CATEGORIES}/>
-    </>
-  );
-};
-
-export default ShopListProducts;
+      return (
+         <>
+            {
+            !this.props.products ? 
+               (<div>Loading...</div> )
+            :
+                  (<div id="shop-list" ref={this.myRef} className="row justify-content-center align-items-center no-gutters">
+             
+                  {this.props.products.map(product => (
+                     product.visible && 
+                     <SvgCard key={product._id} product={product}/>
+                  ))}
+               </div>)
+            }
+            
+         </>
+      );
+   }
+}
+export default ListProducts
+// export default connect((state) => ({products: state.products.items}), {
+//    fetchProducts,
+// })(Products);

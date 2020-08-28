@@ -1,17 +1,13 @@
 import React from 'react';
-
-import Section from '../../../HOC/Section';
-import bgImage from '../../../assets/img/coffee-and-laptop.jpg';
-// import Link from '../../UI/Link/Link';
+// import bgImage from '../../../assets/img/coffee-and-laptop.jpg';
 
 const Home = () => {
   return (
-    <Section id='home'>
+    <section id='home'>
 
         <div
-          className='home-content p-5'
-          style={{ backgroundImage: `url(${bgImage})` }}
-        >
+          className='home-content'>
+          {/* <div className="background-animate"></div> */}
 
           <div className='section-header-light intro container text-center'>
             <h1 className='section-title'>
@@ -22,10 +18,10 @@ const Home = () => {
               laborum minus molestiae.
             </h3>
           </div>
-
+        
         </div>
 
-    </Section>
+    </section>
   );
 };
 

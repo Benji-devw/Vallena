@@ -8,7 +8,7 @@ const Show = styled.div`
 
 
 
-class UpdateProduct extends Component {
+class PageProduct extends Component {
   // Evite de passer par <Link to={}> et regle le problème de pertes de props au refresh
   showProduct = event => {
     event.preventDefault()
@@ -33,9 +33,9 @@ return (
         <Col lg={3} key={datas._id} id="card-shop" draggable="false" className='col-md-4 col-sm-6 text-center'>
           <div className='card-border'>
             
-            <UpdateProduct id={datas._id} test={datas} >
+            <PageProduct id={datas._id} test={datas} >
             <img src={datas.imgCollection[0]} className="img-fluid" alt={datas.titleProduct}/>
-            </UpdateProduct>
+            </PageProduct>
             
             {/* <ShopModalProducts
               item={datas}

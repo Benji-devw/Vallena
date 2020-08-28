@@ -1,26 +1,30 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import apiCall from '../../../apiCall/Products_Api'
 import { useSelector, useDispatch } from 'react-redux';
 import { MdAddShoppingCart } from 'react-icons/md';
-import apiCall from '../../../apiCall/Products_Api'
-import moment from 'moment'
+// import moment from 'moment'
+import ControlledCarousel from './components/carousel'
+import Footer from '../../UI/Footer/Footer'
 
 import { addtoCart } from '../../../lib/actions'
 import secureImg from '../../../assets/img/payment-secu.jpg'
-// import ControlledCarousel from './carousel'
+
+// import styled from 'styled-components'
+// const Test = styled.section`
+//     padding: 5rem;
+// `
 
 
+const ProductView = props => {
 
-
-const ShopProductView = props => {
-   // console.log('props', props)
-
-   const [data, setData] = useState({})
+   const [data, setData] = useState([])   // tab vide car a l'arrivé sur la page data est vide et react provoque une erreur
    const itemsCart = useSelector(state => state.items)
    const [imgs, setImgs] = useState([])
-   
+
    // Redux
-   const dispatch = useDispatch()                        // Appel pour utiliser dispatch et envoyer a redux
-   const [qty, setQty] = useState(1) 
+   const dispatch = useDispatch()                        // Call dispatch to send redux
+   const [qty, setQty] = useState(1)
    const add = (item, quantity) => {
       dispatch(addtoCart(item, quantity))
    }
@@ -28,40 +32,48 @@ const ShopProductView = props => {
    const searchIdProduct = itemsCart.map(e => e.details._id)
    const findId = searchIdProduct.includes(data._id)
 
+   const history = useHistory()
 
    useEffect(() => {
-      const id = props.match.params.id
-      apiCall.getProductById(id).then(res => {
-         // console.log('res', res.data.data)
+      apiCall.getProductById(props.match.params.id).then(res => {
+         // console.log(res)
          setData(res.data.data)
-         setImgs(res.data.data.imgCollection)   // SetImgs car dans data.imgCollection problème affichage
-       })
+         setImgs(res.data.data.imgCollection)   // SetImgs car dans data.imgCollection problème affichage (tab vide)
+      })
+      window.scrollTo({ top: 0 });
+   }, [props.match.params.id]);
 
-   }, [props.match.params.id])
 
-   return(
+
+
+
+  
+
+   return (
       <>
-         <div id="product-shop" className="">
+         <section id="product-shop">
 
-            <section className="product-shop-0">
-               <article className="row align-items-center no-gutters">
+            <article className="row product-shop-0 align-items-middle no-gutters">
 
-                  <div className="col-md-8 product-shop-left-0 text-center">
-                     {/* {<ControlledCarousel images={imgs} />} */}
-                     <img src={imgs[0]} alt="img0" className="img-0 img-fluid" />
-                  </div>
+               <div className="col-md-8 align-self-center product-shop-left-0 text-center">
+                  {<ControlledCarousel images={imgs} />}
+                  {/* <img src={imgs[0]} alt="img0" className="img-0 img-fluid" /> */}
+               </div>
 
-                  <div className="col-md-4 product-shop-right-0">
-                     <div className="infos-body">
-
-                        <h2 className="title">{data.titleProduct}</h2>
-                        <p className="avis">avis(0)</p>
-                        <p className="description">{data.descriptionProduct}</p>
-                        <hr />
-                        <div className='price'>  <b>€ {data.priceProduct}</b> <p>En stock : {data.quantityProduct}</p> </div>
-                        <hr />
-                        {data.quantityProduct > 1 ? 	// Affichage à la volée avec opérateur ternaire
-                        <>
+               <div className="col-md-4 align-self-center product-shop-right-0">
+                  <div className="infos-body">
+                     <div className="">
+                     <h2 className="title">{data.titleProduct}</h2>
+                     <p className="avis">avis(0)</p>
+                     <p className="description">{data.descriptionProduct}</p>
+                     </div>
+                     <hr />
+                     <div className='price D2'>
+                           <b>€ {data.priceProduct}</b> 
+                           </div>
+                     <hr />
+                     {data.quantityProduct > 1 ? 	// Affichage à la volée avec opérateur ternaire
+                     <div className="add-cart-content flipInX">
                            {!findId ?
                               <div className="addToCart">
                                  <div className="btn-qty-cart"
@@ -75,46 +87,61 @@ const ShopProductView = props => {
                                  >+</div>
 
                                  <MdAddShoppingCart size="2em" className="ml-3" style={{ cursor: "pointer" }}
-                                    onClick={() => add(data, qty)} />
-
+                                    onClick={() => {
+                                    add(data, qty)
+                                    }
+                                    } />
+                              <p className="m-2"> {data.quantityProduct} en stock</p> 
                               </div>
-                           : <p>Dans votre panier !</p>}
-                        </> : <p>Rupture !</p>}
-                        <div className="payment-secur">
-                           <img src={secureImg} alt="payment-method" className="payment-secure" style={{height: "100px"}} />
-                        </div>
+                              : 
+                              <>
+                                 <div className="backTo">
+                                    <i className="icon list arrow left mr-3"
+                                    onClick={() => {
+                                       history.goBack()
+                                    }}><span>Dans votre panier!</span></i>
+                                 </div>
+
+                              
+                              </>
+                              }
+                        </div> : <p className="flipInX" style={{color:"red"}}>Rupture !</p>}
+                     <div className="payment-secur">
+                        <img src={secureImg} alt="payment-method" className="payment-secure" style={{ height: "100px" }} />
                      </div>
                   </div>
-               </article>
-            </section>
-               
-            <section className="product-shop-1">
-               <article className="row align-items-center no-gutters">
+               </div>
+            </article>
+         </section>
 
-                  <div className="col-md-4 product-right-1">
-                        <h3>Du text ici ...</h3>
-                  </div>
-                  <div className="col-md-8 product-left-1">
-                     <img src={imgs[1]} alt="imgs1" className="img-1 img-fluid" />
-                  </div>
+         <section className="product-shop-1">
+            <article className="row align-items-center no-gutters">
 
-               </article>
-            </section>
+               <div className="col-md-4 product-right-1">
+                  <h3>Du text ici ...</h3>
+               </div>
+               <div className="col-md-8 product-left-1">
+                  <img src={imgs[1]} alt="imgs1" className="img-1 img-fluid" />
+               </div>
+
+            </article>
+         </section>
 
 
 
-         </div>
-   
+
+
          <div lg="12" className="m-3">
             <div xs="10">
                <p className='section-title text-left'>Posted :
                   By : <span>{data ? data.reporterProduct : data.reporterProduct}</span>
-                  <span>{data ? moment(data.createdAt).startOf().fromNow() : moment(data.createdAt).startOf().fromNow()}</span>
+                  {/* <span>{data ? moment(data.createdAt).startOf().fromNow() : moment(data.createdAt).startOf().fromNow()}</span> */}
                </p>
             </div>
 
          </div>
+         <Footer />
       </>
    )
 }
-export default ShopProductView
+export default ProductView

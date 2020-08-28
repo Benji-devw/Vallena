@@ -1,31 +1,18 @@
 import React, { useState } from 'react';
 import { Row, Col, Card, Button } from 'react-bootstrap'
-
-import apiCallStripe from '../../apiCall/Orders_Api'
+import apiCallOrders from '../../apiCall/Orders_Api'
 
 
 export const ListOrder = props => {
 
    const [order, setOrder ] = useState(props.commandes)
-   
-
    const [ inProgressCheck, setInProgress] = useState(true)
    const [ finishCheck, setFinish] = useState(false)
 
-   const handleCheckboxChangeProgress = (e) => {
-      const checkbOne = e.target.checked
-      setInProgress ( checkbOne )
-   }
-   const handleCheckboxChangeFinish = (e) => {
-      const checkbTwo = e.target.checked
-      setFinish ( checkbTwo )
-   }
+   const handleCheckboxChangeProgress = (e) => { setInProgress(e.target.checked ) }
+   const handleCheckboxChangeFinish = (e) => { setFinish(e.target.checked ) }
 
-   const formatDate = data => {
-      return data.toString().replace(/T/, ' ').replace(/\..+/, '')
-   }
-
-   const valid = () => {
+   const confirm = () => {
       setOrder(order => ({...order, status: {
          inProgress: inProgressCheck,
          finish: finishCheck
@@ -33,7 +20,7 @@ export const ListOrder = props => {
    }
    const update = async () => {
       const id = order._id
-      await apiCallStripe.updateOrderById(id, order).then(res => {
+      await apiCallOrders.updateOrderById(id, order).then(res => {
       })
       window.alert(`Status changé !`)
       window.location.reload(false)
@@ -45,19 +32,17 @@ export const ListOrder = props => {
 
             <Row style={{ marginTop: "-21px", marginBottom: '0px' }} className='text-right'>
                <Col>
-                  Préparation : {order.status.inProgress}
-                  <input type="checkbox" className="mr-3"
+                  <label htmlFor="prep">Préparation</label> {order.status.inProgress}
+                  <input type="checkbox" className="mr-3" id="prep"
                      defaultChecked={order.status.inProgress}
                      onChange={handleCheckboxChangeProgress}
-               
                   />
-                  Envoyé : {order.status.finish}
-                  <input type="checkbox"
+                  <label htmlFor="send">Envoyé</label> {order.status.finish}
+                  <input type="checkbox" id="send"
                      defaultChecked={order.status.finish}
                      onChange={handleCheckboxChangeFinish}
-
                   />
-                  <Button onClick={valid} className="btn-sm p-1 ml-3" style={{fontSize:".8em", marginTop:"-15px"}}>Confirm</Button>
+                  <Button onClick={confirm} className="btn-sm p-1 ml-3" style={{fontSize:".8em", marginTop:"-15px"}}>Confirm</Button>
                   <Button onClick={update} className="btn-sm p-1 ml-3" style={{fontSize:".8em", marginTop:"-15px"}}>Save</Button>
                </Col>
             </Row>
@@ -69,13 +54,10 @@ export const ListOrder = props => {
                      Adresses : <span className="text-primary"> {order.client.adresseClient} - {order.client.cpClient} - {order.client.villeClient} </span>
                   </Col>
                   <Col md={6} className="text-left">
-                  Date cmd : <b>{formatDate(order.createdAt)}</b> <br />
+                  Date cmd : <b>{order.createdAt}</b> <br />
                      Nbr d'article : <b>{order.items.length}</b> <br />
                      FraisP : <b>{order.totalCmd.shipping}</b> € -- TOTAL : <b>{order.totalCmd.total}</b> €
                   </Col>
-                  {/* <Col md={2}>
-                     
-                  </Col> */}
                </Row>
 
             </Card.Header>

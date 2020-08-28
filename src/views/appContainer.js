@@ -1,8 +1,8 @@
 // Le container est connecté aux actions via la fonction connect(), et a pour rôle de mettre à jour l'interface graphique.
 import { connect } from 'react-redux'
-import  App from '../../App'
+import  App from '../App'
 
-import { saveCart, saveProduct } from '../../lib/actions'
+import { saveCart, saveProduct } from '../lib/actions'
 
 export const AppContainer = connect(
    function  mapStateToProps (state) {

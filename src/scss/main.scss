@@ -3,22 +3,19 @@
 @import "./mixins.scss";
 // @import url(//db.onlinewebfonts.com/c/174b2ec3d1b18323f2021ce3fdda6028?family=SamsungOne);
 
-// @font-face {
-//   font-family: "SamsungOne";
-//   src: url("./@font-face/174b2ec3d1b18323f2021ce3fdda6028.eot") format("embedded-opentype"), url("./@font-face/174b2ec3d1b18323f2021ce3fdda6028.woff2") format("woff2"), url("./@font-face/174b2ec3d1b18323f2021ce3fdda6028.woff") format("woff"), url("./@font-face/174b2ec3d1b18323f2021ce3fdda6028.ttf") format("truetype"), url("./@font-face/174b2ec3d1b18323f2021ce3fdda6028.svg") format("svg");
-// }
-
+// Effects
+@import './appGuruz.scss';
 
 // Views
 
 
 // Home
 @import './partials/home';
+// @import './partials/sidebar-home';
 
 //Shop
 @import './partials/shop-display-products';
-// @import './partials/shop-modal-products';
-@import './partials/shop-card';
+@import './partials/shop-list-product';
 @import './partials/shop-product';
 
 // Content
@@ -28,10 +25,9 @@
 
 // Components
 @import './partials/header';
-@import './partials/cart';
-@import './partials/sidebarFilter';
 @import './partials/payment';
 @import './partials/payment-form';
+@import './partials/cart-modal';
 
 // Sections
 
@@ -43,11 +39,12 @@
 
 
 
+// html {
+//   scroll-behavior: smooth;
+// }
 
 body {
   // height: 100vh;
-  // font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  // font-family: "SamsungOne";
   font-family: usual, sans-serif;
   background-color: $light-bg;
 }
@@ -62,12 +59,6 @@ h1 {
   color: $dark-color;
 }
 
-// h2 {
-//  
-//   font-size: 3rem;
-//   color: $yellow-color;
-//   font-weight: 200;
-// }
 
 // h3 {
 //  
@@ -98,16 +89,52 @@ input {
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
 }
 
-// span {
-//   color: $span;
+// .background-animate {
+//   position: absolute;
+//   z-index: -5;
+//   margin-top: 2rem;
+//   height: 100%;
+//   width: 100%;
+
+//   // @include background('./img/Sans-titre---2.jpg');
+//   background: url('./img/SandBox.svg');
+//   background-size: contain;
+//   background-repeat: no-repeat;
+
+//   @media screen and (max-width: 768px) {
+//     right: 0;
+//     background-position: top 0 right -22rem;
+//     width: 200%;
+//   }
+
+
 // }
 
+
+
+
+
+.backTo {
+  margin: .95rem;
+  font-size: .9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  opacity: .9;
+  cursor: pointer;
+
+  &:hover {
+    color: #057EFF;
+  }
+}
+
 .section-header-light {
+
+
   .section-title {
     font-family: satisfy, sans-serif;
     font-style: normal;
     font-size: 7rem;
-    color: $light-color;
+    color: $dark-color;
 
     @media screen and (max-width: 492px) {
       font-size: 4rem;
@@ -118,7 +145,7 @@ input {
     font-family: usual, sans-serif;
     font-size: 1.1rem;
     font-weight: 100;
-    color: $light-color;
+    color: $dark-color;
 
     @media screen and (max-width: 492px) {
       font-size: .9rem;
@@ -206,6 +233,23 @@ input {
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .category-shop {

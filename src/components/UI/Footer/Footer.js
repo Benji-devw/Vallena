@@ -105,9 +105,7 @@ const footer = () => {
         </div>
       </div>
       <div className='bottom-footer pt-3 pb-3 text-center'>
-        <small>© All Right Reserved. Design By Mohamed Azouaoui</small>
-        <br />
-        <small>Font made from <a href="http://www.onlinewebfonts.com">oNline Web Fonts</a> is licensed by CC BY 3.0</small>
+        <small>© All Right Reserved</small>
       </div>
     </footer>
   );

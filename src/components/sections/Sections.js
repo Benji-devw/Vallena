@@ -1,26 +1,24 @@
 import React, { Fragment } from 'react';
-
 import Home from './Home/Home';
 import About from './About/About';
-// import Service from './Service/Service';
+import Footer from '../../components/UI/Footer/Footer';
+
+import DisplayProducts from "./Shop/Shop_Display_Products";
+
 import Facts from './Facts/Facts';
-import ShopDisplayProducts from './Shop/Shop_Display_Products';
-// import Contact from './Contact/Contact';
-// import MapMarker from './MapMarker/MapMarker';
 
-
-const sections = props => {
+const sections = () => {
   return (
     <Fragment>
+      {/* <div className="background-animate"></div> */}
+
       <Home />
-      {/* <Service /> */}
-      <ShopDisplayProducts />
+      <DisplayProducts />
       <About />
       <Facts />
-      {/* <Contact /> */}
-      {/* <MapMarker /> */}
+      <Footer />
+
     </Fragment>
   );
 };
-
 export default sections;

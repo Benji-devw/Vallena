@@ -1,0 +1,46 @@
+.sidebar {
+  z-index: 600;
+  position: fixed;
+  right: 0;
+  width: 20rem;
+  padding-top: 2.5rem;
+  border-radius: 3px;
+  min-height: 20rem;
+  background: $light-bg;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+  transition-duration: .8s;
+
+}
+
+.sidebarClosed {
+
+  transform: translateX(20rem);
+
+}
+
+.sidebarOpen {
+
+  transform: translateX(0rem);
+
+}
+
+
+.cart-btn {
+  z-index: 1;
+  cursor: pointer;
+  color: $dark-color;
+  margin-top: 1rem !important;
+  margin-left: -4rem;
+  transition-duration: .8s;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.push-in {
+  color: $light-color;
+  margin-left: .5rem;
+  transition-duration: .8s;
+}

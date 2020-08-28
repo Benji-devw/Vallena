@@ -147,6 +147,12 @@ export class ListProducts extends Component {
 						filterable: true,
 					},
 					{
+						id: 'visible',
+						Header: 'Visible',
+						accessor: d => d.visible.toString(),
+						filterable: true,
+					},
+					{
 						Header: 'Crée par',
 						accessor: 'reporterProduct',
 						filterable: true,

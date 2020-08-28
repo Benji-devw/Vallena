@@ -1,18 +1,10 @@
-import React, { Fragment, useContext, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Container, Row, Col } from 'react-bootstrap';
-
-import { ClientProfileContext } from '../../lib/ClientProfileContext';
-
-
-import Stripe from './stripe'
-
-
-import Section from '../../HOC/Section';
+// import Stripe from './stripe'
 
 
 const Payment = () => {
-   const client = useContext(ClientProfileContext)
    const items = useSelector(state => state.items)
 
    const [subTotal, setSubTotal] = useState(0.00)
@@ -25,13 +17,13 @@ const Payment = () => {
       setSubTotal(totals.reduce((item1, item2) => item1 + item2, 0))
       setTotal(subTotal + shipping)
    }, [items, subTotal, total]);
-   const totalCmd = { total: total, shipping: shipping }
+   // const totalCmd = { total: total, shipping: shipping }
    // console.log('totalCmd', totalCmd)
    
    
    return (
       <Fragment>
-         <Section>
+         <section>
             <Container id="payment">
                
                <Row className="payment-header">
@@ -45,20 +37,14 @@ const Payment = () => {
                <Row>
                   <Col sm={8}>
 
-                     {/* <InfosClient /> */}
-                     <Stripe total={totalCmd} client={client} items={items}/>
+                     {/* <Stripe total={totalCmd} items={items}/> */}
 
                      4242424242424242
                      ben.nav@pm.me
 
-                     {/* <Link to="/confirm" className={`btn btn-outline-success float-right`}
-                        onClick={() => {
-                           // reset()
-                           postOrder()
-                        }}
-                     > Payer
-                     </Link> */}
                   </Col>
+
+                  {/* Cart Payment */}
                   <Col sm={3}>
                   
                      <h4>Commande :</h4>
@@ -72,18 +58,12 @@ const Payment = () => {
                      <h3 className="text-left">Total</h3>
                      <h4 className="text-right">€<b>{subTotal === 0.00 ? "0.00 " : total.toFixed(2)}</b></h4>
 
-                        <hr />
-
-                     <h4>Destination : </h4>
-                     <p>{client.nomClient} {client.prenomClient}</p>
-                     <p>{client.adresseClient}</p>
-                     <p>{client.cpClient} - {client.villeClient}</p>
-                  
+      
                   </Col>
                </Row>
 
             </Container>
-         </Section>
+         </section>
       </Fragment>
    )
 }

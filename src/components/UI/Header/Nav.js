@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import LinkScroll from './Links/Link_Scroll';
 import LinksAdmin from './Links/LinksAdmin';
-
-import { RiShoppingCart2Line } from 'react-icons/ri';
+import CartModal from '../../Cart/Cart_Modal'
+// import { RiWindowsLine } from 'react-icons/ri';
 
 
 const Nav = props => {
+  // console.log('props', props)
+// console.log(window.location);
+  // console.log(`${window.location.origin}/product/`);
+  const history = useHistory()
 
   const [navClass, setNavClass] = useState('');
   const [toggeledNav, settoggeledNav] = useState(false);
 
-  // Redux => Lit le state de redux et recup le nbr d'objet ds le panier
-  const items = useSelector(state => state.items)
   const toggleNav = () => {
     settoggeledNav(!toggeledNav);
   };
@@ -50,27 +51,34 @@ const Nav = props => {
         >
 
           <ul className='navbar-nav ml-auto'>
+
+            {window.location.pathname === "/" ?  (
+              <>
+                <li className='nav-item'>
+                  <LinkScroll target='home' offset={-120} classes='nav-link'> Home </LinkScroll>
+                </li>
+                <li className='nav-item'>
+                  <LinkScroll target='shop-display' classes='nav-link'> Shop </LinkScroll>
+                </li>
+                <li className='nav-item'>
+                  <LinkScroll target='about' classes='nav-link'> About </LinkScroll>
+                </li>
+                <li className='nav-item'>
+                  <LinkScroll target='contact' classes='nav-link'>  Contact  </LinkScroll>
+                </li>
+            </>
+            ) : (
+            <>
+                <li  className='nav-item backTo'>
+                    <div onClick={() => { history.goBack()} }classes='nav-link'>  Boutique  </div>
+                </li>
+            </>
+            )}
             
-            <li className='nav-item'>
-              <LinkScroll target='home' offset={-120} classes='nav-link'> Home </LinkScroll>
-            </li>
-            <li className='nav-item'>
-              <LinkScroll target='shop' classes='nav-link'> Shop </LinkScroll>
-            </li>
-            <li className='nav-item'>
-              <LinkScroll target='about' classes='nav-link'> About </LinkScroll>
-            </li>
-            <li className='nav-item'>
-              <LinkScroll target='contact' classes='nav-link'>  Contact  </LinkScroll>
-            </li>
-
+            
             <li>
-              <Link to="/cart">
-                <RiShoppingCart2Line size="1.7em"/>
-                <span className="badge badge-pill badge-success">{items.length > 0 && items.length}</span>
-              </Link>
+              <CartModal />
             </li>
-
             <li>
               <LinksAdmin />
             </li>

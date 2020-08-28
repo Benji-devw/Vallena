@@ -3,10 +3,10 @@ import axios from 'axios'
 import { Col, Form  } from 'react-bootstrap'
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useDispatch } from 'react-redux';
-import { resetCart } from '../../lib/actions';
 
+import { resetCart } from '../../lib/actions';
 import { ClientProfileContext } from '../../lib/ClientProfileContext'
-import apiCallStripe from '../../apiCall/Orders_Api'
+import apiCallOrders from '../../apiCall/Orders_Api'
 import apiCall from '../../apiCall/Products_Api'
 
 
@@ -31,25 +31,9 @@ const CheckoutForm = props => {
    const itemsName = JSON.stringify(listItems)
    // console.log('itemsName', itemsName)
 
-   // Format Name Client
-   const clientNom = props.client.nomClient
-   const clientPrenom = props.client.prenomClient
-   const firstNameClient = JSON.stringify(clientPrenom)
-   const nameClient = JSON.stringify(clientNom)
-   // console.log('ClientName', nomClient)
-
    // Context info Client
    const client = useContext(ClientProfileContext);
-   const {
-      nomClient,
-      prenomClient,
-      // emailClient,
-      adresseClient,
-      cpClient,
-      villeClient,
-      setClientProfileContext
-   } = client
-
+   const { setClientProfileContext } = client
 
    const [succeeded] = useState(false);
    const [error, setError] = useState(null);
@@ -67,7 +51,6 @@ const CheckoutForm = props => {
    const status = { inProgress: true, finish: false };
    const totalCmd = props.amount
 
-
    const handleUpdateProduct = (id, data) => {
       var formData = new FormData();
       formData.append('quantityProduct', data.quantityProduct)
@@ -81,9 +64,7 @@ const CheckoutForm = props => {
    }
 
 
-
-
-
+   
    const handleSubmit = async (event) => {
       // Block native form submission.
       event.preventDefault();
@@ -106,7 +87,7 @@ const CheckoutForm = props => {
          await axios.post("http://localhost:4242/charge", {
             id, 
             amount: formatTotal,
-            description: `${nameClient} ${firstNameClient} - ${itemsName}`,
+            description: `${client.nomClient} ${client.prenomClient} - ${itemsName}`,
             receipt_email: email,
          })
          .then( data => {
@@ -133,7 +114,7 @@ const CheckoutForm = props => {
 
             // Send order in db
             const payload = { items, client, totalCmd, status }
-            apiCallStripe.insertOrder(payload).then(res => {
+            apiCallOrders.insertOrder(payload).then(res => {
                console.log('res', res)
                window.alert(`New Order inserted Done !`)
                console.log("Order enregistré")
@@ -165,7 +146,6 @@ const CheckoutForm = props => {
             <Form.Group as={Col} controlId="formGridName">
                <Form.Control placeholder="Nom" className="form-control-input"
                   name="nomClient"
-                  defaultValue={nomClient}
                   onChange={e => {
                      setClientProfileContext({ [e.target.name]: e.target.value })
                   }}
@@ -174,29 +154,16 @@ const CheckoutForm = props => {
             <Form.Group as={Col} controlId="formGridFirstName">
                <Form.Control placeholder="Prénom" className="form-control-input"
                   name="prenomClient"
-                  defaultValue={prenomClient}
                   onChange={e => {
                      setClientProfileContext({ [e.target.name]: e.target.value })
                   }}
                />
             </Form.Group>
          </Form.Row>
-         {/* <Form.Row>
-            <Form.Group as={Col} controlId="formGridEmail">
-               <Form.Control placeholder="Email" className="form-control-input"
-                  name="emailClient"
-                  defaultValue={emailClient}
-                  onChange={e => {
-                     setClientProfileContext({ [e.target.name]: e.target.value })
-                  }}
-               />
-            </Form.Group>
-         </Form.Row> */}
-         <br />
+
          <Form.Group controlId="formGridAddress1">
             <Form.Control placeholder="Adresse de livraison" className="form-control-input"
                name="adresseClient"
-               defaultValue={adresseClient}
                onChange={e => {
                   setClientProfileContext({ [e.target.name]: e.target.value })
                }}
@@ -207,7 +174,6 @@ const CheckoutForm = props => {
             <Form.Group as={Col} controlId="formGridCity">
                <Form.Control placeholder="Code Postal" className="form-control-input"
                   name="cpClient"
-                  defaultValue={cpClient}
                   onChange={e => {
                      setClientProfileContext({ [e.target.name]: e.target.value })
                   }}
@@ -216,7 +182,6 @@ const CheckoutForm = props => {
             <Form.Group as={Col} controlId="formGridState">
                <Form.Control placeholder="Ville" className="form-control-input"
                   name="villeClient"
-                  defaultValue={villeClient}
                   onChange={e => {
                      setClientProfileContext({ [e.target.name]: e.target.value })
                   }}

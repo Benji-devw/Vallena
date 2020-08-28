@@ -5,11 +5,9 @@ import Footer from '../components/UI/Footer/Footer'
 const CartShopping = () => {
   return (
     <Fragment>
-
-     <main>
+      <main>
         <CartClient />
-     </main>
-    
+      </main>
       <Footer />
     </Fragment>
   );

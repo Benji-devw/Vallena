@@ -1,11 +1,11 @@
 import React, {  useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {  Row, Col } from 'react-bootstrap'
+import  Modal  from 'react-bootstrap/Modal'
 
 import { updateCart, removeFromCart } from '../../lib/actions'
 
-
+import {RiShoppingCart2Line} from 'react-icons/ri'
 
 
 
@@ -13,7 +13,7 @@ import { updateCart, removeFromCart } from '../../lib/actions'
 const RowCart = props => {
   const { id, quantity, details } = props.item    // Redux
   const item = details
-
+  
   const [qty, setQty] = useState(quantity)
   const dispatch = useDispatch()				        // Dispatch le store localement pr le lire les actions et fontions
 
@@ -32,17 +32,17 @@ const RowCart = props => {
 
 
   return (
-    <Row className="cart-item align-items-center no-gutters">
-      <Col>
-      
+    <div className="row cart-item align-items-center text-center no-gutters">
+
+      <div className="col">
       <img
         src={item.imgCollection[0]}
         alt="none"
       />
       {item.titleProduct}
-      </Col>
+      </div>
 
-      <Col>
+      <div className="col">
       
       <div className="cart-qty">
         <button className="btn-cart-qty" type="button"
@@ -61,10 +61,9 @@ const RowCart = props => {
           }} > <b>+</b>
         </button>
       </div>
-      </Col>
+      </div>
 
-      <Col>
-
+      <div className="col">
        <b style={{width:"50px"}}>€ {qty * item.priceProduct}</b> 
 
         <button type="button"
@@ -74,12 +73,11 @@ const RowCart = props => {
           }}
         > <b>x</b>
         </button>
-      </Col>
-    </Row>
+      </div>
+
+    </div>
   );
 }
-
-
 
 
 
@@ -102,10 +100,8 @@ const TableCart = () => {
 
 
 
-
-
 function CartHome() {
-
+  const [show, setShow] = useState(false);
   // Redux => Lit le state de redux et recup le nbr d'objet ds le panier
   const items = useSelector(state => state.items)
   const [subTotal, setSubTotal] = useState(0.00)
@@ -125,18 +121,29 @@ function CartHome() {
 
   return (
     <>
-      <Row className="cart-header">
-        <Col>
-            <h3 className='title text-center'>Commandes : </h3>
-        </Col>
-      </Row>
-      <Row className="cart-content no-gutters">
-        <Col >
-          <TableCart items={items} />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
+      <div className="btn-cart">
+        <RiShoppingCart2Line className="cart-home" size="2.2em" variant="primary" onClick={() => setShow(true)}/>
+        <span className={`badge-cart badge-pill ${items.length > 0 && 'badge-primary'}`}>{items.length > 0 && items.length}</span>
+      </div>
+
+      
+    <Modal
+      show={show}
+      onHide={() => setShow(false)}
+    >
+        <Modal.Header closeButton>
+          <Modal.Title>
+            Custom Modal Styling
+          </Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+        <div className="row cart-content no-gutters align-items-end">
+          <div className="col-md-8 align-self-start">
+            <TableCart items={items} />
+          </div>
+  
+        <div className="col-md-4">
           <ul className="list-group cart-amount">
             <li className="text-left">Subtotal</li>
             <li className="text-right">€ {subTotal.toFixed(2)}</li>
@@ -149,14 +156,17 @@ function CartHome() {
           </ul>
           <Link
             to="/payment"
+            onClick={() => setShow(false)}
             type="button"
             className="btn btn-outline-danger btn-lg btn-block checkout bg-crimson"
             disabled={!items.length < 0}
           >
             Commandez
           </Link>
-        </Col>
-      </Row>
+        </div>
+      </div>
+        </Modal.Body>
+    </Modal>
     </>
   );
 }

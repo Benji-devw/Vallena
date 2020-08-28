@@ -5,17 +5,15 @@ import formatCurrency from '../../../../utils/utils';
 // const mystyle = {
 //    fill: "red",
 // };
-// const actived = {
-//    fill: "#14b1bb"
-// }
+
 
 const SvgCard = props => {
    const product = props.product
 
       return (
-         <div className="svg-head justify-content-center text-center">
+         <div className="svg-head">
 
-            <svg x="0px" className="svg-card text-center" xmlns="http://www.w3.org/2000/svg">
+            <svg x="0px" className="svg-card" xmlns="http://www.w3.org/2000/svg">
               <defs>
                   <linearGradient id="gradient-vertical" x1="0" y1="1" >
                      <stop offset="0%" stopColor="var(--color-stop-1)" />

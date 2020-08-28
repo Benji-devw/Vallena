@@ -11,14 +11,12 @@
 
 // Home
 @import './partials/home';
-@import './partials/sidebar-home';
-@import './partials/sidebar-client';
+// @import './partials/sidebar-home';
 
 //Shop
 @import './partials/shop-display-products';
 @import './partials/shop-list-product';
 @import './partials/shop-product';
-@import './partials/shop-card-vintage';
 
 // Content
 @import './partials/about';
@@ -29,6 +27,7 @@
 @import './partials/header';
 @import './partials/payment';
 @import './partials/payment-form';
+@import './partials/cart-modal';
 
 // Sections
 
@@ -112,14 +111,7 @@ input {
 // }
 
 
-.badge-cart {
-  position: relative;
-  text-align: center;
-  right: 1rem;
-  bottom: .7rem;
-  font-size: .8rem;
-  padding: .2rem .4rem;
-}
+
 
 
 .backTo {

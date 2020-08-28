@@ -35,7 +35,7 @@ const App = props => {
 
         <Switch>
 
-            <Route path="/product/:id" component={ProductView} />
+          <Route path="/product/:id" component={ProductView} />
 
           <Route path="/" exact={true} component={Layout}/>
           

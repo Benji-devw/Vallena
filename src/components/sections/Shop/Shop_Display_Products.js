@@ -70,23 +70,20 @@ class DisplayProducts extends React.Component {
    render() {
 
       return (
-         <div className="shop-display">
-                 
-             <main className="no-gutters content">
+         <section className="shop-display">
 
-                  <Filter 
-                     count={this.state.products.length} 
-                     category={this.state.category}
-                     catList={this.state.test}
+            <Filter 
+               count={this.state.products.length} 
+               category={this.state.category}
+               catList={this.state.test}
 
-                     sort={this.state.sort}
-                     sortProducts={this.sortProducts}
-                     filterProducts={this.filterProducts}
-                  />
-                  <ListProducts products={this.state.products}  />
-        
-            </main>
-         </div>
+               sort={this.state.sort}
+               sortProducts={this.sortProducts}
+               filterProducts={this.filterProducts}
+            />
+            <ListProducts products={this.state.products}  />
+ 
+         </section>
       );
    }
 }

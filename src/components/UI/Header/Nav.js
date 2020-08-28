@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 
 import LinkScroll from './Links/Link_Scroll';
 import LinksAdmin from './Links/LinksAdmin';
-// import CartModal from '../../Cart/Cart_Modal'
+import CartModal from '../../Cart/Cart_Modal'
 // import { RiWindowsLine } from 'react-icons/ri';
 
 
@@ -76,15 +76,9 @@ const Nav = props => {
             )}
             
             
-
             <li>
-              {/* <Link to="/cart">
-                <RiShoppingCart2Line size="1.7em"/>
-                <span className="badge badge-pill badge-success">{items.length > 0 && items.length}</span>
-              </Link> */}
-              {/* <CartModal /> */}
+              <CartModal />
             </li>
-
             <li>
               <LinksAdmin />
             </li>

@@ -1,3 +1,20 @@
+.btn-cart {
+  cursor: pointer;
+}
+.badge-cart {
+  position: relative;
+  text-align: center;
+  right: 1rem;
+  bottom: .7rem;
+  font-size: .8rem;
+  padding: .2rem .4rem;
+}
+
+.modal-dialog {
+  max-width: 800px;
+}
+
+
 .cart-header {
 
   .title {
@@ -7,11 +24,6 @@
   }
 }
 
-.cart-content {
-  overflow-y: scroll;
-  min-height: 15rem;
-  max-height: 25rem;
-}
 
 .cart-amount {
   padding: 1rem;
@@ -33,9 +45,6 @@
 
 .cart-item {
 
-  display: flex;
-  padding: 1rem;
-  width: 100%;
 
   img {
     height: 70px;
@@ -99,10 +108,3 @@
 
 }
 
-
-
-#cart {
-
-  background: $light-bg;
-  box-shadow: 0 0 5px rgba(0, 0, 0, .5);
-}

@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import Home from './Home/Home';
 import About from './About/About';
+import Footer from '../../components/UI/Footer/Footer';
 
 import DisplayProducts from "./Shop/Shop_Display_Products";
 
@@ -15,6 +16,8 @@ const sections = () => {
       <DisplayProducts />
       <About />
       <Facts />
+      <Footer />
+
     </Fragment>
   );
 };

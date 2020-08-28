@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Container, Row, Col } from 'react-bootstrap';
-import Stripe from './stripe'
+// import Stripe from './stripe'
 
 
 const Payment = () => {
@@ -17,7 +17,7 @@ const Payment = () => {
       setSubTotal(totals.reduce((item1, item2) => item1 + item2, 0))
       setTotal(subTotal + shipping)
    }, [items, subTotal, total]);
-   const totalCmd = { total: total, shipping: shipping }
+   // const totalCmd = { total: total, shipping: shipping }
    // console.log('totalCmd', totalCmd)
    
    
@@ -37,7 +37,7 @@ const Payment = () => {
                <Row>
                   <Col sm={8}>
 
-                     <Stripe total={totalCmd} items={items}/>
+                     {/* <Stripe total={totalCmd} items={items}/> */}
 
                      4242424242424242
                      ben.nav@pm.me

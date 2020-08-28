@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Row } from 'react-bootstrap';
 // import { connect } from 'react-redux';
 // import {fetchProducts} from '../actions/productActions';
 
@@ -7,7 +6,7 @@ import { Row } from 'react-bootstrap';
 // const Img = styled.img` height: 15rem; `
 
 import SvgCard from './components/Svg_Card'
-import SvgCardVintage from './components/Svg_Card_vintage'
+// import SvgCardVintage from './components/Svg_Card_vintage'
 
 class ListProducts extends Component {
    constructor(props) {

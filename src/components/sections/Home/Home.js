@@ -5,8 +5,7 @@ const Home = () => {
   return (
     <section id='home'>
 
-        <div
-          className='home-content'>
+        <div className='row home-content no-gutters'>
           {/* <div className="background-animate"></div> */}
 
           <div className='section-header-light intro container text-center'>

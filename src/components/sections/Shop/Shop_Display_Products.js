@@ -71,7 +71,6 @@ class DisplayProducts extends React.Component {
 
       return (
          <section className="shop-display">
-
             <Filter 
                count={this.state.products.length} 
                category={this.state.category}
@@ -82,7 +81,6 @@ class DisplayProducts extends React.Component {
                filterProducts={this.filterProducts}
             />
             <ListProducts products={this.state.products}  />
- 
          </section>
       );
    }

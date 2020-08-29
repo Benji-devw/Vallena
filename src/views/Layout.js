@@ -17,10 +17,10 @@ const Layout = () => {
   return (
     <Fragment>
       <main>
-        <div className="row no-gutters">
-          <div className="col-md-12">
+   
+   
             <Sections/>
-          </div>
+  
 
           {/* <aside className={sidebarToggle ? 'sidebar sidebarOpen' : 'sidebar sidebarClosed'}>
             <div className={sidebarToggle ? "cart-btn mt-5 push-in" : "cart-btn mt-5 push-out" }
@@ -28,7 +28,7 @@ const Layout = () => {
               >
             </div>
           </aside> */}
-        </div>
+ 
       </main>
     </Fragment>
   );

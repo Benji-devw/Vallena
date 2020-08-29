@@ -1,49 +1,36 @@
 #home {
 
 
-  @media screen and (min-width: 2200px) {
-    height: 1300px;
-  }
+  // @media screen and (min-width: 2200px) {
+  //   height: 1300px;
+  // }
 
-  .home-content {
-    height: 900px;
+  // .home-content {
+  //   height: 900px;
     
-    background: url('./img/SandBox.svg');
-    background-size: cover;
-    background-repeat: no-repeat;
+  //   background: url('./img/SandBox.svg');
+  //   background-size: cover;
+  //   background-repeat: no-repeat;
 
 
-    @media screen and (max-width: 1400px) {
-      height: 600px;
-    }
-    @media screen and (min-width: 2200px) {
-      height: 1300px;
-    }
+  //   @media screen and (max-width: 1400px) {
+  //     height: 600px;
+  //   }
+  //   @media screen and (min-width: 2200px) {
+  //     height: 1300px;
+  //   }
 
 
-    .intro {
-      position: absolute;
-      z-index: 2;
-      top: 50%;
-      transform: translateY(-50%);
-      position: relative;
-      z-index: 2;
-    }
+  //   .intro {
+  //     position: absolute;
+  //     z-index: 2;
+  //     top: 50%;
+  //     transform: translateY(-50%);
+  //     position: relative;
+  //     z-index: 2;
+  //   }
+
+  // }
 
 
-
-    // &:before {
-    //   content: '';
-    //   display: inline-block;
-    //   position: absolute;
-    //   top: 0;
-    //   right: 0;
-    //   bottom: 0;
-    //   left: 0;
-    //   background-color: rgba(0, 0, 0, 0.9);
-    //   opacity: .8;
-    // }
-
-
-  }
 }

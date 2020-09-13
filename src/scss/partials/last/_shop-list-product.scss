@@ -1,0 +1,252 @@
+#shop-list {
+
+  margin-left: 5rem;
+  margin-right: 5rem;
+
+  @media screen and (max-width: 1300px) {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+
+  @media screen and (max-width: 992px) {
+    margin-left: 0rem;
+    margin-right: 0rem;
+  }
+
+
+
+
+  .card-list {
+    padding: 3rem;
+    width: 100%;
+    max-width: 50rem;
+    background: url('./img/bg-card.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    @media screen and (min-width: 1300px) {
+      &:nth-child(2n + 2) {
+        position: relative;
+        top: 12rem;
+      }
+      &:nth-child(2n + 1) {
+        margin-bottom: 20rem;
+      }
+    }
+
+    @media screen and (max-width: 1300px) {
+      padding: 2rem;
+      margin-bottom: 10rem;
+    }
+
+    @media screen and (max-width: 992px) {
+      margin-bottom: 5rem;
+    }
+
+    @media screen and (max-width: 576px) {
+      // height: 200px;
+      background-size: 100%;
+      margin-bottom: 15rem;
+    }
+
+
+
+    img {
+      position: relative;
+      top: 2rem;
+      height: 15rem;
+      max-height: 80%;
+
+      @media screen and (max-width: 576px) {
+        top: 0;
+        height: 13rem;
+      }
+    }
+
+
+    .card-details {
+      color: #6E6359;
+      // height: 115%;
+      // margin-top: -1.2rem;
+      // border-radius: 2px;
+      line-height: 12px;
+
+      // box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      @media screen and (max-width: 576px) {
+        text-align: center;
+      }
+
+      h3 {
+        font-size: 1.5em;
+        color: #191919;
+        font-weight: bold;
+      }
+
+      h5 {
+        color: #191919;
+        font-size: 1.4em;
+        font-weight: 500;
+      }
+
+      p {
+        font-size: .7em;
+      }
+
+      b {
+        font-size: .8em;
+      }
+
+      .rupture {
+        color: red;
+      }
+
+      .personnalisable {
+        padding: 10px;
+        color: #F1F1F1;
+        font-size: .8em;
+        background: url('./img/bg-personnalisable.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+
+        @media screen and (max-width: 576px) {
+          background-position: 58%;
+        }
+      }
+
+      button {
+        color: #F1F1F1;
+        background: orangered;
+        border-radius: 50px;
+        font-size: .8em;
+      }
+
+      @media screen and (max-width: 576px) {
+        height: 150px;
+        max-width: 100% !important;
+
+      }
+    }
+
+
+
+
+  }
+
+
+}
+
+
+
+
+// #card-shop {
+
+//   transition: all 1s linear;
+//   margin: 3rem;
+//   border: 1px solid rgba(0, 0, 0, 0.452);
+//   padding: 2rem;
+
+//   // background-color: rgba(16, 121, 182, 0.479);
+
+
+//   border-radius: 30% / 50%;
+
+
+// }
+
+
+
+.imgforsvg {
+  height: 210px;
+  width: 310px;
+  pointer-events: none;
+}
+
+
+
+.svg-head {}
+
+.svg-card {
+  position: relative;
+  z-index: 200;
+  padding: 20px;
+  height: 500px;
+  width: 340px;
+  overflow: none;
+  filter: drop-shadow(10px 15px 3px rgba(0, 0, 0, .4));
+
+  path {}
+
+  text {
+    pointer-events: none;
+    color: $dark-color;
+
+  }
+
+  .svg-title {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  .category {
+    color: #6f6f6f;
+    padding: 0;
+    font-size: .7rem;
+    font-weight: bolder;
+    text-transform: uppercase;
+
+  }
+
+  .stock {
+    font-size: 0.9rem;
+  }
+
+  .price {
+    font-size: 1.5rem;
+  }
+
+  .avis {
+    font-size: .8em;
+  }
+
+
+
+  #gradient-vertical {
+    opacity: 1;
+    --color-stop-1: #ca5116;
+    --color-stop-2: #f9b384;
+    --color-stop-3: #F1F1F1;
+
+  }
+
+  #gradient-vertical-visible {
+    opacity: 0;
+    -webkit-transition: 1s, opacity 2.5s ease-in-out;
+    -moz-transition: 1s, opacity 2.5s ease-in-out;
+    -ms-transition: 1s, opacity 2.5s ease-in-out;
+    -o-transition: 1s, opacity 2.5s ease-in-out;
+    transition: 1s, opacity 2.5s ease-in-out;
+    --color-stop-1: #ca5116;
+    --color-stop-2: #F1F1F1;
+    --color-stop-3: #f9b384;
+
+  }
+
+  #gradient-vertical-visible:hover {
+    opacity: 1;
+    -webkit-transition: .7s;
+    -moz-transition: .7s;
+    -ms-transition: .7s;
+    -o-transition: .7s;
+    transition: d .7s, opacity .3s;
+    d: path("M 0 400 Q 0 400 0 50 Q 150 0 300 50 C 300 50 300 400 300 400 Q 150 450 0 400 ");
+  }
+
+}
+
+
+
+
+// Card SVG
+// M 50 450 Q 50 450 50 100 Q 200 150 350 100 C 350 100 350 450 350 450 Q 200 400 50 450 
+// Card hover
+// M 50 450 Q 50 450 50 100 Q 200 50 350 100 C 350 100 350 450 350 450 Q 200 500 50 450

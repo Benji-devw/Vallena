@@ -1,36 +1,41 @@
 #home {
+  height: 75vh;
+
+  .home-content {
+    height: 75%;
+
+  }
+
+  #star-svg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+  }
 
 
-  // @media screen and (min-width: 2200px) {
-  //   height: 1300px;
-  // }
+}
 
-  // .home-content {
-  //   height: 900px;
-    
-  //   background: url('./img/SandBox.svg');
-  //   background-size: cover;
-  //   background-repeat: no-repeat;
+#logos {
+  background: rgba(255, 68, 0, 0.2);
+  padding: 1rem;
+  height: 100%;
+  display: block;
 
+  img {
+    height: 200px;
+    margin: 0 auto;
+    box-shadow: 2px 2px 5px $boxShadow;
+  }
 
-  //   @media screen and (max-width: 1400px) {
-  //     height: 600px;
-  //   }
-  //   @media screen and (min-width: 2200px) {
-  //     height: 1300px;
-  //   }
+  @media screen and (max-width: 576px) {
+    font-size: .8em;
 
+    img {
+      height: 150px;
 
-  //   .intro {
-  //     position: absolute;
-  //     z-index: 2;
-  //     top: 50%;
-  //     transform: translateY(-50%);
-  //     position: relative;
-  //     z-index: 2;
-  //   }
-
-  // }
-
-
+    }
+  }
 }

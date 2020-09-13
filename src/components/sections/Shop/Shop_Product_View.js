@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import apiCall from '../../../apiCall/Products_Api'
 import { useSelector, useDispatch } from 'react-redux';
+
 import { MdAddShoppingCart } from 'react-icons/md';
-// import moment from 'moment'
+import { IoIosArrowBack } from 'react-icons/io'
+
 import ControlledCarousel from './components/carousel'
 import Footer from '../../UI/Footer/Footer'
+import MotionFramer from './motionScall/Motion_framer'
 
 import { addtoCart } from '../../../lib/actions'
-import secureImg from '../../../assets/img/payment-secu.jpg'
+// import secureImg from '../../../assets/img/payment-secu.jpg'
 
 // import styled from 'styled-components'
 // const Test = styled.section`
@@ -43,34 +46,32 @@ const ProductView = props => {
       window.scrollTo({ top: 0 });
    }, [props.match.params.id]);
 
-
-
-
-
-  
-
    return (
       <>
-         <section id="product-shop">
+         <div id="product-shop-view">
 
-            <article className="row product-shop-0 align-items-middle no-gutters">
+            <section className="">
+            <article className="row shop-view-0 align-items-middle no-gutters">
 
-               <div className="col-md-8 align-self-center product-shop-left-0 text-center">
+               {/* <div className="col-12 shop-view-top text-center">
+               </div> */}
+
+               <div className="col-md-8 align-self-center shop-view-left text-center">
                   {<ControlledCarousel images={imgs} />}
                   {/* <img src={imgs[0]} alt="img0" className="img-0 img-fluid" /> */}
                </div>
 
-               <div className="col-md-4 align-self-center product-shop-right-0">
-                  <div className="infos-body">
+               <div className="col-md-4 align-self-center shop-view-right">
+                  <div className="shop-view-right-infos">
                      <div className="">
-                     <h2 className="title">{data.titleProduct}</h2>
+                        <h2 className="title">{data.titleProduct}</h2>
+                        <p className="description">{data.descriptionProduct}</p>
                      <p className="avis">avis(0)</p>
-                     <p className="description">{data.descriptionProduct}</p>
                      </div>
                      <hr />
-                     <div className='price D2'>
-                           <b>€ {data.priceProduct}</b> 
-                           </div>
+                  
+                        <h5>{data.priceProduct} €</h5>
+                
                      <hr />
                      {data.quantityProduct > 1 ? 	// Affichage à la volée avec opérateur ternaire
                      <div className="add-cart-content flipInX">
@@ -99,30 +100,32 @@ const ProductView = props => {
                                     <i className="icon list arrow left mr-3"
                                     onClick={() => {
                                        history.goBack()
-                                    }}><span>Dans votre panier!</span></i>
+                                    }}><span> <IoIosArrowBack /> Dans votre panier!</span></i>
                                  </div>
 
                               
                               </>
                               }
                         </div> : <p className="flipInX" style={{color:"red"}}>Rupture !</p>}
-                     <div className="payment-secur">
+                     {/* <div className="payment-secur">
                         <img src={secureImg} alt="payment-method" className="payment-secure" style={{ height: "100px" }} />
-                     </div>
+                     </div> */}
                   </div>
                </div>
             </article>
-         </section>
+            </section>
 
-         <section className="product-shop-1">
-            <article className="row align-items-center no-gutters">
+         <section className="shop-view-1">
+            <article className="row shop-view-content-1 align-items-center justify-content-center no-gutters">
 
-               <div className="col-md-4 product-right-1">
-                  <h3>Du text ici ...</h3>
+               <div className="col-md-8 shop-view-left-1 text-center">
+                  {/* <img src={imgs[1]} alt="imgs1" className="img-1 img-fluid" /> */}
+                     {/* <div className="motion-carousel">
+                        {imgs.map(url => <img src={url} alt='test' className="motion-img-slide" onClick={() => pushpush(url)} /> )}
+                     </div> */}
+                  <MotionFramer images={imgs}/>
                </div>
-               <div className="col-md-8 product-left-1">
-                  <img src={imgs[1]} alt="imgs1" className="img-1 img-fluid" />
-               </div>
+
 
             </article>
          </section>
@@ -131,15 +134,16 @@ const ProductView = props => {
 
 
 
-         <div lg="12" className="m-3">
+         {/* <div lg="12" className="m-3">
             <div xs="10">
                <p className='section-title text-left'>Posted :
                   By : <span>{data ? data.reporterProduct : data.reporterProduct}</span>
-                  {/* <span>{data ? moment(data.createdAt).startOf().fromNow() : moment(data.createdAt).startOf().fromNow()}</span> */}
+                  <span>{data ? moment(data.createdAt).startOf().fromNow() : moment(data.createdAt).startOf().fromNow()}</span>
                </p>
             </div>
-
+         </div> */}
          </div>
+         
          <Footer />
       </>
    )

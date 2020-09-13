@@ -122,7 +122,7 @@ function CartHome() {
   return (
     <>
       <div className="btn-cart">
-        <RiShoppingCart2Line className="cart-home" size="2.2em" variant="primary" onClick={() => setShow(true)}/>
+        <RiShoppingCart2Line size="2em" onClick={() => setShow(true)}/>
         <span className={`badge-cart badge-pill ${items.length > 0 && 'badge-primary'}`}>{items.length > 0 && items.length}</span>
       </div>
 

@@ -11,7 +11,6 @@ export const actions = {
    SAVE_CART: "SAVE_CART",
    SAVE_PRODUCT: "SAVE_PRODUCT",
    RESET_CART: "RESET_CART",
-   SET_VISIBILITY_FILTER: 'SET_VISIBILITY_FILTER',
 
 }
 
@@ -62,9 +61,3 @@ export function saveProduct(product) {
    }
 }
 
-export function openSidebar(visi) {
-   return {
-      type: actions.SET_VISIBILITY_FILTER,
-      payload: {visi}
-   }
-}

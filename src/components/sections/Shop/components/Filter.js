@@ -1,34 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class Filter extends Component {
+const FilterTop = props => {
 
-   
-   render() {
+
+      // console.log(props.category);
       return (
-         <div className="col filter">
-            <div className="filter-result">{this.props.count} Products</div>
-            <div className="filter-sort">
-               Order 
-               <select defaultValue={this.props.sort} onChange={this.props.sortProducts}>
-                  <option>Latest</option>
-                  <option value="lowest">lowest</option>
-                  <option value="highest">highest</option>
-               </select>
-            </div>
-            <div className="filter-category">
-               filter 
-               {/* <ul defaultValue={this.props.category} onClick={this.props.filterProducts}>
-                  <div className="category-shop">
+         <div className="row" style={{ width: "100%" }}>
 
-                  {this.props.catList.map(cat => <li key={cat._id}>{cat.categoryProduct} </li>)}
-                  </div>
-               </ul> */}
-               <select defaultValue={this.props.category} onChange={this.props.filterProducts}>
-                  <option>All</option>
-                  {this.props.catList.map(cat => <option key={cat._id}>{cat.categoryProduct}</option>)}
+            <div className="col filter-search">
+               <input type="search" placeholder="Search" aria-label="search"
+                  onChange={(e) => props.searchBar(e.target.value)} 
+               />
+            </div>
+
+
+            <div className="col text-right filter-sort">
+               Tri
+               <select defaultValue={props.sort} onChange={props.sortProducts}>
+                  <option>---</option>
+                  <option value="lowest">Le plus cher</option>
+                  <option value="highest">Le moins cher</option>
                </select>
             </div>
+            
          </div>
       );
-   }
+
 }
+export default FilterTop

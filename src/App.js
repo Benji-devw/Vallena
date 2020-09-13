@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import ClientProfileContext from './lib/ClientProfileContext'
 
+import Shop from './views/Shop'
 import Layout from './views/Layout'
 import Checkout from './views/checkout'
 
@@ -35,6 +36,7 @@ const App = props => {
 
         <Switch>
 
+          <Route path="/shop" component={Shop} />
           <Route path="/product/:id" component={ProductView} />
 
           <Route path="/" exact={true} component={Layout}/>

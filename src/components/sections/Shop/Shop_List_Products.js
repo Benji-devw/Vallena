@@ -25,7 +25,7 @@ class ListProducts extends Component {
 
    componentDidMount() {
       const display = localStorage.getItem('display')
-      console.log('display', display)
+      // console.log('display', display)
       this.setState({display: display})
    }
 

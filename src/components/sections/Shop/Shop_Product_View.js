@@ -21,7 +21,7 @@ import { addtoCart } from '../../../lib/actions'
 
 const ProductView = props => {
 
-   const [data, setData] = useState([])   // tab vide car a l'arrivé sur la page data est vide et react provoque une erreur
+   const [data, setData] = useState([])   // [] car a l'arrivé sur la page data est vide et react provoque une erreur
    const itemsCart = useSelector(state => state.items)
    const [imgs, setImgs] = useState([])
 

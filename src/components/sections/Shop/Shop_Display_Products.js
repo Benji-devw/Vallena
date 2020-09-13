@@ -22,7 +22,7 @@ class DisplayProducts extends React.Component {
          isloading: false,
          active: '',
 
-         saveFilter: ''
+         filterByCat: ''
       
       }
    }
@@ -38,6 +38,9 @@ class DisplayProducts extends React.Component {
             isLoading: false,
          })
       })
+      const filterCat = localStorage.getItem('filterByCat')
+      this.filterProductsByCat(filterCat)
+
    }
 
    sortProducts = (event) => {
@@ -61,25 +64,15 @@ class DisplayProducts extends React.Component {
    filterProductsByCat = (event) => {
       // console.log('event', event)
        if (event === "All") {
-         this.setState({products: this.state.catList});
+          this.setState({ products: this.state.catList, filterByCat: event});
       } else {
          this.setState({
-            products: this.state.catList.filter(product => product.categoryProduct.indexOf(event) >= 0)
+            products: this.state.catList.filter(product => product.categoryProduct.indexOf(event) >= 0),
+            filterByCat: event
                // filter() crée et retourne un nouveau tableau contenant tous les éléments du tableau d'origine qui remplissent une condition déterminée par la fonction callback.
                // indexOf() renvoie le premier indice pour lequel on trouve un élément donné dans un tableau.
          })
       }
-      // SELECT
-      // if (event.target.value === "All") {
-      //    this.setState({category: event.target.value, products: this.state.catList});
-      // } else {
-      //    this.setState({
-      //    category: event.target.value,
-      //    products: this.state.catList.filter(product => product.categoryProduct.indexOf(event.target.value) >= 0 )
-      //          // filter() crée et retourne un nouveau tableau contenant tous les éléments du tableau d'origine qui remplissent une condition déterminée par la fonction callback.
-      //          // indexOf() renvoie le premier indice pour lequel on trouve un élément donné dans un tableau.
-      //    })
-      // }
    }
 
    searchBar = (input) => {
@@ -103,16 +96,14 @@ class DisplayProducts extends React.Component {
       }
    }
 
-
-   // handleTest = (e) => {
-   //    this.setState({saveFilter: e})
-   //    const { saveFilter } = this.state
-   //    localStorage.setItem('saveFilter', saveFilter)
-   // }
+   saveFilterByCat = (cat) => {
+      this.setState({ filterByCat: cat })
+      localStorage.setItem('filterByCat', cat)
+   }
 
 
    render() {
-      // console.log(this.state.saveFilter);
+      // console.log(this.state.filterByCat);
 
       return (
          <section className="shop-display">
@@ -134,57 +125,57 @@ class DisplayProducts extends React.Component {
 
 
             <div className="row">
+               <div className="col-lg-2 mt-4 filter-content-left">
+
+                  <h3>
+                  {/* <div className="filter-result">Produit {this.state.products.length}</div> */}
+                  FILTRES :
+                  </h3>
+                  <div className="col filter-category">
+                     <h4>CATEGORIES</h4>
+                     <ul className="category-list" defaultValue={this.state.category} onChange={this.filterProductsByCat}>
+                        
+                        <li className={`cat-list ${this.state.filterByCat === 'All' ? 'active' : '' }`}
+                           onClick={() => { 
+                              // this.addActiveClass('All'); 
+                              this.filterProductsByCat('All'); 
+                              this.saveFilterByCat('All')
+
+                           }}>All</li>
+                        
+                        {this.state.catList.map(cat => 
+                        <li key={cat._id} 
+                              className={`cat-list ${this.state.filterByCat === cat.categoryProduct ? 'active' : '' }`}
+                           onClick={() => {
+                              // this.addActiveClass(cat._id);
+                              this.filterProductsByCat(cat.categoryProduct);
+                              this.saveFilterByCat(cat.categoryProduct)
+                           }}
+                        >
+                           {cat.categoryProduct}
+                        </li> )}
+
+                     </ul>
+                  </div>
                
-            <div className="col-lg-2 mt-4 filter-content-left">
+                  <div className="col filter-category">
+                     <h4>MATIERES</h4>
+                  </div>
+                  <div className="col filter-category">
+                     <h4>COULEUR</h4>
+                  </div>
 
-               <h3>
-               {/* <div className="filter-result">Produit {this.state.products.length}</div> */}
-               FILTRES :
-               </h3>
-               <div className="col filter-category">
-                  <h4>CATEGORIES</h4>
-                  <ul className="category-list" defaultValue={this.state.category} onChange={this.filterProductsByCat}>
-                     
-                     <li className={`cat-list ${this.state.active === 'All' ? 'active' : '' }`}
-                        onClick={() => { 
-                           this.addActiveClass('All'); 
-                           this.filterProductsByCat('All'); 
-                           // this.handleTest('All');
-                        }}>All</li>
-                     
-                     {this.state.catList.map(cat => 
-                     <li key={cat._id} 
-                           className={`cat-list ${this.state.active === cat._id ? 'active' : '' }`}
-                        onClick={() => {
-                           this.addActiveClass(cat._id);
-                           this.filterProductsByCat(cat.categoryProduct);
-                           // this.handleTest(cat.categoryProduct);
-                        }}
-                     >
-                        {cat.categoryProduct}
-                     </li> )}
-
-                  </ul>
                </div>
-            
-               <div className="col filter-category">
-                  <h4>MATIERES</h4>
+               
+               <div className="col-lg-10">
+               <ListProducts products={this.state.products}  />
                </div>
-               <div className="col filter-category">
-                  <h4>COULEUR</h4>
-               </div>
-
-            </div>
-            
-            <div className="col-lg-10">
-            <ListProducts products={this.state.products}  />
-            </div>
-      
+         
 
 
-            {/* <Parallax speed={1} data-scroll>
-               <img src={visage} alt="visage" className="visage img-fluid" />
-            </Parallax> */}
+               {/* <Parallax speed={1} data-scroll>
+                  <img src={visage} alt="visage" className="visage img-fluid" />
+               </Parallax> */}
          </div>
          </section>
       );

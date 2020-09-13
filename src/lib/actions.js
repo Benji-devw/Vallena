@@ -9,8 +9,9 @@ export const actions = {
    UPDATE_CART: "UPDATE_CART",
    REMOVE_FROM_CART: "REMOVE_FROM_CART",
    SAVE_CART: "SAVE_CART",
-   SAVE_PRODUCT: "SAVE_PRODUCT",
    RESET_CART: "RESET_CART",
+   FILTER_PODUCTS_BY_CAT: "FILTER_PODUCTS_BY_CAT",
+   ORDER_PRODUCTS_BY_PRICE: "ORDER_PRODUCTS_BY_PRICE"
 
 }
 
@@ -53,11 +54,15 @@ export function resetCart () {
       type: actions.RESET_CART,
    }
 }
-// Save product => ./Shop_Product => recup product au refresh
-export function saveProduct(product) {
+
+
+export function filterProducts (products, cat) {
    return {
-      type: actions.SAVE_PRODUCT,
-      payload: { product: product }
+      type: actions.FILTER_PODUCTS_BY_CAT,
+      payload: { 
+         cat: cat,
+         items: cat === '' ? products : 
+            products.filter((x) => x.categoryProduct.indexOf(cat) >= 0)
+      }
    }
 }
-

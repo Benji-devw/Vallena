@@ -1,23 +1,36 @@
-// margin-left: 5rem;
-// margin-right: 5rem;
-
-// @media screen and (max-width: 1300px) {
-//   margin-left: 2rem;
-//   margin-right: 2rem;
-// }
-
-// @media screen and (max-width: 992px) {
-//   margin-left: 0rem;
-//   margin-right: 0rem;
-// }
-
 .toogle-display {
   position: absolute;
   top: -1.5rem;
   left: 2rem;
   width: 50%;
+
   ul {
     padding: 0;
+    margin: 0;
+  }
+}
+
+.product-images {
+  .rupture {
+    position: absolute;
+    top: 3rem;
+    right: 1rem;
+    padding: 3px;
+    font-size: .8em;
+    color: #F1F1F1;
+    background: rgba(255, 68, 0, .9);
+    border-radius: 1px;
+    margin: 0;
+  }
+  .pomotion {
+    position: absolute;
+    top: 1.2rem;
+    right: 1rem;
+    padding: 2px;
+    font-size: .9em;
+    color: #F1F1F1;
+    background: rgba(0, 128, 0, 0.9);
+    border-radius: 1px;
     margin: 0;
   }
 }
@@ -28,19 +41,27 @@
 
   .product-item {
     img {
-      width: 25rem;
+      width: 20rem;
     }
   }
 
 }
 
 .grid-display {
-  padding: 2rem;
+  padding: 1.5rem;
   text-align: center;
 
   .product-item {
     img {
       width: 100%;
+      vertical-align: middle;
+    }
+  }
+
+  .product-details {
+    p {
+      margin-top: -10px;
+      font-size: .8em;
     }
   }
 }
@@ -75,9 +96,7 @@
     font-size: .8em;
   }
 
-  .rupture {
-    color: red;
-  }
+
 
 
   button {

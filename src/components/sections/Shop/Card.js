@@ -1,24 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import formatCurrency from '../../../utils/utils';
-// import { IoIosArrowForward } from 'react-icons/io'
+import Fade from '@material-ui/core/Fade';
+
+
 
 const Card = props => {
    const product = props.product
-   console.log('product', product)
    const display = props.display
 
 
       return (
-         
+         <Fade in={true}>
          <div className="row justify-content-center product-item">
 
-            <div className={`product-images${display === 'list-display' ? 'col-md-6 text-center' : ''}`}>
+            <div className={`product-images align-items-center ${display === 'list-display' ? 'col-md-6 text-center' : ''}`}>
                <Link to={`/product/${product._id}`} >
-                  <img src={product.imgCollection[0]} alt={product.titleProduct} className={`align-self-center${display === 'list-display' ? 'img-fluid': ''}`} />
+                  <img src={product.imgCollection[0]} alt={product.titleProduct} className={`align-self-center img-fluid`} />
                </Link>
-               {product.quantityProduct < 1 && <p className="rupture">Rupture</p>}
-               {product.promotionProduct && <p className="pomotion">Promotion</p>}
+               {product.quantityProduct < 1 && <div className="rupture bg-danger">Rupture</div>}
+               {product.promotionProduct && <div className="promotion bg-success">-20 %</div>}
+
             </div>
 
 
@@ -46,7 +48,7 @@ const Card = props => {
             </div>
 
          </div>
-         
+         </Fade>
    
       );
    

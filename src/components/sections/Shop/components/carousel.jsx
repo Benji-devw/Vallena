@@ -11,11 +11,11 @@ const ControlledCarousel = props => {
 	};
 	
 	return (
-		<Carousel activeIndex={index} onSelect={handleSelect} >
+		<Carousel activeIndex={index} onSelect={handleSelect}>
 			{ imgs.map((url, i)=> (
 			<Carousel.Item key={i}>
 			<img
-						className="img-fluid img-0"
+				className="img-fluid img-0"
 				src={url}
 				alt="First slide"
 			/>

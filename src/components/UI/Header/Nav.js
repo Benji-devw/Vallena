@@ -30,7 +30,7 @@ const Nav = props => {
     });
   }, []);
   return (
-    <nav className={`navbar navbar-expand-md ${navClass}`}>
+    <nav className={`navbar navbar-expand-md no-gutters p-0 ${navClass}`}>
       <div className='container'>
 
         <Link to='/' className='navbar-brand'> <span>Valelana.fr</span> </Link>
@@ -45,7 +45,7 @@ const Nav = props => {
         </div>
 
         <div className={`collapse navbar-collapse ${(() => {
-            if (toggeledNav) return 'show';
+            if (toggeledNav) return 'show bg-white';
             return '';
           })()}`}
         >

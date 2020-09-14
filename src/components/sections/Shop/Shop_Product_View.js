@@ -4,19 +4,14 @@ import apiCall from '../../../apiCall/Products_Api'
 import { useSelector, useDispatch } from 'react-redux';
 
 import { MdAddShoppingCart } from 'react-icons/md';
-import { IoIosArrowBack } from 'react-icons/io'
-
+import Alert from '@material-ui/lab/Alert';
 import ControlledCarousel from './components/carousel'
 import Footer from '../../UI/Footer/Footer'
-import MotionFramer from './motionScall/Motion_framer'
+import ScrollableTabsButtonForce from './components/Tabs_Product_View'
 
 import { addtoCart } from '../../../lib/actions'
 // import secureImg from '../../../assets/img/payment-secu.jpg'
 
-// import styled from 'styled-components'
-// const Test = styled.section`
-//     padding: 5rem;
-// `
 
 
 const ProductView = props => {
@@ -48,25 +43,30 @@ const ProductView = props => {
 
    return (
       <>
-         <div id="product-shop-view">
+         <div id="shop-view-product">
 
-            <section className="">
-            <article className="row shop-view-0 align-items-middle no-gutters">
+            <section className="row no-gutters shop-view-top">
+               <article className="container">
+                  <div className="col-12  text-center">
+                  </div>
 
-               {/* <div className="col-12 shop-view-top text-center">
-               </div> */}
+               </article>
+            </section>
 
-               <div className="col-md-8 align-self-center shop-view-left text-center">
+            <section className="container">
+            <article className="row shop-view-0 align-items-center no-gutters">
+
+               <div className="col-lg-8 align-self-center shop-view-left text-center">
                   {<ControlledCarousel images={imgs} />}
                   {/* <img src={imgs[0]} alt="img0" className="img-0 img-fluid" /> */}
                </div>
 
-               <div className="col-md-4 align-self-center shop-view-right">
+               <div className="col-lg-4 align-self-center shop-view-right">
                   <div className="shop-view-right-infos">
                      <div className="">
                         <h2 className="title">{data.titleProduct}</h2>
+                        <p className="avis">avis(0)</p>
                         <p className="description">{data.descriptionProduct}</p>
-                     <p className="avis">avis(0)</p>
                      </div>
                      <hr />
                   
@@ -75,76 +75,77 @@ const ProductView = props => {
                      <hr />
                      {data.quantityProduct > 1 ? 	// Affichage à la volée avec opérateur ternaire
                      <div className="add-cart-content flipInX">
-                           {!findId ?
-                              <div className="addToCart">
-                                 <div className="btn-qty-cart"
-                                    onClick={() => setQty(qty > 1 ? qty - 1 : 1)}		// tant que qty est supp a 1 ? qty -1 sinon return 1
-                                 >-</div>
+                        {!findId ?
+                           <div className="addToCart">
+                                 <Alert severity="info"> {data.quantityProduct} en stock
+                              <div className="btn-qty-cart"
+                                 onClick={() => setQty(qty > 1 ? qty - 1 : 1)}		// tant que qty est supp a 1 ? qty -1 sinon return 1
+                              >-</div>
 
-                                 <span className="btn btn-light qty">{qty}</span>
+                              <span className="btn btn-light qty">{qty}</span>
 
-                                 <div className="btn-qty-cart"
-                                    onClick={() => setQty(data.quantityProduct > qty ? qty + 1 : qty)}
-                                 >+</div>
+                              <div className="btn-qty-cart"
+                                 onClick={() => setQty(data.quantityProduct > qty ? qty + 1 : qty)}
+                              >+</div>
 
-                                 <MdAddShoppingCart size="2em" className="ml-3" style={{ cursor: "pointer" }}
-                                    onClick={() => {
-                                    add(data, qty)
-                                    }
-                                    } />
-                              <p className="m-2"> {data.quantityProduct} en stock</p> 
-                              </div>
-                              : 
-                              <>
-                                 <div className="backTo">
-                                    <i className="icon list arrow left mr-3"
-                                    onClick={() => {
-                                       history.goBack()
-                                    }}><span> <IoIosArrowBack /> Dans votre panier!</span></i>
-                                 </div>
-
-                              
-                              </>
-                              }
-                        </div> : <p className="flipInX" style={{color:"red"}}>Rupture !</p>}
-                     {/* <div className="payment-secur">
-                        <img src={secureImg} alt="payment-method" className="payment-secure" style={{ height: "100px" }} />
-                     </div> */}
+                              <MdAddShoppingCart size="2em" className="ml-3" style={{ cursor: "pointer" }}
+                                 onClick={() => {
+                                 add(data, qty)
+                                 }
+                                 } />
+                           
+                           </Alert>
+                           </div>
+                           : 
+                              <Alert onClick={() => { history.goBack() }} severity="success">Dans votre panier !</Alert>
+                           }
+                     </div> : <Alert onClick={() => { history.goBack() }} severity="error" className="flipInX">Rupture !</Alert>}
+                  
+                     <p className="m-2">
+                        <b>Catégories :</b> {data.categoryProduct}
+                        <br />
+                        <b>Tags :</b> mot-clé, sdb, rangement
+                     </p>
+              
                   </div>
                </div>
             </article>
             </section>
 
-         <section className="shop-view-1">
-            <article className="row shop-view-content-1 align-items-center justify-content-center no-gutters">
+            <section className="shop-view-1">
+               <article className="row shop-view-content-1 align-items-center justify-content-center p-0 m-0">
+              
+                        <div className="col-md-12 text-center p-0 m-0">
+                           {/* <img src={imgs[1]} alt="imgs1" className="img-1 img-fluid" /> */}
+                              {/* <div className="motion-carousel">
+                                 {imgs.map(url => <img src={url} alt='test' className="motion-img-slide" onClick={() => pushpush(url)} /> )}
+                              </div> */}
+                           <ScrollableTabsButtonForce data={data} images={imgs}/>
+                      
+                        </div>
 
-               <div className="col-md-8 shop-view-left-1 text-center">
-                  {/* <img src={imgs[1]} alt="imgs1" className="img-1 img-fluid" /> */}
-                     {/* <div className="motion-carousel">
-                        {imgs.map(url => <img src={url} alt='test' className="motion-img-slide" onClick={() => pushpush(url)} /> )}
-                     </div> */}
-                  <MotionFramer images={imgs}/>
+            
+
+
+               </article>
+            </section>
+
+
+
+
+
+            {/* <div lg="12" className="m-3">
+               <div xs="10">
+                  <p className='section-title text-left'>Posted :
+                     By : <span>{data ? data.reporterProduct : data.reporterProduct}</span>
+                     <span>{data ? moment(data.createdAt).startOf().fromNow() : moment(data.createdAt).startOf().fromNow()}</span>
+                  </p>
                </div>
+            </div> */}
 
-
-            </article>
-         </section>
-
-
-
-
-
-         {/* <div lg="12" className="m-3">
-            <div xs="10">
-               <p className='section-title text-left'>Posted :
-                  By : <span>{data ? data.reporterProduct : data.reporterProduct}</span>
-                  <span>{data ? moment(data.createdAt).startOf().fromNow() : moment(data.createdAt).startOf().fromNow()}</span>
-               </p>
-            </div>
-         </div> */}
-         </div>
          
-         <Footer />
+      </div>
+      <Footer />
       </>
    )
 }

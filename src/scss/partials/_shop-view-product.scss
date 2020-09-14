@@ -1,5 +1,5 @@
-#product-shop-view {
-  background-image: linear-gradient(to right top, #fff1d6, #fce3bf, #fad4a9, #f9c495, #f9b384);
+#shop-view-product {
+  min-height: 60rem;
 
   .backTo {
 
@@ -17,9 +17,32 @@
   }
 
 
+
+
   .carousel {
     padding: 1rem;
-    
+    height: 500px;
+
+    @media screen and (max-width: 991px) {
+      height: 100%;
+      padding: 0;
+      margin-top: 1rem;
+    }
+
+    .carousel-inner {
+      height: 100%;
+
+      .carousel-item {
+        height: 100%;
+
+        img {
+          @media screen and (max-width: 1200px) and (min-width: 991px) {
+            margin-top: 2rem;
+          }
+        }
+      }
+    }
+
     .carousel-control-prev span {
       @include background('./img/angle-left-solid.svg');
       height: 2rem;
@@ -31,8 +54,11 @@
     }
 
     .carousel-indicators {
-      margin-bottom: 0;
+      position: absolute;
+      bottom: 0;
+      margin-bottom: -1rem;
     }
+
     .carousel-indicators li {
       border-radius: 50%;
       height: 15px;
@@ -41,17 +67,22 @@
     }
   }
 
+
+  .shop-view-top {
+    height: 20vh;
+    margin-top: 3rem;
+    background-color: #f1f1f182;
+  }
+
+
   .shop-view-0 {
-    padding-left: 18rem;
-    padding-top: 4rem;
-    min-height: 100vh;
+    min-height: 70vh;
+    padding: 1rem;
 
-    @media screen and (max-width: 1400px) {
-      padding-left: 0;
-    }
 
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 991px) {
       text-align: center;
+      padding: 0;
     }
 
     // .shop-view-top {
@@ -87,8 +118,19 @@
           font-weight: 500;
         }
 
+        .MuiAlert-standardError {
+          cursor: pointer;
+        }
+
+        .MuiAlert-standardSuccess {
+          cursor: pointer;
+        }
 
         .add-cart-content {
+
+          .MuiAlert-standardInfo .MuiSvgIcon-fontSizeInherit {
+            margin-top: .5rem;
+          }
 
           .btn-qty-cart {
             display: inline;
@@ -120,29 +162,25 @@
 
 
   .shop-view-1 {
-    background: #fff;
-    border-top: 1px solid rgba(0, 0, 0, 0.2);
-
-    background: #191919;
-
+    margin-top: 4rem;
 
     .shop-view-content-1 {
-      height: 100vh;
-
       padding: 1rem;
 
       .motion-slide {
         position: absolute;
         bottom: 0px;
-        margin-top: 15rem;
+        margin-top: 17rem;
       }
 
       .motion-mask {
+        margin-top: 2rem;
+        width: 60% !important;
         box-shadow: 0 0 20px black;
-        width: 90% !important;
+        border-radius: 5px;
 
         @media screen and (max-width: 767px) {
-          width: 100% !important;
+          width: 80% !important;
         }
       }
 
@@ -160,14 +198,51 @@
 
     }
 
-    .shop-view-left-1 {
-
-      img {
-        max-height: 30rem;
-      }
-
-    }
 
   }
 
+
+
+
+  .MuiBox-root {
+    height: 80vh;
+  }
+
+  .MuiTabs-root {
+    padding: .5rem;
+
+  }
+
+  .MuiButtonBase-root {
+    outline: none;
+  }
+}
+
+
+.table-description {
+  color: #F1F1F1;
+  width: 70%;
+  margin: auto;
+
+  @media screen and (max-width: 767px) {
+    width: 90%;
+  }
+
+  th {
+    font-weight: 100;
+    border-top: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 2rem;
+  }
+
+  td {
+    font-size: .9em;
+    border-top: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  // thead th {
+  //   border: none;
+  // }
 }

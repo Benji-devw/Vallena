@@ -13,7 +13,6 @@
       color: #f9b384;
       font-weight: 500;
       font-size: 1.3em;
-      padding: 10px;
     }
   }
 
@@ -25,13 +24,14 @@
     -moz-user-select: none;
     -o-user-select: none;
     user-select: none;
+    padding: 0;
     h4 {
       color: #f9b384;
       font-size: 1em;
     }
 
     .category-list {
-      padding: 10px;
+      padding: 5px;
       display: inline-block;
       list-style: none;
       color: $category;
@@ -39,9 +39,11 @@
       cursor: pointer;
 
       @media screen and (max-width: 991px) {
-        height: 150px;
-        max-width: 100% !important;
-
+        text-align: center;
+        li {
+          display: inline-block;
+          margin-left: 1rem;
+        }
       }
 
       li {
@@ -50,14 +52,19 @@
         &:hover {
           transition-duration: .3s;
           padding-left: 10px;
-
+        @media screen and (max-width: 991px) {
+          padding-left: 0;
+        }
         }
       }
     }
 
     .active {
-      color: $categoryActive;
       padding-left: 10px;
+      @media screen and (max-width: 991px) {
+        padding-left: 0;
+        font-weight: bold;
+      }
     }
 
   }

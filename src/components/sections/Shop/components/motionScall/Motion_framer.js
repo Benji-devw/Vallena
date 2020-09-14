@@ -19,19 +19,18 @@ const MotionFramer = props => {
 
       return (
          <>
-            <Frame
+            {/* <Frame
                name={"SliderApp"}
                width={"100%"}
                height={"100%"}
-               background={"#242424"}
-            >
+               // background={"#242424"}
+            > */}
                <Frame
                   name={"Mask"}
                   width={"100%"}
                   height={430}
                   center
                   overflow={"hidden"}
-                  radius={"1%"}
                   background={"#F1F1F1"}
                   className={"motion-mask"}
                >
@@ -57,12 +56,12 @@ const MotionFramer = props => {
                <Slider 
                   value={scale}
                   min={0.35}
-                  max={1.5}
+                  max={1.4}
                   onChange={function(newValue) {
                      setScale(newValue)
                   }}
                />
-            </Frame>
+            {/* </Frame> */}
    
          
          </>

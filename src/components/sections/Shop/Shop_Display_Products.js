@@ -104,7 +104,12 @@ class DisplayProducts extends React.Component {
 
    render() {
       // console.log(this.state.filterByCat);
+      
+      // Filter cat
+      const categorySet = new Set(this.state.catList.map((p) => p.categoryProduct));
+      const categories = Array.from(categorySet).sort();
 
+      
       return (
          <section className="shop-display">
 
@@ -115,8 +120,7 @@ class DisplayProducts extends React.Component {
                      category={this.state.category}
                      catList={this.state.catList}
 
-                     sort={this.state.sort}
-                     sortProducts={this.sortProducts}
+
                      // filterProductsByCat={this.filterProductsByCat}
                      searchBar={this.searchBar}
                   />
@@ -125,7 +129,7 @@ class DisplayProducts extends React.Component {
 
 
             <div className="row">
-               <div className="col-lg-2 mt-4 filter-content-left">
+               <div className="col-lg-2 mt-4 filter-content-left p-0">
 
                   <h3>
                   {/* <div className="filter-result">Produit {this.state.products.length}</div> */}
@@ -135,25 +139,23 @@ class DisplayProducts extends React.Component {
                      <h4>CATEGORIES</h4>
                      <ul className="category-list" defaultValue={this.state.category} onChange={this.filterProductsByCat}>
                         
-                        <li className={`cat-list ${this.state.filterByCat === 'All' ? 'active' : '' }`}
+                        <li className={`cat-list ${this.state.filterByCat === 'All' ? 'active text-primary' : '' }`}
                            onClick={() => { 
                               // this.addActiveClass('All'); 
                               this.filterProductsByCat('All'); 
                               this.saveFilterByCat('All')
-
-                           }}>All</li>
+                           }}>All
+                        </li>
                         
-                        {this.state.catList.map(cat => 
-                        <li key={cat._id} 
-                              className={`cat-list ${this.state.filterByCat === cat.categoryProduct ? 'active' : '' }`}
+                        {categories.map((cat, index) => 
+                        <li key={index} 
+                           className={`cat-list ${this.state.filterByCat === cat ? 'active text-primary' : '' }`}
                            onClick={() => {
-                              // this.addActiveClass(cat._id);
-                              this.filterProductsByCat(cat.categoryProduct);
-                              this.saveFilterByCat(cat.categoryProduct)
-                           }}
-                        >
-                           {cat.categoryProduct}
-                        </li> )}
+                              this.filterProductsByCat(cat);
+                              this.saveFilterByCat(cat)
+                           }}>{cat}
+                        </li> 
+                        )}
 
                      </ul>
                   </div>
@@ -167,8 +169,12 @@ class DisplayProducts extends React.Component {
 
                </div>
                
-               <div className="col-lg-10">
-               <ListProducts products={this.state.products}  />
+               <div className="col-lg-10 mt-3">
+               <ListProducts 
+               products={this.state.products}  
+               sort={this.state.sort}
+               sortProducts={this.sortProducts}
+               />
                </div>
          
 

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import ArtTrackIcon from '@material-ui/icons/ArtTrack';
+import AppsIcon from '@material-ui/icons/Apps';
 // import { connect } from 'react-redux';
 // import {fetchProducts} from '../actions/productActions';
 
@@ -45,27 +47,34 @@ class ListProducts extends Component {
                (<div>Loading...</div> )
             :
                (
-               <div ref={this.myRef} className="row">
-                  <div className="col-12 toogle-display">
-                     <ul>
+               <>
+                  <div ref={this.myRef} className="row">
+                     <div className="col toogle-display">
+                        <ul>
                            Afficher : 
-                     <li onClick={() => { this.handleDisplay('grid-display col-lg-4 col-md-6 col-sm-6') }} className={`btn btn-sm ${this.state.display === 'grid-display col-lg-4 col-md-6 col-sm-6' ? 'text-primary' : ''}`}>Grille</li>
-                     <li onClick={() => this.handleDisplay('list-display')} className={`btn btn-sm ${this.state.display === 'list-display' ? 'text-primary' : ''}`}>Liste</li>
-
-                     </ul>
+                           <li onClick={() => { this.handleDisplay('grid-display col-lg-4 col-md-6 col-sm-6') }} className={`btn btn-sm ${this.state.display === 'grid-display col-lg-4 col-md-6 col-sm-6' ? 'text-primary' : ''}`}><AppsIcon /></li>
+                           <li onClick={() => this.handleDisplay('list-display')} className={`btn btn-sm arttrack ${this.state.display === 'list-display' ? 'text-primary' : ''}`}><ArtTrackIcon /></li>
+                        </ul>
+                     </div>
+                     <div className="col-md-6 text-right filter-sort">
+                           Tri
+                           <select style={{ width: "10rem", height: "2rem", marginLeft: "1rem" }} className="custom-select" defaultValue={this.props.sort} onChange={this.props.sortProducts}>
+                           <option>---</option>
+                           <option value="lowest">Le plus cher</option>
+                           <option value="highest">Le moins cher</option>
+                        </select>
+                     </div>
                   </div>
-            
+                  <div className="row">
                      {this.props.products.map(product => (
                         product.visible && 
-
-                        <div key={product._id} className={`${this.state.display}`}>
+                        <div key={product._id} className={`${this.state.display === "list-display" ? 'col-12 list-display' : this.state.display}`}>
                            <Card product={product} display={this.state.display} />
                         </div>
 
-                        // <SvgCard key={product._id} product={product}/>
                      ))}
-               </div>
-           
+                  </div>
+               </>
                )
             }
             

@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import ClientProfileContext from './lib/ClientProfileContext'
+import IndexDbInit from './lib/IndexBdInit'
+import apiCall from './apiCall/Products_Api'
 
 import Shop from './views/Shop'
 import Layout from './views/Layout'
@@ -14,7 +16,6 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import { Dashboard } from './components/Dashboard/Dashboard'
 import { ProductUpdate } from './components/Dashboard/Update_Product'
 
-// import ShopProductView from './components/sections/Shop/Shop_Product_View'
 
 import ProductView from './components/sections/Shop/Shop_Product_View'
 
@@ -22,9 +23,19 @@ const App = props => {
   // console.log('app', props);
   const { items, saveLocalStorage } = props
 
+
   useEffect(() => {     // s'execute quand il y a un changement ds l'etat local des items(Cart) (qty, delete, ...)
-      // savegarde du panier dans le navigateur
-    saveLocalStorage(items)
+    saveLocalStorage(items)   // savegarde du panier dans le navigateur
+
+    let indexDBFound = indexedDB.databases();
+    indexDBFound.then((value) => {
+      if (value.length < 1) {
+        console.log('APICALL');
+        apiCall.getProducts().then(product => {
+          IndexDbInit(product.data.products)
+        })
+      }
+    })
   }, [saveLocalStorage, items])
 
   return (

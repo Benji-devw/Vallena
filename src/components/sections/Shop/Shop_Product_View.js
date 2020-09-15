@@ -19,6 +19,8 @@ const ProductView = props => {
    const [data, setData] = useState([])   // [] car a l'arrivé sur la page data est vide et react provoque une erreur
    const itemsCart = useSelector(state => state.items)
    const [imgs, setImgs] = useState([])
+   // const [datas, setDatas] = useState([])
+   // console.log('datas', datas)
 
    // Redux
    const dispatch = useDispatch()                        // Call dispatch to send redux
@@ -47,14 +49,16 @@ const ProductView = props => {
 
             <section className="row no-gutters shop-view-top">
                <article className="container">
-                  <div className="col-12  text-center">
+                  <div className="col-12 text-center">
                   </div>
 
                </article>
             </section>
 
+
+
             <section className="container">
-            <article className="row shop-view-0 align-items-center no-gutters">
+            <article className="row shop-view-product align-items-center no-gutters">
 
                <div className="col-lg-8 align-self-center shop-view-left text-center">
                   {<ControlledCarousel images={imgs} />}
@@ -112,37 +116,34 @@ const ProductView = props => {
             </article>
             </section>
 
-            <section className="shop-view-1">
+
+
+            <section className="shop-view-details">
                <article className="row shop-view-content-1 align-items-center justify-content-center p-0 m-0">
-              
-                        <div className="col-md-12 text-center p-0 m-0">
-                           {/* <img src={imgs[1]} alt="imgs1" className="img-1 img-fluid" /> */}
-                              {/* <div className="motion-carousel">
-                                 {imgs.map(url => <img src={url} alt='test' className="motion-img-slide" onClick={() => pushpush(url)} /> )}
-                              </div> */}
-                           <ScrollableTabsButtonForce data={data} images={imgs}/>
-                      
-                        </div>
-
-            
-
-
+                  <div className="col-md-12 text-center p-0 m-0">
+                     <ScrollableTabsButtonForce data={data} images={imgs}/>
+                  </div>
                </article>
             </section>
 
 
 
+            <section className="shop-view-same-cat">
+               <article className="row shop-view-content-1 align-items-center justify-content-center p-0 m-0">
+               <div className="col-md-12 m-0">
+                  <h3>Produit similaire </h3>
+                     <div className="row">
+                        {/* {this.props.products.map(product => (
+                           product.visible &&
+                           <div key={product._id} className={`${this.state.display === "list-display" ? 'col-12 list-display' : this.state.display}`}>
+                              <Card product={product} display={this.state.display} />
+                           </div>
 
-
-            {/* <div lg="12" className="m-3">
-               <div xs="10">
-                  <p className='section-title text-left'>Posted :
-                     By : <span>{data ? data.reporterProduct : data.reporterProduct}</span>
-                     <span>{data ? moment(data.createdAt).startOf().fromNow() : moment(data.createdAt).startOf().fromNow()}</span>
-                  </p>
-               </div>
-            </div> */}
-
+                        ))} */}
+                  </div>
+                  </div>
+               </article>
+            </section>
          
       </div>
       <Footer />

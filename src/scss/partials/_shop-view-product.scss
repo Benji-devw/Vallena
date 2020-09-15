@@ -68,6 +68,16 @@
   }
 
 
+
+
+
+
+
+
+
+
+
+
   .shop-view-top {
     height: 20vh;
     margin-top: 3rem;
@@ -75,7 +85,18 @@
   }
 
 
-  .shop-view-0 {
+
+
+
+
+
+
+
+
+
+
+
+  .shop-view-product {
     min-height: 70vh;
     padding: 1rem;
 
@@ -84,15 +105,6 @@
       text-align: center;
       padding: 0;
     }
-
-    // .shop-view-top {
-    //   padding: 5rem;
-    //   font-size: .9em;
-    //   @media screen and (max-width: 576px) {
-    //     margin-top: 4rem;
-    //     padding: 1rem;
-    //   }
-    // }
 
 
     .shop-view-left {
@@ -161,7 +173,18 @@
 
 
 
-  .shop-view-1 {
+
+
+
+
+
+
+
+
+
+
+
+  .shop-view-details {
     margin-top: 4rem;
 
     .shop-view-content-1 {
@@ -202,6 +225,11 @@
   }
 
 
+  .shop-view-same-cat {
+    height: 300px;
+  }
+
+
 
 
   .MuiBox-root {
@@ -232,7 +260,7 @@
     font-weight: 100;
     border-top: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    max-width: 2rem;
+    max-width: 4rem;
   }
 
   td {

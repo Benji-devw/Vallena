@@ -19,25 +19,23 @@
   }
 
 
-  .slick-next {
-    position: absolute;
-    right: 0;
 
-    &::before {
-      color: rgba(0, 0, 0, 0.3);
+  .slick-n {
+    top: 15rem !important;
+    right: 1rem;
+    @media screen and (max-width: 650px) {
+      top: 10rem !important;
+      right: 0rem;
     }
   }
-
-  .slick-prev {
-    z-index: 100;
-    position: absolute;
-    left: 0;
-
-    &::before {
-      color: rgba(0, 0, 0, 0.3);
+  .slick-p {
+    top: 15rem !important;
+    left: 1rem;
+    @media screen and (max-width: 650px) {
+      top: 10rem !important;
+      left: 0rem;
     }
   }
-
   .slick-dots {
     position: relative;
     top: 0rem;
@@ -60,185 +58,173 @@
 
 
 
-  .shop-view-top {
-    margin-top: 3rem;
-    background-color: #F5F5F5;
-    .title-product {
-      h1 {
-        font-family: satisfy, sans-serif;
-        font-size: 5em;
-        font-weight: bold;
-        color: #191919;
-        margin: 2rem;
+.shop-view-top {
+  margin-top: 3rem;
+  background-color: #F5F5F5;
+
+  .title-product {
+    h1 {
+      font-family: satisfy, sans-serif;
+      font-size: 5em;
+      font-weight: bold;
+      color: #191919;
+      margin: 2rem;
+
       @media screen and (max-width: 768px) {
         font-size: 3em;
       }
-      }
+    }
   }
-  }
+}
 
 
 
 
 
-  .shop-view-product {
-    min-height: 70vh;
-    padding: 2rem;
+.shop-view-product {
+  min-height: 70vh;
+  padding: 2rem;
 
 
-    @media screen and (max-width: 768px) {
-      text-align: center;
-      padding: 0;
-    }
-
-
-    .shop-view-left {
-      .img-0 {
-        max-height: 30rem;
-      }
-    }
-
-    .shop-view-right {
-      .shop-view-right-infos {
-        margin: auto;
-        padding: 1rem;
-        max-width: 400px;
-        font-size: .9em;
-
-        .title {
-          font-weight: bold;
-        }
-
-        h2 {
-          text-align: end;
-          color: #191919;
-          font-size: 2em;
-          font-weight: bold;
-          .avis {
-            font-size: .5em;
-            font-weight: 100;
-          }
-        }
-
-        .MuiAlert-standardError,
-        .MuiAlert-standardSuccess {
-          cursor: pointer;
-        }
-
-        .share-media {
-          cursor: pointer;
-          padding: .2rem;
-
-          svg {
-            margin: .2rem;
-            font-size: 1.5em;
-          }
-
-          span:hover {
-            color: #f50057;
-          }
-        }
-
-        .add-cart-content {
-
-          .MuiAlert-standardInfo .MuiSvgIcon-fontSizeInherit {
-            margin-top: .5rem;
-          }
-
-          .btn-qty-cart {
-            display: inline;
-            cursor: pointer;
-            font-size: 20px;
-            color: rgb(168, 168, 168);
-            padding: 10px;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -o-user-select: none;
-            user-select: none;
-
-            &:hover {
-              color: black;
-              transition-duration: .5s;
-            }
-
-          }
-        }
-
-        // .payment-secure {
-        //   margin: 1em;
-        // }
-      }
-    }
+  @media screen and (max-width: 768px) {
+    text-align: center;
+    padding: 0;
   }
 
 
+  .shop-view-left {
+    .slick-list {}
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-  .shop-view-details {
-    margin-top: 4rem;
-
-    .shop-view-content-1 {
+  .shop-view-right {
+    .shop-view-right-infos {
+      margin: auto;
       padding: 1rem;
+      max-width: 400px;
+      font-size: .9em;
 
-      .MuiBox-root {
-        min-height: 35rem;
-        background: #F5F5F5;
+      .title {
+        font-weight: bold;
       }
 
-      .motion-slide {
-        margin-top: 17rem;
-      }
+      h2 {
+        text-align: end;
+        color: #191919;
+        font-size: 2em;
+        font-weight: bold;
 
-      .motion-mask {
-        margin-top: 2rem;
-        width: 60% !important;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        border-radius: 5px;
-
-        @media screen and (max-width: 767px) {
-          width: 80% !important;
+        .avis {
+          font-size: .5em;
+          font-weight: 100;
         }
       }
 
-      .motion-carousel {
-        position: relative;
-        top: -12rem;
-        height: 100px;
-        width: 100%;
+      .MuiAlert-standardError,
+      .MuiAlert-standardSuccess {
+        cursor: pointer;
+      }
 
-        .motion-img-slide {
-          height: 100px;
+      .share-media {
+        cursor: pointer;
+        padding: .2rem;
+
+        svg {
+          margin: .2rem;
+          font-size: 1.5em;
+        }
+
+        span:hover {
+          color: #f50057;
         }
       }
 
+      .add-cart-content {
+
+        .MuiAlert-standardInfo .MuiSvgIcon-fontSizeInherit {
+          margin-top: .5rem;
+        }
+
+        .btn-qty-cart {
+          display: inline;
+          cursor: pointer;
+          font-size: 20px;
+          color: rgb(168, 168, 168);
+          padding: 10px;
+          -webkit-user-select: none;
+          -khtml-user-select: none;
+          -moz-user-select: none;
+          -o-user-select: none;
+          user-select: none;
+
+          &:hover {
+            color: black;
+            transition-duration: .5s;
+          }
+
+        }
+      }
+
+      // .payment-secure {
+      //   margin: 1em;
+      // }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.shop-view-details {
+  margin-top: 4rem;
+
+  .shop-view-content-1 {
+    padding: 1rem;
+
+    .MuiBox-root {
+      min-height: 35rem;
+      background: #F5F5F5;
     }
 
+    .motion-slide {
+      margin-top: 19rem;
+    }
+
+    .motion-mask {
+      margin-top: 2rem;
+      width: 60% !important;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+
+      @media screen and (max-width: 767px) {
+        width: 80% !important;
+      }
+    }
+
+    .motion-carousel {
+      position: relative;
+      top: -12rem;
+      height: 100px;
+      width: 100%;
+
+      .motion-img-slide {
+        height: 100px;
+      }
+    }
 
   }
 
 
-
-
-
-
-
-
-
-
-  .shop-view-same-cat {
-    height: 300px;
-  }
+}
 
 
 
@@ -249,21 +235,34 @@
 
 
 
+.shop-view-same-cat {
+  height: 300px;
+}
 
 
 
-  .MuiBox-root {
-    height: 80vh;
-  }
 
-  .MuiTabs-root {
-    padding: .5rem;
 
-  }
 
-  .MuiButtonBase-root {
-    outline: none;
-  }
+
+
+
+
+
+
+
+.MuiBox-root {
+  height: 80vh;
+}
+
+.MuiTabs-root {
+  padding: .5rem;
+
+}
+
+.MuiButtonBase-root {
+  outline: none;
+}
 }
 
 

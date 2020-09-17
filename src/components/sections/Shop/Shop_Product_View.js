@@ -13,7 +13,8 @@ import MailOutlineRoundedIcon from '@material-ui/icons/MailOutlineRounded';
 import ShareIcon from '@material-ui/icons/Share';
 
 import { addtoCart } from '../../../lib/actions'
-// import secureImg from '../../../assets/img/payment-secu.jpg'
+
+
 
 
 

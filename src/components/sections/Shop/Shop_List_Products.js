@@ -51,7 +51,7 @@ class ListProducts extends Component {
                (
                <>
                   <div ref={this.myRef} className="row">
-                     <div className="col-md-4 toogle-display">
+                     <div className="col-md-6 toogle-display">
                         <ul>
                            Afficher : 
                            <li onClick={() => { this.handleDisplay('grid-display col-lg-4 col-md-6 col-sm-6') }} className={`btn btn-sm ${this.state.display === 'grid-display col-lg-4 col-md-6 col-sm-6' ? 'secondary' : 'out'}`}><AppsIcon /></li>
@@ -59,15 +59,15 @@ class ListProducts extends Component {
                         </ul>
                      </div>
 
-                     <div className="col-md-4 p-0 result text-center">
+                     {/* <div className="col-md-4 p-0 result text-center">
                         <p className="m-0 mt-2" style={{fontSize:".9em"}}>
                            boutique
                            /categories:<b>{this.props.cat}</b> 
                            /resultat: <b>{this.props.products.length}</b>
                         </p>
-                     </div>
+                     </div> */}
 
-                     <div className="col-md-4 text-right filter-sort">
+                     <div className="col-md-6 text-right filter-sort">
                            Tri
                            <select style={{ width: "10rem", height: "2rem", marginLeft: "1rem" }} className="custom-select" defaultValue={this.props.sort} onChange={this.props.sortProducts}>
                            <option>---</option>

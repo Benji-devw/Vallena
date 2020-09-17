@@ -31,7 +31,7 @@ const HomeCollection = () => {
 
   return (
 
-      <div className="row no-gutters test align-items-center">
+      <div className="row no-gutters align-items-center">
       <div className="col-lg-12">
         
         <Parallax speed={-1} data-scroll>

@@ -1,67 +1,49 @@
 // HOME_VIEW_TOP
 .slider-home-promotion {
-  padding: 1rem;
-  margin-top: 0rem;
-  min-height: 35rem;
+  padding: 3rem;
+  // margin-top: 3rem;
+
   background: #F5F5F5;
 
-  @media screen and (min-width: 768px) {
-    min-height: 20rem;
+  @media screen and (max-width: 768px) {
+    padding: .5rem;
+    height: 32rem;
   }
 
-  .test {
-    height: 35rem;
 
-    .slick-slider {
+  .promotion-parallax {
+    margin-top: 12rem;
+    padding: 0;
 
-      .slick-arrow {
-        cursor: pointer;
-      }
+    @media screen and (max-width: 768px) {
+      margin-top: 25rem;
+    }
 
-      .slick-next {
-        position: absolute;
-        right: 2rem;
-        top: 2.5rem;
-
-        &::before {
-          font-size: 30px !important;
-          color: #191919;
-          opacity: .7;
-
-          @media screen and (max-width: 768px) {
-            font-size: 20px !important;
-          }
-        }
-      }
-
-      .slick-prev {
-        z-index: 100;
-        position: absolute;
-        left: 2rem;
-        top: 2.5rem;
-
-        &::before {
-          font-size: 30px !important;
-          color: #191919;
-          opacity: .7;
-
-          @media screen and (max-width: 768px) {
-            font-size: 20px !important;
-          }
-        }
-
+    .slick-n {
+      bottom: 12rem !important;
+      right: -2rem;
+      @media screen and (max-width: 650px) {
+        right: 0rem;
       }
     }
 
+    .slick-p {
+      bottom: 12rem !important;
+      left: -2rem;
+      @media screen and (max-width: 650px) {
+        left: 0rem;
+      }
+    }
   }
 
   .title-promotion {
     h2 {
       position: absolute;
-      bottom: -8rem;
+      top: -1rem;
       right: 0;
 
-      font-size: 8em;
+      user-select: none;
+      font-size: 10em;
       font-weight: bold;
       background-color: rgba(0, 0, 0, 0.1);
       color: transparent;
@@ -71,8 +53,8 @@
       background-clip: text;
 
       @media screen and (max-width: 768px) {
-        font-size: 5em;
-        top: -10rem;
+        font-size: 4em;
+        top: 1rem;
       }
     }
 
@@ -80,52 +62,39 @@
 
   .promotion-content {
     background: #ffffff;
-    margin: 1rem;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     border-radius: 5px;
-    max-height: 20rem;
-    max-width: 450px;
-
-    @media screen and (max-width: 768px) {
-      margin: auto;
-    }
+    overflow: hidden;
 
     img {
-      max-height: 20rem;
-    }
+      transition: .3s;
 
-    .item-details {
-      position: relative;
-      top: -4rem;
-      margin: auto;
-      padding: 1rem;
-      max-width: 350px;
-      background: rgba(255, 255, 255, .7);
-
-      h2 {
-        font-family: "Roboto", sans-serif;
-        font-size: 1.4em;
-        color: #191919;
-        font-weight: 500;
-      }
-
-      h5 {
-        font-family: "Roboto", sans-serif;
-        font-size: 1.2em;
-        color: #191919;
-        font-weight: 300;
-
-        span {
-          color: #19191960;
-          font-size: .9em;
-          text-decoration: line-through;
-        }
+      &:hover {
+        transition: .5s;
+        transform: scale(1.4);
       }
     }
-
-
-
   }
+
+  .item-details {
+
+    h2 {
+      font-size: 1.7em;
+    }
+
+    h5 {
+      font-size: 1.4em;
+
+      span {
+        color: #19191960;
+        text-decoration: line-through;
+      }
+    }
+  }
+
+
+
+
 
 
 }

@@ -83,10 +83,12 @@ const ScrollableTabsButtonForce = props => {
                <Tab label="Item Four" icon={<HelpIcon />} {...a11yProps(3)} />
             </Tabs>
          </AppBar>
+
          <TabPanel value={value} index={0}>
             <MotionFramer images={imgs} />
          </TabPanel>
-            <TabPanel value={value} index={1}>
+
+         <TabPanel value={value} index={1}>
             <table className="table table-description text-left">
                {/* <thead>
                   <tr>

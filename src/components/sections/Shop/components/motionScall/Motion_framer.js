@@ -28,7 +28,7 @@ const MotionFramer = props => {
                <Frame
                   name={"Mask"}
                   width={"100%"}
-                  height={430}
+                  height={450}
                   center
                   overflow={"hidden"}
                   background={"#F1F1F1"}
@@ -55,8 +55,8 @@ const MotionFramer = props => {
                </Frame>
                <Slider 
                   value={scale}
-                  min={0.35}
-                  max={1.4}
+                  min={0.25}
+                  max={1}
                   onChange={function(newValue) {
                      setScale(newValue)
                   }}

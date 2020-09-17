@@ -1,6 +1,7 @@
 // HOME_VIEW_TOP
 .slider-home-one {
-  background-color: #F5F5F5;
+  // background-color: #F5F5F5;
+  background: #F1F1F1;
   padding: 1rem;
 
   h2 {
@@ -25,28 +26,15 @@
     font-weight: bold;
   }
 
-  .slick-arrow {
-    color: "#191919",
-  }
 
-  .slick-n {
-    cursor: pointer;
-    position: absolute;
-    right: 0;
-    bottom: 1rem;
-  }
 
-  .slick-p {
-    z-index: 100;
-    cursor: pointer;
-    position: absolute;
-    left: 0;
-    bottom: 1rem;
-  }
 
   .slick-dots {
-    background-color: #F5F5F5;
-
+    // background-color: #F5F5F5;
+    bottom: -1rem;
+    li button::before {
+      font-size: 8px;
+    }
   }
 
   .slick-slider {
@@ -57,7 +45,7 @@
     }
 
     .slick-list {
-      min-height: 20rem;
+      min-height: 25rem;
 
       .slick-content {
         height: 60vh;
@@ -73,6 +61,14 @@
         .MuiButton-containedSecondary,
         .MuiButton-outlinedSecondary {
           outline: none;
+        }
+
+        .MuiButton-outlinedSecondary {
+          font-size: .8em;
+
+          @media screen and (max-width: 768px) {
+            font-size: .6em;
+          }
         }
       }
 
@@ -114,6 +110,7 @@
 
         .collection {
           color: #f50057;
+
         }
 
         .round {

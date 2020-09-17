@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Slider from "react-slick";
-import { BsArrowRight, BsArrowLeft } from "react-icons/bs";
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 import visage from '../../../scss/img/visage.svg';
@@ -18,7 +18,7 @@ import Button from '@material-ui/core/Button';
 function SampleNextArrow(props) {
   const { style, onClick } = props;
   return (
-    <BsArrowRight
+    <IoIosArrowForward
       className={'slick-arrow slick-n'}
       style={{ ...style, 
         display: "block", 
@@ -31,7 +31,7 @@ function SampleNextArrow(props) {
 function SamplePrevArrow(props) {
   const { style, onClick } = props;
   return (
-    <BsArrowLeft
+    <IoIosArrowBack
       className={'slick-arrow slick-p'}
       style={{
         ...style,
@@ -80,7 +80,7 @@ const SlideItems = () => {
     localStorage.setItem('filterByCat', cat)
   }
 
-  console.log('productsDb', productsDb);
+  // console.log('productsDb', productsDb);
 
   return (
 
@@ -130,9 +130,9 @@ const SlideItems = () => {
                     </Link>
                 </div>
 
-                <div className="col-md-6 test">
+                <div className="col-md-6">
                   {/* <img src={round} alt="round" className="round" /> */}
-                  <img src={item.imgCollection[0]} alt="visage" className="img-fluid mx-auto" />
+                  <img src={item.imgCollection[2]} alt="visage" className="img-fluid mx-auto" />
 
                 </div>
 

@@ -4,7 +4,9 @@ import React from 'react';
 import apiCall from '../../../apiCall/Products_Api'
 
 import ListProducts from './Shop_List_Products';
-import FilterTop from './components/Filter';
+import FilterTop from './components/Filter_Top';
+
+import FilterLeft from './components/Filter_Left'
 
 // import Parallax from 'react-rellax'
 // import visage from '../../../scss/img/visage.svg';
@@ -95,11 +97,6 @@ class DisplayProducts extends React.Component {
       }
    }
 
-   saveFilterByCat = (cat) => {
-      this.setState({ filterByCat: cat })
-      localStorage.setItem('filterByCat', cat)
-   }
-
 
    render() {
       // console.log(this.state.filterByCat);
@@ -126,48 +123,15 @@ class DisplayProducts extends React.Component {
                </div>
             </div>
 
-
             <div className="row">
                <div className="col-lg-2 mt-4 filter-content-left p-0">
 
-                  <h3>
-                  {/* <div className="filter-result">Produit {this.state.products.length}</div> */}
-                  FILTRES :
-                  </h3>
-                  <div className="col filter-category">
-                     <h4>CATEGORIES</h4>
-                     <ul className="category-list" defaultValue={this.state.category} onChange={this.filterProductsByCat}>
-                        
-                        <li className={`cat-list ${this.state.filterByCat === 'All' ? 'active secondary' : '' }`}
-                           onClick={() => { 
-                              // this.addActiveClass('All'); 
-                              this.filterProductsByCat('All'); 
-                              this.saveFilterByCat('All')
-                           }}>All
-                        </li>
-                        
-                        {categories.map((cat, index) => 
-                        <li key={index} 
-                           className={`cat-list ${this.state.filterByCat === cat ? 'active secondary' : '' }`}
-                           onClick={() => {
-                              this.filterProductsByCat(cat);
-                              this.saveFilterByCat(cat)
-                           }}>{cat}
-                        </li> 
-                        )}
-
-                     </ul>
-                  </div>
-               
-                  <div className="col filter-category">
-                     <h4>MATIERES</h4>
-                  </div>
-                  <div className="col filter-category">
-                     <h4>COULEUR</h4>
-                  </div>
-                  <div className="col filter-category">
-                     <h4>COLLECTION</h4>
-                  </div>
+                  <FilterLeft
+                     category={this.state.category}
+                     filterProductsByCat={this.filterProductsByCat}
+                     filterByCat={this.state.filterByCat}
+                     categories={categories}
+                  />
 
                </div>
                
@@ -180,7 +144,6 @@ class DisplayProducts extends React.Component {
                />
                </div>
          
-
 
                {/* <Parallax speed={1} data-scroll>
                   <img src={visage} alt="visage" className="visage img-fluid" />

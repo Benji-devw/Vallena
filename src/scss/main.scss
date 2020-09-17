@@ -2,13 +2,14 @@
 @import "./libs/normalize.scss";
 @import "./mixins.scss";
 // @import url(//db.onlinewebfonts.com/c/174b2ec3d1b18323f2021ce3fdda6028?family=SamsungOne);
+
 // Effects
 @import './appGuruz.scss';
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 
 // Views
-// @import './partials/test';
+
 
 // Home
 @import './partials/home';
@@ -35,10 +36,8 @@
 // Sections
 @import './partials/footer';
 
-
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-// @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-
+// FONTS
+@import "~fontsource-roboto/index.css";
 
 
 // html {
@@ -90,46 +89,33 @@ a {
   }
 }
 
-.collection-twelve {
-  color: #f50057;
+.slick-arrow {
+  color: rgba(0, 0, 0, .3) !important;
+  transition: .5s;
 
-  &::before {
-    position: absolute;
-    top: -.5rem;
-    margin: auto;
-    content: '';
-    height: 2px;
-    width: 100px;
-    background: #f50057;
+  &:hover {
+    transition: .5s;
+    color: rgba(0, 0, 0, .8) !important;
   }
 }
 
-.collection-nine {
-  color: orangered;
-
-  &::before {
-    position: absolute;
-    top: -.5rem;
-    margin: auto;
-    content: '';
-    height: 2px;
-    width: 100px;
-    background: orangered;
-  }
+.slick-n {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  bottom: 1rem;
 }
 
-.collection-eight {
-  color: #dcb14a;
+.slick-p {
+  z-index: 100;
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  bottom: 1rem;
+}
 
-  &::before {
-    position: absolute;
-    top: -.5rem;
-    margin: auto;
-    content: '';
-    height: 2px;
-    width: 100px;
-    background: #dcb15a;
-  }
+.hovered {
+  transform: scale(2);
 }
 
 .secondary {
@@ -160,53 +146,7 @@ a {
   }
 }
 
-.section-header-light {
 
-  .section-title {
-    font-family: satisfy, sans-serif;
-    font-style: normal;
-    font-size: 6rem;
-    color: $light-color;
-
-    @media screen and (max-width: 492px) {
-      font-size: 4rem;
-    }
-  }
-
-  .subtitle {
-    font-family: usual, sans-serif;
-    font-size: 1.1rem;
-    font-weight: 100;
-    color: $light-color;
-
-    @media screen and (max-width: 492px) {
-      font-size: .9rem;
-    }
-  }
-}
-
-.section-header-dark {
-  .section-title {
-    font-family: satisfy, sans-serif;
-    font-size: 6rem;
-    color: $dark-color;
-
-    @media screen and (max-width: 492px) {
-      font-size: 2.2rem;
-    }
-  }
-
-  .subtitle {
-    font-family: usual, sans-serif;
-    font-size: 1.1rem;
-    font-weight: 100;
-    color: $dark-color;
-
-    @media screen and (max-width: 492px) {
-      font-size: .9rem;
-    }
-  }
-}
 
 
 

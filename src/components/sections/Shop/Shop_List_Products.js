@@ -27,8 +27,10 @@ class ListProducts extends Component {
 
    componentDidMount() {
       const display = localStorage.getItem('display')
+      const cat = localStorage.getItem('filterByCat')
       // console.log('display', display)
       this.setState({display: display})
+      this.setState({cat: cat})
    }
 
    handleDisplay = (e) => {
@@ -39,7 +41,7 @@ class ListProducts extends Component {
 
    render() {
 
-
+      // console.log(this.props);
       return (
          <>
             {
@@ -49,14 +51,23 @@ class ListProducts extends Component {
                (
                <>
                   <div ref={this.myRef} className="row">
-                     <div className="col toogle-display">
+                     <div className="col-md-4 toogle-display">
                         <ul>
                            Afficher : 
-                           <li onClick={() => { this.handleDisplay('grid-display col-lg-4 col-md-6 col-sm-6') }} className={`btn btn-sm ${this.state.display === 'grid-display col-lg-4 col-md-6 col-sm-6' ? 'text-primary' : ''}`}><AppsIcon /></li>
-                           <li onClick={() => this.handleDisplay('list-display')} className={`btn btn-sm arttrack ${this.state.display === 'list-display' ? 'text-primary' : ''}`}><ArtTrackIcon /></li>
+                           <li onClick={() => { this.handleDisplay('grid-display col-lg-4 col-md-6 col-sm-6') }} className={`btn btn-sm ${this.state.display === 'grid-display col-lg-4 col-md-6 col-sm-6' ? 'secondary' : 'out'}`}><AppsIcon /></li>
+                           <li onClick={() => this.handleDisplay('list-display')} className={`btn btn-sm arttrack ${this.state.display === 'list-display' ? 'secondary' : 'out'}`}><ArtTrackIcon /></li>
                         </ul>
                      </div>
-                     <div className="col-md-6 text-right filter-sort">
+
+                     <div className="col-md-4 p-0 result text-center">
+                        <p className="m-0 mt-2" style={{fontSize:".9em"}}>
+                           boutique
+                           /categories:<b>{this.props.cat}</b> 
+                           /resultat: <b>{this.props.products.length}</b>
+                        </p>
+                     </div>
+
+                     <div className="col-md-4 text-right filter-sort">
                            Tri
                            <select style={{ width: "10rem", height: "2rem", marginLeft: "1rem" }} className="custom-select" defaultValue={this.props.sort} onChange={this.props.sortProducts}>
                            <option>---</option>

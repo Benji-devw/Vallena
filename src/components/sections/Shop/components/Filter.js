@@ -38,7 +38,7 @@ const FilterTop = props => {
       return (
          <div className="row" style={{ width: "100%" }}>
 
-            <div className="col-sm-6 filter-search">
+            <div className="col-sm-6 p-0 filter-search">
                <div className={classes.search}>
                   <div className={classes.searchIcon}>
                      <SearchIcon />
@@ -55,9 +55,6 @@ const FilterTop = props => {
                </div>
             </div>
 
-
-
-            
          </div>
       );
 

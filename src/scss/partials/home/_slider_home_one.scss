@@ -1,0 +1,142 @@
+// HOME_VIEW_TOP
+.slider-home-one {
+  background-color: #F5F5F5;
+  padding: 1rem;
+
+  h2 {
+    font-family: satisfy, sans-serif;
+    font-size: 7em;
+    font-weight: bold;
+
+    @media screen and (max-width: 576px) {
+      font-size: 4em;
+    }
+  }
+
+  p {
+    font-size: 1em;
+
+    @media screen and (max-width: 576px) {
+      font-size: .8em;
+    }
+  }
+
+  h4 {
+    font-weight: bold;
+  }
+
+  .slick-arrow {
+    color: "#191919",
+  }
+
+  .slick-n {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    bottom: 1rem;
+  }
+
+  .slick-p {
+    z-index: 100;
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    bottom: 1rem;
+  }
+
+  .slick-dots {
+    background-color: #F5F5F5;
+
+  }
+
+  .slick-slider {
+    padding-top: 3rem;
+
+    @media screen and (max-width: 768px) {
+      padding-top: 3rem;
+    }
+
+    .slick-list {
+      min-height: 20rem;
+
+      .slick-content {
+        height: 60vh;
+
+        @media screen and (max-width: 768px) {
+          height: 80vh;
+        }
+
+        // button {
+        //   box-shadow: 10px 10px 6px rgba(0, 0, 0, 0.3);
+        // }
+        // overflow: hidden;
+        .MuiButton-containedSecondary,
+        .MuiButton-outlinedSecondary {
+          outline: none;
+        }
+      }
+
+      .content-one {
+        .visage {
+          position: absolute;
+          top: -10rem;
+          left: 15rem;
+          max-height: 40rem;
+
+          @media screen and (max-width: 991px) {
+            top: -10rem;
+            left: 5rem;
+          }
+        }
+      }
+
+      .content-two {
+        h3 {
+          font-family: satisfy, sans-serif;
+          font-size: 4em;
+          font-weight: lighter;
+          padding: .3rem;
+
+          &::after {
+            position: absolute;
+            top: 0rem;
+            left: .5rem;
+            content: '';
+            height: 100px;
+            width: 2px;
+            background: #f50057;
+          }
+
+          @media screen and (max-width: 576px) {
+            font-size: 2em;
+          }
+        }
+
+        .collection {
+          color: #f50057;
+        }
+
+        .round {
+          z-index: -1;
+          position: absolute;
+          top: -2rem;
+          right: 0rem;
+          max-height: 22rem;
+        }
+      }
+
+      .content-three {
+        .round {
+          z-index: -1;
+          position: absolute;
+          top: 0rem;
+          right: 1rem;
+          max-height: 15rem;
+        }
+      }
+
+
+
+    }
+  }
+}

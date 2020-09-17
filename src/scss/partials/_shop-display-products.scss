@@ -2,9 +2,8 @@
   // background: #ca5116;
   margin-top: 5rem;
   padding: 1rem;
-  min-height: 40rem;
+  min-height: 50rem;
   background: white;
-
 
   .filter-content-top {}
 
@@ -16,7 +15,9 @@
     }
   }
 
-
+  .filter-search {
+    max-width: 20rem;
+  }
 
   .filter-category {
     -webkit-user-select: none;
@@ -34,7 +35,7 @@
       padding: 5px;
       display: inline-block;
       list-style: none;
-      color: $category;
+      color: $dark-color;
       font-weight: 400;
       cursor: pointer;
 

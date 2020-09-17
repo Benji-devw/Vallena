@@ -4,13 +4,17 @@
 // @import url(//db.onlinewebfonts.com/c/174b2ec3d1b18323f2021ce3fdda6028?family=SamsungOne);
 // Effects
 @import './appGuruz.scss';
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 
 // Views
 // @import './partials/test';
 
 // Home
 @import './partials/home';
-// @import './partials/sidebar-home';
+@import './partials/home/slider_home_one';
+@import './partials/home/home_collection';
+@import './partials/home/home_promotion';
 
 //Shop
 @import './partials/shop-display-products';
@@ -42,10 +46,14 @@
 // }
 
 body {
-  // height: 100vh;
   // font-family: usual, sans-serif;
   font-family: "Roboto", sans-serif;
   // background-color: $light-bg;
+
+  font-style: normal;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: 0em;
 }
 
 .background-home {
@@ -76,7 +84,67 @@ input {
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
 }
 
+a {
+  &:hover {
+    text-decoration: none;
+  }
+}
 
+.collection-twelve {
+  color: #f50057;
+
+  &::before {
+    position: absolute;
+    top: -.5rem;
+    margin: auto;
+    content: '';
+    height: 2px;
+    width: 100px;
+    background: #f50057;
+  }
+}
+
+.collection-nine {
+  color: orangered;
+
+  &::before {
+    position: absolute;
+    top: -.5rem;
+    margin: auto;
+    content: '';
+    height: 2px;
+    width: 100px;
+    background: orangered;
+  }
+}
+
+.collection-eight {
+  color: #dcb14a;
+
+  &::before {
+    position: absolute;
+    top: -.5rem;
+    margin: auto;
+    content: '';
+    height: 2px;
+    width: 100px;
+    background: #dcb15a;
+  }
+}
+
+.secondary {
+  color: #f50057;
+
+  &:hover {
+    color: #f50057;
+  }
+}
+
+.out {
+  &:hover {
+    color: #f50057;
+  }
+}
 
 
 .backTo {

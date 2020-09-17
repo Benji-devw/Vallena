@@ -27,15 +27,19 @@ const App = props => {
   useEffect(() => {     // s'execute quand il y a un changement ds l'etat local des items(Cart) (qty, delete, ...)
     saveLocalStorage(items)   // savegarde du panier dans le navigateur
 
-    let indexDBFound = indexedDB.databases();
-    indexDBFound.then((value) => {
-      if (value.length < 1) {
-        console.log('APICALL');
-        apiCall.getProducts().then(product => {
-          IndexDbInit(product.data.products)
-        })
-      }
-    })
+    const test=()=> {
+      let indexDBFound = indexedDB.databases();
+      // console.log('indexDBFound', indexDBFound)
+       indexDBFound.then((value) => {
+        if (value.length < 1) {
+          console.log('APICALL');
+          apiCall.getProducts().then(product => {
+            IndexDbInit(product.data.products)
+          })
+        }
+      })
+    }
+    test()
   }, [saveLocalStorage, items])
 
   return (

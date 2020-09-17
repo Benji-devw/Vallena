@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import apiCall from '../../../apiCall/Products_Api'
 import { useSelector, useDispatch } from 'react-redux';
-
-import { MdAddShoppingCart } from 'react-icons/md';
-import Alert from '@material-ui/lab/Alert';
-import ControlledCarousel from './components/carousel'
+import CenterMode from './components/carousel'
 import Footer from '../../UI/Footer/Footer'
+
+import Alert from '@material-ui/lab/Alert';
+import { MdAddShoppingCart } from 'react-icons/md';
 import ScrollableTabsButtonForce from './components/Tabs_Product_View'
+// import {AiOutlineShareAlt} from 'react-icons/ai';
+import MailOutlineRoundedIcon from '@material-ui/icons/MailOutlineRounded';
+import ShareIcon from '@material-ui/icons/Share';
 
 import { addtoCart } from '../../../lib/actions'
 // import secureImg from '../../../assets/img/payment-secu.jpg'
@@ -21,6 +24,7 @@ const ProductView = props => {
    const [imgs, setImgs] = useState([])
    // const [datas, setDatas] = useState([])
    // console.log('datas', datas)
+
 
    // Redux
    const dispatch = useDispatch()                        // Call dispatch to send redux
@@ -49,7 +53,8 @@ const ProductView = props => {
 
             <section className="row no-gutters shop-view-top">
                <article className="container">
-                  <div className="col-12 text-center">
+                  <div className="col-12 title-product">
+                     <h1 className="title">{data.titleProduct}</h1>
                   </div>
 
                </article>
@@ -61,22 +66,25 @@ const ProductView = props => {
             <article className="row shop-view-product align-items-center no-gutters">
 
                <div className="col-lg-8 align-self-center shop-view-left text-center">
-                  {<ControlledCarousel images={imgs} />}
+                  {<CenterMode images={imgs} />}
                   {/* <img src={imgs[0]} alt="img0" className="img-0 img-fluid" /> */}
                </div>
 
                <div className="col-lg-4 align-self-center shop-view-right">
                   <div className="shop-view-right-infos">
-                     <div className="">
-                        <h2 className="title">{data.titleProduct}</h2>
-                        <p className="avis">avis(0)</p>
                         <p className="description">{data.descriptionProduct}</p>
-                     </div>
-                     <hr />
+                        <p className="m-2">
+                           <b>Taile :</b> {data.sizeProduct} <br />
+                           <b>Poids :</b> {data.weightProduct} <br />
+                           <b>Matière :</b> matière <br />
+                              <b>Catégories :</b> {data.categoryProduct} <br />
+                              <b>Tags :</b> mot-clé, sdb, rangement
+                     </p>
                   
-                        <h5>{data.priceProduct} €</h5>
+                        
                 
                      <hr />
+                     <h2>{data.priceProduct}€ <span className="avis">avis(0)</span></h2> 
                      {data.quantityProduct > 1 ? 	// Affichage à la volée avec opérateur ternaire
                      <div className="add-cart-content flipInX">
                         {!findId ?
@@ -104,12 +112,13 @@ const ProductView = props => {
                               <Alert onClick={() => { history.goBack() }} severity="success">Dans votre panier !</Alert>
                            }
                      </div> : <Alert onClick={() => { history.goBack() }} severity="error" className="flipInX">Rupture !</Alert>}
-                  
-                     <p className="m-2">
-                        <b>Catégories :</b> {data.categoryProduct}
-                        <br />
-                        <b>Tags :</b> mot-clé, sdb, rangement
-                     </p>
+
+
+                     <div className="share-media">
+                          <span><MailOutlineRoundedIcon /> Envoyer à un ami </span> 
+                          <br />
+                           <span><ShareIcon /> Partager</span> 
+                     </div>
               
                   </div>
                </div>

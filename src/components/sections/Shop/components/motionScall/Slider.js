@@ -18,7 +18,8 @@ export function Slider({
             width={130}
             height={6}
             radius={3}
-            background={"rgba(255, 255, 255, .2)"}
+            background={"rgba(0, 0, 0, .3)"}
+            shadow={"0px 0px 5px #fff"}
             className={"motion-slide"}
          >
             <Frame   // Remplissage du rail
@@ -26,7 +27,7 @@ export function Slider({
                width={position}
                height={6}
                radius={3}
-               background={"#F1F1F1"}
+               background={"rgba(0, 0, 0, .3)"}
             />
             <Frame   // Creation du boutton
                name={"Knob"}
@@ -34,10 +35,9 @@ export function Slider({
                size={30}
                center={"y"}
                radius={"50%"}
-               background={"#F1F1F1"}
-               shadow={"0 0px 5px 3px black"}
+               background={"#fff"}
+               shadow={"0px 0px 4px rgba(0, 0, 0, 0.5)"}
                left={-20}
-
                drag={"x"}
                dragConstraints={{left: 0, right: 130}}
                dragElastic={0}

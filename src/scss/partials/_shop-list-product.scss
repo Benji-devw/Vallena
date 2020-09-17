@@ -20,7 +20,7 @@
   // overflow: hidden;
   // box-shadow: $boxShadow;
   // background: #F1F1F1;
-  height: 13rem;
+
   img {
     border-radius: 3px;
     transition: .4s;
@@ -51,45 +51,34 @@
     padding: 3px;
   }
 
-  .rupture {
-    position: absolute;
-    top: 2.5rem;
-    left: 1rem;
-    border-radius: 3px;
-    font-size: .8em;
-    width: 70px;
-    margin: 0;
-    color: #F1F1F1;
-    box-shadow: $boxShadow;
-  }
+
 
   .promotion {
     position: absolute;
-    top: .5rem;
-    left: 1rem;
-    border-radius: 3px;
-    width: 70px;
-    margin: 0;
-    color: #F1F1F1;
-    box-shadow: $boxShadow;
+    color: #a5d6a7;
+    bottom: 8rem;
+    right: 1rem;
   }
+
 }
 
 .list-display {
   padding: 1rem;
   margin-top: 2rem;
+    @media screen and (max-width: 576px) {
+      height: 80vh;
+    }
   .product-item {
     img {
       max-width: 80%;
     }
   }
-
 }
 
 .grid-display {
   padding: 1.5rem;
   text-align: center;
-
+  // transition: all 1s linear;
   .product-item {
     img {
       width: 100%;
@@ -114,6 +103,20 @@
     text-align: center;
   }
 
+  .rupture {
+    font-size: .8em;
+    height: 30px;
+    max-width: 130px;
+    .MuiAlert-icon {
+      margin-top: -2px;
+      padding: 0;
+    }
+    .MuiAlert-message {
+      padding: 0;
+
+    }
+  }
+
   h2 {
     font-family: "Roboto", sans-serif;
     font-size: 1.3em;
@@ -123,8 +126,12 @@
 
   h5 {
     font-family: "Roboto", sans-serif;
-    font-size: 1.2em;
+    font-size: 1.3em;
+    color: #191919;
     font-weight: 300;
+    svg {
+      margin-top: -4px;
+    }
   }
 
   p {
@@ -157,19 +164,3 @@
 
 
 
-
-
-// #card-shop {
-
-//   transition: all 1s linear;
-//   margin: 3rem;
-//   border: 1px solid rgba(0, 0, 0, 0.452);
-//   padding: 2rem;
-
-//   // background-color: rgba(16, 121, 182, 0.479);
-
-
-//   border-radius: 30% / 50%;
-
-
-// }

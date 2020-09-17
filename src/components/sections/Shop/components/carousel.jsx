@@ -1,32 +1,39 @@
-import React, { useState } from 'react'
-import Carousel from 'react-bootstrap/Carousel'
+import React from 'react'
+import Slider from "react-slick";
 
 
-const ControlledCarousel = props => {
-	const [index, setIndex] = useState(0);
+const CenterMode = props => {
 	const imgs = props.images
 
-	const handleSelect = (selectedIndex, e) => {
-		setIndex(selectedIndex);
-	};
+		const settings = {
+			customPaging: function (i) {
+				return (
+					<img src={imgs[i]} alt={i} />
+				);
+			},
+			dots: true,
+			dotsClass: "slick-dots slick-thumb",
+			infinite: true,
+			speed: 500,
+			slidesToShow: 1,
+			slidesToScroll: 1,
+			autoplay: true,
+			autoplaySpeed: 4000,
+			pauseOnHover: true
+		};
+		return (
+			<div>
+				<Slider {...settings}>
+					{imgs.map((url, i) => (
+					<img key={i}
+						src={url}
+						alt="First slide"
+					/>
+					))}
+				</Slider>
+			</div>
+		);
 	
-	return (
-		<Carousel activeIndex={index} onSelect={handleSelect}>
-			{ imgs.map((url, i)=> (
-			<Carousel.Item key={i}>
-			<img
-				className="img-fluid img-0"
-				src={url}
-				alt="First slide"
-			/>
-			{/* <Carousel.Caption>
-				<h3>First slide label</h3>
-				<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-			</Carousel.Caption> */}
-			</Carousel.Item>
-		)) 
-		}
-    </Carousel>
-	);
 }
-export default ControlledCarousel
+export default CenterMode
+

@@ -1,6 +1,8 @@
 #shop-view-product {
   min-height: 60rem;
 
+
+
   .backTo {
 
     i.icon,
@@ -17,59 +19,39 @@
   }
 
 
+  .slick-next {
+    position: absolute;
+    right: 0;
 
-
-  .carousel {
-    padding: 1rem;
-    height: 500px;
-
-    @media screen and (max-width: 991px) {
-      height: 100%;
-      padding: 0;
-      margin-top: 1rem;
-    }
-
-    .carousel-inner {
-      height: 100%;
-
-      .carousel-item {
-        height: 100%;
-
-        img {
-          @media screen and (max-width: 1200px) and (min-width: 991px) {
-            margin-top: 2rem;
-          }
-        }
-      }
-    }
-
-    .carousel-control-prev span {
-      @include background('./img/angle-left-solid.svg');
-      height: 2rem;
-    }
-
-    .carousel-control-next span {
-      @include background('./img/angle-right-solid.svg');
-      height: 2rem;
-    }
-
-    .carousel-indicators {
-      position: absolute;
-      bottom: 0;
-      margin-bottom: -1rem;
-    }
-
-    .carousel-indicators li {
-      border-radius: 50%;
-      height: 15px;
-      width: 15px;
-      background-color: $dark-color !important;
+    &::before {
+      color: rgba(0, 0, 0, 0.3);
     }
   }
 
+  .slick-prev {
+    z-index: 100;
+    position: absolute;
+    left: 0;
 
+    &::before {
+      color: rgba(0, 0, 0, 0.3);
+    }
+  }
 
+  .slick-dots {
+    position: relative;
+    top: 0rem;
 
+    li {
+      height: 100%;
+      width: 120px;
+    }
+
+    img {
+      height: 100px;
+      padding: .5rem;
+    }
+  }
 
 
 
@@ -79,18 +61,21 @@
 
 
   .shop-view-top {
-    height: 20vh;
     margin-top: 3rem;
-    background-color: #f1f1f182;
+    background-color: #F5F5F5;
+    .title-product {
+      h1 {
+        font-family: satisfy, sans-serif;
+        font-size: 5em;
+        font-weight: bold;
+        color: #191919;
+        margin: 2rem;
+      @media screen and (max-width: 768px) {
+        font-size: 3em;
+      }
+      }
   }
-
-
-
-
-
-
-
-
+  }
 
 
 
@@ -98,10 +83,10 @@
 
   .shop-view-product {
     min-height: 70vh;
-    padding: 1rem;
+    padding: 2rem;
 
 
-    @media screen and (max-width: 991px) {
+    @media screen and (max-width: 768px) {
       text-align: center;
       padding: 0;
     }
@@ -124,18 +109,34 @@
           font-weight: bold;
         }
 
-        h5 {
+        h2 {
+          text-align: end;
           color: #191919;
-          font-size: 1.4em;
-          font-weight: 500;
+          font-size: 2em;
+          font-weight: bold;
+          .avis {
+            font-size: .5em;
+            font-weight: 100;
+          }
         }
 
-        .MuiAlert-standardError {
-          cursor: pointer;
-        }
-
+        .MuiAlert-standardError,
         .MuiAlert-standardSuccess {
           cursor: pointer;
+        }
+
+        .share-media {
+          cursor: pointer;
+          padding: .2rem;
+
+          svg {
+            margin: .2rem;
+            font-size: 1.5em;
+          }
+
+          span:hover {
+            color: #f50057;
+          }
         }
 
         .add-cart-content {
@@ -190,16 +191,19 @@
     .shop-view-content-1 {
       padding: 1rem;
 
+      .MuiBox-root {
+        min-height: 35rem;
+        background: #F5F5F5;
+      }
+
       .motion-slide {
-        position: absolute;
-        bottom: 0px;
         margin-top: 17rem;
       }
 
       .motion-mask {
         margin-top: 2rem;
         width: 60% !important;
-        box-shadow: 0 0 20px black;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         border-radius: 5px;
 
         @media screen and (max-width: 767px) {
@@ -212,7 +216,6 @@
         top: -12rem;
         height: 100px;
         width: 100%;
-        background: red;
 
         .motion-img-slide {
           height: 100px;
@@ -225,9 +228,26 @@
   }
 
 
+
+
+
+
+
+
+
+
   .shop-view-same-cat {
     height: 300px;
   }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -248,7 +268,7 @@
 
 
 .table-description {
-  color: #F1F1F1;
+  color: #191919;
   width: 70%;
   margin: auto;
 
@@ -257,17 +277,19 @@
   }
 
   th {
+    padding: .3em;
     font-weight: 100;
     border-top: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     max-width: 4rem;
   }
 
   td {
+    padding: .3em;
     font-size: .9em;
     border-top: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
   }
 
   // thead th {

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import formatCurrency from '../../../utils/utils';
+// import formatCurrency from '../../../utils/utils';
 import Fade from '@material-ui/core/Fade';
+import Alert from '@material-ui/lab/Alert';
+import LoyaltyOutlinedIcon from '@material-ui/icons/LoyaltyOutlined';
 
 
 
@@ -18,9 +20,10 @@ const Card = props => {
                <Link to={`/product/${product._id}`} >
                   <img src={product.imgCollection[0]} alt={product.titleProduct} className={`align-self-center img-fluid`} />
                </Link>
-               {product.quantityProduct < 1 && <div className="rupture bg-danger">Rupture</div>}
-               {product.promotionProduct && <div className="promotion bg-success">-20 %</div>}
-
+               {/* {product.quantityProduct < 1 && <div className="rupture bg-danger">Rupture</div>}
+               {product.promotionProduct && <div className="promotion bg-success">-20 %</div>} */}
+                  {product.promotionProduct && 
+                  <LoyaltyOutlinedIcon className="promotion" style={{fontSize:"2em"}} />}
             </div>
 
 
@@ -33,9 +36,9 @@ const Card = props => {
                {/* <b>{product.categoryProduct}</b>*/}
                <p>Mots-clé, sdb, rangement</p> 
             
-               <h5>{formatCurrency(product.priceProduct)}</h5>
+                  <h5>{product.priceProduct} €</h5>
+                  {product.quantityProduct < 1 && <Alert severity="error" className="rupture">Rupture</Alert>}
          
-               {/* <p className="personnalisable">Personnalisable</p> */}
             
                {/* <b>{product.sizeProduct} - {product.weightProduct}</b> */}
             

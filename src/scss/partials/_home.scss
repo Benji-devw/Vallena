@@ -1,5 +1,5 @@
 #home {
-  height: 75vh;
+  min-height: 50rem;
 
   .home-content {
     height: 75%;
@@ -23,22 +23,19 @@
   padding: 1rem;
   height: 100%;
   display: block;
-
   img {
     height: 200px;
     margin: 0 auto;
     box-shadow: 2px 2px 5px $boxShadow;
   }
-
   @media screen and (max-width: 576px) {
     font-size: .8em;
-
     img {
       height: 150px;
-
     }
   }
 }
+
 
 
 

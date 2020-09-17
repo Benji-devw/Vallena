@@ -17,7 +17,6 @@ class DisplayProducts extends React.Component {
       this.state = {
          products: [],
          catList: [],
-         category:'',
          sort:'',
          isloading: false,
          active: '',
@@ -139,7 +138,7 @@ class DisplayProducts extends React.Component {
                      <h4>CATEGORIES</h4>
                      <ul className="category-list" defaultValue={this.state.category} onChange={this.filterProductsByCat}>
                         
-                        <li className={`cat-list ${this.state.filterByCat === 'All' ? 'active text-primary' : '' }`}
+                        <li className={`cat-list ${this.state.filterByCat === 'All' ? 'active secondary' : '' }`}
                            onClick={() => { 
                               // this.addActiveClass('All'); 
                               this.filterProductsByCat('All'); 
@@ -149,7 +148,7 @@ class DisplayProducts extends React.Component {
                         
                         {categories.map((cat, index) => 
                         <li key={index} 
-                           className={`cat-list ${this.state.filterByCat === cat ? 'active text-primary' : '' }`}
+                           className={`cat-list ${this.state.filterByCat === cat ? 'active secondary' : '' }`}
                            onClick={() => {
                               this.filterProductsByCat(cat);
                               this.saveFilterByCat(cat)
@@ -166,14 +165,18 @@ class DisplayProducts extends React.Component {
                   <div className="col filter-category">
                      <h4>COULEUR</h4>
                   </div>
+                  <div className="col filter-category">
+                     <h4>COLLECTION</h4>
+                  </div>
 
                </div>
                
                <div className="col-lg-10 mt-3">
                <ListProducts 
-               products={this.state.products}  
-               sort={this.state.sort}
-               sortProducts={this.sortProducts}
+                  products={this.state.products}  
+                  sort={this.state.sort}
+                  sortProducts={this.sortProducts}
+                  cat={this.state.filterByCat}
                />
                </div>
          

@@ -1,0 +1,13 @@
+STATE :
+
+
+novelty
+oldPriceProduct
+displaySlideHome
+yearCollection
+tags
+matter
+composition
+fabrication
+color
+entretien

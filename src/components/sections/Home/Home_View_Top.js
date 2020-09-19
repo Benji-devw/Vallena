@@ -52,10 +52,11 @@ const SlideItems = () => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    autoplay: true,
+    speed: 1000,
+    // fade: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
     autoplaySpeed: 5000,
     pauseOnHover: true,
     nextArrow: <SampleNextArrow />,

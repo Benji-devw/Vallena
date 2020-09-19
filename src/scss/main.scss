@@ -29,9 +29,13 @@
 
 // Components
 @import './partials/header';
+@import './partials/cart-modal';
+
+// Payment
 @import './partials/payment';
 @import './partials/payment-form';
-@import './partials/cart-modal';
+@import './partials/payment/transfer-list';
+
 
 // Sections
 @import './partials/footer';

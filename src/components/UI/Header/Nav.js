@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import LinkScroll from './Links/Link_Scroll';
 import LinksAdmin from './Links/LinksAdmin';
@@ -11,7 +11,7 @@ const Nav = props => {
   // console.log('props', props)
 // console.log(window.location);
   // console.log(`${window.location.origin}/product/`);
-  const history = useHistory()
+  // const history = useHistory()
 
   const [navClass, setNavClass] = useState('');
   const [toggeledNav, settoggeledNav] = useState(false);
@@ -69,9 +69,12 @@ const Nav = props => {
             </>
             ) : (
             <>
-                <li  className='nav-item backTo'>
+                {/* <li  className='nav-item backTo'>
                     <div onClick={() => { history.goBack()} }classes='nav-link'>  Boutique  </div>
-                </li>
+                </li> */}
+                <Link to='/shop'  className='nav-item'>
+                    <li classes='nav-link'> Boutique </li>
+                </Link>
             </>
             )}
             

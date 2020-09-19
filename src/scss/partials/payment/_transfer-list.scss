@@ -1,0 +1,110 @@
+#transfer-list {
+
+
+
+  .payment-list-item {
+    margin: .5rem;
+
+    img {
+      height: 130px;
+      border-radius: 3px;
+      transition: .3s;
+
+      &:hover {
+        transition: .3s;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    h2 {
+      font-size: 1.2em;
+    }
+
+    .cart-qty {
+
+      .qty-content {
+        padding: 10px;
+      }
+
+      .btn-cart-qty {
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 25px;
+        color: rgb(168, 168, 168);
+        transition-duration: .5s;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+
+        &:focus {
+          outline: none;
+        }
+
+        &:hover {
+          color: #191919;
+          transition-duration: .5s;
+        }
+      }
+
+      span {
+        width: 25px;
+        cursor: default;
+        padding: 5px 10px;
+        background: #ffffff;
+        border-radius: 5px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+      }
+
+    }
+
+    .cart-price {
+      h2 {
+        display: inline-block;
+        padding: 10px;
+        margin-top: 10px;
+      }
+    }
+
+    .btn-cart-remove {
+      color: #F44336;
+      border: none;
+      transition-duration: .5s;
+      outline: none;
+      margin-top: -5px;
+
+      &:hover {
+        color: red;
+        transition-duration: .5s;
+      }
+    }
+  }
+
+
+
+
+
+
+}
+
+
+
+
+.payment-arrow {
+  
+  .MuiButton-label svg {
+    font-size: 2.3em;
+  }
+  
+  .move-all-gift {
+    transform: rotate(-90deg);
+  }  
+  .move-all-client {
+    transform: rotate(90deg);  
+  }
+  .move-item-gift {
+    transform: rotate(180deg);  
+  }
+}

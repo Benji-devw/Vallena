@@ -2,11 +2,12 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import TransferList from './Transfer_List';
 
-const PaymentForm = () => {
+const PaymentForm = props => {
    const items = useSelector(state => state.items)
 
    const [subTotal, setSubTotal] = useState(0.00)
    const [total, setTotal] = useState(0.00)
+   // console.log('total', total)
    const shipping = 5.50
    useEffect(() => {
       let totals = items.map(item => {
@@ -14,6 +15,7 @@ const PaymentForm = () => {
       })
       setSubTotal(totals.reduce((item1, item2) => item1 + item2, 0))
       setTotal(subTotal + shipping)
+
    }, [items, subTotal, total]);
    // const totalCmd = { total: total, shipping: shipping }
    // console.log('totalCmd', totalCmd)

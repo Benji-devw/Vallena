@@ -1,13 +1,10 @@
-#transfer-list {
 
-
-
-  .payment-list-item {
+  .row-item {
     margin: .5rem;
 
     img {
-      height: 130px;
-      border-radius: 3px;
+      height: 150px;
+      border-radius: 50%;
       transition: .3s;
 
       &:hover {
@@ -85,9 +82,6 @@
 
 
 
-
-
-}
 
 
 

@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { updateCart, removeFromCart } from '../../lib/actions'
+import { updateCart, removeFromCart } from '../../../lib/actions'
 
 import FirstPageIcon from '@material-ui/icons/FirstPage';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
@@ -39,7 +39,7 @@ const RowItem = props => {
 
    const remove = id => {
       dispatch(removeFromCart(id))
-      window.location.reload(false);
+      // window.location.reload(false);
    }
 
 
@@ -48,7 +48,7 @@ const RowItem = props => {
          <div className="col-md-6">
             <h2>{item.titleProduct}</h2>
             <Link to={`/product/${item._id}`}>
-            <img
+            <img style={{height:"100px"}}
                src={item.imgCollection[0]}
                alt="none"
             />
@@ -138,12 +138,24 @@ function intersection(a, b) {
 
 
 export default function TransferList(props) {
+   // console.log('setLeft', props)
+
 
    const items = useSelector(state => state.items)
    // console.log('items', items)
 
    const [left, setLeft] = useState(items);
+   console.log('left', left)
    const [right, setRight] = useState([]);
+
+   const handleLeftChange = (data) => {
+      // console.log('dataLeft', data)
+      props.onHandleLeft(data)
+   }
+   const handleRightChange = (data) => {
+      // console.log('dataRight', data)
+      props.onHandleRight(data)
+   }
 
 
    const classes = useStyles();
@@ -163,25 +175,36 @@ export default function TransferList(props) {
    };
    const handleAllRight = () => {
       setRight(right.concat(left));
+         handleRightChange(right.concat(left))
       setLeft([]);
+         handleLeftChange([])
    };
+   
    const handleCheckedRight = () => {
       setRight(right.concat(leftChecked));
+         handleRightChange(right.concat(leftChecked))
       setLeft(not(left, leftChecked));
+         handleLeftChange(not(left, leftChecked))
       setChecked(not(checked, leftChecked));
    };
    const handleCheckedLeft = () => {
       setLeft(left.concat(rightChecked));
+         handleLeftChange(left.concat(rightChecked))
       setRight(not(right, rightChecked));
+         handleRightChange(not(right, rightChecked))
       setChecked(not(checked, rightChecked));
    };
+
    const handleAllLeft = () => {
       setLeft(left.concat(right));
+         handleLeftChange(left.concat(right))
       setRight([]);
+         handleRightChange([])
    };
 
    const customList = (items) => (
       <Paper id='transfer-list' className={classes.paper}>
+      {/* {console.log('items', items)} */}
          <List dense component="div" role="list" className='list-items'>
             {items.map((value, i) => {
                // console.log('value', value)

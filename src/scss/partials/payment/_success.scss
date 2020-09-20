@@ -1,0 +1,29 @@
+.success-payment {
+
+  padding: 5rem;
+
+  @media screen and (max-width: 768px) {
+    margin-top: 3rem;
+    padding: 1rem;
+  }
+
+  .icon-success {
+    color: #4caf50;
+
+    svg {
+      margin: auto;
+      font-size: 5em;
+
+    }
+  }
+
+
+  .success-client {
+    svg {
+      font-size: 3em;
+    }
+  }
+
+
+
+}

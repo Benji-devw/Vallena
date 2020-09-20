@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Success from './views/Success'
 
 import ClientProfileContext from './lib/ClientProfileContext'
 import IndexDbInit from './lib/IndexBdInit'
@@ -60,6 +61,8 @@ const App = props => {
 
           <Route path="/login" component={Login} />
           <Route path="/Signup" component={Signup} />
+
+          <Route path="/success" component={Success} />
 
           <PrivateRoute path="/dashboard" component={Dashboard} />
           <Route path="/update/:id" component={ProductUpdate} />   {/* Lien => Update_Product.js */}

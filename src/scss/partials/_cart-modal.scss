@@ -1,3 +1,13 @@
+
+.modal-dialog {
+  padding: 1.5rem;
+  max-width: 800px;
+}
+.modal-content {
+  margin: auto;
+}
+
+
 .btn-cart {
   cursor: pointer;
   margin-top: .7rem;
@@ -11,9 +21,15 @@
   padding: .1rem .3rem;
 }
 
-.modal-dialog {
-  max-width: 800px;
+
+.btn-cart-checkout {
+  width: 100%;
+  &:hover{
+    color: $pink-color;
+  }
 }
+
+
 
 
 .cart-header {
@@ -26,10 +42,10 @@
 }
 
 
-.cart-amount {
+.order-summary-cart-total {
   padding: 1rem;
   background: #ffffff;
-  box-shadow: 0px -2px 5px rgba(0, 0, 0, .1);
+  // box-shadow: -5px 0px 5px rgba(0, 0, 0, .3);
 
   li {
     list-style: none;

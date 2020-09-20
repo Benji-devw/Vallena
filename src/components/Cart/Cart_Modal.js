@@ -1,99 +1,23 @@
 import React, {  useEffect, useState} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import  Modal  from 'react-bootstrap/Modal'
-
-import { updateCart, removeFromCart } from '../../lib/actions'
-
 import {RiShoppingCart2Line} from 'react-icons/ri'
+import RowItem from '../Checkout/Row_Item'
+import Button from '@material-ui/core/Button';
 
 
-
-
-const RowCart = props => {
-  const { id, quantity, details } = props.item    // Redux
-  const item = details
-  
-  const [qty, setQty] = useState(quantity)
-  const dispatch = useDispatch()				        // Dispatch le store localement pr le lire les actions et fontions
-
-  const update = (action) => {
-    if (action === 'increment') { setQty(item.quantityProduct > qty ? qty + 1 : qty) }
-    if (action === 'decrement') { setQty(qty - 1) }
-  }
-
-  useEffect(() => {                 // est executé lors d'un chagement local du component
-    dispatch(updateCart(id, qty))   // change la quantity dans le panier lors de " increment et decrement "
-  }, [dispatch, id, qty])
-
-  const remove = id => {
-    dispatch(removeFromCart(id))
-  }
-
-
-  return (
-    <div className="row cart-item align-items-center text-center no-gutters">
-
-      <div className="col">
-      <img
-        src={item.imgCollection[0]}
-        alt="none"
-      />
-      {item.titleProduct}
-      </div>
-
-      <div className="col">
-      
-      <div className="cart-qty">
-        <button className="btn-cart-qty" type="button"
-          onClick={() => {
-            if (qty > 1) {
-              update('decrement')
-            }
-          }} > <b>-</b>
-        </button>
-
-        <span className="qty">{qty}</span>
-
-        <button className="btn-cart-qty" type="button"
-          onClick={() => {
-            update('increment')
-          }} > <b>+</b>
-        </button>
-      </div>
-      </div>
-
-      <div className="col">
-       <b style={{width:"50px"}}>€ {qty * item.priceProduct}</b> 
-
-        <button type="button"
-          className="btn-cart-remove justify-content-end"
-          onClick={() => {
-            remove(id)
-          }}
-        > <b>x</b>
-        </button>
-      </div>
-
-    </div>
-  );
-}
-
-
-
-
-
-const TableCart = () => {
-  const items = useSelector(state => state.items)
-  // console.log('items', items)
-  return (
-    <>
-      {items.map(item => {
-        return (<RowCart key={item.id} item={item} />)
-      })}
-    </>
-  );
-}
+// const TableCart = () => {
+//   const items = useSelector(state => state.items)
+//   // console.log('items', items)
+//   return (
+//     <>
+//       {items.map(item => {
+//         return (<RowItem key={item.id} item={item}/>)
+//       })}
+//     </>
+//   );
+// }
 
 
 
@@ -106,7 +30,8 @@ function CartHome() {
   const items = useSelector(state => state.items)
   const [subTotal, setSubTotal] = useState(0.00)
   const [total, setTotal] = useState(0.00)
-  const shipping = 5.50
+  const [shipping, setShipping] = useState(5.50)
+
 
   useEffect(() => {
     let totals = items.map(item => {
@@ -115,9 +40,14 @@ function CartHome() {
 
     setSubTotal(totals.reduce((item1, item2) => item1 + item2, 0))
     setTotal(subTotal + shipping)
-  }, [items, subTotal, total]);
+    if (total >= 30) {
+      setShipping(0.00)
+    } else { setShipping(4.95) }
+  }, [items, subTotal, total, setShipping, shipping]);
 
-
+  const closeModal = () => {
+    setShow(false)
+  }
 
   return (
     <>
@@ -127,42 +57,52 @@ function CartHome() {
       </div>
 
       
-    <Modal
+      <Modal className="rotateInDownRight"
       show={show}
       onHide={() => setShow(false)}
     >
         <Modal.Header closeButton>
           <Modal.Title>
-            Custom Modal Styling
+            <RiShoppingCart2Line size="2em" style={{padding:".5rem", marginTop:"-10px"}} />
+            Panier
           </Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
         <div className="row cart-content no-gutters align-items-end">
           <div className="col-md-8 align-self-start">
-            <TableCart items={items} />
+              {items.map(item => {
+                return (<RowItem key={item.id} item={item} onCloseModal={closeModal}/>)
+              })}
           </div>
   
         <div className="col-md-4">
-          <ul className="list-group cart-amount">
-            <li className="text-left">Subtotal</li>
-            <li className="text-right">€ {subTotal.toFixed(2)}</li>
+              <div className="order-summary-cart-total">
+                <div className="order-summary-total">
+                  <p className="text-left">Sous-total ({items.length} articles):</p>
+                  <p className="text-right">€{subTotal.toFixed(2)}</p>
 
-            <li className="text-left">shipping</li>
-            <li className="text-right">€ {shipping.toFixed(2)}</li>
+                  <p className="text-left">Frais livraison</p>
+                  <p className="text-right">{total < 30 ? '€' + shipping.toFixed(2) : 'Offert'} <br /> <span style={{ fontSize: ".7em" }}>Livraison OFFERT à partir de 30€</span></p>
+                  <hr />
+                  <h3 className="text-left">Total</h3>
+                  <h4 className="text-right">€{subTotal === 0.00 ? "0.00 " : total.toFixed(2)}</h4>
+                </div>
+                <hr />
+                {items.length > 0 && (
+                  <Link
+                  to="/payment"
+                  onClick={() => setShow(false)}
+                  >
+                  <Button variant="outlined" color="secondary"
+                  className="btn btn-cart-checkout"
+                  > Payer
+                  </Button>
+                </Link>
+                )}
+                
 
-            <li className="text-left">Total</li>
-            <li className="text-right"><b>€ {subTotal === 0.00 ? "0.00 " : total.toFixed(2)}</b></li>
-          </ul>
-          <Link
-            to="/payment"
-            onClick={() => setShow(false)}
-            type="button"
-            className="btn btn-outline-danger btn-lg btn-block checkout bg-crimson"
-            disabled={!items.length < 0}
-          >
-            Commandez
-          </Link>
+              </div>
         </div>
       </div>
         </Modal.Body>

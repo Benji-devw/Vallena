@@ -30,6 +30,7 @@
     "react-spring": "^8.0.27",
     "react-table": "^6.10.0",
     "react-use-gesture": "^7.0.16",
+    "recharts": "^1.8.5",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "rellax": "^1.12.1",

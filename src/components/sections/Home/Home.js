@@ -3,7 +3,7 @@ import SlideItems from './Home_View_Top'
 import HomeCollection from './Home_Collection'
 import HomePromotion from './Home_Promotion'
 
-// import Parallax from 'react-rellax'
+import Parallax from 'react-rellax'
 
 // import areca from '../../../scss/img/areca.png';
 
@@ -15,9 +15,10 @@ const Home = () => {
     <section id='home'>
 
       {/* <img src={areca} alt="areca" className="areca img-fluid" draggable="false"/> */}
+        <Parallax speed={1} data-scroll>
       <div className="slider-home-one">
         <SlideItems />
-      </div>
+      </div></Parallax>
 
       <div className="collection-home">
         <HomeCollection />

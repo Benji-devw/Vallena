@@ -19,7 +19,7 @@ class ListProducts extends Component {
       super(props);
       this.state = {
          products: null,
-         display: "col-lg-4 col-md-6 col-sm-6",
+         display: "",
       }
       this.myRef = React.createRef()  
    }
@@ -28,9 +28,15 @@ class ListProducts extends Component {
    componentDidMount() {
       const display = localStorage.getItem('display')
       const cat = localStorage.getItem('filterByCat')
-      // console.log('display', display)
-      this.setState({display: display})
-      this.setState({cat: cat})
+      if(this.state.display !== null) {
+         console.log('test');
+         this.setState({ display: "grid-display col-lg-4 col-md-6 col-sm-6"})
+      } else {
+         // console.log('display', display)
+         // this.setState({display: "grid-display col-lg-4 col-md-6 col-sm-6"})
+         this.setState({display: display})
+         this.setState({cat: cat})
+      }
    }
 
    handleDisplay = (e) => {
@@ -38,9 +44,10 @@ class ListProducts extends Component {
       localStorage.setItem('display', e)
    }
 
-
+   
    render() {
-
+      console.log(this.state.display);
+      
       // console.log(this.props);
       return (
          <>
@@ -79,7 +86,7 @@ class ListProducts extends Component {
                   <div className="row">
                      {this.props.products.map(product => (
                         product.visible && 
-                        <div key={product._id} className={`${this.state.display === "list-display" ? 'col-12 list-display' : this.state.display}`}>
+                        <div key={product._id} className={`${this.state.display === "list-display" ? 'col-12 list-display' : `${this.state.display}`}`}>
                            <Card product={product} display={this.state.display} />
                         </div>
 

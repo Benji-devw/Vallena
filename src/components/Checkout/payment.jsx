@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import PayPalButton from './Paypal'
 // import TransferList from './old/Transfer_List';
 import RowItem from './Row_Item'
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 
 const PaymentForm = props => {
    const items = useSelector(state => state.items)
@@ -76,7 +76,9 @@ const PaymentForm = props => {
                      </div>
                   </div>
                   <div className="col-md-6">
-                     <PayPalButton amount={total} items={items}/>
+                     {items.length <= 0 && 
+                        <PayPalButton amount={total} items={items}/>
+                     }
                      {/* <PayPalButton amount={total} items={items} left={leftdiv} right={rightdiv} /> */}
                   </div>
                </div>

@@ -144,7 +144,7 @@ const SlideItems = () => {
          
         
 
-          <div>
+          {/* <div>
           <div className="container">
           <div className="row slick-content content-three align-items-center">
 
@@ -161,7 +161,7 @@ const SlideItems = () => {
 
           </div>
           </div>
-          </div>
+          </div> */}
 
           {/* 
           <div>

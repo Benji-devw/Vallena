@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Success from './views/Success'
 
-import ClientProfileContext from './lib/ClientProfileContext'
+// import ClientProfileContext from './lib/ClientProfileContext'
 import IndexDbInit from './lib/IndexBdInit'
 import apiCall from './apiCall/Products_Api'
 
@@ -11,10 +11,10 @@ import Layout from './views/Layout'
 import Checkout from './views/checkout'
 
 import Header from './components/UI/Header/Header';
-import { Login } from './components/Users/Login/Login'
-import { Signup } from './components/Users/Signup/Signup'
+import SignIn from './components/Users/Login/Login'
+import SignUp from './components/Users/Signup/Signup'
 import { PrivateRoute } from "./components/PrivateRoute";
-import { Dashboard } from './components/Dashboard/Dashboard'
+import Dashboard from './components/Dashboard/Dashboard'
 import { ProductUpdate } from './components/Dashboard/Update_Product'
 
 
@@ -46,7 +46,7 @@ const App = props => {
   return (
     <>
       <Router>
-        <ClientProfileContext>
+        {/* <ClientProfileContext> */}
 
         <Header />
 
@@ -58,11 +58,11 @@ const App = props => {
           <Route path="/" exact={true} component={Layout}/>
           
           <Route path="/payment" component={Checkout} />
-
-          <Route path="/login" component={Login} />
-          <Route path="/Signup" component={Signup} />
-
           <Route path="/success" component={Success} />
+
+          <Route path="/login" component={SignIn} />
+          <Route path="/Signup" component={SignUp} />
+
 
           <PrivateRoute path="/dashboard" component={Dashboard} />
           <Route path="/update/:id" component={ProductUpdate} />   {/* Lien => Update_Product.js */}
@@ -73,7 +73,7 @@ const App = props => {
 
         </Switch>
 
-        </ClientProfileContext>
+        {/* </ClientProfileContext> */}
       </Router>
     </>
     );

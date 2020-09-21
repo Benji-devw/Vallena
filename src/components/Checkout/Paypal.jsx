@@ -23,7 +23,6 @@ const PayPalBtn = (props) => {
             console.log('Quantity update Done !', res)
             window.alert(`Modification OK !`)
          }).catch(() => { })
-      // localStorage.setItem('monChat', 'Tom');
       window.location = "/Success";
    }
 
@@ -51,22 +50,10 @@ const PayPalBtn = (props) => {
                   // console.log('data', data)
                   // console.log('details', details)
                   console.log('details', details.purchase_units)
-                  console.log('Status', details.status);
+                  console.log('shipping', details.purchase_units.shippin)
+                  // console.log('Status', details.status);
 
-                  alert("Transaction completed by " + details.payer.name.given_name);
-
-                  // Send order in db
-                  const client = details.purchase_units
-                  const payload = { items, client, amount, status }
-                  apiCallOrders.insertOrder(payload).then(res => {
-                     console.log('res', res)
-                     window.alert(`New Order inserted Done !`)
-                     console.log("Order enregistré")
-                     const reset = () => {
-                        dispatch(resetCart())
-                     }
-                     return reset()
-                  })
+                  // alert("Transaction completed by " + details.payer.name.given_name);
 
                   console.log(items)
                   const calcul = (items.map(item => {
@@ -83,6 +70,19 @@ const PayPalBtn = (props) => {
                         {handleUpdateProduct(change._id, change)}
                      </>
                   ))
+
+                  // Send order in db
+                  const client = details.purchase_units
+                  const payload = { items, client, amount, status }
+                  apiCallOrders.insertOrder(payload).then(res => {
+                     console.log('res', res)
+                     window.alert(`New Order inserted Done !`)
+                     console.log("Order enregistré")
+                     const reset = () => {
+                        dispatch(resetCart())
+                     }
+                     return reset()
+                  })
 
                   localStorage.setItem('purchaseClient', JSON.stringify(details.purchase_units));
                   localStorage.setItem('purchaseClientItems', JSON.stringify(items));

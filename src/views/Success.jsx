@@ -8,7 +8,6 @@ import Button from '@material-ui/core/Button';
 
 
 
-
 const SuccessOk = props => {
    console.log('props', props)
 
@@ -25,21 +24,32 @@ const SuccessOk = props => {
    const print = () => {
       window.print();
    }
+   const back = () => {
+      localStorage.clear();
+      var currentIDB = indexedDB.open('customers', 2);
+      currentIDB.onsuccess = function () {
+         var idb = currentIDB.result;
+         idb.close();
+         indexedDB.deleteDatabase("customers");
+      };
+      window.location = "/"
+   }
 
    return (
       <>
       <section className="container success-payment">
          <div className="row text-center">
-            <div className="col-12 icon-success"><DoneAllOutlinedIcon /></div>
-            <div className="col-12 success">  <h3>Votre commande à bien été prise en compte !</h3> </div>
+            <div className="col-12 icon-success"> <DoneAllOutlinedIcon /> </div>
+            <div className="col-12 success">  <h1>Votre commande à bien été prise en compte !</h1> </div>
+            <Button variant="outlined" onClick={() => back()} style={{outline:"none"}}>Accueil</Button>
+            <Button variant="outlined" onClick={print} style={{outline:"none"}}>Enregistrer</Button>
          </div>
          <hr />
          <div className="row justify-content-center">
 
             <div className="col-md-12 text-center">
 
-            <Button variant="outlined" onClick={print} style={{outline:"none"}}>Enregistrer</Button>
-            <h5>Récapitulatif de votre commande :</h5>
+            <h3>Récapitulatif de votre commande :</h3>
 
                <div className="row text-center success-client">
                    <div className="col-md-4">
@@ -62,9 +72,11 @@ const SuccessOk = props => {
                      <GiStorkDelivery />
                      {order.map((add, id) =>
                         <div key={id}>
-                           <p><b>{add.shipping.address.address_line_1}</b></p>
-                           <p><b>{add.shipping.address.admin_area_2}</b></p>
-                           <p><b>{add.shipping.address.postal_code} - {add.shipping.address.country_code === "FR" ? 'FRANCE' : add.shipping.address.country_code}</b></p>
+                           <p><b>{add.shipping.address.address_line_1}</b> <br />
+                           <b>{add.shipping.address.address_line_2}</b><br />
+                           <b>{add.shipping.address.admin_area_2}</b><br />
+                           <b>{add.shipping.address.postal_code} - {add.shipping.address.country_code === "FR" ? 'FRANCE' : add.shipping.address.country_code}</b>
+                           </p>
                         </div>
                      )}
                   </div>
@@ -100,6 +112,15 @@ const SuccessOk = props => {
                </table>
 
 
+            </div>
+         </div>
+         
+         <div className="row text-center">
+            <div className="col">
+               <h4>
+                  Merci pour votre achat <br /> et <br />votre confiance !!! <br /> 
+               </h4>
+               <h5> À bientôt...</h5>
             </div>
          </div>
 

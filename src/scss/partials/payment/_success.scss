@@ -2,6 +2,25 @@
 
   padding: 5rem;
 
+  h1 {
+    font-size: 2.5em;
+  }
+
+  h4 {
+    font-family: satisfy, sans-serif;
+    font-size: 3em;
+    margin: 2rem;
+
+    @media screen and (max-width: 768px) {
+      font-size: 3em;
+    }
+  }
+
+  h5 {
+    font-family: satisfy, sans-serif;
+    font-size: 2em;
+  }
+
   @media screen and (max-width: 768px) {
     margin-top: 3rem;
     padding: 1rem;
@@ -12,7 +31,7 @@
 
     svg {
       margin: auto;
-      font-size: 5em;
+      font-size: 8em;
 
     }
   }

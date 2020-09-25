@@ -29,7 +29,6 @@ class ListProducts extends Component {
       const display = localStorage.getItem('display')
       const cat = localStorage.getItem('filterByCat')
       if(this.state.display !== null) {
-         console.log('test');
          this.setState({ display: "grid-display col-lg-4 col-md-6 col-sm-6"})
       } else {
          // console.log('display', display)
@@ -46,7 +45,7 @@ class ListProducts extends Component {
 
    
    render() {
-      console.log(this.state.display);
+      // console.log(this.state.display);
       
       // console.log(this.props);
       return (

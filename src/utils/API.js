@@ -24,6 +24,23 @@ export default {
   isAuth: function () {
     return localStorage.getItem("token") !== null;
   },
+
+  getUsers: function () {
+    return axios.get(
+      `${burl}/user/getusers`,
+      { headers: headers }
+    )
+  },
+  
+  deleteUser: function (username) {
+    return axios.delete(
+      `${burl}/user/deleteuser`,
+      {data: {  // Data créer le corp de la requete sinon vide (propre au delete)
+        username: username
+      }},
+      { headers: headers });
+  },
+
   logout: function () {
     localStorage.clear();
   }

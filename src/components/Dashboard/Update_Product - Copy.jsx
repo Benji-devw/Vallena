@@ -31,6 +31,9 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
             sizeProduct: '',        weightProduct: '',
             quantityProduct: '',    reporterProduct: '',
 
+            tags: '',   matter: '', composition: '', fabrication: '',  color: '', oldPriceProduct: '', yearCollection: '', entretien: '',
+            novelty: true, displaySlideHome: true,
+
             visible: true, 
             stockProduct: true,
             promotionProduct: true, 
@@ -63,7 +66,40 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
     }
     handleChangeInputQuantityProduct = async event => {
         this.setState({ quantityProduct: event.target.value })
+    }    
+
+
+    handleChangeInputTags = async event => {
+        this.setState({ tags: event.target.value })
     }
+    handleChangeInputMatter = async event => {
+        this.setState({ quantityProduct: event.target.value })
+    }
+    handleChangeInputQuantityProduct = async event => {
+        this.setState({ quantityProduct: event.target.value })
+    }
+    handleChangeInputQuantityProduct = async event => {
+        this.setState({ quantityProduct: event.target.value })
+    }
+    handleChangeInputQuantityProduct = async event => {
+        this.setState({ quantityProduct: event.target.value })
+    }
+    handleChangeInputQuantityProduct = async event => {
+        this.setState({ quantityProduct: event.target.value })
+    }
+    handleChangeInputQuantityProduct = async event => {
+        this.setState({ quantityProduct: event.target.value })
+    }
+    handleChangeInputQuantityProduct = async event => {
+        this.setState({ quantityProduct: event.target.value })
+    }
+    handleChangeInputQuantityProduct = async event => {
+        this.setState({ quantityProduct: event.target.value })
+    }
+    handleChangeInputQuantityProduct = async event => {
+        this.setState({ quantityProduct: event.target.value })
+    }
+
     handleChangeInputStockProduct = async event => {
         this.setState({ stockProduct: event.target.checked })
     }

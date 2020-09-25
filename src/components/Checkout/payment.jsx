@@ -8,6 +8,12 @@ import RowItem from './Row_Item'
 const PaymentForm = props => {
    const items = useSelector(state => state.items)
 
+   // Calcul Quantity article
+   const getQty = items.map(e => e.quantity)
+   let sum = getQty.reduce((a, b) => {
+      return a + b
+   }, 0)
+
    const [subTotal, setSubTotal] = useState(0)
    const [total, setTotal] = useState(0)
    // console.log('total', total)
@@ -65,7 +71,7 @@ const PaymentForm = props => {
 
                      <hr />
                      <div className="order-summary-total">
-                     <p className="text-left">Sous-total ({items.length} articles):</p>
+                           <p className="text-left">Sous-total ({sum} articles):</p>
                      <p className="text-right">€{subTotal.toFixed(2)}</p>
 
                      <p className="text-left">Frais livraison</p>
@@ -76,8 +82,9 @@ const PaymentForm = props => {
                      </div>
                   </div>
                   <div className="col-md-6">
-                     {items.length <= 0 && 
-                        <PayPalButton amount={total} items={items}/>
+                     {items.length > 0 ?
+                        (<PayPalButton amount={total} items={items}/>)
+                        : ('')
                      }
                      {/* <PayPalButton amount={total} items={items} left={leftdiv} right={rightdiv} /> */}
                   </div>

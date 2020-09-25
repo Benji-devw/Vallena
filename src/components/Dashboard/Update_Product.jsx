@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import apiCall from '../../apiCall/Products_Api'
 import { Container, Form, Col} from 'react-bootstrap'
-
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Title = styled.h1.attrs({ className: 'h1', })``
@@ -14,9 +14,7 @@ const InputText = styled.input.attrs({ className: 'form-control', })`
 const Button = styled.button.attrs({ className: `btn btn-primary`, })`
     margin: 15px 15px 15px 5px;
 `
-const CancelButton = styled.a.attrs({ className: `btn btn-danger`, })`
-    margin: 15px 15px 15px 5px;
-`
+
 
 
 export class ProductUpdate extends Component {        // lien => Dashboard.js
@@ -31,6 +29,9 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
             sizeProduct: '',        weightProduct: '',
             quantityProduct: '',    reporterProduct: '',
 
+            tags: '',   matter: '', composition: '', fabrication: '',  color: '', oldPriceProduct: '', yearCollection: '', entretien: '',
+            novelty: true, displaySlideHome: true,
+
             visible: true, 
             stockProduct: true,
             promotionProduct: true, 
@@ -39,9 +40,8 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
         }
         this.handleChangeImgCollection = this.handleChangeImgCollection.bind(this)
     }
-    handleChangeInputTitleProduct = async event => {
-        this.setState({ titleProduct: event.target.value })
-    }
+
+
     handleChangeInputDescriptionProduct = async event => {
         const descriptionProduct = event.target.validity.valid
             ? event.target.value
@@ -49,33 +49,7 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
 
         this.setState({ descriptionProduct })
     }
-    handleChangeInputPriceProduct = async event => {
-        this.setState({ priceProduct: event.target.value })
-    }
-    handleChangeInputCategoryProduct = async event => {
-        this.setState({ categoryProduct: event.target.value })
-    }
-    handleChangeInputSizeProduct = async event => {
-        this.setState({ sizeProduct: event.target.value })
-    }
-    handleChangeInputWeightProduct = async event => {
-        this.setState({ weightProduct: event.target.value })
-    }
-    handleChangeInputQuantityProduct = async event => {
-        this.setState({ quantityProduct: event.target.value })
-    }
-    handleChangeInputStockProduct = async event => {
-        this.setState({ stockProduct: event.target.checked })
-    }
-    handleChangeInputPromotionProduct = async event => {
-        this.setState({ promotionProduct: event.target.checked })
-    }
-    handleChangeInputReporterProduct = async event => {
-        this.setState({ reporterProduct: event.target.value })
-    }
-    handleChangeCheckboxVisible = (e) => {
-        this.setState({ visible: e.target.checked })
-    }
+
     handleChangeImgCollection = event => {
         // console.log('event.target.files', event.target.files)
         var preview = document.querySelector('#preview')
@@ -113,7 +87,10 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
 
         var formData = new FormData();
         const id = this.state.id
-        const { titleProduct, descriptionProduct, priceProduct, categoryProduct, sizeProduct, weightProduct, quantityProduct, stockProduct, promotionProduct, reporterProduct, visible } = this.state
+        const { titleProduct, descriptionProduct, priceProduct, categoryProduct, 
+            sizeProduct, weightProduct, quantityProduct, stockProduct, promotionProduct, 
+            reporterProduct, visible, tags, matter, composition, fabrication, color, 
+            oldPriceProduct, yearCollection, entretien, novelty, displaySlideHome } = this.state
         
             
         const newCollection = this.state.imgCollection
@@ -138,6 +115,16 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
         formData.append('sizeProduct', sizeProduct)
         formData.append('weightProduct', weightProduct)
         formData.append('quantityProduct', quantityProduct)
+        formData.append('tags', tags)
+        formData.append('matter', matter)
+        formData.append('composition', composition)
+        formData.append('fabrication', fabrication)
+        formData.append('color', color)
+        formData.append('oldPriceProduct', oldPriceProduct)
+        formData.append('yearCollection', yearCollection)
+        formData.append('entretien', entretien)
+        formData.append('novelty', novelty)
+        formData.append('displaySlideHome', displaySlideHome)
         formData.append('stockProduct', stockProduct)
         formData.append('promotionProduct', promotionProduct)
         formData.append('reporterProduct', reporterProduct)
@@ -146,13 +133,11 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
 
                                                        // ROUTE => serverURL/server.js/router.js/:id
         apiCall.updateProductById(id, formData)         // Lien => src/apiCall/index.js
-        .then(res => {    
-                console.log('2 UPDATE res.data......', res)
-                window.alert(`Modification OK !`)
-            }).catch(() => {  } ) 
-
-        // window.location = "/dashboard";
-
+        // .then(res => {    
+        //         console.log('2 UPDATE res.data......', res)
+        //     }).catch(() => {  } ) 
+        window.alert(`Modification OK !`)
+        window.location = "/dashboard/listitems";
     }
 
 
@@ -172,17 +157,27 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
             sizeProduct: product.data.data.sizeProduct,
             weightProduct: product.data.data.weightProduct,
             quantityProduct: product.data.data.quantityProduct,
+            tags: product.data.data.tags,
+            matter: product.data.data.matter,
+            composition: product.data.data.composition,
+            fabrication: product.data.data.fabrication,
+            color: product.data.data.color,
+            entretien: product.data.data.entretien,
+            novelty: product.data.data.novelty,
+            displaySlideHome: product.data.data.displaySlideHome,
+            oldPriceProduct: product.data.data.oldPriceProduct,
+            yearCollection: product.data.data.yearCollection,
             stockProduct: product.data.data.stockProduct,
             promotionProduct: product.data.data.promotionProduct,
             reporterProduct: product.data.data.reporterProduct,
             visible: product.data.data.visible,
         })
-        
     }
 
 
 
     render() {
+        
        const {imgCollection} = this.state
     //    console.log('imgCollection', imgCollection)
     //    console.log('imgCollectioncopy', imgCollectionCopy)
@@ -206,7 +201,7 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                             placeholder="Nom du produit"
                             type="text"
                             defaultValue={this.state.titleProduct}
-                            onChange={this.handleChangeInputTitleProduct}
+                            onChange={(e) => this.setState({ titleProduct: e.target.value })}
                             required
                         />
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -217,7 +212,7 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                         <Form.Control
                             label="Catégorie"
                             as="select"
-                            onChange={this.handleChangeInputCategoryProduct}
+                            onChange={(e) => this.setState({ categoryProduct: e.target.value })}
                             required
                         >
                             <option>{this.state.categoryProduct}</option>
@@ -256,7 +251,7 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                             placeholder="Prix..."
                             type="number"
                             defaultValue={this.state.priceProduct}
-                            onChange={this.handleChangeInputPriceProduct}
+                            onChange={(e) => this.setState({ priceProduct: e.target.value })}
                             required
                         />
                     </Form.Group>
@@ -267,7 +262,7 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                             placeholder='Taille... "xs/xxl..." "3 x 7 mm..."'
                             type="text"
                             defaultValue={this.state.sizeProduct}
-                            onChange={this.handleChangeInputSizeProduct}
+                            onChange={(e) => this.setState({ sizeProduct: e.target.value })}
                             required
                         />
                     </Form.Group>
@@ -278,7 +273,7 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                             placeholder='Poids... "2" "0.3"'
                             type="text"
                             defaultValue={this.state.weightProduct}
-                            onChange={this.handleChangeInputWeightProduct}
+                            onChange={(e) => this.setState({ weightProduct: e.target.value })}
                             required
                         />               
                     </Form.Group>
@@ -289,12 +284,105 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                             placeholder="Quantité..."
                             type="number"
                             defaultValue={this.state.quantityProduct}
-                            onChange={this.handleChangeInputQuantityProduct}
+                            onChange={(e) => this.setState({ quantityProduct: e.target.value })}
                             required
                         />  
                     </Form.Group>
                 </Form.Row>
     
+
+
+                <Form.Row className="justify-content-md-center">
+                    <Form.Group as={Col} md="3" controlId="validationCustom26">
+                        <Form.Label>Entretien</Form.Label>
+                        <InputText
+                            placeholder='Entretien'
+                            type="text"
+                            defaultValue={this.state.entretien}
+                            onChange={(e) => this.setState({ entretien: e.target.value })}
+                        />
+                    </Form.Group>
+
+                    <Form.Group as={Col} md="3" controlId="validationCustom26">
+                        <Form.Label>Matière</Form.Label>
+                        <InputText
+                            placeholder='Matière'
+                            type="text"
+                            defaultValue={this.state.matter}
+                            onChange={(e) => this.setState({ matter: e.target.value })}
+                        />
+                    </Form.Group>
+
+                    <Form.Group as={Col} md="3" controlId="validationCustom27">
+                        <Form.Label>composition</Form.Label>
+                        <InputText
+                            placeholder='composition'
+                            type="text"
+                            defaultValue={this.state.composition}
+                            onChange={(e) => this.setState({ composition: e.target.value })}
+                        />               
+                    </Form.Group>
+
+                    <Form.Group as={Col} md="3" controlId="validationCustom028">
+                        <Form.Label>fabrication</Form.Label>
+                        <InputText
+                            placeholder="fabrication"
+                            type="text"
+                            defaultValue={this.state.fabrication}
+                            onChange={(e) => this.setState({ fabrication: e.target.value })}
+                            required
+                        />  
+                    </Form.Group>
+                </Form.Row>
+
+
+                <Form.Row className="justify-content-md-center">
+                    <Form.Group as={Col} md="3" controlId="validationCustom25">
+                        <Form.Label>Couleur</Form.Label>
+                        <InputText
+                            placeholder="Couleur"
+                            type="text"
+                            defaultValue={this.state.color}
+                            onChange={(e) => this.setState({ color: e.target.value })}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group as={Col} md="3" controlId="validationCustom25">
+                        <Form.Label>Année Collection</Form.Label>
+                        <InputText
+                            placeholder="Année Collection"
+                            type="number"
+                            defaultValue={this.state.yearCollection}
+                            onChange={(e) => this.setState({ yearCollection: e.target.value })}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" controlId="validationCustom25">
+                        <Form.Label>Mot clé</Form.Label>
+                        <InputText
+                            placeholder="Mot clé..."
+                            type="text"
+                            defaultValue={this.state.tags}
+                            onChange={(e) => this.setState({ tags: e.target.value })}
+                            required
+                        />
+                    </Form.Group>
+
+                </Form.Row>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 <Form.Row className="justify-content-md-center">
                     <Form.Group as={Col} md="3" controlId="exampleForm.ControlSelect8">
@@ -303,7 +391,7 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                             placeholder="Crée par ..."
                             type="text"
                             defaultValue={this.state.reporterProduct}
-                            onChange={this.handleChangeInputReporterProduct}
+                            onChange={(e) => this.setState({ reporterProduct: e.target.value })}
                             required
                         />
                     </Form.Group>
@@ -315,7 +403,7 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                         <Form.Check type="checkbox"
                             label="Visible"
                             checked={this.state.visible}
-                            onChange={this.handleChangeCheckboxVisible}
+                            onChange={(e) => this.setState({ visible: e.target.checked })}
                         />
                     </Form.Group>  
                     
@@ -323,7 +411,7 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                         <Form.Check type="checkbox"
                             label="En stock"
                             checked={this.state.stockProduct}
-                            onChange={this.handleChangeInputStockProduct}
+                            onChange={(e) => this.setState({ stockProduct: e.target.checked })}
                         />
                     </Form.Group> 
                     
@@ -331,9 +419,34 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                         <Form.Check type="checkbox"
                             label="En Promotion"
                             checked={this.state.promotionProduct}
-                            onChange={this.handleChangeInputPromotionProduct}
+                            onChange={(e) => this.setState({ promotionProduct: e.target.checked })} 
+                        />
+                        <InputText className={`${this.state.promotionProduct ? '' : 'hide-div'}`}
+                            placeholder="Encien prix"
+                            type="number"
+                            defaultValue={this.state.oldPriceProduct}
+                            onChange={(e) => this.setState({ oldPriceProduct: e.target.value })}
+                            required
                         />
                     </Form.Group>
+
+
+                    <Form.Group as={Col} md="2" controlId="exampleForm.ControlSelect31">
+                        <Form.Check type="checkbox"
+                            label="Nouveauté"
+                            checked={this.state.novelty}
+                            onChange={(e) => this.setState({ novelty: e.target.checked })}
+                        />
+                    </Form.Group>
+
+                    <Form.Group as={Col} md="2" controlId="exampleForm.ControlSelect32">
+                        <Form.Check type="checkbox"
+                            label="Affichage home"
+                            checked={this.state.displaySlideHome}
+                            onChange={(e) => this.setState({ displaySlideHome: e.target.checked })}
+                        />
+                    </Form.Group>
+
                     
                 </Form.Row>
 
@@ -363,7 +476,7 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                         </Form.Row>
                         
                 <Button onClick={this.handleUpdateProduct}>Update product</Button>
-                <CancelButton href={'/Dashboard'}>Cancel</CancelButton>
+                <Link to= "/dashboard/listitems">Cancel</Link>
 
             </Form>
             </Container>

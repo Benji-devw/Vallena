@@ -10,7 +10,7 @@ const PayPalBtn = (props) => {
    // console.log('props', props)
 
    const dispatch = useDispatch()
-   const status = { inProgress: true, finish: false };
+   const statut = { inProgress: true, finish: false };
    const {amount, items} = props
 
 
@@ -23,7 +23,7 @@ const PayPalBtn = (props) => {
             console.log('Quantity update Done !', res)
             window.alert(`Modification OK !`)
          }).catch(() => { })
-      window.location = "/Success";
+      // window.location = "/Success";
    }
 
    return (
@@ -49,9 +49,6 @@ const PayPalBtn = (props) => {
                onSuccess={(details, data) => {
                   // console.log('data', data)
                   // console.log('details', details)
-                  console.log('details', details.purchase_units)
-                  console.log('shipping', details.purchase_units.shippin)
-                  // console.log('Status', details.status);
 
                   // alert("Transaction completed by " + details.payer.name.given_name);
 
@@ -73,10 +70,11 @@ const PayPalBtn = (props) => {
 
                   // Send order in db
                   const client = details.purchase_units
-                  const payload = { items, client, amount, status }
+                  const payer = details.payer
+                  const payload = { items, payer, client, amount, statut }
                   apiCallOrders.insertOrder(payload).then(res => {
-                     console.log('res', res)
-                     window.alert(`New Order inserted Done !`)
+                     // console.log('res', res)
+                     // window.alert(`New Order inserted Done !`)
                      console.log("Order enregistré")
                      const reset = () => {
                         dispatch(resetCart())
@@ -90,10 +88,10 @@ const PayPalBtn = (props) => {
                }}
                options={{
                   // SANDBOX
+                  currency: "EUR",
                   clientId: "AX2P46p1RbwouBK4mOZokjgcbCfNqRd_Fmf8R5Kx0qUH-F6wBgoNVSm47PF5_45m-UQoup6SuBWXXKCF",
                   // PRODUCTION - https://developer.paypal.com/developer/applications/
                   // clientId: "AQtzB08CGU4_quL2r6GTR_nB5iOZVgIuhYdJ7HG3-y7aJMHJCuFBc5oANY2MlZnJG9hn2_HGalUkjjIR",
-                  currency: "EUR"
                }}
             />
             </div>

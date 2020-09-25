@@ -4,7 +4,6 @@ import apiCall from '../../../apiCall/Products_Api'
 import { useSelector, useDispatch } from 'react-redux';
 import CenterMode from './components/carousel'
 import Footer from '../../UI/Footer/Footer'
-
 import Alert from '@material-ui/lab/Alert';
 import { MdAddShoppingCart } from 'react-icons/md';
 import ScrollableTabsButtonForce from './components/Tabs_Product_View'
@@ -48,6 +47,8 @@ const ProductView = props => {
       window.scrollTo({ top: 0 });
    }, [props.match.params.id]);
 
+   // console.log(window.location.href);
+
    return (
       <>
          <div id="shop-view-product">
@@ -78,15 +79,15 @@ const ProductView = props => {
                            <b>Taile :</b> {data.sizeProduct} <br />
                            <b>Poids :</b> {data.weightProduct} <br />
                            <b>Matière :</b> matière <br />
-                              <b>Catégories :</b> {data.categoryProduct} <br />
-                              <b>Tags :</b> mot-clé, sdb, rangement
-                     </p>
+                           <b>Catégories :</b> {data.categoryProduct} <br />
+                           <b>Tags :</b> mot-clé, sdb, rangement
+                        </p>
                   
                         
                 
                      <hr />
                      <h2>{data.priceProduct}€ <span className="avis">avis(0)</span></h2> 
-                     {data.quantityProduct > 1 ? 	// Affichage à la volée avec opérateur ternaire
+                     {data.quantityProduct > 0 ? 	// Affichage à la volée avec opérateur ternaire
                      <div className="add-cart-content flipInX">
                         {!findId ?
                            <div className="addToCart">
@@ -119,6 +120,7 @@ const ProductView = props => {
                           <span><MailOutlineRoundedIcon /> Envoyer à un ami </span> 
                           <br />
                            <span><ShareIcon /> Partager</span> 
+
                      </div>
               
                   </div>

@@ -37,6 +37,9 @@
 @import './partials/payment/row-item';
 @import './partials/payment/success';
 
+// Dashboard
+@import './partials/dashboard';
+
 
 // Sections
 @import './partials/footer';
@@ -60,6 +63,7 @@ body {
   letter-spacing: 0em;
 }
 
+
 .background-home {
   // background-image: linear-gradient(to right top, #fff1d6, #fce3bf, #fad4a9, #f9c495, #f9b384);
   background: white;
@@ -77,7 +81,7 @@ h1 {
 
 
 h6 {
-
+  background: rgba(0, 0, 0, 0.5);
   font-size: 1.3rem;
   font-weight: 100;
   color: $dark-color;
@@ -92,6 +96,10 @@ a {
   &:hover {
     text-decoration: none;
   }
+}
+
+.hide-div {
+  display: none;
 }
 
 .slick-arrow {
@@ -135,6 +143,12 @@ a {
   &:hover {
     color: #f50057;
   }
+}
+
+
+// Spinner
+.css-jv9gnm {
+  margin: auto;
 }
 
 

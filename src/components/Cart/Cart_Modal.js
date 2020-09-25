@@ -32,6 +32,11 @@ function CartHome() {
   const [total, setTotal] = useState(0.00)
   const [shipping, setShipping] = useState(5.50)
 
+  // Calcul Quantity article
+  const getQty = items.map(e => e.quantity)
+  let sum = getQty.reduce((a, b) => {
+    return a + b
+  }, 0)
 
   useEffect(() => {
     let totals = items.map(item => {
@@ -79,7 +84,7 @@ function CartHome() {
         <div className="col-md-4">
               <div className="order-summary-cart-total">
                 <div className="order-summary-total">
-                  <p className="text-left">Sous-total ({items.length} articles):</p>
+                  <p className="text-left">Sous-total ({sum} articles):</p>
                   <p className="text-right">€{subTotal.toFixed(2)}</p>
 
                   <p className="text-left">Frais livraison</p>

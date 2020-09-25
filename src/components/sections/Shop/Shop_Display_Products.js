@@ -52,12 +52,12 @@ class DisplayProducts extends React.Component {
          products: this.state.products.slice()
          .sort((a,b) => 
          sort === "lowest" ?
-         a.priceProduct < b.priceProduct ? 1 : -1 
+            a.priceProduct < b.priceProduct ? 1 : -1 
          :
          sort === "highest" ?
-         (a.priceProduct > b.priceProduct )? 1 : -1 
+            (a.priceProduct > b.priceProduct )? 1 : -1 
          :
-         (a._id < b._id )? 1 : -1
+            (a._id < b._id )? 1 : -1
          )
       }))
    }
@@ -107,7 +107,7 @@ class DisplayProducts extends React.Component {
 
       
       return (
-         <section className="shop-display">
+         <section id="test" className="shop-display">
 
             <div className="row">
                <div className="col-12 filter-content-top">

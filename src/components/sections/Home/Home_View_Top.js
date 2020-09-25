@@ -6,8 +6,8 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 
 import visage from '../../../scss/img/visage.svg';
 // import promo from '../../../scss/img/promo.png';
-import round from '../../../scss/img/round.png';
-import tab from '../../../scss/packImages/home-full-width-4.png';
+// import round from '../../../scss/img/round.png';
+// import tab from '../../../scss/packImages/home-full-width-4.png';
 import Jetblack from '../../../scss/packImages/Jetblack.png';
 import Button from '@material-ui/core/Button';
 
@@ -80,8 +80,11 @@ const SlideItems = () => {
   const saveFilterByCat = (cat) => {
     localStorage.setItem('filterByCat', cat)
   }
-
+  // countapi.visits().then((result) => {
+  //   console.log(result.value);
+  // });
   // console.log('productsDb', productsDb);
+
 
   return (
 

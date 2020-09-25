@@ -1,0 +1,208 @@
+#dashboard {
+
+  background-image: url('img/config2.svg');
+  background-position: 150% 2rem;
+  background-repeat: no-repeat;
+  background-size: 50rem;
+
+  button {
+    outline: none;
+  }
+
+  h1 {
+    display: inline-block;
+    background: #ffffff;
+    border: 1px solid #f50057;
+    border-radius: 5px;
+    padding: 1rem;
+    box-shadow: $boxShadow;
+    font-size: 3em;
+    color: #f50057;
+  }
+
+  h2 {
+    color: #f50057;
+
+  }
+
+  h3 {
+    display: inline-block;
+    background: #ffffff;
+    border: 1px solid #f50057;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: $boxShadow;
+
+    span {
+      font-size: .8em;
+    }
+  }
+
+  a {
+    color: #f50057;
+  }
+  .MuiDrawer-paper {
+    margin: 3rem 0 0 .5rem;
+    border-radius: 10px;
+    border: 1px solid #f50057;
+    box-shadow: $boxShadow;
+    color: #f50057;
+  }
+  
+  .container {
+    margin-top: 4rem;
+  }
+
+
+  .counter-chart {
+    position: relative;
+    top:-2rem;
+    left: -1.5rem;
+    padding: .5rem;
+  }
+
+
+
+  .statut {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: .2rem;
+  }
+
+  .statut-inprogress {
+    background: #00b0ff;
+  }
+
+  .statut-finish {
+    background: #4caf50;
+  }
+
+  .statut-order {
+    .MuiButton-root {
+      padding: .1em;
+      margin: .2em;
+      font-size: .8em;
+    }
+  }
+
+  .card-dash {
+    .pie-chart {
+
+    position: absolute;
+      top: -5rem;
+      left: -4rem;
+
+  @media screen and (max-width: 865px) {
+    position: relative;
+    height: 250px;
+    width: 200px;
+    margin: auto;
+    left: -10rem;
+  }
+
+    }
+    .icon-dash {
+      svg {
+        font-size: 5em;
+      }
+
+      width: 70px;
+      margin-top: -2rem;
+      margin-left: -2rem;
+      border-radius: 5px;
+      background:#61B765;
+    }
+
+    .date {
+      border-top: 1px solid rgba(0, 0, 0, 0.2);
+      position: relative;
+      bottom: -4rem;
+      padding: .5rem;
+    }
+
+  }
+
+  .list-items {
+    .ReactTable {
+      background: #F5F5F5;
+      padding: 1rem;
+      border: none;
+      border-radius: $borderRadius;
+      box-shadow: $boxShadow;
+    }
+
+    .edit-icon {
+      &:hover {
+        margin-top: -3px;
+        transform: scale(1.2);
+      }
+    }
+  }
+
+
+  // Orders
+  .MuiAccordionSummary-root {
+    &:hover {
+      background: #F5F5F5;
+    }
+  }
+
+  .order-items-style {
+    background: #F5F5F5;
+    border-radius: 3px;
+    transition: .5s;
+    box-shadow: $boxShadow;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .order-items-details {
+    font-size: 1.2em;
+  }
+
+
+
+  // USERS
+  .users {
+    .users-content {
+      padding: 3rem;
+
+      .users-content-back {
+        border-radius: 5px;
+        box-shadow: $boxShadow;
+        background: #FFF;
+      }
+
+      .users-details {
+        margin-top: 1rem;
+
+        h4 {
+          font-size: 1.2em;
+        }
+
+        svg {
+          cursor: pointer;
+
+          &:hover {
+            transform: scale(1.2);
+          }
+        }
+      }
+
+      img {
+        height: 150px;
+        margin-top: -4rem;
+        background: #ffffff;
+        border-radius: 50%;
+        padding: .5rem;
+        box-shadow: $boxShadow;
+      }
+
+    }
+  }
+
+
+
+}

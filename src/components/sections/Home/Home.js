@@ -3,6 +3,7 @@ import SlideItems from './Home_View_Top'
 import HomeCollection from './Home_Collection'
 import HomePromotion from './Home_Promotion'
 
+
 import Parallax from 'react-rellax'
 
 // import areca from '../../../scss/img/areca.png';
@@ -11,6 +12,7 @@ import Parallax from 'react-rellax'
 const Home = () => {
 
 
+  
   return (
     <section id='home'>
 
@@ -27,7 +29,7 @@ const Home = () => {
       <div className="slider-home-promotion">
         <HomePromotion />
       </div>
- 
+
 
     </section>
   );

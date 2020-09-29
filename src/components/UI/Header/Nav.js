@@ -52,8 +52,11 @@ const Nav = props => {
 
           <ul className='navbar-nav ml-auto'>
 
-            {window.location.pathname === "/" ?  (
+            {/* {window.location.pathname === "/" ?  ( */}
               <>
+              <Link to='/shop' className='nav-item'>
+                <li classes='nav-link'> Boutique </li>
+              </Link>
                 <li className='nav-item'>
                   <LinkScroll target='home' offset={-120} classes='nav-link'> Home </LinkScroll>
                 </li>
@@ -67,16 +70,16 @@ const Nav = props => {
                   <LinkScroll target='contact' classes='nav-link'>  Contact  </LinkScroll>
                 </li>
             </>
-            ) : (
+            {/* ) : ( */}
             <>
                 {/* <li  className='nav-item backTo'>
                     <div onClick={() => { history.goBack()} }classes='nav-link'>  Boutique  </div>
                 </li> */}
-                <Link to='/shop'  className='nav-item'>
+                {/* <Link to='/shop'  className='nav-item'>
                     <li classes='nav-link'> Boutique </li>
-                </Link>
+                </Link> */}
             </>
-            )}
+            {/* )} */}
             
             
             <li>

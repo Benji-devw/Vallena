@@ -75,6 +75,21 @@
       }
     }
   }
+  .title-link{
+    position: relative;
+    margin-top: -2rem;
+    padding: .5rem;
+    a {
+    color: #191919;
+    &:hover {
+      color: $pink-color;
+    }
+  }
+  span {
+    color: $pink-color;
+  }
+    }
+
 }
 
 
@@ -224,7 +239,15 @@
   }
 
 
-}
+  }
+
+
+
+
+
+  .shop-view-same-cat {
+    height: 300px;
+  }
 
 
 
@@ -232,37 +255,48 @@
 
 
 
+  .MuiBox-root {
+    height: 80vh;
+  }
+
+  .MuiTabs-root {
+    padding: .5rem;
+
+  }
+
+  .MuiButtonBase-root {
+    outline: none;
+  }
 
 
 
-.shop-view-same-cat {
-  height: 300px;
-}
+  .title-collection {
+    h2 {
+      position: absolute;
+      top: -3rem;
+      left: 0;
+
+      user-select: none;
+      font-size: 5em;
+      font-weight: bold;
+      background-color: rgba(0, 0, 0, 0.1);
+      color: transparent;
+      text-shadow: 2px 2px 3px rgba(255, 255, 255, .7);
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      background-clip: text;
+
+      @media screen and (max-width: 768px) {
+        font-size: 8em;
+        top: 0rem;
+      }
+    }
+
+  }
 
 
 
 
-
-
-
-
-
-
-
-
-
-.MuiBox-root {
-  height: 80vh;
-}
-
-.MuiTabs-root {
-  padding: .5rem;
-
-}
-
-.MuiButtonBase-root {
-  outline: none;
-}
 }
 
 

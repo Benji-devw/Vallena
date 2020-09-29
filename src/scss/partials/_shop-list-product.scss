@@ -45,9 +45,21 @@
 
   .promotion {
     position: absolute;
-    color: #a5d6a7;
-    bottom: 8rem;
+    color: #ffffff;
+    top: 2rem;
     right: 1rem;
+    padding: .2rem;
+    font-size: .8em;
+    background-color: #f54337;
+  }
+    .novelty {
+    position: absolute;
+    color: #ffffff;
+    top: 2rem;
+    right: 1rem;
+    padding: .2rem;
+    font-size: .8em;
+    background-color: #2979ff;
   }
 
 }
@@ -59,11 +71,23 @@
   @media screen and (max-width: 576px) {
     height: 80vh;
   }
+  // .test {
+  //   position: absolute;
+  //   width: 10rem;
+  // }
 
   .product-item {
     img {
-      max-width: 80%;
+      max-width: 75%;
     }
+  }
+    .promotion {
+    top: 0rem;
+    right: 4rem;
+  }
+    .novelty {
+    top: 0rem;
+    right: 4rem;
   }
 }
 
@@ -124,7 +148,10 @@
     font-size: 1.3em;
     color: #191919;
     font-weight: 300;
-
+    span {
+      color: #19191956;
+      text-decoration: line-through;
+    }
     svg {
       margin-top: -4px;
     }

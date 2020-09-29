@@ -1,17 +1,11 @@
 import React from 'react';
-// import styled from 'styled-components'
-
 import apiCall from '../../../apiCall/Products_Api'
 
 import ListProducts from './Shop_List_Products';
 import FilterTop from './components/Filter_Top';
-
 import FilterLeft from './components/Filter_Left'
 
-// import Parallax from 'react-rellax'
-// import visage from '../../../scss/img/visage.svg';
 
-// const HomeProds = styled.section` height: 80vh; `
 
 class DisplayProducts extends React.Component {
    constructor(){
@@ -19,11 +13,13 @@ class DisplayProducts extends React.Component {
       this.state = {
          products: [],
          catList: [],
+         matterList: [],
          sort:'',
          isloading: false,
          active: '',
 
-         filterByCat: ''
+         filterByCat: '',
+         filter: null
       
       }
    }
@@ -41,7 +37,6 @@ class DisplayProducts extends React.Component {
       })
       const filterCat = localStorage.getItem('filterByCat')
       this.filterProductsByCat(filterCat)
-
    }
 
    sortProducts = (event) => {
@@ -97,17 +92,54 @@ class DisplayProducts extends React.Component {
       }
    }
 
+   FilterProductsByMatter = (filterMatter) => {
+      console.log('filterMatter', filterMatter)
+      // const fullList = this.state.products.map(product => product.matter)
+      // console.log('fullList', fullList)
+
+      // const array = this.state.products.map(product => product.matter)
+
+      
+      if (filterMatter.length > 0) {
+         
+   
+         
+      } else { 
+         this.setState({ products: this.state.catList})
+      }
+
+      // this.setState({
+      //    products: this.state.catList.filter(product => {
+      //       const test = product.matter.indexOf(filterMatter) > -1
+      //       console.log('test', test)
+      //       return test
+      //    })
+      // })
+   }
+
 
    render() {
-      // console.log(this.state.filterByCat);
-      
       // Filter cat
       const categorySet = new Set(this.state.catList.map((p) => p.categoryProduct));
       const categories = Array.from(categorySet).sort();
+      // Filter Matter
+      const matterSet = new Set(this.state.catList.map((p) => p.matter));
+      const matter = Array.from(matterSet).sort();
+      // console.log('matter', matter)
 
-      
+      // console.log('matterList', this.state.products.length);
       return (
-         <section id="test" className="shop-display">
+         <>
+         <section className="row no-gutters shop-top">
+            <article className="container">
+               <div className="col-12 title-product-shop-top">
+                  <h1 className="title">Boutique</h1>
+               </div>
+
+            </article>
+         </section>
+
+         <section id="test" className="container shop-display">
 
             <div className="row">
                <div className="col-12 filter-content-top">
@@ -115,8 +147,6 @@ class DisplayProducts extends React.Component {
                      // count={this.state.products.length} 
                      category={this.state.category}
                      catList={this.state.catList}
-
-
                      // filterProductsByCat={this.filterProductsByCat}
                      searchBar={this.searchBar}
                   />
@@ -131,6 +161,9 @@ class DisplayProducts extends React.Component {
                      filterProductsByCat={this.filterProductsByCat}
                      filterByCat={this.state.filterByCat}
                      categories={categories}
+                     matter={matter}
+                     // handleFilters={filters => this.handleFilters(filters)}
+                     handleFilters={filterMatter => this.FilterProductsByMatter(filterMatter)}
                   />
 
                </div>
@@ -143,13 +176,9 @@ class DisplayProducts extends React.Component {
                   cat={this.state.filterByCat}
                />
                </div>
-         
-
-               {/* <Parallax speed={1} data-scroll>
-                  <img src={visage} alt="visage" className="visage img-fluid" />
-               </Parallax> */}
-         </div>
+            </div>
          </section>
+      </>
       );
    }
 }

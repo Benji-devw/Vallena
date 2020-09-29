@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PuffLoader from "react-spinners/PuffLoader";
 import { Link } from 'react-router-dom'
-
+import {InsertProduct} from './Insert_Product';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
@@ -248,7 +248,7 @@ export default function Orders() {
 
   return (
     <React.Fragment>
-      <div className={`list-items mt-5`}>
+      <div className={`row list-items mt-5`}>
       <h3>Liste des Produits : <span>resultat ({products.length})</span> </h3>
       <Grid item xs={12} className={`text-center ${classes.seeMore}`}>
         {!isLoading ? ( <>
@@ -265,6 +265,9 @@ export default function Orders() {
           </>) : (<PuffLoader size={50} color={"#f50057"} />)}
           
         </Grid >
+      </div>
+      <div className="row">
+        <InsertProduct />
       </div>
     </React.Fragment>
   );

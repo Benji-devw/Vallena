@@ -11,7 +11,7 @@ import PuffLoader from "react-spinners/PuffLoader";
 
 import Title from '../components/Title';
 
-import ChartPie from '../components/PieChart'
+// import ChartPie from '../components/PieChart'
 import Chart from '../components/Chart';
 import Deposits from '../components/Deposits';
 import Counter from '../components/Counter';

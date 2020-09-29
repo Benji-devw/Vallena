@@ -1,0 +1,69 @@
+// HOME_VIEW_TOP
+.home-promo-novelty {
+
+  a {
+    color: #191919;
+    margin-left: 5rem;
+    font-size: 1.2em;
+    &:hover {
+      color: #1919199e;
+    }
+  }
+.title {
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+.home-promo {
+  padding: 1rem;
+  background-color: #ffffff;
+  .home-promo-content {
+    max-height: 22rem;
+    background-color: #F5F5F5;
+    overflow: hidden;
+      img {
+        height: 20rem;
+        position: relative;
+        right: -7rem;
+        top: 4rem;
+        transition: .5s;
+        &:hover {
+          transition: .5s;
+          right: -5rem;
+          top: 1rem;
+        }
+      }
+      svg {
+        font-size: .8em;
+      }
+    }
+}
+
+
+.home-novelty {
+  padding: 1rem;
+  background-color: #ffffff;
+  .home-novelty-content {
+    max-height: 22rem;
+    background-color: #F5F5F5;
+    overflow: hidden;
+      img {
+        height: 20rem;
+        position: relative;
+        right: -7rem;
+        top: 4rem;
+        transition: .5s;
+        &:hover {
+          transition: .5s;
+          right: -5rem;
+          top: 1rem;
+        }
+      }
+      svg {
+        font-size: .8em;
+      }
+    }
+
+}
+
+
+}

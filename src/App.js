@@ -103,24 +103,12 @@ const App = props => {
       {!checkCookies &&
         <>
           <CookieConsent
-            // onAccept={() => {
-            //   alert("yay!");
-            // }}
-            // debug={true}
-            // enableDeclineButton
-            // declineButtonText="Decline (optional)"
-            // onDecline={() => {
-            //   alert("nay!");
-            // }}
             buttonText="Ok"
             expires={1}
             style={{ background: "rgba(0, 0, 0, 0.7)" }}
             buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
           >
             Ce site Web utilise des cookies pour améliorer l'expérience utilisateur.{" "}
-            {/* <span style={{ fontSize: "10px" }}>
-            This bit of text is smaller :O
-            </span> */}
           </CookieConsent>
         </>
       }

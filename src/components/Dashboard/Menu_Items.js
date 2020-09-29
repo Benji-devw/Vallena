@@ -8,7 +8,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 // import ListSubheader from '@material-ui/core/ListSubheader';
 // import AssignmentIcon from '@material-ui/icons/Assignment';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+// import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import CreateIcon from '@material-ui/icons/Create';
 import CreditCardIcon from '@material-ui/icons/CreditCard';
 import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
@@ -40,7 +41,7 @@ const MainListItems = props => {
     <Link to="/dashboard/listitems">
     <ListItem button>
       <ListItemIcon>
-        <ShoppingCartIcon />
+        <CreateIcon />
       </ListItemIcon>
       <ListItemText primary="Produits" />
     </ListItem>    

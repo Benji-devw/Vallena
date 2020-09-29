@@ -18,8 +18,8 @@ class ListProducts extends Component {
    constructor(props) {
       super(props);
       this.state = {
-         products: null,
-         display: "",
+         // products: null,
+         display: "grid-display col-lg-4 col-md-6 col-sm-6",
       }
       this.myRef = React.createRef()  
    }
@@ -27,14 +27,10 @@ class ListProducts extends Component {
 
    componentDidMount() {
       const display = localStorage.getItem('display')
-      const cat = localStorage.getItem('filterByCat')
-      if(this.state.display !== null) {
+      this.setState({display: display})
+      // const cat = localStorage.getItem('filterByCat')
+      if(this.state.display === null) {
          this.setState({ display: "grid-display col-lg-4 col-md-6 col-sm-6"})
-      } else {
-         // console.log('display', display)
-         // this.setState({display: "grid-display col-lg-4 col-md-6 col-sm-6"})
-         this.setState({display: display})
-         this.setState({cat: cat})
       }
    }
 
@@ -85,10 +81,9 @@ class ListProducts extends Component {
                   <div className="row">
                      {this.props.products.map(product => (
                         product.visible && 
-                        <div key={product._id} className={`${this.state.display === "list-display" ? 'col-12 list-display' : `${this.state.display}`}`}>
+                        <div key={product._id} className={`${this.state.display === null ? 'grid-display col-lg-4 col-md-6 col-sm-6' : `${this.state.display}`}`}>
                            <Card product={product} display={this.state.display} />
                         </div>
-
                      ))}
                   </div>
                </>

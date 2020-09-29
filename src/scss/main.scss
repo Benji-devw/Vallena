@@ -16,6 +16,7 @@
 @import './partials/home/slider_home_one';
 @import './partials/home/home_collection';
 @import './partials/home/home_promotion';
+@import './partials/home/home_promo_news';
 
 //Shop
 @import './partials/shop-display-products';
@@ -30,6 +31,7 @@
 // Components
 @import './partials/header';
 @import './partials/cart-modal';
+@import './partials/slick-components';
 
 // Payment
 @import './partials/payment';
@@ -221,4 +223,25 @@ a {
 .not-visible-left {
   // transform: translateX(-30px);
   opacity: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.MuiInputBase-input {
+  background: #ffffff !important;
+
 }

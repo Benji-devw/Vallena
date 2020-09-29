@@ -17,15 +17,23 @@ const Card = props => {
          <div className="row justify-content-center product-item">
 
             <div className={`product-images align-items-center ${display === 'list-display' ? 'col-md-6 text-center' : ''}`}>
-               <Link to={`/product/${product._id}`} >
+               <div className="test" >
+                  <Link to={`/product/${product._id}`} >
                   <img src={product.imgCollection[0]} alt={product.titleProduct} className={`align-self-center img-fluid`} />
                </Link>
+               </div>
+               
                {/* {product.quantityProduct < 1 && <div className="rupture bg-danger">Rupture</div>}
                {product.promotionProduct && <div className="promotion bg-success">-20 %</div>} */}
                   {product.promotionProduct && 
-                  <LoyaltyOutlinedIcon className="promotion" style={{fontSize:"2em"}} />}
+                  // <LoyaltyOutlinedIcon className="promotion" style={{fontSize:"2em"}} />
+                  <div className="promotion">Promo</div>
+                  }
+                  {product.novelty &&
+                     // <LoyaltyOutlinedIcon className="promotion" style={{fontSize:"2em"}} />
+                     <div className="novelty">New</div>
+                  }
             </div>
-
 
             <div className={`product-details ${display === 'list-display' && 'col-md-6'}`}>
                <h2>{product.titleProduct}</h2>
@@ -36,18 +44,9 @@ const Card = props => {
                {/* <b>{product.categoryProduct}</b>*/}
                <p>Mots-clé, sdb, rangement</p> 
             
-                  <h5>{product.priceProduct} €</h5>
+                  <h5>€ {product.priceProduct}  {product.promotionProduct && <span className="promo-price">€ {product.oldPriceProduct} </span>}  </h5>
                   {product.quantityProduct < 1 && <Alert severity="error" className="rupture">Rupture</Alert>}
          
-            
-               {/* <b>{product.sizeProduct} - {product.weightProduct}</b> */}
-            
-            
-               
-               {/* <button className="btn">Détails <IoIosArrowForward /> </button> */}
-         
-               
-            
             </div>
 
          </div>

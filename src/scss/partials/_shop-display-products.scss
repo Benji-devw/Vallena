@@ -1,17 +1,28 @@
 .shop-display {
   // background: #ca5116;
-  margin-top: 5rem;
+  margin-top: 3rem;
   padding: 1rem;
   min-height: 50rem;
   background: white;
 
   .filter-content-top {}
 
+
+
+
+
+
   .filter-content-left {
     h3 {
       color: $pink-color;
       font-weight: 500;
       font-size: 1.3em;
+    }
+
+    .MuiAccordionSummary-root {
+      background: #F1F1F1;
+
+      &:hover {}
     }
   }
 
@@ -26,6 +37,7 @@
     -o-user-select: none;
     user-select: none;
     padding: 0;
+
     h4 {
       color: #f9b384;
       font-size: 1em;
@@ -41,6 +53,7 @@
 
       @media screen and (max-width: 991px) {
         text-align: center;
+
         li {
           display: inline-block;
           margin-left: 1rem;
@@ -53,15 +66,17 @@
         &:hover {
           transition-duration: .3s;
           padding-left: 10px;
-        @media screen and (max-width: 991px) {
-          padding-left: 0;
-        }
+
+          @media screen and (max-width: 991px) {
+            padding-left: 0;
+          }
         }
       }
     }
 
     .active {
       padding-left: 10px;
+
       @media screen and (max-width: 991px) {
         padding-left: 0;
         font-weight: bold;
@@ -70,4 +85,26 @@
 
   }
 
+}
+
+
+
+.shop-top {
+  margin-top: 3rem;
+  background-color: #F5F5F5;
+  border-bottom: 2px solid $pink-color;
+
+  .title-product-shop-top {
+    h1 {
+      font-family: satisfy, sans-serif;
+      font-size: 5em;
+      font-weight: bold;
+      color: #191919;
+      margin: 2rem;
+
+      @media screen and (max-width: 768px) {
+        font-size: 3em;
+      }
+    }
+  }
 }

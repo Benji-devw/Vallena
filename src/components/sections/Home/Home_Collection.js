@@ -20,13 +20,13 @@ const HomeCollection = () => {
       <div className="row no-gutters align-items-center">
       <div className="col-lg-12">
         
-        <Parallax speed={-1} data-scroll>
+        {/* <Parallax speed={-1} data-scroll> */}
         <div className="title-collection">
           <h2>
           C O L L E C T I O N S
           </h2>
         </div>
-        </Parallax>
+        {/* </Parallax> */}
 
         <div className="container">
           <Parallax speed={1} data-scroll>

@@ -118,14 +118,14 @@ const SlideItems = () => {
           </div>
           </div>
           </div>
-            {productsDb.map(item => item.promotionProduct === true &&
+            {productsDb.map(item => item.yearCollection === 2020 &&
               <div key={item._id}>
               <div className="container">
               <div className="row slick-content content-two align-items-center">
                 <div className="col-md-6">
                   <span className="collection">Collection 2020</span>
                   <h3>{item.titleProduct}</h3>
-                  <h4>{item.priceProduct}€</h4>
+                  <h4>€ {item.priceProduct}</h4>
                   <p>{item.descriptionProduct}</p>
                     <Link to={`/product/${item._id}`}>
                       <Button variant="outlined" color="secondary">

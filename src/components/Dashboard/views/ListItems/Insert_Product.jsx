@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
-import apiCall from '../../apiCall/Products_Api'
-import { Container, Form, Col} from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import apiCall from '../../../../apiCall/Products_Api'
+import {Container, Form, Col} from 'react-bootstrap'
 import styled from 'styled-components'
 
-const Title = styled.h1.attrs({ className: 'h1', })``
-const Wrapper = styled.div.attrs({ className: 'form-group', })`
-    margin: 0 30px;
-`
+
+const Wrapper = styled.div.attrs({
+    className: 'form-group',
+})` margin: 0 30px; `
 const InputText = styled.input.attrs({ className: 'form-control', })`
     margin: 5px;
 `
@@ -15,33 +14,41 @@ const Button = styled.button.attrs({ className: `btn btn-primary`, })`
     margin: 15px 15px 15px 5px;
 `
 
-
-
-export class ProductUpdate extends Component {        // lien => Dashboard.js
+export class InsertProduct extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
-            id: this.props.match.params.id,
-            imgCollection: [],      imgCollectionCopy: [],
-            titleProduct: '',       descriptionProduct: '',
-            priceProduct: '',       categoryProduct: '',
-            sizeProduct: '',        weightProduct: '',
-            quantityProduct: '',    reporterProduct: '',
+            imgCollection: [],
+            catProduct: [],
+            titleProduct: '',        descriptionProduct: '',
+            priceProduct: '',        categoryProduct: '',
+            sizeProduct: '',         weightProduct: '',
+            quantityProduct: '',     reporterProduct: '',
+            promotionProduct: false, stockProduct: true,
 
-            tags: '',   matter: '', composition: '', fabrication: '',  color: '', oldPriceProduct: '', yearCollection: '', entretien: '',
+            tags: '', matter: '', composition: '', fabrication: '', color: '', oldPriceProduct: 0, yearCollection: '', entretien: '',
             novelty: true, displaySlideHome: true,
 
-            visible: true, 
-            stockProduct: true,
-            promotionProduct: true, 
-
-            notes: [], comments: [], 
+            visible: true,  notes: 0,
+            comments: ['premier commentaire'],           
+            isLoading: false,
+            alert: ''
         }
-        this.handleChangeImgCollection = this.handleChangeImgCollection.bind(this)
     }
 
+    componentDidMount = async () => {
+        this.setState({ isLoading: true })
 
+        await apiCall.getProducts().then(product => {
+            // console.log('products', product.data.products)
+            this.setState({
+                catProduct: product.data.products,
+                isLoading: false,
+            })
+        })
+        window.scrollTo({ top: 0 });
+    }
+    
     handleChangeInputDescriptionProduct = async event => {
         const descriptionProduct = event.target.validity.valid
             ? event.target.value
@@ -49,19 +56,14 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
 
         this.setState({ descriptionProduct })
     }
-
+  
     handleChangeImgCollection = event => {
-        // console.log('event.target.files', event.target.files)
         var preview = document.querySelector('#preview')
         var files = document.querySelector('input[type=file]').files;
-        var displayimgC = document.querySelector('.displayImgCollection')
-        
         preview.innerHTML = '<div id="preview"></div>'
-        displayimgC.style.visibility = 'hidden'
-        displayimgC.style.height = "0px"
         const readAndPreview = (file) => {
             // Veillez à ce que `file.name` corresponde à nos critères d’extension
-            if (/\.(jpe?g|png|jpg|gif)$/i.test(file.name)) {
+            if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
                 var reader = new FileReader();
                 reader.addEventListener("load", function () {
                     var image = new Image();
@@ -80,157 +82,141 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
         this.setState({ imgCollection: event.target.files })
     }
 
-   
 
-    handleUpdateProduct = (e) => {
+    handleIncludeNewProduct = async (e) => {
         e.preventDefault()
-
-        var formData = new FormData();
-        const id = this.state.id
-        const { titleProduct, descriptionProduct, priceProduct, categoryProduct, 
-            sizeProduct, weightProduct, quantityProduct, stockProduct, promotionProduct, 
-            reporterProduct, visible, tags, matter, composition, fabrication, color, 
-            oldPriceProduct, yearCollection, entretien, novelty, displaySlideHome } = this.state
         
+        const { titleProduct, descriptionProduct, priceProduct, categoryProduct, sizeProduct, 
+            weightProduct, quantityProduct, stockProduct, promotionProduct, reporterProduct, visible, notes, comments,
+            tags, matter, composition, fabrication, color, oldPriceProduct, yearCollection, entretien, novelty, displaySlideHome} = this.state
             
-        const newCollection = this.state.imgCollection
-        console.log('newCollection', newCollection)
-        const copyCollection = this.state.imgCollectionCopy
-        console.log('copyCollection', copyCollection)
+            
+            if (!titleProduct) {
+            this.setState({ alert: "titleError" })
+            } else if (!descriptionProduct) {
+                this.setState({ alert: "descError" })
+            } else if (!categoryProduct) {
+                this.setState({ alert: "catError" })
+            } else if (!sizeProduct) {
+                this.setState({ alert: "sizeError" })
+            } else if (!weightProduct) {
+                this.setState({ alert: "weightError" })
+            } else if (!quantityProduct) {
+                this.setState({ alert: "qtyError" })
+            } else if (!entretien) {
+                this.setState({ alert: "entretienError" })
+            } else if (!tags) {
+                this.setState({ alert: "tagsError" })
+            } else if (!matter) {
+                this.setState({ alert: "matterError" })
+            }else if (!composition) {
+                this.setState({ alert: "compositionError" })
+            }else if (!fabrication) {
+                this.setState({ alert: "fabError" })
+            }else if (!color) {
+                this.setState({ alert: "colorError" })
+            }else if (!yearCollection) {
+                this.setState({ alert: "yearColError" })
+            }
+            else if (!this.state.imgCollection) {
+                this.setState({ alert: "imgColError" })
+            }
+            
+            
+            else {  
+                var formData = new FormData();
+                for (const key of Object.keys(this.state.imgCollection)) {              // Crée un nouvel objet FormData et construit une paires clé/valeur représentant les champs du formulaire et leurs valeurs,
+                    formData.append('imgCollection', this.state.imgCollection[key])     // Ajoute une nouvelle valeur à une clé existante dans un objet FormData, ou ajoute la clé si elle n'existe pas encore.
+                }
 
+                formData.append('titleProduct', titleProduct)
+                formData.append('descriptionProduct', descriptionProduct)
+                formData.append('priceProduct', priceProduct)
+                formData.append('categoryProduct', categoryProduct)
+                formData.append('sizeProduct', sizeProduct)
+                formData.append('weightProduct', weightProduct)
+                formData.append('quantityProduct', quantityProduct)
+                formData.append('tags', tags)
+                formData.append('matter', matter)
+                formData.append('composition', composition)
+                formData.append('fabrication', fabrication)
+                formData.append('color', color)
+                formData.append('oldPriceProduct', oldPriceProduct)
+                formData.append('yearCollection', yearCollection)
+                formData.append('entretien', entretien)
+                formData.append('novelty', novelty)
+                formData.append('displaySlideHome', displaySlideHome)
+                formData.append('stockProduct', stockProduct)
+                formData.append('promotionProduct', promotionProduct)
+                formData.append('reporterProduct', reporterProduct)
+                formData.append('visible', visible)
+                formData.append('notes', notes)
+                formData.append('comments', comments)
+                
+                apiCall.insertProduct(formData).then(res => {
+                    console.log('2 res.data......', res.data)
+                    window.alert('Produit Ajouté !')
+                    window.location = "/dashboard/listitems";
 
-        for (const key of Object.keys(newCollection)) {              // Crée un nouvel objet FormData et construit une paires clé/valeur représentant les champs du formulaire et leurs valeurs,
-            formData.append('imgCollection', newCollection[key])     // Ajoute une nouvelle valeur à une clé existante dans un objet FormData, ou ajoute la clé si elle n'existe pas encore.
-        }
-        for (const key of Object.keys(copyCollection)) {              // Crée un nouvel objet FormData et construit une paires clé/valeur représentant les champs du formulaire et leurs valeurs,
-            formData.append('copyCollection', copyCollection[key])     // Ajoute une nouvelle valeur à une clé existante dans un objet FormData, ou ajoute la clé si elle n'existe pas encore.
-        } 
-
+                }).catch(function (erreur) {
+                    //On traite ici les erreurs éventuellement survenues
+                    console.log(erreur);
+                });
+            }
         
-        console.log(titleProduct);
-        // formData.append('copyCollection', copyCollection)
-        formData.append('titleProduct', titleProduct)
-        formData.append('descriptionProduct', descriptionProduct)
-        formData.append('priceProduct', priceProduct)
-        formData.append('categoryProduct', categoryProduct)
-        formData.append('sizeProduct', sizeProduct)
-        formData.append('weightProduct', weightProduct)
-        formData.append('quantityProduct', quantityProduct)
-        formData.append('tags', tags)
-        formData.append('matter', matter)
-        formData.append('composition', composition)
-        formData.append('fabrication', fabrication)
-        formData.append('color', color)
-        formData.append('oldPriceProduct', oldPriceProduct)
-        formData.append('yearCollection', yearCollection)
-        formData.append('entretien', entretien)
-        formData.append('novelty', novelty)
-        formData.append('displaySlideHome', displaySlideHome)
-        formData.append('stockProduct', stockProduct)
-        formData.append('promotionProduct', promotionProduct)
-        formData.append('reporterProduct', reporterProduct)
-        formData.append('visible', visible)
-
-
-                                                       // ROUTE => serverURL/server.js/router.js/:id
-        apiCall.updateProductById(id, formData)         // Lien => src/apiCall/index.js
-        // .then(res => {    
-        //         console.log('2 UPDATE res.data......', res)
-        //     }).catch(() => {  } ) 
-        window.alert(`Modification OK !`)
-        window.location = "/dashboard/listitems";
-    }
-
-
-    componentDidMount = async () => {
-        window.scrollTo({ top: 0 });
-        const { id } = this.state
-        const product = await apiCall.getProductById(id)        // Lien => src/apiCall/index.js
-        // console.log('product', product)
-        // 2 - Rempli les input avec les valeurs
-        this.setState({
-            imgCollection: product.data.data.imgCollection,
-            imgCollectionCopy: product.data.data.imgCollection,
-
-            titleProduct: product.data.data.titleProduct,
-            descriptionProduct: product.data.data.descriptionProduct,
-            priceProduct: product.data.data.priceProduct,
-            categoryProduct: product.data.data.categoryProduct,
-            sizeProduct: product.data.data.sizeProduct,
-            weightProduct: product.data.data.weightProduct,
-            quantityProduct: product.data.data.quantityProduct,
-            tags: product.data.data.tags,
-            matter: product.data.data.matter,
-            composition: product.data.data.composition,
-            fabrication: product.data.data.fabrication,
-            color: product.data.data.color,
-            entretien: product.data.data.entretien,
-            novelty: product.data.data.novelty,
-            displaySlideHome: product.data.data.displaySlideHome,
-            oldPriceProduct: product.data.data.oldPriceProduct,
-            yearCollection: product.data.data.yearCollection,
-            stockProduct: product.data.data.stockProduct,
-            promotionProduct: product.data.data.promotionProduct,
-            reporterProduct: product.data.data.reporterProduct,
-            visible: product.data.data.visible,
-        })
     }
 
 
 
     render() {
-        console.log('oldPriceProduct', this.state.oldPriceProduct);
-        
-       const {imgCollection} = this.state
-    //    console.log('imgCollection', imgCollection)
-    //    console.log('imgCollectioncopy', imgCollectionCopy)
+        // Filter catProduct
+        const catSuggest = this.state.catProduct
+        const categorySet = new Set(catSuggest.map(p => p.categoryProduct));
+        const categories = Array.from(categorySet).sort();
 
-       const imgDisplay = []
-
-        for (let i = 0; i < imgCollection.length; i++) {
-            imgDisplay.push(<img src={imgCollection[i]} key={[i]} alt="img" className="img-responsive m-3" style={{ height: '200px' }} />);
-        }
-
+        // console.log(this.state.matter);
         return (
+            <Container>
             <Wrapper>
-                <Container>
-                <Form>  
+                <Form>
 
-                <Title className="mt-5">Update product</Title>
+                <h3 className="mb-5">Création d'un produit</h3>
 
                 <Form.Row className="justify-content-md-center">
                     <Form.Group as={Col} md="4" controlId="validationCustom01">
                         <Form.Control
                             placeholder="Nom du produit"
                             type="text"
-                            defaultValue={this.state.titleProduct}
                             onChange={(e) => this.setState({ titleProduct: e.target.value })}
                             required
                         />
-                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                        <span className="text-danger">{this.state.alert === "titleError" && "champ incorrect"}</span>
                     </Form.Group>
 
                     <Form.Group as={Col} md="4" controlId="validationCustom02">
-
                         <Form.Control
                             label="Catégorie"
                             as="select"
+                            // onChange={this.handleChangeInputCategoryProduct}
                             onChange={(e) => this.setState({ categoryProduct: e.target.value })}
-                            required
                         >
-                            <option>{this.state.categoryProduct}</option>
-                            <option>Masques</option>
-                            <option>Pochettes</option>
-                            <option>Trousse</option>
-                            <option>Dingettes</option>
-                            <option>Panière</option>
-                            <option>Attache tétine</option>
-                            <option>Sac à dos</option>
-                            <option>Couverture</option>
-                            <option>Bavoir</option>
-                            <option>Doudou</option>
+                            <option></option>
+                            {categories.map((category, index) => (
+                                <option key={index}>{category}</option>
+                            ))}
+
                         </Form.Control>
-                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                        <span className="text-danger">{this.state.alert === "catError" && "champ incorrect"}</span>
+
+                    </Form.Group>
+                    <Form.Group as={Col} md="4" controlId="validationCustom33">
+                        <Form.Control
+                            placeholder="Créer une catégorie"
+                            type="text"
+                            // onChange={this.handleChangeInputCategoryProduct}
+                            onChange={(e) => this.setState({ categoryProduct: e.target.value })}
+                        />
+                        <span className="text-danger">{this.state.alert === "catError" && "champ incorrect"}</span>
                     </Form.Group>
                 </Form.Row>
 
@@ -239,10 +225,11 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                     <Form.Group as={Col} md="8" controlId="validationCustom03">
                         <Form.Control as="textarea" rows="5"
                             placeholder="Description de produit..."
-                            defaultValue={this.state.descriptionProduct}
-                            onChange={this.handleChangeInputDescriptionProduct}
+                            // onChange={this.handleChangeInputDescriptionProduct}
+                            onChange={(e) => this.setState({ descriptionProduct: e.target.value })}
                             required
                         />
+                        <span className="text-danger">{this.state.alert === "descError" && "champ incorrect"}</span>
                     </Form.Group>
                 </Form.Row>
 
@@ -253,7 +240,6 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                         <InputText
                             placeholder="Prix..."
                             type="number"
-                            defaultValue={this.state.priceProduct}
                             onChange={(e) => this.setState({ priceProduct: e.target.value })}
                             required
                         />
@@ -264,21 +250,21 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                         <InputText
                             placeholder='Taille... "xs/xxl..." "3 x 7 mm..."'
                             type="text"
-                            defaultValue={this.state.sizeProduct}
                             onChange={(e) => this.setState({ sizeProduct: e.target.value })}
                             required
                         />
+                        <span className="text-danger">{this.state.alert === "sizeError" && "champ incorrect"}</span>
                     </Form.Group>
 
                     <Form.Group as={Col} md="3" controlId="validationCustom06">
                         <Form.Label>Poids</Form.Label>
                         <InputText
-                            placeholder='Poids... "2" "0.3"'
+                            placeholder='Poids "200g"'
                             type="text"
-                            defaultValue={this.state.weightProduct}
                             onChange={(e) => this.setState({ weightProduct: e.target.value })}
                             required
-                        />               
+                        />            
+                        <span className="text-danger">{this.state.alert === "weightError" && "champ incorrect"}</span>
                     </Form.Group>
 
                     <Form.Group as={Col} md="3" controlId="validationCustom07">
@@ -286,7 +272,6 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                         <InputText
                             placeholder="Quantité..."
                             type="number"
-                            defaultValue={this.state.quantityProduct}
                             onChange={(e) => this.setState({ quantityProduct: e.target.value })}
                             required
                         />  
@@ -301,9 +286,9 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                         <InputText
                             placeholder='Entretien'
                             type="text"
-                            defaultValue={this.state.entretien}
                             onChange={(e) => this.setState({ entretien: e.target.value })}
                         />
+                        <span className="text-danger">{this.state.alert === "entretienError" && "champ incorrect"}</span>
                     </Form.Group>
 
                     <Form.Group as={Col} md="3" controlId="validationCustom26">
@@ -311,9 +296,9 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                         <InputText
                             placeholder='Matière'
                             type="text"
-                            defaultValue={this.state.matter}
                             onChange={(e) => this.setState({ matter: e.target.value })}
                         />
+                        <span className="text-danger">{this.state.alert === "matterError" && "champ incorrect"}</span>
                     </Form.Group>
 
                     <Form.Group as={Col} md="3" controlId="validationCustom27">
@@ -321,9 +306,9 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                         <InputText
                             placeholder='composition'
                             type="text"
-                            defaultValue={this.state.composition}
                             onChange={(e) => this.setState({ composition: e.target.value })}
-                        />               
+                        />              
+                        <span className="text-danger">{this.state.alert === "compositionError" && "champ incorrect"}</span>
                     </Form.Group>
 
                     <Form.Group as={Col} md="3" controlId="validationCustom028">
@@ -331,10 +316,10 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                         <InputText
                             placeholder="fabrication"
                             type="text"
-                            defaultValue={this.state.fabrication}
                             onChange={(e) => this.setState({ fabrication: e.target.value })}
                             required
                         />  
+                                <span className="text-danger">{this.state.alert === "fabError" && "champ incorrect"}</span>
                     </Form.Group>
                 </Form.Row>
 
@@ -345,37 +330,33 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                         <InputText
                             placeholder="Couleur"
                             type="text"
-                            defaultValue={this.state.color}
                             onChange={(e) => this.setState({ color: e.target.value })}
                             required
                         />
+                        <span className="text-danger">{this.state.alert === "colorError" && "champ incorrect"}</span>
                     </Form.Group>
                     <Form.Group as={Col} md="3" controlId="validationCustom25">
                         <Form.Label>Année Collection</Form.Label>
                         <InputText
                             placeholder="Année Collection"
                             type="number"
-                            defaultValue={this.state.yearCollection}
                             onChange={(e) => this.setState({ yearCollection: e.target.value })}
                             required
                         />
+                        <span className="text-danger">{this.state.alert === "yearColError" && "champ incorrect"}</span>
                     </Form.Group>
                     <Form.Group as={Col} md="6" controlId="validationCustom25">
                         <Form.Label>Mot clé</Form.Label>
                         <InputText
                             placeholder="Mot clé..."
                             type="text"
-                            defaultValue={this.state.tags}
                             onChange={(e) => this.setState({ tags: e.target.value })}
                             required
                         />
+                        <span className="text-danger">{this.state.alert === "tagsError" && "champ incorrect"}</span>
                     </Form.Group>
 
                 </Form.Row>
-
-
-
-
 
 
 
@@ -393,7 +374,6 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                         <InputText
                             placeholder="Crée par ..."
                             type="text"
-                            defaultValue={this.state.reporterProduct}
                             onChange={(e) => this.setState({ reporterProduct: e.target.value })}
                             required
                         />
@@ -428,9 +408,8 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                             <InputText className={`${this.state.promotionProduct ? '' : 'hide-div'}`}
                                 placeholder="Encien prix"
                                 type="number"
-                                defaultValue={this.state.oldPriceProduct}
                                 onChange={(e) => this.setState({ oldPriceProduct: e.target.value })}
-                            
+                                required
                             />
                         }
                         
@@ -452,41 +431,38 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                             onChange={(e) => this.setState({ displaySlideHome: e.target.checked })}
                         />
                     </Form.Group>
-
-                    
                 </Form.Row>
 
-                    <Form.Row className="justify-content-md-center">
-                        <Form.Group>
-                            <Form.File defaultValue={imgCollection}
-                                className="position-relative"
-                                id="custom-file"
-                                label="Inserer des images"
-                                type="file"
-                                name="imgCollection"
-                                onChange={this.handleChangeImgCollection}
-                                accept="image/*"
-                                multiple
-                                feedbackTooltip
-                                custom
-                                required
-                            />
-                        </Form.Group>
-                        </Form.Row> 
-                        <Form.Row className="justify-content-md-center p-3">
-                            <div id="preview"></div>
-                            <div className="displayImgCollection">
-                                {imgDisplay}
-                            </div>
 
-                        </Form.Row>
-                        
-                <Button onClick={this.handleUpdateProduct}>Update product</Button>
-                <Link to= "/dashboard/listitems">Cancel</Link>
+                <Form.Row className="justify-content-md-center">
+                    <Form.Group>
+                        <Form.File
+                            className="position-relative"
+                            id="custom-file"
+                            label="Inserer des images"
+                            type="file"
+                            name="imgCollection"
+                            onChange={this.handleChangeImgCollection} 
+                            multiple
+                            feedbackTooltip
+                            custom
+                            required
+                        />
+                        <span className="text-danger">{this.state.alert === "imgColError" && "Images manquantes"}</span>
+                    </Form.Group>
+                </Form.Row> 
 
-            </Form>
-            </Container>
+                <Form.Row className="justify-content-md-center p-3">
+                    <div id="preview"></div>
+
+                </Form.Row>
+                
+
+                <Button onClick={this.handleIncludeNewProduct}>Envoyer</Button>
+
+                </Form>
             </Wrapper>
+            </Container>
         )
     }
 }

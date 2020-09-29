@@ -5,9 +5,9 @@ import Title from './Title';
 // https://recharts.org/en-US/examples/SynchronizedLineChart
 
 // Generate Sales Data
-function createData(month, sale) {
-  return { month, sale };
-}
+// function createData(month, sale) {
+//   return { month, sale };
+// }
 
 const data = [
   // createData('jan', 0),

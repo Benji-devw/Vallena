@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import apiCall from '../../../apiCall/Products_Api'
 import { useSelector, useDispatch } from 'react-redux';
-import CenterMode from './components/carousel'
-import Footer from '../../UI/Footer/Footer'
+import { Link } from 'react-router-dom'
 import Alert from '@material-ui/lab/Alert';
 import { MdAddShoppingCart } from 'react-icons/md';
-import ScrollableTabsButtonForce from './components/Tabs_Product_View'
 // import {AiOutlineShareAlt} from 'react-icons/ai';
 import MailOutlineRoundedIcon from '@material-ui/icons/MailOutlineRounded';
 import ShareIcon from '@material-ui/icons/Share';
+import HomeIcon from '@material-ui/icons/Home';
 
+import CenterMode from './components/carousel'
+import Footer from '../../UI/Footer/Footer'
+import apiCall from '../../../apiCall/Products_Api'
+import ScrollableTabsButtonForce from './components/Tabs_Product_View'
 import { addtoCart } from '../../../lib/actions'
-
+import SlickComponent from '../GeneralComponents/Slick_Component'
 
 
 
@@ -55,8 +57,11 @@ const ProductView = props => {
 
             <section className="row no-gutters shop-view-top">
                <article className="container">
-                  <div className="col-12 title-product">
+                  <div className="col-12 text-center title-product">
                      <h1 className="title">{data.titleProduct}</h1>
+                  </div>
+                  <div className="col-12 title-link text-right">
+                    <Link to="/"><HomeIcon /> </Link> / <Link to="/shop"> boutique </Link> / <span>{data.titleProduct}</span>
                   </div>
 
                </article>
@@ -78,15 +83,15 @@ const ProductView = props => {
                         <p className="m-2">
                            <b>Taile :</b> {data.sizeProduct} <br />
                            <b>Poids :</b> {data.weightProduct} <br />
-                           <b>Matière :</b> matière <br />
+                           <b>Matière :</b> {data.matter} <br />
                            <b>Catégories :</b> {data.categoryProduct} <br />
-                           <b>Tags :</b> mot-clé, sdb, rangement
+                           <b>Tags :</b> {data.tags}
                         </p>
                   
                         
                 
                      <hr />
-                     <h2>{data.priceProduct}€ <span className="avis">avis(0)</span></h2> 
+                     <h2>€ {data.priceProduct} <span className="avis">avis(0)</span></h2> 
                      {data.quantityProduct > 0 ? 	// Affichage à la volée avec opérateur ternaire
                      <div className="add-cart-content flipInX">
                         {!findId ?
@@ -140,19 +145,17 @@ const ProductView = props => {
 
 
 
-            <section className="shop-view-same-cat">
+            <section className="container shop-view-same-cat">
                <article className="row shop-view-content-1 align-items-center justify-content-center p-0 m-0">
                <div className="col-md-12 m-0">
-                  <h3>Produit similaire </h3>
-                     <div className="row">
-                        {/* {this.props.products.map(product => (
-                           product.visible &&
-                           <div key={product._id} className={`${this.state.display === "list-display" ? 'col-12 list-display' : this.state.display}`}>
-                              <Card product={product} display={this.state.display} />
-                           </div>
-
-                        ))} */}
+                  <div className="title-collection">
+                     <h2>
+                     MEME CATEGORIES
+                     </h2>
                   </div>
+
+                  <SlickComponent id={data._id} cat={data.categoryProduct}/>
+
                   </div>
                </article>
             </section>

@@ -63,8 +63,8 @@ const HomePromotion = () => {
     slidesToShow: 4,
     slidesToScroll: 2,
     initialSlide: 4,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    nextArrow: <SamplePrevArrow />,
+    prevArrow: <SampleNextArrow />,
     responsive: [
       
       {

@@ -111,9 +111,9 @@ export default function Orders() {
       if (short === "croissant") {
         setOrder({
           order:
-            fullList.filter(name =>
+            fullList.filter(order =>
               // console.log('name', name.client[0].shipping.name.full_name.toLowerCase())
-              name.client[0].shipping.name.full_name.toLowerCase().indexOf(term) > -1
+              order.client[0].shipping.name.full_name.toLowerCase().indexOf(term) > -1
             ).reverse()
         })
         // setOrder(order.data.data.reverse())
@@ -121,9 +121,9 @@ export default function Orders() {
       } else {
         setOrder({
           order:
-            fullList.filter(name =>
+            fullList.filter(order =>
               // console.log('name', name.client[0].shipping.name.full_name.toLowerCase())
-              name.client[0].shipping.name.full_name.toLowerCase().indexOf(term) > -1
+              order.client[0].shipping.name.full_name.toLowerCase().indexOf(term) > -1
             )
         })
         // setOrder(order.data.data)

@@ -24,3 +24,46 @@ export default function IndexDbInit(products) {
 }
 
 
+
+
+
+
+
+// INIT
+// const indexDbInit = () => {
+//    let indexDBFound = indexedDB.databases();
+//    // console.log('indexDBFound', indexDBFound)
+//    indexDBFound.then((value) => {
+//       if (value.length < 1) {
+//          console.log('APICALL');
+//          apiCall.getProducts().then(product => {
+//             IndexDbInit(product.data.products)
+//          })
+//       }
+//    })
+// }
+// indexDbInit()
+//   }, [saveLocalStorage, items])
+
+
+
+
+
+// CALL
+// useEffect(() => {
+//    // IndexDB getAll
+//    setTimeout(() => {    // setTimeout sinon ce rend avant App/IndexDbInit()
+//       var request = indexedDB.open('customers', 2);
+//       request.onsuccess = function (event) {
+//          const db = event.target.result
+//          db.transaction('product').objectStore('product')
+//             .getAll().onsuccess = function (event) {
+//                setProductsDb(event.target.result);
+//             }
+//       }
+//    }, 300);
+// }, []);
+
+// const saveFilterByCat = (cat) => {
+//    localStorage.setItem('filterByCat', cat)
+// }

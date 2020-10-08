@@ -1,36 +1,43 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import SlideItems from './Home_View_Top'
 import HomeCollection from './Home_Collection'
 import HomePromotion from './Home_Promotion'
 import HomePromoNews from './Home_Promo_News'
+import apiCall from '../../../apiCall/Products_Api'
 
 import Parallax from 'react-rellax'
 
-// import areca from '../../../scss/img/areca.png';
 
 
 const Home = () => {
 
+  const [datas, setDatas] = useState([])
+
+  useEffect(() => {
+    apiCall.getProducts().then(product => {
+      setDatas(product.data.products)
+    })
+  })
 
   return (
     <section id='home'>
 
-      {/* <img src={areca} alt="areca" className="areca img-fluid" draggable="false"/> */}
         <Parallax speed={1} data-scroll>
-      <div className="slider-home-one">
-        <SlideItems />
-      </div></Parallax>
+        <div id="home-slide" className="slider-home-one">
+          <SlideItems data={datas} />
+        </div>
+      </Parallax>
 
       <div className="home-promo-novelty">
-        <HomePromoNews />
+        <HomePromoNews data={datas} />
       </div>
 
-      <div className="collection-home">
-        <HomeCollection />
+      <div id="collection" className="collection-home">
+        <HomeCollection data={datas} />
       </div>
 
-      <div className="slider-home-promotion">
-        <HomePromotion />
+      <div id="slider-home-promotion" className="slider-home-promotion">
+        <HomePromotion data={datas} />
       </div>
 
 

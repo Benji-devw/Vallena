@@ -16,6 +16,7 @@
     "framer": "^1.2.5",
     "framer-motion": "^2.6.5",
     "fs": "0.0.1-security",
+    "jquery": "^3.5.1",
     "modal": "^1.2.0",
     "moment": "^2.29.0",
     "react": "^16.8.6",

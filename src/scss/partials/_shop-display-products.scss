@@ -24,10 +24,15 @@
 
       &:hover {}
     }
+
   }
 
   .filter-search {
     max-width: 20rem;
+    svg {
+      position: relative;
+      z-index: 50;
+    }
   }
 
   .filter-category {

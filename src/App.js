@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Success from './views/Success'
 // import ClientProfileContext from './lib/ClientProfileContext'
-import IndexDbInit from './lib/IndexBdInit'
-import apiCall from './apiCall/Products_Api'
+// import IndexDbInit from './lib/IndexBdInit'
 
 import Shop from './views/Shop'
 import Layout from './views/Layout'
@@ -44,24 +43,9 @@ const App = props => {
   }
 
 
- 
 
   useEffect(() => {     // s'execute quand il y a un changement ds l'etat local des items(Cart) (qty, delete, ...)
     saveLocalStorage(items)   // savegarde du panier dans le navigateur
-
-    const indexDbInit=()=> {
-      let indexDBFound = indexedDB.databases();
-      // console.log('indexDBFound', indexDBFound)
-       indexDBFound.then((value) => {
-        if (value.length < 1) {
-          console.log('APICALL');
-          apiCall.getProducts().then(product => {
-            IndexDbInit(product.data.products)
-          })
-        }
-      })
-    }
-    indexDbInit()
   }, [saveLocalStorage, items])
 
   return (

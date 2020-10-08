@@ -241,8 +241,8 @@
   .zoomIn {
   -webkit-animation-name: zoomIn;
   animation-name: zoomIn;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
   }
@@ -283,58 +283,69 @@
 
 
 
-  .rotateInDownRight {
-  -webkit-animation-name: rotateInDownRight;
-  animation-name: rotateInDownRight;
+
+
+
+
+    .slideInLeft {
+  -webkit-animation-name: slideInLeft;
+  animation-name: slideInLeft;
   -webkit-animation-duration: .5s;
   animation-duration: .5s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
   }
-  @-webkit-keyframes rotateInDownRight {
+  @-webkit-keyframes slideInLeft {
   0% {
-  -webkit-transform-origin: right bottom;
-  transform-origin: right bottom;
-  -webkit-transform: rotate3d(0, 0, 1, 45deg);
-  transform: rotate3d(0, 0, 1, 45deg);
-  opacity: 0;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  visibility: visible;
   }
   100% {
-  -webkit-transform-origin: right bottom;
-  transform-origin: right bottom;
-  -webkit-transform: none;
-  transform: none;
-  opacity: 1;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
   }
   }
-  @keyframes rotateInDownRight {
+  @keyframes slideInLeft {
   0% {
-  -webkit-transform-origin: right bottom;
-  transform-origin: right bottom;
-  -webkit-transform: rotate3d(0, 0, 1, 45deg);
-  transform: rotate3d(0, 0, 1, 45deg);
-  opacity: 0;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  visibility: visible;
   }
   100% {
-  -webkit-transform-origin: right bottom;
-  transform-origin: right bottom;
-  -webkit-transform: none;
-  transform: none;
-  opacity: 1;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
   }
   } 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-  
+ .slideOutLeft {
+  -webkit-animation-name: slideOutLeft;
+  animation-name: slideOutLeft;
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  }
+  @-webkit-keyframes slideOutLeft {
+  0% {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  }
+  100% {
+  visibility: hidden;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  }
+  }
+  @keyframes slideOutLeft {
+  0% {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  }
+  100% {
+  visibility: hidden;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  }
+  } 

@@ -92,6 +92,7 @@ const ProductView = props => {
                 
                      <hr />
                      <h2>€ {data.priceProduct} <span className="avis">avis(0)</span></h2> 
+                     
                      {data.quantityProduct > 0 ? 	// Affichage à la volée avec opérateur ternaire
                      <div className="add-cart-content flipInX">
                         {!findId ?
@@ -144,19 +145,18 @@ const ProductView = props => {
             </section>
 
 
-
             <section className="container shop-view-same-cat">
-               <article className="row shop-view-content-1 align-items-center justify-content-center p-0 m-0">
-               <div className="col-md-12 m-0">
+               <article className="row align-items-center justify-content-center p-0 m-0">
+               <div className="col mt-4">
                   <div className="title-collection">
                      <h2>
                      MEME CATEGORIES
                      </h2>
                   </div>
 
-                  <SlickComponent id={data._id} cat={data.categoryProduct}/>
-
-                  </div>
+                     <SlickComponent data={data} id={data._id} cat={data.categoryProduct}/>
+          
+               </div>
                </article>
             </section>
          

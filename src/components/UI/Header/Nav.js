@@ -58,13 +58,13 @@ const Nav = props => {
                 <li classes='nav-link'> Boutique </li>
               </Link>
                 <li className='nav-item'>
-                  <LinkScroll target='home' offset={-120} classes='nav-link'> Home </LinkScroll>
+                  <LinkScroll target='home-slide' offset={-120} classes='nav-link'> Home </LinkScroll>
                 </li>
                 <li className='nav-item'>
-                  <LinkScroll target='shop-display' classes='nav-link'> Shop </LinkScroll>
+                  <LinkScroll target='collection' classes='nav-link'> Collections </LinkScroll>
                 </li>
                 <li className='nav-item'>
-                  <LinkScroll target='about' classes='nav-link'> About </LinkScroll>
+                  <LinkScroll target='slider-home-promotion' classes='nav-link'> pomotions </LinkScroll>
                 </li>
                 <li className='nav-item'>
                   <LinkScroll target='contact' classes='nav-link'>  Contact  </LinkScroll>

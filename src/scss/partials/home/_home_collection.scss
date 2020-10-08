@@ -1,20 +1,20 @@
 // HOME_VIEW_TOP
 .collection-home {
-  padding: 1rem;
   margin-top: 3rem;
-  min-height: 35rem;
+  background: #F5F5F5;
 
-
-
+  @media screen and (max-width: 768px) {
+    margin-top: -3rem;
+  }
 
   .title-collection {
     h2 {
       position: absolute;
-      top: -4rem;
+      top: 0rem;
       left: 0;
 
       user-select: none;
-      font-size: 10em;
+      font-size: 8em;
       font-weight: bold;
       background-color: rgba(0, 0, 0, 0.1);
       color: transparent;
@@ -24,141 +24,122 @@
       background-clip: text;
 
       @media screen and (max-width: 768px) {
-        font-size: 8em;
-        top: 0rem;
+        padding: 1rem;
+        font-size: 3.5em;
       }
     }
 
   }
 
   .collection-content {
+    margin-top: 9rem;
+    height: 100%;
 
-    .collection-twelve {
-      color: #f50057;
+    .title {
+      width: 100%;
+      position: absolute;
+      top: 40%;
 
-      &::before {
-        position: absolute;
-        top: -.5rem;
+      h3 {
+        width: 50%;
         margin: auto;
-        content: '';
-        height: 2px;
-        width: 100px;
-        background: #f50057;
+        color: #ffffff;
+        border: 2px solid #ffffff;
+        padding: .5rem;
       }
     }
 
-    .collection-nine {
-      color: orangered;
-
-      &::before {
-        position: absolute;
-        top: -.5rem;
-        margin: auto;
-        content: '';
-        height: 2px;
-        width: 100px;
-        background: orangered;
-      }
-    }
-
-    .collection-eight {
-      color: #dcb14a;
-
-      &::before {
-        position: absolute;
-        top: -.5rem;
-        margin: auto;
-        content: '';
-        height: 2px;
-        width: 100px;
-        background: #dcb15a;
-      }
-    }
 
     .collection {
-      margin: 1rem;
-      margin-top: 8rem;
-      border-radius: 10px;
-      background: #F5F5F5;
-      box-shadow: 8px 8px 10px rgba(0, 0, 0, .3);
-
-      -moz-transform: skew(-10deg, -10deg);
-      -webkit-transform: skew(-10deg, -10deg);
-      -o-transform: skew(-10deg, -10deg);
-      -ms-transform: skew(-10deg, -10deg);
-      transform: skew(0deg, -20deg) rotateY(30deg);
-
-      transition: 1s;
 
       .over-f {
-        height: 100%;
-        overflow: hidden;
-      }
-
-      &:hover {
-        position: relative;
-        z-index: 500;
-        box-shadow: 15px 15px 10px rgba(0, 0, 0, .5);
-
-        transform: skew(0deg, 0deg) scale(1.3);
-        transition: .5s;
-        
-        // transition-delay: .2s;
-        @media screen and (max-width: 768px) {
-          transform: skew(0deg, 0deg) scale(1.1);
-        }
-      }
-
-      h2 {
-        position: absolute;
-        top: -2.5rem;
-        display: block;
         width: 100%;
-        text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
       }
 
-      img {
-        position: relative;
-        top: 0rem;
-        border-radius: 10px;
+      .collection-after {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #ffffff;
 
-        transition: 1s;
-        // transition-delay: .2s;
-      }
-    }
+        h4 {
+          width: 100%;
+          font-size: 2.2em;
+          font-weight: 500;
+          position: absolute;
+          top: 30%;
+        }
 
-    .collection-2020 {
-      height: 20rem;
+        p {
+          width: 100%;
+          font-size: .9em;
+          position: absolute;
+          text-align: center;
+          top: 40%;
+        }
 
-      img {
-        &:hover {
-          transition: 3s;
-          top: -15rem;
+        .btn-after {
+          width: 100%;
+          position: absolute;
+          top: 60%;
+
+          h5 {
+            width: 40%;
+            margin: auto;
+            border: 1px solid #ffffff;
+            font-weight: 100;
+
+            &:hover {
+              color: #191919;
+              background-color: #ffffff;
+            }
+          }
         }
       }
+
+
+
     }
 
-    .collection-2019 {
-      height: 15rem;
 
-      img {
-        &:hover {
-          transition: 4s;
-          top: -15rem;
-        }
-      }
-    }
 
-    .collection-2018 {
-      height: 15rem;
 
-      img {
-        &:hover {
-          transition: 4s;
-          top: -15rem;
-        }
-      }
-    }
+
+
+    // .collection-2020 {
+    //   height: 20rem;
+
+    //   img {
+    //     &:hover {
+    //       transition: 3s;
+    //       top: -15rem;
+    //     }
+    //   }
+    // }
+
+    // .collection-2019 {
+    //   height: 15rem;
+
+    //   img {
+    //     &:hover {
+    //       transition: 4s;
+    //       top: -15rem;
+    //     }
+    //   }
+    // }
+
+    // .collection-2018 {
+    //   height: 15rem;
+
+    //   img {
+    //     &:hover {
+    //       transition: 4s;
+    //       top: -15rem;
+    //     }
+    //   }
+    // }
   }
 
 

@@ -100,9 +100,19 @@ a {
   }
 }
 
+
+
+
+
 .hide-div {
   display: none;
 }
+
+
+
+
+
+
 
 .slick-arrow {
   color: rgba(0, 0, 0, .3) !important;
@@ -154,6 +164,11 @@ a {
 }
 
 
+
+
+
+
+
 .backTo {
   margin: .95rem;
   font-size: .9rem;
@@ -183,14 +198,6 @@ a {
   z-index: -2;
 }
 
-.areca {
-  position: absolute;
-  top: -7rem;
-  left: -1rem;
-  height: 35rem;
-
-  user-select: none;
-}
 
 
 
@@ -203,14 +210,18 @@ a {
 }
 
 
-[data-scroll] {
-  transition: transform 1s;
-}
 
+
+
+
+
+
+[data-scroll] {
+  transition: transform .8s;
+}
 [data-scroll="in"] {
   transform: translateY(0);
 }
-
 [data-scroll="out"] {
   transform: translateY(100px);
 

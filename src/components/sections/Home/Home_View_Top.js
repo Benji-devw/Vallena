@@ -46,7 +46,7 @@ function SamplePrevArrow(props) {
 
 
 
-const SlideItems = () => {
+const SlideItems = props => {
   const [productsDb, setProductsDb] = useState([])
 
   const settings = {
@@ -64,18 +64,8 @@ const SlideItems = () => {
   };
 
   useEffect(() => {
-      // IndexDB getAll
-      setTimeout(() => {    // setTimeout sinon ce rend avant App/IndexDbInit()
-        var request = indexedDB.open('customers', 2);
-        request.onsuccess = function (event) {
-          const db = event.target.result
-          db.transaction('product').objectStore('product')
-            .getAll().onsuccess = function (event) {
-              setProductsDb(event.target.result);
-            }
-        }
-      }, 300);
-    }, []);
+    setProductsDb(props.data)
+  }, [props.data]);
   
   const saveFilterByCat = (cat) => {
     localStorage.setItem('filterByCat', cat)
@@ -89,7 +79,7 @@ const SlideItems = () => {
   return (
 
       <div className="row justify-content-center">
-        <div className="col-lg-12 pl-0 pl-lg-3 pr-0 pr-lg-3">
+        <div className="col-lg-12 pl-0 pl-lg-3 pr-0 pr-lg-3 mt-3">
 
         <Slider {...settings}>
           <div>
@@ -136,7 +126,7 @@ const SlideItems = () => {
 
                 <div className="col-md-6">
                   {/* <img src={round} alt="round" className="round" /> */}
-                  <img src={item.imgCollection[2]} alt="visage" className="img-fluid mx-auto" />
+                  <img src={item.imgCollection[2]} alt={item.titleProduct} className="img-fluid mx-auto" />
 
                 </div>
 

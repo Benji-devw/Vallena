@@ -88,12 +88,18 @@
       }
 
       .content-two {
+        img {
+          max-height: 350px;
+           @media screen and (max-width: 768px) {
+            padding-bottom: 5rem;
+          }
+        }
         h3 {
           font-family: satisfy, sans-serif;
           font-size: 4em;
           font-weight: lighter;
           padding: .3rem;
-
+          
           &::after {
             position: absolute;
             top: 0rem;
@@ -120,16 +126,6 @@
           top: -2rem;
           right: 0rem;
           max-height: 22rem;
-        }
-      }
-
-      .content-three {
-        .round {
-          z-index: -1;
-          position: absolute;
-          top: 0rem;
-          right: 1rem;
-          max-height: 15rem;
         }
       }
 

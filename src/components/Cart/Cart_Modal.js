@@ -62,7 +62,7 @@ function CartHome() {
       </div>
 
       
-      <Modal className="rotateInDownRight"
+      <Modal
       show={show}
       onHide={() => setShow(false)}
     >

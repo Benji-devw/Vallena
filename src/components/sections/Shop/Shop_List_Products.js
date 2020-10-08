@@ -46,18 +46,14 @@ class ListProducts extends Component {
       // console.log(this.props);
       return (
          <>
-            {
-            !this.props.products ? 
-               (<div>Loading...</div> )
-            :
-               (
-               <>
+            
                   <div ref={this.myRef} className="row">
                      <div className="col-md-6 toogle-display">
                         <ul>
                            Afficher : 
                            <li onClick={() => { this.handleDisplay('grid-display col-lg-4 col-md-6 col-sm-6') }} className={`btn btn-sm ${this.state.display === 'grid-display col-lg-4 col-md-6 col-sm-6' ? 'secondary' : 'out'}`}><AppsIcon /></li>
                            <li onClick={() => this.handleDisplay('list-display')} className={`btn btn-sm arttrack ${this.state.display === 'list-display' ? 'secondary' : 'out'}`}><ArtTrackIcon /></li>
+                           <span className="ml-3">Résultat trouvé: {this.props.products.length}</span>
                         </ul>
                      </div>
 
@@ -78,15 +74,21 @@ class ListProducts extends Component {
                         </select>
                      </div>
                   </div>
-                  <div className="row">
-                     {this.props.products.map(product => (
-                        product.visible && 
-                        <div key={product._id} className={`${this.state.display === null ? 'grid-display col-lg-4 col-md-6 col-sm-6' : `${this.state.display}`}`}>
-                           <Card product={product} display={this.state.display} />
-                        </div>
-                     ))}
-                  </div>
-               </>
+            {
+               this.props.products.length <= 0 ?
+                  (<div className="m-3">aucun résultat...</div>)
+                  :
+                  (
+                  <>
+                     <div className="row">
+                        {this.props.products.map((product, id) => (
+                           product.visible && 
+                           <div key={id} className={`${this.state.display === null ? 'grid-display col-lg-4 col-md-6 col-sm-6' : `${this.state.display}`}`}>
+                              <Card product={product} display={this.state.display} />
+                           </div>
+                        ))}
+                     </div>
+                  </>
                )
             }
             

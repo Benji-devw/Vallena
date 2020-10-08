@@ -1,43 +1,55 @@
 
-// INDEXED_DB
-// INSERT TO NAVIGATEUR
 
-const IndexDbInit = (event) => {
-      var request = indexedDB.open('customers', 2);
-   request.onerror = function (event) { console.log('Error INDEXED_DB...', event) };
-   request.onupgradeneeded = function (event) {
-      console.log('event', event)
-      var db = event.target.result;
+import $ from 'jquery'
 
-      var objectStore = db.createObjectStore("product", { keyPath: "_id" });
-      objectStore.createIndex("titleProduct", "titleProduct", { unique: false });
-      objectStore.createIndex("categoryProduct", "categoryProduct", { unique: false });
 
-      objectStore.transaction.oncomplete = function (event) {
-         // Stocker les valeurs dans le nouvel objet de stockage.
-         var customerObjectStore = db.transaction("product", "readwrite").objectStore("product");
-         for (var i in products) {
-            customerObjectStore.add(products[i]);
-         }
+
+var $filterCheckboxes = $('input[type="checkbox"]');
+var filterFunc = function () {
+
+   var selectedFilters = {};
+
+   $filterCheckboxes.filter(':checked').each(function () {
+
+      if (!selectedFilters.hasOwnProperty(this.name)) {
+         selectedFilters[this.name] = [];
       }
+
+      selectedFilters[this.namea].push(this.value);
+   });
+
+   // create a collection containing all of the filterable elements
+   var $filteredResults = $('.flower');
+
+   // loop over the selected filter name -> (array) values pairs
+   $.each(selectedFilters, function (name, filterValues) {
+
+      // filter each .flower element
+      $filteredResults = $filteredResults.filter(function () {
+
+         var matched = false,
+            currentFilterValues = $(this).data('category').split(' ');
+
+         // loop over each category value in the current .flower's data-category
+         $.each(currentFilterValues, function (_, currentFilterValue) {
+
+            // if the current category exists in the selected filters array
+            // set matched to true, and stop looping. as we're ORing in each
+            // set of filters, we only need to match once
+
+            if ($.inArray(currentFilterValue, filterValues) !== -1) {
+               matched = true;
+               return false;
+            }
+         });
+
+         // if matched is true the current .flower element is returned
+         return matched;
+
+      });
+   });
+
+   $('.flower').hide().filter($filteredResults).show();
 }
 
-   
-
-
-
-
-   // REQUETE GET PRODUCT
-   var request = indexedDB.open('customers', 2);
-   request.onsuccess = function (event) {
-      const db = event.target.result
-      // console.log('db', db)
-
-      db.transaction('product').objectStore('product').get(`${lulu._id}`).onsuccess = function (event) {
-         this.setState({ result: event.target.result })
-         // console.log('event', event.target.result)
-         // return this.setState({ result: event.target.result })
-      }
-   }
-
-
+$filterCheckboxes.on('change', filterFunc); 

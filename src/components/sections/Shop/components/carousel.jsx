@@ -60,7 +60,7 @@ const CenterMode = props => {
 				<Slider {...settings}>
 					{imgs.map((url, i) => (
 					<img key={i}
-					className="img-fluid"
+						className=""
 						src={url}
 						alt={i}
 					/>

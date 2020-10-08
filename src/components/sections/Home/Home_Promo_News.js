@@ -4,8 +4,8 @@ import Parallax from 'react-rellax'
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 
-import imgPromo from '../../../scss/packImages/home-full-width-4.png'
-import imgNews from '../../../scss/packImages/home-full-width-1.png'
+import imgPromo from '../../../scss/packImages/nouveau-nés-les-enfants-le.jpg'
+import imgNews from '../../../scss/packImages/vêtements-pour-femmes.jpg'
 
 
 
@@ -43,7 +43,7 @@ const HomePromoNews = () => {
               <h2 className="title">Nouveauté</h2>
             <Link to="/shop">Decouvrir <ArrowForwardIosIcon /></Link> 
               <div className="text-right">
-                <Link to="/shop"><img src={imgNews} alt="img202" className="" /></Link>
+                <Link to="/shop"><img src={imgPromo} alt="img202" className="" /></Link>
               </div>
            
             </div>

@@ -37,22 +37,14 @@ function SamplePrevArrow(props) {
 
 
 
-const HomePromotion = () => {
+const HomePromotion = props => {
   const [productsDb, setProductsDb] = useState([])
+  const [ind, setInd] = useState('')
+  
 
   useEffect(() => {
-      // IndexDB getAll
-      setTimeout(() => {    // setTimeout sinon ce rend avant App/IndexDbInit()
-        var request = indexedDB.open('customers', 2);
-        request.onsuccess = function (event) {
-          const db = event.target.result
-          db.transaction('product').objectStore('product')
-            .getAll().onsuccess = function (event) {
-              setProductsDb(event.target.result);
-            }
-        }
-      }, 300);
-    }, []);
+    setProductsDb(props.data)
+  }, [props.data]);
 
   var settings = {
     dots: true,
@@ -61,12 +53,11 @@ const HomePromotion = () => {
     autoplay: true,
     autoplaySpeed: 3000,
     slidesToShow: 4,
-    slidesToScroll: 2,
-    initialSlide: 4,
+    slidesToScroll: 4,
+    initialSlide: 0,
     nextArrow: <SamplePrevArrow />,
     prevArrow: <SampleNextArrow />,
     responsive: [
-      
       {
         breakpoint: 991,
         settings: {
@@ -82,9 +73,7 @@ const HomePromotion = () => {
         slidesToScroll: 1,
         initialSlide: 1
       }
-    }
-      
-    ]
+    }]
   };
 
   return (
@@ -92,11 +81,8 @@ const HomePromotion = () => {
       <div className="col-lg-12">
         
         <div className="title-promotion">
-          <h2>
-          P R O M O T I O N
-          </h2>
+          <h2>  P R O M O T I O N </h2>
         </div>
-
 
         <Parallax speed={1} data-scroll>
         <div className="container promotion-parallax">
@@ -105,13 +91,23 @@ const HomePromotion = () => {
             {productsDb.map((item, index) => ( item.promotionProduct === true &&
               <div key={index}>
                 <div className="promotion-content m-2">
-                <Link to={`/product/${item._id}`}>
+                <Link to={`/product/${item._id}`} 
+
+                  onMouseEnter={() => setInd(index)} onMouseLeave={() => setInd(null)}>
+
+                <div className='test'>
+
                   <img src={item.imgCollection[0]} alt={item._id} className="img-fluid"/>
+                    <div className={`after-img slideInLeft ${ind === index ? "after-img" : 'slideOutLeft'}`}>
+                      <span>Découvrir</span>
+                    </div>
+                </div>
+                 
                 </Link>
                 </div>
                 <div className={`item-details text-center`}>
                   <h2>{item.titleProduct}</h2>
-                  <h5>{item.priceProduct}€ - <span>58€</span></h5>
+                <h5>€ {item.priceProduct}  {item.promotionProduct && <span className="promo-price">€ {item.oldPriceProduct} </span>}  </h5>
                 </div>
               </div>
             ))}

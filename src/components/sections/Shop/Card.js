@@ -48,7 +48,11 @@ const Card = props => {
                )}
                {/* <b>{product.categoryProduct}</b>*/}
                <p>{product.tags}</p> 
-               <p><b>Matière:</b> {product.matter}</p> 
+               <p>
+                  <b>Matière:</b> {product.matter} <br />
+                  <b>color:</b> {product.color} <br />
+                  <b>collection:</b> {product.yearCollection}
+               </p>
             
                   <h5>€ {product.priceProduct}  {product.promotionProduct && <span className="promo-price">€ {product.oldPriceProduct} </span>}  </h5>
                   {product.quantityProduct < 1 && <Alert severity="error" className="rupture">Rupture</Alert>}

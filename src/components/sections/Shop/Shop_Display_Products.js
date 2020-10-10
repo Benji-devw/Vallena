@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState} from 'react';
 import apiCall from '../../../apiCall/Products_Api'
 
 import ListProducts from './Shop_List_Products';
@@ -7,152 +7,108 @@ import FilterLeft from './components/Filter_Left'
 
 
 
-class DisplayProducts extends React.Component {
-   constructor(){
-      super();
-      this.state = {
-         products: [],
-         allProducts: [],
-         matterList: [],
-         sort:'',
-         isloading: false,
-         active: '',
+const DisplayProducts = () => {
+   const [products, setProducts] = useState([])
+   // console.log('products', products)
+   const [allProducts, setAllProducts] = useState([])
+   
+   const [sort, setSort] = useState("")
+   // const [matterList, setMatterList] = useState("")
+   const [filterByCat, setFilterByCat] = useState(["All"])
+   const [Filters, setFilters] = useState({
+     cat:[], matter: [], color: [], yearCollection: []
+   })
 
-         filterByCat: 'All',
-         filterByMatter: [],
-         ActiveFilter: ''
-      
-      }
-   }
 
-   componentDidMount = async () => {
-      this.setState({ isLoading: true })
-
-      await apiCall.getProducts().then(product => {
-         // console.log('products', product)
-         this.setState({
-            products: product.data.products,
-            allProducts: product.data.products,
-            isLoading: false,
-         })
+   useEffect(() => {
+      console.log('test');
+      apiCall.getProducts().then(res => {
+         // console.log('res', res)
+         setProducts(res.data.products)
+         setAllProducts(res.data.products)
       })
-      const filterCat = localStorage.getItem('filterByCat')
-      this.filterProductsByCat(filterCat)
-   }
 
-   sortProducts = (event) => {
+   }, []);
+
+   const sortProducts = (event) => {
       // console.log('event', event.target.value)
       const sort = event.target.value
-      this.setState(state => ({
-         sort: sort,
-         products: this.state.products.slice()
-         .sort((a,b) => 
-         sort === "lowest" ?
-            a.priceProduct < b.priceProduct ? 1 : -1 
-         :
-         sort === "highest" ?
-            (a.priceProduct > b.priceProduct )? 1 : -1 
-         :
-            (a._id < b._id )? 1 : -1
+      setSort( sort )
+      setProducts(
+         products.slice()
+         .sort((a, b) =>
+            sort === "lowest" ?
+               a.priceProduct < b.priceProduct ? 1 : -1
+               :
+               sort === "highest" ?
+                  (a.priceProduct > b.priceProduct) ? 1 : -1
+                  :
+                  (a._id < b._id) ? 1 : -1
          )
-      }))
+      )
    }
 
-   filterProductsByCat = (event) => {
-      // console.log('event', event)
-       if (event === "All") {
-          this.setState({ products: this.state.allProducts, filterByCat: "All"});
-      } else {
-         this.setState({
-            products: this.state.allProducts.filter(product => product.categoryProduct.indexOf(event) >= 0),
-            filterByCat: event
-               // filter() crée et retourne un nouveau tableau contenant tous les éléments du tableau d'origine qui remplissent une condition déterminée par la fonction callback.
-               // indexOf() renvoie le premier indice pour lequel on trouve un élément donné dans un tableau.
-         })
-      }
-   }
-
-   searchBar = (input) => {
-      const fullListMap = this.state.allProducts.map(prod => prod)
+   const searchBar = (input) => {
+      const fullListMap = allProducts.map(prod => prod)
       let fullList = fullListMap.flat()
-      this.setState({
-         products: fullList.filter(product => {
+      setProducts( fullList.filter(product => {
             const name = product.titleProduct.toLowerCase();
             const term = input.toLowerCase()
             return name.indexOf(term) > -1
          })
+      )
+   }
+
+   const showFilteredResult = (filters) => {
+      let variables = {
+         filters: filters,
+      }
+      console.log('variables', variables)
+
+      apiCall.getProductsPost(variables).then(res => {
+         setProducts([...res.data.products])
       })
    }
 
-   addActiveClass = (e) => {
-      const clicked = e
-      if (this.state.active === clicked) {
-         this.setState({active: ''})
-      } else {
-         this.setState({ active: clicked })
+   const filterProductsByCat = (event) => {
+
+      if (event === "All") {
+         setProducts(allProducts);
+         setFilterByCat("All")
       }
-   }
-
-   FilterProductsByMatter = (matter, cat) => {
-      // console.log('matter', matter)
-
-      
-   if (matter.length === 1) {
-      console.log('plein');
-      this.setState({
-         products: this.state.products.filter(product => product.matter.indexOf(matter) >= 0),
-         ActiveFilter: matter
-      })
-   }
-   else if (matter.length > 1) {
-
-      for (const key in matter) {
-         console.log('key', matter[key])
-
-         this.setState({
-            products: this.state.products
-               .concat(this.state.allProducts.filter(product => product.matter.indexOf(matter[key]) >= 0)
-                  .filter(test => test.categoryProduct.indexOf(cat) >= 0)
-               )
-         })
-
-
-
+      else {
+         setFilterByCat(event)
       }
-   }
-   else {
-      console.log('vide');
-      if (this.state.filterByCat !== 'All') {
-         this.setState({
-            products: this.state.allProducts.filter(product => product.categoryProduct.indexOf(this.state.filterByCat) >= 0),
-            ActiveFilter: matter
-         })
-      } else {
-         this.setState({
-            products: this.state.allProducts,
-            ActiveFilter: matter
-         })
-      }
-   }
 
+   };
+
+   const handleFilters = (value, key) => {
+      const newValue = {...Filters}
+
+      newValue[key] = value
+
+      showFilteredResult(newValue)
+      setFilters(newValue)
 
    }
 
 
-   render() {
-      // Filter cat
-      const categorySet = new Set(this.state.allProducts.map((p) => p.categoryProduct));
-      const categories = Array.from(categorySet).sort();
-      // Filter Matter
-      const matterSet = new Set(this.state.allProducts.map((p) => p.matter));
-      const matter = Array.from(matterSet).sort();
-      // console.log('matter', matter)
+   // Filter cat
+   const categorySet = new Set(allProducts.map(p => p.categoryProduct));
+   const catList = Array.from(categorySet).sort();
+   // Filter Matter
+   const matterSet = new Set(allProducts.map(p => p.matter));
+   const matterList = Array.from(matterSet).sort();   
+   // Filter Color
+   const colorSet = new Set(allProducts.map(p => p.color));
+   const colorList = Array.from(colorSet).sort();   
+   // Filter Collection
+   const collectionSet = new Set(allProducts.map(p => p.yearCollection.toString()));
+   const collectionList = Array.from(collectionSet).sort();
 
-      console.log('filterByMatter', this.state.filterByMatter);
-      console.log('products', this.state.products);
-      console.log('filterByCat', this.state.filterByCat);
-      return (
-         <>
+   // console.log(Filters);
+   return (
+      <>
          <section className="row no-gutters shop-top">
             <article className="container">
                <div className="col-12 title-product-shop-top">
@@ -167,9 +123,7 @@ class DisplayProducts extends React.Component {
             <div className="row">
                <div className="col-12 filter-content-top">
                   <FilterTop
-                     // count={this.state.products.length} 
-                     // filterProductsByCat={this.filterProductsByCat}
-                     searchBar={this.searchBar}
+                     searchBar={searchBar}
                   />
                </div>
             </div>
@@ -178,36 +132,40 @@ class DisplayProducts extends React.Component {
                <div className="col-lg-2 mt-4 filter-content-left p-0">
 
                   <FilterLeft
-                     category={this.state.category}
-                     filterProductsByCat={this.filterProductsByCat}
-                     filterByCat={this.state.filterByCat}
-                     categories={categories}
-                     matter={matter}
-                     // handleFilters={filters => this.handleFilters(filters)}
-                     // handleFilters={filterMatter => this.FilterProductsByMatter(filterMatter)}
-                        handleFilters={(filterMatter) => {
-                           this.setState({ filterByMatter: filterMatter })
-                           // this.setState({ ActiveFilter: filterMatter })
-                           this.FilterProductsByMatter(filterMatter, this.state.filterByCat)
-                        }}
+                     catList={catList}
+                     matterList={matterList}
+                     colorList={colorList}
+                     collectionList={collectionList}
+
+                     categoryDefault={filterByCat}
+                     filterProductsByCat={filterProductsByCat}
+                     filterByCat={filterByCat}
+
+                    
+                     handleCat={filters => handleFilters(filters, "categoryProduct")}
+                     handleMatter={filters => handleFilters(filters, "matter")}
+                     handleColor={filters => handleFilters(filters, "color")}
+                     handleCollection={filters => handleFilters(filters, "yearCollection")}
+
                   />
 
                </div>
-               
+
                <div className="col-lg-10 mt-3">
-                     <p>Filtre actifs : {this.state.ActiveFilter} </p>
-               <ListProducts 
-                  products={this.state.products}  
-                  sort={this.state.sort}
-                  sortProducts={this.sortProducts}
-                  cat={this.state.filterByCat}
-                  matter={this.state.filterByMatter}
-               />
+                  {/* <p>Filtre actifs : {ActiveFilter} </p> */}
+                  <ListProducts
+                     products={products}
+                     // products={filterByCat === "All" ? products : products.filter(e => e.categoryProduct.indexOf(filterByCat) >= 0)}
+                     sort={sort}
+                     sortProducts={sortProducts}
+                     // cat={filterByCat}
+                     // matter={matterList}
+                  />
                </div>
             </div>
          </section>
       </>
-      );
-   }
+   )
 }
+
 export default DisplayProducts;

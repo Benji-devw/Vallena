@@ -10,6 +10,8 @@ const getProducts = payload => apiCall.get(`/`, payload)                        
 const getProductById = id => apiCall.get(`/${id}`)
 const deleteProductById = id => apiCall.delete(`/${id}`)
 
+const getProductsPost = test => apiCall.post(`/getProductsPost`, test)                            // Lien => Api=>productRouter.js./getProducts
+
 
 const apis = {
     insertProduct,
@@ -17,6 +19,8 @@ const apis = {
     getProducts,
     getProductById,
     deleteProductById,
+    
+    getProductsPost
 }
 
 export default apis

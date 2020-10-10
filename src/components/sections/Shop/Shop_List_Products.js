@@ -38,7 +38,15 @@ class ListProducts extends Component {
       this.setState({display: e})
       localStorage.setItem('display', e)
    }
-
+   
+   // addActiveClass = (e) => {
+   //    const clicked = e
+   //    if (this.state.active === clicked) {
+   //       this.setState({ active: '' })
+   //    } else {
+   //       this.setState({ active: clicked })
+   //    }
+   // }
    
    render() {
       // console.log(this.state.display);

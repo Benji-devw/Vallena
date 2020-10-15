@@ -98,16 +98,16 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
         const copyCollection = this.state.imgCollectionCopy
         console.log('copyCollection', copyCollection)
 
-
-        for (const key of Object.keys(newCollection)) {              // Crée un nouvel objet FormData et construit une paires clé/valeur représentant les champs du formulaire et leurs valeurs,
+            for (const key of Object.keys(newCollection)) {              // Crée un nouvel objet FormData et construit une paires clé/valeur représentant les champs du formulaire et leurs valeurs,
             formData.append('imgCollection', newCollection[key])     // Ajoute une nouvelle valeur à une clé existante dans un objet FormData, ou ajoute la clé si elle n'existe pas encore.
-        }
-        for (const key of Object.keys(copyCollection)) {              // Crée un nouvel objet FormData et construit une paires clé/valeur représentant les champs du formulaire et leurs valeurs,
-            formData.append('copyCollection', copyCollection[key])     // Ajoute une nouvelle valeur à une clé existante dans un objet FormData, ou ajoute la clé si elle n'existe pas encore.
-        } 
+            }
+            for (const key of Object.keys(copyCollection)) {              // Crée un nouvel objet FormData et construit une paires clé/valeur représentant les champs du formulaire et leurs valeurs,
+                formData.append('copyCollection', copyCollection[key])     // Ajoute une nouvelle valeur à une clé existante dans un objet FormData, ou ajoute la clé si elle n'existe pas encore.
+            }
 
-        
-        console.log(titleProduct);
+       
+         
+
         // formData.append('copyCollection', copyCollection)
         formData.append('titleProduct', titleProduct)
         formData.append('descriptionProduct', descriptionProduct)
@@ -131,14 +131,13 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
         formData.append('reporterProduct', reporterProduct)
         formData.append('visible', visible)
 
-
-                                                       // ROUTE => serverURL/server.js/router.js/:id
-        apiCall.updateProductById(id, formData)         // Lien => src/apiCall/index.js
+                                                      
+        apiCall.updateProductById(id, formData)
         // .then(res => {    
         //         console.log('2 UPDATE res.data......', res)
         //     }).catch(() => {  } ) 
         window.alert(`Modification OK !`)
-        window.location = "/dashboard/listitems";
+        // window.location = "/dashboard/listitems";
     }
 
 
@@ -179,13 +178,11 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
 
 
     render() {
-        console.log('oldPriceProduct', this.state.oldPriceProduct);
+        console.log('imgCollection', this.state.imgCollection)
+        console.log('imgCollectioncopy', this.state.imgCollectionCopy)
         
-       const {imgCollection} = this.state
-    //    console.log('imgCollection', imgCollection)
-    //    console.log('imgCollectioncopy', imgCollectionCopy)
-
-       const imgDisplay = []
+        const {imgCollection} = this.state
+        const imgDisplay = []
 
         for (let i = 0; i < imgCollection.length; i++) {
             imgDisplay.push(<img src={imgCollection[i]} key={[i]} alt="img" className="img-responsive m-3" style={{ height: '200px' }} />);
@@ -220,6 +217,8 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                         >
                             <option>{this.state.categoryProduct}</option>
                             <option>Masques</option>
+                            <option>Accessoire</option>
+                            <option>Bébé</option>
                             <option>Pochettes</option>
                             <option>Trousse</option>
                             <option>Dingettes</option>

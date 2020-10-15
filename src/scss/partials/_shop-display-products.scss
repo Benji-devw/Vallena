@@ -2,7 +2,7 @@
   // background: #ca5116;
   margin-top: 3rem;
   padding: 1rem;
-  min-height: 50rem;
+  min-height: 60rem;
   background: white;
 
   .filter-content-top {}
@@ -13,11 +13,6 @@
 
 
   .filter-content-left {
-    h3 {
-      color: $pink-color;
-      font-weight: 500;
-      font-size: 1.3em;
-    }
 
     .MuiAccordionSummary-root {
       background: #F1F1F1;
@@ -29,9 +24,19 @@
 
   .filter-search {
     max-width: 20rem;
+
     svg {
       position: relative;
       z-index: 50;
+    }
+  }
+
+
+  .MuiFormControlLabel-root {
+    height: 20px;
+    width: 100%;
+    @media screen and (max-width: 991px) {
+      width: auto;
     }
   }
 
@@ -42,11 +47,13 @@
     -o-user-select: none;
     user-select: none;
     padding: 0;
+    width: 100%;
 
     h4 {
       color: #f9b384;
       font-size: 1em;
     }
+
 
     .category-list {
       padding: 5px;
@@ -55,6 +62,7 @@
       color: $dark-color;
       font-weight: 400;
       cursor: pointer;
+      width: 100%;
 
       @media screen and (max-width: 991px) {
         text-align: center;
@@ -65,15 +73,22 @@
         }
       }
 
+      ul {
+
+        display: block;
+      }
+
       li {
         transition-duration: .3s;
-
+        border-top: 1px solid rgba(0, 0, 0, 0.2);
+        padding: .3rem;
         &:hover {
           transition-duration: .3s;
           padding-left: 10px;
+          background-color: rgba(0, 0, 0, 0.05);
 
           @media screen and (max-width: 991px) {
-            padding-left: 0;
+            padding: .3rem;
           }
         }
       }
@@ -81,10 +96,10 @@
 
     .active {
       padding-left: 10px;
+      background-color: rgba(0, 0, 0, 0.05);
 
       @media screen and (max-width: 991px) {
         padding-left: 0;
-        font-weight: bold;
       }
     }
 

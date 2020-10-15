@@ -69,7 +69,7 @@ export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(true)
 
   const sumOrders = () => {
-    if (order !== []) {
+    if (order.length > 0) {
       let calc = []
       order.map(e => e.client.map(f => calc.push(parseInt(f.amount.value))))
       let sum = calc.reduce((a, b) => {

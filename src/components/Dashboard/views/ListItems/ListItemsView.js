@@ -50,7 +50,7 @@ class UpdateProduct extends React.Component {
 
 class DeleteProduct extends React.Component {
   delproduct = event => {
-    event.preventDefault()
+    // event.preventDefault()
     if (window.confirm(`Confirmer la suppréssion du produit ID: ${this.props.id}`,)) {
       apiCall.deleteProductById(this.props.id)
       window.location.reload()

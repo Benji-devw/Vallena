@@ -4,48 +4,70 @@ import apiCall from '../../../apiCall/Products_Api'
 import ListProducts from './Shop_List_Products';
 import FilterTop from './components/Filter_Top';
 import FilterLeft from './components/Filter_Left'
+import { updateFilters, addFilters } from '../../../lib/actions'
+import { useSelector, useDispatch } from 'react-redux';
 
 
 
 const DisplayProducts = () => {
    const [products, setProducts] = useState([])
-   // console.log('products', products)
    const [allProducts, setAllProducts] = useState([])
+
+
+   // Redux
+   const dispatch = useDispatch()
+   const filtersFromRedux = useSelector(state => state.filters)
+   // console.log('filtersFromRedux', filtersFromRedux)
+   if (filtersFromRedux.length <= 0) {
+      dispatch(addFilters([], [], [], []))
+   }
+
+   const [bySort, setBySort] = useState(["none"])
    
-   const [sort, setSort] = useState("")
-   // const [matterList, setMatterList] = useState("")
-   const [filterByCat, setFilterByCat] = useState(["All"])
-   const [Filters, setFilters] = useState({
-     cat:[], matter: [], color: [], yearCollection: []
+   const [filterByCat, setFilterByCat] = useState([])
+   const [matterCheck, setMatterCheck] = useState([]);
+   const [colorCheck, setColorCheck] = useState([]);
+   const [collectionCheck, setCollectionCheck] = useState([]);
+
+   const [allFilters, setAllFilters] = useState({
+      categoryProduct: [], matter: [], color: [], yearCollection: [],
+      promotionProduct: [], novelty: [], price: []
    })
+   // console.log('allFilters', allFilters)
 
 
-   useEffect(() => {
-      console.log('test');
-      apiCall.getProducts().then(res => {
-         // console.log('res', res)
-         setProducts(res.data.products)
-         setAllProducts(res.data.products)
-      })
 
-   }, []);
-
-   const sortProducts = (event) => {
-      // console.log('event', event.target.value)
-      const sort = event.target.value
-      setSort( sort )
-      setProducts(
-         products.slice()
-         .sort((a, b) =>
-            sort === "lowest" ?
-               a.priceProduct < b.priceProduct ? 1 : -1
-               :
-               sort === "highest" ?
-                  (a.priceProduct > b.priceProduct) ? 1 : -1
-                  :
-                  (a._id < b._id) ? 1 : -1
-         )
-      )
+   const handleSort = (event) => {
+      const newValue = { ...allFilters }
+      switch (event.target.value) {
+         case "byDesc":
+            newValue.price = true
+            newValue.novelty = false
+            newValue.promotionProduct = false
+            break;
+         case "byAsc":
+            newValue.price = false
+            newValue.novelty = false
+            newValue.promotionProduct = false
+            break;
+         case "byPromo":
+            newValue.promotionProduct = true
+            newValue.novelty = false
+            break; 
+         case "byNovelty":
+            newValue.novelty = true
+            newValue.promotionProduct = false
+            break;
+         default:
+            newValue.price = []
+            newValue.novelty = []
+            newValue.promotionProduct = []
+            break;
+      }
+      
+      showFilteredResult(newValue)
+      setAllFilters(newValue)
+      localStorage.setItem('BySort', event.target.value);
    }
 
    const searchBar = (input) => {
@@ -59,38 +81,122 @@ const DisplayProducts = () => {
       )
    }
 
+
+
    const showFilteredResult = (filters) => {
+      // console.log('allFilters', allFilters)
+
       let variables = {
-         filters: filters,
+         filters: allFilters,
       }
-      console.log('variables', variables)
+      // console.log('variables', variables.filters)
 
       apiCall.getProductsPost(variables).then(res => {
          setProducts([...res.data.products])
       })
    }
 
-   const filterProductsByCat = (event) => {
 
-      if (event === "All") {
-         setProducts(allProducts);
-         setFilterByCat("All")
+   const handleFilters = (value, key) => {
+
+      const newValue = {...allFilters}
+      newValue[key] = value
+      // newValue.categoryProduct = filtersFromRedux[0].cat
+      // newValue.matter = filtersFromRedux[0].matter
+      // newValue.color = filtersFromRedux[0].color
+      // newValue.yearCollection = filtersFromRedux[0].collection
+      // console.log('handleFilters', newValue)
+
+      setAllFilters(newValue)
+      dispatch(updateFilters(newValue.categoryProduct, newValue.matter, newValue.color, newValue.yearCollection))
+      
+      showFilteredResult()
+   }
+ 
+   const filterProductsByCat = (event) => {
+      // console.log('event', event)
+      if (event.length <= 0) {
+         setFilterByCat([])
+         handleFilters(event, 'categoryProduct')
       }
       else {
          setFilterByCat(event)
+         handleFilters(event, 'categoryProduct')
       }
+   };
+
+   const handleChangeMatterBox = (value) => {
+      const currentIndex = matterCheck.indexOf(value);
+      const newMatterCheck = [...matterCheck];
+
+      if (currentIndex === -1) {
+         newMatterCheck.push(value)
+      } else {
+         newMatterCheck.splice(currentIndex, 1)
+      }
+      setMatterCheck(newMatterCheck)
+         // setAllFilters({ matter: newMatterCheck })
+      handleFilters(newMatterCheck, 'matter')
 
    };
 
-   const handleFilters = (value, key) => {
-      const newValue = {...Filters}
+   const handleChangeColorBox = (value) => {
+      const currentIndex = colorCheck.indexOf(value);
+      const newColorCheck = [...colorCheck];
 
-      newValue[key] = value
+      if (currentIndex === -1) {
+         newColorCheck.push(value)
+      } else {
+         newColorCheck.splice(currentIndex, 1)
+      }
+      setColorCheck(newColorCheck)
+      // setAllFilters({ color: filtersFromRedux[0].color })
+      handleFilters(newColorCheck, 'color')
+   };
 
-      showFilteredResult(newValue)
-      setFilters(newValue)
+   const handleChangeCollectionBox = (value) => {
+      const currentIndex = collectionCheck.indexOf(value);
+      const newCollectionCheck = [...collectionCheck];
 
-   }
+      if (currentIndex === -1) {
+         newCollectionCheck.push(value)
+      } else {
+         newCollectionCheck.splice(currentIndex, 1)
+      }
+      setCollectionCheck(newCollectionCheck)
+      // setAllFilters({ yearCollection: newCollectionCheck })
+      handleFilters(newCollectionCheck, 'yearCollection')
+   };
+
+   
+   
+   const [test , setTest] = useState(true)
+   useEffect(() => {
+
+      setFilterByCat(filtersFromRedux[0].cat)
+      setMatterCheck(filtersFromRedux[0].matter)
+      setColorCheck(filtersFromRedux[0].color)
+      setCollectionCheck(filtersFromRedux[0].collection)
+
+      const newVal = { ...allFilters }
+      newVal.categoryProduct = filtersFromRedux[0].cat
+      newVal.matter = filtersFromRedux[0].matter
+      newVal.color = filtersFromRedux[0].color
+      newVal.collection = filtersFromRedux[0].collection
+      showFilteredResult(newVal)
+      if (test) {
+         setAllFilters(newVal)
+         setTest(false)
+      }
+
+      setBySort(localStorage.getItem('BySort'))
+
+      if (allProducts.length <= 0) {
+         apiCall.getProducts().then(res => { setAllProducts(res.data.products) });
+      }
+   }, [filtersFromRedux, allFilters, test, allProducts.length]);
+
+
 
 
    // Filter cat
@@ -106,7 +212,7 @@ const DisplayProducts = () => {
    const collectionSet = new Set(allProducts.map(p => p.yearCollection.toString()));
    const collectionList = Array.from(collectionSet).sort();
 
-   // console.log(Filters);
+   // console.log(bySort);
    return (
       <>
          <section className="row no-gutters shop-top">
@@ -138,15 +244,16 @@ const DisplayProducts = () => {
                      collectionList={collectionList}
 
                      categoryDefault={filterByCat}
-                     filterProductsByCat={filterProductsByCat}
                      filterByCat={filterByCat}
 
-                    
-                     handleCat={filters => handleFilters(filters, "categoryProduct")}
-                     handleMatter={filters => handleFilters(filters, "matter")}
-                     handleColor={filters => handleFilters(filters, "color")}
-                     handleCollection={filters => handleFilters(filters, "yearCollection")}
+                     filterProductsByCat={filterProductsByCat}
+                     handleChangeMatterBox={handleChangeMatterBox}
+                     handleChangeColorBox={handleChangeColorBox}
+                     handleChangeCollectionBox={handleChangeCollectionBox}
 
+                     matterCheck={matterCheck}
+                     colorCheck={colorCheck}
+                     collectionCheck={collectionCheck}
                   />
 
                </div>
@@ -155,11 +262,13 @@ const DisplayProducts = () => {
                   {/* <p>Filtre actifs : {ActiveFilter} </p> */}
                   <ListProducts
                      products={products}
-                     // products={filterByCat === "All" ? products : products.filter(e => e.categoryProduct.indexOf(filterByCat) >= 0)}
-                     sort={sort}
-                     sortProducts={sortProducts}
-                     // cat={filterByCat}
-                     // matter={matterList}
+
+                     bySort={bySort}
+                     handleSort={handleSort}
+                     
+                     counting={allProducts.length}
+
+                     allFilters={allFilters}
                   />
                </div>
             </div>

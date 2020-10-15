@@ -10,14 +10,18 @@ export const actions = {
    REMOVE_FROM_CART: "REMOVE_FROM_CART",
    SAVE_CART: "SAVE_CART",
    RESET_CART: "RESET_CART",
-   FILTER_PODUCTS_BY_CAT: "FILTER_PODUCTS_BY_CAT",
-   ORDER_PRODUCTS_BY_PRICE: "ORDER_PRODUCTS_BY_PRICE"
+
+   ADD_FILTERS: "ADD_FILTERS",
+   UPDATE_FILTERS: "UPDATE_FILTERS",
+   SAVE_FILTERS: "SAVE_FILTERS",
 
 }
 
 /*
  * Action creator
  */
+
+ // Add in Redux
 const uid = () => Math.random().toString(34).slice(2)
 export function addtoCart (item, quantity) {
    return {
@@ -41,7 +45,7 @@ export function removeFromCart (id) {
    }
 }
 
-// savegarde du panier dans le navigateur ( localStorage )
+// Save in  localStorage
 export function saveCart (items) {
    return {
       type: actions.SAVE_CART,
@@ -56,13 +60,33 @@ export function resetCart () {
 }
 
 
-export function filterProducts (products, cat) {
+export function addFilters(cat, matter, color, collection) {
    return {
-      type: actions.FILTER_PODUCTS_BY_CAT,
+      type: actions.ADD_FILTERS,
       payload: { 
          cat: cat,
-         items: cat === '' ? products : 
-            products.filter((x) => x.categoryProduct.indexOf(cat) >= 0)
+         matter: matter,
+         color: color,
+         collection: collection
       }
+   }
+}
+export function updateFilters(cat, matter, color, collection) {
+   return {
+      type: actions.UPDATE_FILTERS,
+      payload: { 
+         cat: cat,
+         matter: matter,
+         color: color,
+         collection: collection
+      }
+   }
+}
+
+
+export function saveFilter(filters) {
+   return {
+      type: actions.SAVE_FILTERS,
+      payload: { filters: filters}
    }
 }

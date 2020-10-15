@@ -7,8 +7,8 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import visage from '../../../scss/img/visage.svg';
 // import promo from '../../../scss/img/promo.png';
 // import round from '../../../scss/img/round.png';
-// import tab from '../../../scss/packImages/home-full-width-4.png';
-import Jetblack from '../../../scss/packImages/Jetblack.png';
+import Logo from '../../../scss/img/Logo-Vallena.svg';
+import deposit from '../../../scss/img/depositphotos_46127747-stock-photo-sewing-tools.png';
 import Button from '@material-ui/core/Button';
 
 
@@ -52,7 +52,7 @@ const SlideItems = props => {
   const settings = {
     dots: true,
     infinite: true,
-    autoplay: true,
+    // autoplay: true,
     speed: 800,
     // fade: true,
     slidesToShow: 1,
@@ -87,7 +87,10 @@ const SlideItems = props => {
           <div className="row slick-content content-one align-items-center">
 
               <div className="col-md-6 test text-center">
+
+                  {/* <img src={Logo} alt="logo" className="logo-vallena" /> */}
                 <h2>Vallena.fr</h2>
+
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel sem consectetur, tincidunt leo vitae, euismod purus.</p>
                     <Link to="/shop">
                       <Button variant="contained" color="secondary">
@@ -101,7 +104,7 @@ const SlideItems = props => {
 
               <div className="col-md-6 test">
                 <img src={visage} alt="visage" className="img-fluid visage" />
-                <img src={Jetblack} alt="visage" className="img-fluid mx-auto" />
+                  <img src={deposit} alt="visage" className="img-fluid mx-auto deposit" />
                 
               </div>
     
@@ -114,9 +117,10 @@ const SlideItems = props => {
               <div className="row slick-content content-two align-items-center">
                 <div className="col-md-6">
                   <span className="collection">Collection 2020</span>
-                  <h3>{item.titleProduct}</h3>
-                  <h4>€ {item.priceProduct}</h4>
+                  <h3>{item.titleProduct}</h3> <br />
                   <p>{item.descriptionProduct}</p>
+                    <h4>€ {item.priceProduct}</h4>
+
                     <Link to={`/product/${item._id}`}>
                       <Button variant="outlined" color="secondary">
                         Découvrir <MdKeyboardArrowRight className="ml-1" style={{ fontSize: "1.7em" }} />
@@ -126,7 +130,7 @@ const SlideItems = props => {
 
                 <div className="col-md-6">
                   {/* <img src={round} alt="round" className="round" /> */}
-                  <img src={item.imgCollection[2]} alt={item.titleProduct} className="img-fluid mx-auto" />
+                  <img src={item.imgCollection[0]} alt={item.titleProduct} className="img-fluid mx-auto" />
 
                 </div>
 

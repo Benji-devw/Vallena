@@ -34,7 +34,8 @@ function SamplePrevArrow(props) {
 
 
 const CenterMode = props => {
-	const imgs = props.images.slice(1)		// cut first image
+	// const imgs = props.images.slice(1)		// cut first image
+	const imgs = props.images		// cut first image
 	// console.log('imgs', imgs)
 
 		const settings = {

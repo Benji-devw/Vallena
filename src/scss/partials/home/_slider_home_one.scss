@@ -1,14 +1,20 @@
 // HOME_VIEW_TOP
 .slider-home-one {
-  // background-color: #F5F5F5;
-  background: #F1F1F1;
+  background-color: #F5F5F5;
+  // background: #F1F1F1;
   padding: 1rem;
+
+  .logo-vallena {
+    height: 10rem;
+    position: absolute;
+    left: -5rem;
+    top: -1rem;
+  }
 
   h2 {
     font-family: satisfy, sans-serif;
     font-size: 7em;
     font-weight: bold;
-
 
     @media screen and (max-width: 576px) {
       font-size: 4em;
@@ -74,6 +80,13 @@
       }
 
       .content-one {
+        // background-image: url('./img/depositphoto.jpg');
+        // background-size: cover;
+        // height: 20rem;
+        // width: 100%;
+        .deposit {
+          max-height: 27rem;
+        }
         .visage {
           position: absolute;
           top: -10rem;
@@ -99,7 +112,9 @@
           font-size: 4em;
           font-weight: lighter;
           padding: .3rem;
-          
+          line-height: .8em;
+          margin-top: 1rem;
+
           &::after {
             position: absolute;
             top: 0rem;

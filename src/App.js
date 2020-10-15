@@ -26,7 +26,7 @@ import ProductView from './components/sections/Shop/Shop_Product_View'
 
 const App = props => {
   // console.log('app', props);
-  const { items, saveLocalStorage } = props
+  const { items, saveLocalStorage, filters, saveFilters } = props
   
   // Cookies & CounterAPI
   const updateCounter = async () => {
@@ -45,8 +45,9 @@ const App = props => {
 
 
   useEffect(() => {     // s'execute quand il y a un changement ds l'etat local des items(Cart) (qty, delete, ...)
-    saveLocalStorage(items)   // savegarde du panier dans le navigateur
-  }, [saveLocalStorage, items])
+    saveLocalStorage(items)   // savegarde du panier dans le navigateur*
+    saveFilters(filters)
+  }, [saveLocalStorage, items, saveFilters, filters])
 
   return (
     <>

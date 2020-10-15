@@ -12,14 +12,13 @@ const deleteProductById = id => apiCall.delete(`/${id}`)
 
 const getProductsPost = test => apiCall.post(`/getProductsPost`, test)                            // Lien => Api=>productRouter.js./getProducts
 
-
 const apis = {
     insertProduct,
     updateProductById,
     getProducts,
     getProductById,
     deleteProductById,
-    
+
     getProductsPost
 }
 

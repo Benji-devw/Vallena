@@ -113,16 +113,12 @@ const ScrollableTabsButtonForce = props => {
                      <td>{data.categoryProduct}</td>
                   </tr>
                   <tr>
-                     <th scope="row">Tags</th>
-                     <td>mots-clé</td>
-                  </tr>
-                  <tr>
                      <th scope="row">Matière</th>
-                     <td>matière</td>
+                     <td>{data.matter}</td>
                   </tr>
                   <tr>
                      <th scope="row">Coloris</th>
-                     <td>couleur</td>
+                     <td>{data.color}</td>
                   </tr>
                   <tr>
                      <th scope="row">Taille</th>
@@ -131,10 +127,6 @@ const ScrollableTabsButtonForce = props => {
                   <tr>
                      <th scope="row">Poids</th>
                      <td>{data.weightProduct}</td>
-                  </tr>   
-                   <tr>
-                     <th scope="row">Matière</th>
-                     <td>{data.matter}</td>
                   </tr>      
                   <tr>
                      <th scope="row">Composition</th>
@@ -143,11 +135,7 @@ const ScrollableTabsButtonForce = props => {
                   <tr>
                      <th scope="row">Fabrication</th>
                      <td>{data.fabrication}</td>
-                  </tr>      
-                  <tr>
-                     <th scope="row">Color</th>
-                     <td>{data.color}</td>
-                  </tr>      
+                  </tr>          
                   <tr>
                      <th scope="row">Nouveauté</th>
                      <td>{data.novelty === true ? 'oui' : "non"}</td>
@@ -157,7 +145,7 @@ const ScrollableTabsButtonForce = props => {
                      <td>{data.promotionProduct === true ? 'oui' : 'non'}</td>
                   </tr>
                   <tr>
-                     <th scope="row">collection</th>
+                     <th scope="row">Collection</th>
                      <td>{data.yearCollection}</td>
                   </tr>                  
                   <tr>

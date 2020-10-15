@@ -6,35 +6,50 @@ import {
 } from 'recharts';
 
 
-  const data = [
-  { name: 'jan', visits: 1000},
-  { name: 'fev', visits: 2000},
-  { name: 'mars', visits: 8000},
-  { name: 'avr', visits: 2780},
-  { name: 'mai', visits: 1890},
-  { name: 'juin', visits: 2390},
-  { name: 'juil', visits: 3490},
-  { name: 'aout', visits: 3490},
-  { name: 'sept', visits: 3490},
-  { name: 'oct', visits: undefined},
-  { name: 'nov', visits: undefined},
-  { name: 'dec', visits: undefined},
-];
+//   const data = [
+//   { name: 'jan', visits: 1000},
+//   { name: 'fev', visits: 2000},
+//   { name: 'mars', visits: 2000},
+//   { name: 'avr', visits: 1780},
+//   { name: 'mai', visits: 1890},
+//   { name: 'juin', visits: 2390},
+//   { name: 'juil', visits: 1490},
+//   { name: 'aout', visits: 1490},
+//   { name: 'sept', visits: 1490},
+//   { name: 'oct', visits: undefined},
+//   { name: 'nov', visits: undefined},
+//   { name: 'dec', visits: undefined},
+// ];
 
 
 export default function Counter() {
   const [sumCounter, setSumCounter] = useState()
   const formatValue = (value) => value.toFixed(0);
 
+  const result = 2225 + sumCounter
+
   useEffect(() => {
     const sumCounter = async () => {
-      const data = await fetch("https://api.countapi.xyz/get/localhost3000/visits")
-      const count = await data.json()
+      const dataCount = await fetch("https://api.countapi.xyz/get/localhost3000/visits")
+      const count = await dataCount.json()
       setSumCounter(count.value)
     }
     sumCounter()
-  })
-
+  }, [])
+  const data = [
+    { name: 'jan', visits: 0 },
+    { name: 'fev', visits: 0 },
+    { name: 'mars', visits: 0 },
+    { name: 'avr', visits: 0 },
+    { name: 'mai', visits: 277 },
+    { name: 'juin', visits: 345 },
+    { name: 'juil', visits: 425 },
+    { name: 'aout', visits: 524 },
+    { name: 'sept', visits: 354 },
+    { name: 'oct', visits: sumCounter },
+    { name: 'nov', visits: undefined },
+    { name: 'dec', visits: undefined },
+  ];
   return (
     <React.Fragment>
       <div className="card-dash">
@@ -45,12 +60,13 @@ export default function Counter() {
 
         <div className="counter-chart text-right" style={{ width: '110%', height: 180 }}>
         
-          <div style={{ color: "#FC9006", fontSize:"2em" }}>Total <AnimatedNumber value={sumCounter} formatValue={formatValue} /></div>
+          <div style={{ color: "#FC9006", fontSize:"2em" }}>
+            Total <AnimatedNumber value={result.toFixed()} formatValue={formatValue} />
+          </div>
    
           <ResponsiveContainer>
             <ComposedChart
               data={data}
-      
             >
               <CartesianGrid stroke="#f5f5f5" />
               <XAxis dataKey="name" />

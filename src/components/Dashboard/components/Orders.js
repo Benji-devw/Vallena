@@ -14,7 +14,7 @@ import moment from 'moment';
 
 const OrdersComponent = (props) => {
 
-  const [order, setOrder] = useState(props.orders)
+  // const [order, setOrder] = useState(props.orders)
   // console.log('order', order)
 
   const [expanded, setExpanded] = useState(false);
@@ -53,12 +53,12 @@ const OrdersComponent = (props) => {
 
   return (
     <React.Fragment>
-        <Accordion expanded={expanded === order._id} onChange={handleChange(order._id)} className={`order-items ${expanded === order._id ? 'order-items-style' : ''}`}>
+        <Accordion expanded={expanded === props.orders._id} onChange={handleChange(props.orders._id)} className={`order-items ${expanded === props.orders._id ? 'order-items-style' : ''}`}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
            
           >
-            {order.client.map((client, id) => (
+            {props.orders.client.map((client, id) => (
               <div key={id} className="row no-gutters text-left" style={{width:"100%"}}>
                 <div className="col-md-6">
                   <p  className="">
@@ -79,15 +79,15 @@ const OrdersComponent = (props) => {
                 </div>
               </div>
             ))}
-                <div className="col-md-2">
-                  <div className={`statut ${order.statut.inProgress ? 'statut-inprogress' : ''}`}></div>
-                  <div className={`statut ${order.statut.finish ? 'statut-finish' : ''}`}></div>
-                </div>
+              <div className="col-md-2">
+              <div className={`statut ${props.orders.statut.inProgress ? 'statut-inprogress' : ''}`}></div>
+              <div className={`statut ${props.orders.statut.finish ? 'statut-finish' : ''}`}></div>
+              </div>
           </AccordionSummary>
           <AccordionDetails>
             <div className="row no-gutters" style={{ width: "100%" }}>
             
-              {order.items.map((item, id) => (
+              {props.orders.items.map((item, id) => (
                 <div key={id} className="col-sm-6">
                   <div className="row p-3 align-items-center ">
                   <div className="col-sm-4">

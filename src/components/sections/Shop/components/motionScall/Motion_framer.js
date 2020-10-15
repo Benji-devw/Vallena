@@ -15,7 +15,7 @@ const MotionFramer = props => {
    }, [setImgs, props.images])
 
    const [scale, setScale] = useState(0.6);
-   const constraint = (680 * scale - 120) / 2;
+   const constraint = (770 * scale - 120) / 2;
 
       return (
          <>
@@ -31,7 +31,7 @@ const MotionFramer = props => {
                   height={450}
                   center
                   overflow={"hidden"}
-                  background={"#F1F1F1"}
+                  background={"#F5F5F5"}
                   className={"motion-mask"}
                >
                   <Frame
@@ -39,7 +39,7 @@ const MotionFramer = props => {
                      className={"motion-image"}
                      scale={scale}
                      center
-                     size={1080}
+                     size={1280}
                      image={imgs[0]}
                      style={{ backgroundColor: "rgba(0, 0, 0, 0)", backgroundSize: "contain", backgroundPosition: "0px", backgroundRepeat: "no-repeat"}}
                      drag

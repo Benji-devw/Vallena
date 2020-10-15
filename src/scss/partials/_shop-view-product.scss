@@ -109,7 +109,8 @@
 
   .shop-view-left {
     .slick-list {
-
+      margin: auto;
+      max-width: 37rem;
     }
   }
 
@@ -248,7 +249,13 @@
 
 
   .shop-view-same-cat {
-
+    height: 30rem;
+    h2 {
+      margin-top: 2rem;
+    }
+    .slick-component {
+      margin-top: 4rem;
+    }
   }
 
 
@@ -289,8 +296,8 @@
       background-clip: text;
 
       @media screen and (max-width: 768px) {
-        font-size: 2em;
-        top: 0rem;
+        font-size: 2.2em;
+        top: -1rem;
       }
     }
 
@@ -308,7 +315,7 @@
   margin: auto;
 
   @media screen and (max-width: 767px) {
-    width: 90%;
+    width: 100%;
   }
 
   th {
@@ -316,7 +323,7 @@
     font-weight: 100;
     border-top: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    max-width: 4rem;
+    max-width: 7rem;
   }
 
   td {

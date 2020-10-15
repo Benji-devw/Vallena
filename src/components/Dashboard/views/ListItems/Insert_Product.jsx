@@ -156,7 +156,7 @@ export class InsertProduct extends Component {
                 apiCall.insertProduct(formData).then(res => {
                     console.log('2 res.data......', res.data)
                     window.alert('Produit Ajouté !')
-                    window.location = "/dashboard/listitems";
+                    // window.location = "/dashboard/listitems";
 
                 }).catch(function (erreur) {
                     //On traite ici les erreurs éventuellement survenues

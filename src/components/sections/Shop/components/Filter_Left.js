@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -8,6 +8,9 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+
+import { useSelector } from 'react-redux';
+// import { addFilters } from '../../../../lib/actions'
 
 
 
@@ -22,64 +25,49 @@ const useStyles = makeStyles((theme) => ({
 
 const FilterLeft = props => {
    const classes = useStyles();
-   const [expanded, setExpanded] = useState('panel1');
-   const [matterCheck, setMatterCheck] = useState([]);
-   const [colorCheck, setColorCheck] = useState([]);
-   const [collectionCheck, setCollectionCheck] = useState([]);
 
-   const handleChangeColorBox = (value) => {
-      // console.log('value', value)
-      const currentIndex = colorCheck.indexOf(value);
-      const newColorCheck = [...colorCheck];
+   const [expanded, setExpanded] = useState('panelCat');
+   const [expandedMatter, setExpandedMatter] = useState(false);
+   const [expandedColor, setExpandedColor] = useState(false);
+   const [expandedCollection, setExpandedCollection] = useState(false);
 
-      if (currentIndex === -1) {
-         newColorCheck.push(value)
-      } else {
-         newColorCheck.splice(currentIndex, 1)
-      }
-      setColorCheck(newColorCheck)
-      props.handleColor(newColorCheck)
-   };
+   
+   // const dispatch = useDispatch()
+   const filtersFromRedux = useSelector(state => state.filters)
+   // console.log('filtersFromRedux', filtersFromRedux)
 
-   const handleChangeMatterBox = (value) => {
-      const currentIndex = matterCheck.indexOf(value);
-      const newMatterCheck = [...matterCheck];
+   // if (filtersFromRedux.length <= 0) {
+   //    dispatch(addFilters([], [], [], []))
+   // }
 
-      if (currentIndex === -1) {
-         newMatterCheck.push(value)
-      } else {
-         newMatterCheck.splice(currentIndex, 1)
-      }
-      setMatterCheck(newMatterCheck)
-      props.handleMatter(newMatterCheck)
-   };
+   useEffect(() => {
 
-   const handleChangeCollectionBox = (value) => {
-      const currentIndex = collectionCheck.indexOf(value);
-      const newCollectionCheck = [...collectionCheck];
+      if (filtersFromRedux[0].matter.length > 0) { setExpandedMatter(true) }
+      if (filtersFromRedux[0].color.length > 0) { setExpandedColor(true) }
+      if (filtersFromRedux[0].collection.length > 0) { setExpandedCollection(true) }
+   }, [filtersFromRedux])
 
-      if (currentIndex === -1) {
-         newCollectionCheck.push(value)
-      } else {
-         newCollectionCheck.splice(currentIndex, 1)
-      }
-      setCollectionCheck(newCollectionCheck)
-      props.handleCollection(newCollectionCheck)
-   };
 
-   const handleChangeCat = (panel) => (event, newExpanded) => {
+
+
+   const expendedCat = (panel) => (event, newExpanded) => {
       setExpanded(newExpanded ? panel : false);
+   };   
+   const expendedMatter = (panel) => (event, newExpanded) => {
+      setExpandedMatter(newExpanded ? panel : false);
+   };   
+   const expendedColor = (panel) => (event, newExpanded) => {
+      setExpandedColor(newExpanded ? panel : false);
    };
-   const saveFilterByCat = (cat) => {
-      localStorage.setItem('filterByCat', cat);
-   }
+   const expendedCollection = (panel) => (event, newExpanded) => {
+      setExpandedCollection(newExpanded ? panel : false);
+   };
+
+
+   
       return (
          <>
-            <h3 className={classes.heading}>
-               {/* <div className="filter-result">Produit {this.state.products.length}</div> */}
-                  Filtres actif :
-            </h3>
-            <Accordion elevation={0} square expanded={expanded === 'panel1'} onChange={handleChangeCat('panel1')}>
+            <Accordion elevation={0} square expanded={expanded === 'panelCat'} onChange={expendedCat('panelCat')}>
                <AccordionSummary expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1a-content"
                   id="panel1a-header"
@@ -88,21 +76,19 @@ const FilterLeft = props => {
                </AccordionSummary>
                <AccordionDetails>
                   <div className="filter-category">
-                     <ul className="category-list" defaultValue={props.categoryDefault} onChange={props.filterProductsByCat}>
-                        <li className={`cat-list ${props.filterByCat === 'All' ? 'active secondary' : ''}`}
+                     <ul className="category-list" defaultValue={filtersFromRedux[0].cat} >
+                        <li className={`cat-list ${filtersFromRedux[0].cat.length <= 0 ? 'active secondary' : ''}`}
                            onClick={() => {
-                              // this.addActiveClass('All'); 
-                              props.filterProductsByCat('All');
-                              saveFilterByCat('All')
+                              props.filterProductsByCat([]);
+                              // props.handleCat([])
                            }}>All
                         </li>
                         {props.catList.map((cat, index) =>
                            <li key={index}
-                              className={`cat-list ${props.filterByCat === cat ? 'active secondary' : ''}`}
+                              className={`cat-list ${filtersFromRedux[0].cat === cat ? 'active secondary' : ''}`}
                               onClick={() => {
                                  props.filterProductsByCat(cat);
-                                 props.handleCat(cat)
-                                 saveFilterByCat(cat)
+                                 // props.handleCat(cat)
                               }}>{cat}
                            </li>
                         )}
@@ -111,7 +97,7 @@ const FilterLeft = props => {
                </AccordionDetails>
             </Accordion>
 
-            <Accordion elevation={0}>
+            <Accordion elevation={0} expanded={expandedMatter} onChange={expendedMatter(true)}>
                <AccordionSummary expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel2a-content"
                   id="panel2a-header"
@@ -126,8 +112,8 @@ const FilterLeft = props => {
                            value={mat}
                            control={
                               <Checkbox 
-                              checked={matterCheck.indexOf(mat) === -1 ? false : true} 
-                              onChange={(e) => handleChangeMatterBox(e.target.value)} />
+                                 checked={filtersFromRedux[0].matter.indexOf(mat) === -1 ? false : true } 
+                              onChange={(e) => props.handleChangeMatterBox(e.target.value)} />
                            }
                         />
                      )}
@@ -136,12 +122,12 @@ const FilterLeft = props => {
                </AccordionDetails>
             </Accordion>
 
-            <Accordion elevation={0}>
+            <Accordion elevation={0} expanded={expandedColor} onChange={expendedColor(true)}>
                <AccordionSummary expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel3a-content"
                   id="panel3a-header"
                >
-               <Typography className={classes.heading}>COULEUR</Typography>
+               <Typography className={classes.heading}>COULEURS</Typography>
                </AccordionSummary>
                <AccordionDetails>
                   <FormGroup row>
@@ -151,8 +137,9 @@ const FilterLeft = props => {
                            value={color}
                            control={
                               <Checkbox
-                                 checked={colorCheck.indexOf(color) === -1 ? false : true}
-                                 onChange={(e) => handleChangeColorBox(e.target.value)} />
+                                 // checked={colorCheck.indexOf(color) === -1 ? false : true}
+                                 checked={filtersFromRedux[0].color.indexOf(color) === -1 ? false : true}
+                                 onChange={(e) => props.handleChangeColorBox(e.target.value)} />
                            }
                         />
                      )}
@@ -161,12 +148,12 @@ const FilterLeft = props => {
                </AccordionDetails>
             </Accordion>
 
-            <Accordion elevation={0}>
+            <Accordion elevation={0} expanded={expandedCollection} onChange={expendedCollection(true)}>
                <AccordionSummary expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel4a-content"
                   id="panel4a-header"
                >
-               <Typography className={classes.heading}>COLLECTION</Typography>
+               <Typography className={classes.heading}>COLLECTIONS</Typography>
                </AccordionSummary>
                <AccordionDetails>
                   <FormGroup row>
@@ -176,8 +163,9 @@ const FilterLeft = props => {
                            value={collection}
                            control={
                               <Checkbox
-                                 checked={collectionCheck.indexOf(collection) === -1 ? false : true}
-                                 onChange={(e) => handleChangeCollectionBox(e.target.value)} />
+                                 // checked={collectionCheck.indexOf(collection) === -1 ? false : true}
+                                 checked={filtersFromRedux[0].collection.indexOf(collection) === -1 ? false : true}
+                                 onChange={(e) => props.handleChangeCollectionBox(e.target.value)} />
                            }
                         />
                      )}

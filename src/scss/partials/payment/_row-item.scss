@@ -3,6 +3,8 @@
     margin: .5rem;
 
     img {
+      position: relative;
+      z-index: 10;
       height: 150px;
       border-radius: 50%;
       transition: .3s;

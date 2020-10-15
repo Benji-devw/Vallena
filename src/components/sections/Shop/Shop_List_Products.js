@@ -1,17 +1,8 @@
 import React, { Component } from 'react';
 import ArtTrackIcon from '@material-ui/icons/ArtTrack';
 import AppsIcon from '@material-ui/icons/Apps';
-// import { connect } from 'react-redux';
-// import {fetchProducts} from '../actions/productActions';
+import PuffLoader from "react-spinners/PuffLoader";
 
-// import styled from 'styled-components'
-// const Img = styled.img` height: 15rem; `
-
-// import Parallax from 'react-rellax'
-// import Example from './Accordion'
-
-// import SvgCard from './components/Svg_Card'
-// import SvgCardVintage from './components/Svg_Card_vintage'
 import Card from './Card'
 
 class ListProducts extends Component {
@@ -20,68 +11,102 @@ class ListProducts extends Component {
       this.state = {
          // products: null,
          display: "grid-display col-lg-4 col-md-6 col-sm-6",
+         sort: [],
+         isLoaded: false,
       }
       this.myRef = React.createRef()  
    }
-   scrollToMyRef = () => window.scrollTo(0, this.myRef.offsetTop)
+   scrollToMyRef = () => window.scrollTo(0, this.myRef.offsetTop);
 
    componentDidMount() {
+      if (this.props.products.length >= 0) {
+         setTimeout(() => {
+            this.setState({ isLoaded: true })
+         }, 300);
+      }
+
       const display = localStorage.getItem('display')
       this.setState({display: display})
-      // const cat = localStorage.getItem('filterByCat')
       if(this.state.display === null) {
          this.setState({ display: "grid-display col-lg-4 col-md-6 col-sm-6"})
       }
-   }
+   };
 
    handleDisplay = (e) => {
       this.setState({display: e})
       localStorage.setItem('display', e)
+   };
+   handlePrice = (event) => {
+      if (event === 'byDesc') {
+         localStorage.setItem('BySort', event);
+         this.props.handlePrice("byDesc")
+      } else {
+         this.props.handlePrice("byAsc")
+         localStorage.setItem('BySort', event);
+      }
+      this.setState({ sort: event });
    }
-   
-   // addActiveClass = (e) => {
-   //    const clicked = e
-   //    if (this.state.active === clicked) {
-   //       this.setState({ active: '' })
-   //    } else {
-   //       this.setState({ active: clicked })
-   //    }
-   // }
-   
+   handlePromotion = (event) => {
+      this.setState({ sort: event });
+      if(event) {
+         this.props.handlePromo("byPromo")
+         localStorage.setItem('BySort', event);
+      } else { this.props.handlePromo([])}
+   };   
+   handleNovelty = (event) => {
+
+      this.setState({ sort: event });
+      if(event) {
+         this.props.handleNovelty("byNovelty")
+
+         localStorage.setItem('BySort', event);
+      } else { this.props.handleNovelty([])}
+   };
+
    render() {
-      // console.log(this.state.display);
-      
-      // console.log(this.props);
+      // console.log('SORT', this.props.products);
       return (
          <>
             
-                  <div ref={this.myRef} className="row">
-                     <div className="col-md-6 toogle-display">
-                        <ul>
-                           Afficher : 
-                           <li onClick={() => { this.handleDisplay('grid-display col-lg-4 col-md-6 col-sm-6') }} className={`btn btn-sm ${this.state.display === 'grid-display col-lg-4 col-md-6 col-sm-6' ? 'secondary' : 'out'}`}><AppsIcon /></li>
-                           <li onClick={() => this.handleDisplay('list-display')} className={`btn btn-sm arttrack ${this.state.display === 'list-display' ? 'secondary' : 'out'}`}><ArtTrackIcon /></li>
-                           <span className="ml-3">Résultat trouvé: {this.props.products.length}</span>
-                        </ul>
-                     </div>
+            <div ref={this.myRef} className="row pl-5 pr-5">
+               
+               <div className="col-md-6 toogle-display p-0">
+                  <ul>
+                     Afficher : 
+                     <li onClick={() => { this.handleDisplay('grid-display col-lg-4 col-md-6 col-sm-6') }} className={`btn btn-sm ${this.state.display === 'grid-display col-lg-4 col-md-6 col-sm-6' ? 'secondary' : 'out'}`}><AppsIcon /></li>
+                     <li onClick={() => this.handleDisplay('list-display')} className={`btn btn-sm arttrack ${this.state.display === 'list-display' ? 'secondary' : 'out'}`}><ArtTrackIcon /></li>
+                     <span className="ml-3">Résultat: <b>{this.props.products.length}</b> sur <b>{this.props.counting}</b></span>
+                  </ul>
+               </div>
 
-                     {/* <div className="col-md-4 p-0 result text-center">
-                        <p className="m-0 mt-2" style={{fontSize:".9em"}}>
-                           boutique
-                           /categories:<b>{this.props.cat}</b> 
-                           /resultat: <b>{this.props.products.length}</b>
-                        </p>
-                     </div> */}
+               {/* <div className="col-md-4 p-0 result text-center">
+                  
+               </div> */}
 
-                     <div className="col-md-6 text-right filter-sort">
-                           Tri
-                           <select style={{ width: "10rem", height: "2rem", marginLeft: "1rem" }} className="custom-select" defaultValue={this.props.sort} onChange={this.props.sortProducts}>
-                           <option>---</option>
-                           <option value="lowest">Le plus cher</option>
-                           <option value="highest">Le moins cher</option>
-                        </select>
-                     </div>
-                  </div>
+               <div className="col-md-6 text-right filter-sort">
+                  
+                     Trier par :
+                     <select style={{ width: "10rem", height: "2rem", marginLeft: ".5rem"}} 
+                        className="custom-select" 
+                        // defaultValue={this.props.bySort} 
+                        onChange={this.props.handleSort}
+
+                        >
+                     <option value="none" >---</option>
+                     <option value="byDesc" >Le plus cher</option>
+                     <option value="byAsc">Le moins cher</option>
+                     <option value="byPromo" >Promotions</option>
+                     <option value="byNovelty" >Nouveautés</option>
+                  </select>
+               </div>
+               <div className="col-12 sep-filters mx-auto">
+                  <h3 className="">
+                     {/* <div className="filter-result">Produit {this.state.products.length}</div> */}
+                                 Filtres actif :
+                           </h3>
+                  <div className="mx-auto"></div>
+               </div>
+            </div>
             {
                this.props.products.length <= 0 ?
                   (<div className="m-3">aucun résultat...</div>)
@@ -89,12 +114,18 @@ class ListProducts extends Component {
                   (
                   <>
                      <div className="row">
+                     {(this.state.isLoaded || this.props.products.length <= 0) ? (
+                     <>
                         {this.props.products.map((product, id) => (
                            product.visible && 
                            <div key={id} className={`${this.state.display === null ? 'grid-display col-lg-4 col-md-6 col-sm-6' : `${this.state.display}`}`}>
                               <Card product={product} display={this.state.display} />
                            </div>
                         ))}
+                     </>
+                     ) : ( <div className="mx-auto mt-3"> <PuffLoader size={50} color={"#f50057"} /> </div>)}
+
+
                      </div>
                   </>
                )

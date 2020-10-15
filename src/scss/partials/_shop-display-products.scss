@@ -80,26 +80,31 @@
 
       li {
         transition-duration: .3s;
-        border-top: 1px solid rgba(0, 0, 0, 0.2);
-        padding: .3rem;
+        // border-top: 1px solid #f50057;
+        padding: .4rem;
+          @media screen and (max-width: 991px) {
+            border-left: none;
+          }
         &:hover {
           transition-duration: .3s;
-          padding-left: 10px;
-          background-color: rgba(0, 0, 0, 0.05);
+          margin-left: 10px;
+
 
           @media screen and (max-width: 991px) {
-            padding: .3rem;
+            margin: 0rem;
+            border-left: none;
           }
         }
       }
     }
 
     .active {
-      padding-left: 10px;
-      background-color: rgba(0, 0, 0, 0.05);
+      margin-left: 10px;
+      // background-color: rgba(0, 0, 0, 0.05);
+      border-left  : 1px solid #f50057;
 
       @media screen and (max-width: 991px) {
-        padding-left: 0;
+        margin-left: 0;
       }
     }
 

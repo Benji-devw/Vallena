@@ -84,7 +84,7 @@ export class InsertProduct extends Component {
 
 
     handleIncludeNewProduct = async (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         
         const { titleProduct, descriptionProduct, priceProduct, categoryProduct, sizeProduct, 
             weightProduct, quantityProduct, stockProduct, promotionProduct, reporterProduct, visible, notes, comments,
@@ -156,12 +156,9 @@ export class InsertProduct extends Component {
                 apiCall.insertProduct(formData).then(res => {
                     console.log('2 res.data......', res.data)
                     window.alert('Produit Ajouté !')
-                    // window.location = "/dashboard/listitems";
+                    window.location = "/dashboard/listitems";
 
-                }).catch(function (erreur) {
-                    //On traite ici les erreurs éventuellement survenues
-                    console.log(erreur);
-                });
+                }).catch(function (erreur) { console.log(erreur)});
             }
         
     }

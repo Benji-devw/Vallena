@@ -32,8 +32,9 @@ const App = props => {
   const updateCounter = async () => {
     const data = await fetch("https://api.countapi.xyz/hit/localhost3000/visits")
     const count = await data.json()
-    console.log(data);
-    console.log('count', count)
+    return count
+    // console.log(data);
+    // console.log('count', count)
     }
   const checkCookies = Cookies.get("userExp")
   if (!checkCookies) {

@@ -7,7 +7,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import visage from '../../../scss/img/visage.svg';
 // import promo from '../../../scss/img/promo.png';
 // import round from '../../../scss/img/round.png';
-import Logo from '../../../scss/img/Logo-Vallena.svg';
+// import Logo from '../../../scss/img/Logo-Vallena.svg';
 import deposit from '../../../scss/img/depositphotos_46127747-stock-photo-sewing-tools.png';
 import Button from '@material-ui/core/Button';
 

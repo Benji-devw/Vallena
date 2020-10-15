@@ -26,7 +26,7 @@ export default function Counter() {
   const [sumCounter, setSumCounter] = useState()
   const formatValue = (value) => value.toFixed(0);
 
-  const result = 2225 + sumCounter
+  const result = 1925 + sumCounter
 
   useEffect(() => {
     const sumCounter = async () => {

@@ -12,8 +12,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { useSelector } from 'react-redux';
 // import { addFilters } from '../../../../lib/actions'
 
-
-
 const useStyles = makeStyles((theme) => ({
    heading: {
       fontSize: theme.typography.pxToRem(15),
@@ -22,31 +20,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
 const FilterLeft = props => {
    const classes = useStyles();
-
+   const filtersFromRedux = useSelector(state => state.filters)
+   
    const [expanded, setExpanded] = useState('panelCat');
    const [expandedMatter, setExpandedMatter] = useState(false);
    const [expandedColor, setExpandedColor] = useState(false);
    const [expandedCollection, setExpandedCollection] = useState(false);
 
-   
-   // const dispatch = useDispatch()
-   const filtersFromRedux = useSelector(state => state.filters)
-   // console.log('filtersFromRedux', filtersFromRedux)
-
-   // if (filtersFromRedux.length <= 0) {
-   //    dispatch(addFilters([], [], [], []))
-   // }
 
    useEffect(() => {
-
       if (filtersFromRedux[0].matter.length > 0) { setExpandedMatter(true) }
       if (filtersFromRedux[0].color.length > 0) { setExpandedColor(true) }
       if (filtersFromRedux[0].collection.length > 0) { setExpandedCollection(true) }
    }, [filtersFromRedux])
-
 
 
 
@@ -80,7 +68,6 @@ const FilterLeft = props => {
                         <li className={`cat-list ${filtersFromRedux[0].cat.length <= 0 ? 'active secondary' : ''}`}
                            onClick={() => {
                               props.filterProductsByCat([]);
-                              // props.handleCat([])
                            }}>All
                         </li>
                         {props.catList.map((cat, index) =>
@@ -88,7 +75,6 @@ const FilterLeft = props => {
                               className={`cat-list ${filtersFromRedux[0].cat === cat ? 'active secondary' : ''}`}
                               onClick={() => {
                                  props.filterProductsByCat(cat);
-                                 // props.handleCat(cat)
                               }}>{cat}
                            </li>
                         )}
@@ -137,7 +123,6 @@ const FilterLeft = props => {
                            value={color}
                            control={
                               <Checkbox
-                                 // checked={colorCheck.indexOf(color) === -1 ? false : true}
                                  checked={filtersFromRedux[0].color.indexOf(color) === -1 ? false : true}
                                  onChange={(e) => props.handleChangeColorBox(e.target.value)} />
                            }
@@ -163,7 +148,6 @@ const FilterLeft = props => {
                            value={collection}
                            control={
                               <Checkbox
-                                 // checked={collectionCheck.indexOf(collection) === -1 ? false : true}
                                  checked={filtersFromRedux[0].collection.indexOf(collection) === -1 ? false : true}
                                  onChange={(e) => props.handleChangeCollectionBox(e.target.value)} />
                            }

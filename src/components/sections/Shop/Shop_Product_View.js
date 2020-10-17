@@ -91,7 +91,14 @@ const ProductView = props => {
                         
                 
                      <hr />
-                     <h2>€ {data.priceProduct} <span className="avis">avis(0)</span></h2> 
+                        {data.promotionProduct &&
+                           <div className="promotion">Promo</div>
+                        }
+                        {data.novelty &&
+                           <div className="novelty">New</div>
+                        }
+
+                        <h2>€ {data.priceProduct}  {data.promotionProduct && <span className="promo-price">€ {data.oldPriceProduct} </span>} <span className="avis">avis(0)</span></h2> 
                      
                      {data.quantityProduct > 0 ? 	// Affichage à la volée avec opérateur ternaire
                      <div className="add-cart-content flipInX">

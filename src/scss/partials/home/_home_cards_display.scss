@@ -1,0 +1,132 @@
+// HOME_VIEW_TOP
+.home-best-cards {
+
+  min-height: 40rem;
+
+
+  .MuiAppBar-root {
+    max-width: 400px;
+    box-shadow: none;
+
+    .PrivateTabIndicator-colorSecondary-12 {
+      height: 1px !important;
+      background-color: $pink-color !important;
+    }
+
+    .MuiButtonBase-root {
+      outline: none;
+
+      .MuiTouchRipple-root {
+        color: black;
+      }
+
+      .MuiTab-wrapper {
+        color: #191919;
+        font-size: 1.6em;
+        font-weight: 400;
+      }
+    }
+  }
+
+
+
+
+  .MuiBox-root {
+    min-height: 30rem;
+  }
+
+
+
+  .home-card {
+    margin-bottom: 2rem;
+
+    // transition: all .5s;
+    &:hover {
+      // box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .home-card-content {
+      overflow: hidden;
+      height: 20rem;
+
+
+      img {
+        position: relative;
+        left: -4rem;
+        width: 23rem;
+      }
+
+      .hover-tab-disable {
+        display: none;
+      }
+
+      .hover-tab {
+        position: relative;
+        top: -25rem;
+        z-index: 50;
+        height: 25rem;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.5);
+
+        .hover-tab-content {
+          position: relative;
+          bottom: -15rem;
+          // margin-top: 5rem;
+          width: 100%;
+
+          span {
+            color: #191919;
+            font-size: 1.3em;
+            border: 1px solid #191919;
+            padding: .3rem;
+
+            &:hover {
+              color: #ffffff;
+              background-color: #191919;
+            }
+          }
+
+          .hover-tab-quick-view {
+            position: relative;
+            bottom: 10rem;
+
+            svg {
+              color: $pink-color;
+              font-size: 1.8em;
+            }
+          }
+        }
+
+
+      }
+
+    }
+
+    .home-card-desc {
+      padding: .5rem;
+
+      h2 {
+        font-size: 1.2em;
+      }
+
+      p {
+        color: $fade-color;
+        font-size: .9em;
+        margin: 0;
+      }
+
+      h5 {
+
+        span {
+          color: #19191960;
+          text-decoration: line-through;
+        }
+      }
+
+    }
+
+  }
+
+
+
+}

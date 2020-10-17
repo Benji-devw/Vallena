@@ -60,25 +60,29 @@ export function resetCart () {
 }
 
 
-export function addFilters(cat, matter, color, collection) {
+export function addFilters(cat, matter, color, collection, promotion, novelty) {
    return {
       type: actions.ADD_FILTERS,
       payload: { 
          cat: cat,
          matter: matter,
          color: color,
-         collection: collection
+         collection: collection,
+         promotion: promotion,
+         novelty: novelty,
       }
    }
 }
-export function updateFilters(cat, matter, color, collection) {
+export function updateFilters(cat, matter, color, collection, promotion, novelty) {
    return {
       type: actions.UPDATE_FILTERS,
       payload: { 
          cat: cat,
          matter: matter,
          color: color,
-         collection: collection
+         collection: collection,
+         promotion: promotion,
+         novelty: novelty,
       }
    }
 }

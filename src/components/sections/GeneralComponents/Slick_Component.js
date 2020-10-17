@@ -16,8 +16,8 @@ function SampleNextArrow(props) {
       style={{
         ...style,
         position: "absolute",
-        top: "50%",
-        right: 0,
+        top: "30%",
+        right: "-2rem",
         fontSize: "2.5em",
         cursor: "pointer"
       }}
@@ -33,8 +33,8 @@ function SamplePrevArrow(props) {
       style={{
         ...style,
         position: "absolute",
-        top: "50%",
-        left: 0,
+        top: "30%",
+        left: "-2rem",
         zIndex: 100,
         fontSize: "2.5em",
         cursor: "pointer"
@@ -50,12 +50,13 @@ function SamplePrevArrow(props) {
 const SlickComponent = (props) => {
 
   const [productsDb, setProductsDb] = useState([])
+  const [ind, setInd] = useState('')
 
   useEffect(() => {
-    apiCall.getProducts().then(product => {
+    apiCall.getProductsPost({ filters: {categoryProduct: props.cat} }).then(product => {
       setProductsDb(product.data.products)
     })
-  }, []);
+  }, [props.cat]);
 
   var settings = {
     // dots: true,
@@ -94,12 +95,17 @@ const SlickComponent = (props) => {
         <Slider {...settings}>
 
           {productsDb.map((item, index) => 
-          (item.categoryProduct === props.cat &&
             <div key={index}>
               {/* {console.log('item.categoryProduct', props.cat)} */}
               <div className="m-2">
-                <Link to={`/product/${item._id}`}>
+                <Link to={`/product/${item._id}`}
+                  onMouseEnter={() => setInd(index)} onMouseLeave={() => setInd(null)}
+                >
                   <img src={item.imgCollection[0]} alt={item._id} className="img-fluid" />
+
+                  <div className={`after-img ${ind === index ? "fadeIn" : 'fadeOut'}`}>
+                    <span>Découvrir</span>
+                  </div>
                 </Link>
               </div>
               <div className={`text-center slick-dets`}>
@@ -107,7 +113,7 @@ const SlickComponent = (props) => {
                 <h5>€ {item.priceProduct}  {item.promotionProduct && <span className="promo-price">€ {item.oldPriceProduct} </span>}  </h5>
               </div>
             </div>
-          ))}
+          )}
 
         </Slider>
       </div>

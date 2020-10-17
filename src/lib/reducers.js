@@ -69,6 +69,8 @@ export default function onlineStoreApp(state = initialState, action) {
                matter: action.payload.matter,
                color: action.payload.color,
                collection: action.payload.collection,
+               promotion: action.payload.promotion,
+               novelty: action.payload.novelty,
             })
          )
       })

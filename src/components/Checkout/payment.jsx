@@ -63,7 +63,7 @@ const PaymentForm = props => {
                <div className="row p-3">
                   
                   {/* Order summary */}
-                  <div className="col-md-6 order-summary justify-content-center p-3">
+                  <div className="col-md-8 order-summary justify-content-center p-3">
 
                      {items.map((item, i) => <RowItem key={i} item={item} onCloseModal={closeModal}/>)}
 
@@ -81,7 +81,11 @@ const PaymentForm = props => {
                      <h4 className="text-right">€{subTotal === 0.00 ? "0.00 " : total.toFixed(2)}</h4>
                      </div>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-4">
+                        Card Type: <b>Visa</b> <br />
+                        Card Number: <b>4020026056914040</b> <br />
+                        Expiration Date: <b>04/2023</b> <br />
+                        CVV: <b>087</b>
                      {items.length > 0 ?
                         (<PayPalButton amount={total} items={items}/>)
                         : ('')

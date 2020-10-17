@@ -4,12 +4,12 @@ import apiCall from '../../../apiCall/Products_Api'
 import ListProducts from './Shop_List_Products';
 import FilterTop from './components/Filter_Top';
 import FilterLeft from './components/Filter_Left'
-import { updateFilters, addFilters } from '../../../lib/actions'
+import { updateFilters } from '../../../lib/actions'
 import { useSelector, useDispatch } from 'react-redux';
 
 
-
-const DisplayProducts = () => {
+const DisplayProducts = (props) => {
+   // console.log('props', props)
    const [products, setProducts] = useState([])
    const [allProducts, setAllProducts] = useState([])
 
@@ -18,23 +18,21 @@ const DisplayProducts = () => {
    const dispatch = useDispatch()
    const filtersFromRedux = useSelector(state => state.filters)
    // console.log('filtersFromRedux', filtersFromRedux)
-   if (filtersFromRedux.length <= 0) {
-      dispatch(addFilters([], [], [], []))
-   }
 
-   const [bySort, setBySort] = useState(["none"])
+   // const [bySort, setBySort] = useState(["none"])
    
    const [filterByCat, setFilterByCat] = useState([])
    const [matterCheck, setMatterCheck] = useState([]);
    const [colorCheck, setColorCheck] = useState([]);
    const [collectionCheck, setCollectionCheck] = useState([]);
+   // const [promotionCheck, setPromotionCheck] = useState([]);
+   // const [noveltyCheck, setNoveltyCheck] = useState([]);
 
+   // For API Products
    const [allFilters, setAllFilters] = useState({
       categoryProduct: [], matter: [], color: [], yearCollection: [],
       promotionProduct: [], novelty: [], price: []
    })
-   // console.log('allFilters', allFilters)
-
 
 
    const handleSort = (event) => {
@@ -53,10 +51,17 @@ const DisplayProducts = () => {
          case "byPromo":
             newValue.promotionProduct = true
             newValue.novelty = false
+            // setPromotionCheck("Promotion")
             break; 
          case "byNovelty":
             newValue.novelty = true
             newValue.promotionProduct = false
+            // setNoveltyCheck("Novelty")
+            break;         
+            case "none":
+            newValue.novelty = false
+            newValue.promotionProduct = false
+            // setNoveltyCheck("Novelty")
             break;
          default:
             newValue.price = []
@@ -67,7 +72,8 @@ const DisplayProducts = () => {
       
       showFilteredResult(newValue)
       setAllFilters(newValue)
-      localStorage.setItem('BySort', event.target.value);
+      // localStorage.setItem('BySort', event.target.value);
+      dispatch(updateFilters(newValue.categoryProduct, newValue.matter, newValue.color, newValue.yearCollection, newValue.promotionProduct, newValue.novelty))
    }
 
    const searchBar = (input) => {
@@ -98,18 +104,10 @@ const DisplayProducts = () => {
 
 
    const handleFilters = (value, key) => {
-
       const newValue = {...allFilters}
       newValue[key] = value
-      // newValue.categoryProduct = filtersFromRedux[0].cat
-      // newValue.matter = filtersFromRedux[0].matter
-      // newValue.color = filtersFromRedux[0].color
-      // newValue.yearCollection = filtersFromRedux[0].collection
-      // console.log('handleFilters', newValue)
-
       setAllFilters(newValue)
-      dispatch(updateFilters(newValue.categoryProduct, newValue.matter, newValue.color, newValue.yearCollection))
-      
+      dispatch(updateFilters(newValue.categoryProduct, newValue.matter, newValue.color, newValue.yearCollection, newValue.promotionProduct, newValue.novelty))
       showFilteredResult()
    }
  
@@ -177,19 +175,24 @@ const DisplayProducts = () => {
       setMatterCheck(filtersFromRedux[0].matter)
       setColorCheck(filtersFromRedux[0].color)
       setCollectionCheck(filtersFromRedux[0].collection)
+      setCollectionCheck(filtersFromRedux[0].promotion)
+      setCollectionCheck(filtersFromRedux[0].novelty)
 
       const newVal = { ...allFilters }
       newVal.categoryProduct = filtersFromRedux[0].cat
       newVal.matter = filtersFromRedux[0].matter
       newVal.color = filtersFromRedux[0].color
-      newVal.collection = filtersFromRedux[0].collection
+      newVal.yearCollection = filtersFromRedux[0].collection
+      newVal.promotionProduct = filtersFromRedux[0].promotion
+      newVal.novelty = filtersFromRedux[0].novelty
       showFilteredResult(newVal)
       if (test) {
          setAllFilters(newVal)
+         window.scrollTo({ top: 0 });
          setTest(false)
       }
 
-      setBySort(localStorage.getItem('BySort'))
+      // setBySort(localStorage.getItem('BySort'))
 
       if (allProducts.length <= 0) {
          apiCall.getProducts().then(res => { setAllProducts(res.data.products) });
@@ -235,7 +238,7 @@ const DisplayProducts = () => {
             </div>
 
             <div className="row">
-               <div className="col-lg-2 mt-4 filter-content-left p-0">
+               <div className="col-lg-2 mt-4 filter-content-left">
 
                   <FilterLeft
                      catList={catList}
@@ -263,12 +266,15 @@ const DisplayProducts = () => {
                   <ListProducts
                      products={products}
 
-                     bySort={bySort}
+                     // bySort={bySort}
                      handleSort={handleSort}
                      
                      counting={allProducts.length}
 
                      allFilters={allFilters}
+                     // sortByPromo={promotionCheck}
+                     // sortByNovelty={noveltyCheck}
+                     sortRedux={filtersFromRedux[0]}
                   />
                </div>
             </div>

@@ -154,7 +154,7 @@ export class InsertProduct extends Component {
                 formData.append('comments', comments)
                 
                 apiCall.insertProduct(formData).then(res => {
-                    console.log('2 res.data......', res.data)
+                    // console.log('2 res.data......', res.data)
                     window.alert('Produit Ajouté !')
                     window.location = "/dashboard/listitems";
 

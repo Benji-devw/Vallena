@@ -1,38 +1,17 @@
 // HOME_VIEW_TOP
 .collection-home {
-  margin-top: 3rem;
   background: #F5F5F5;
+  // padding-top: 5rem;
+  // padding-bottom: 5rem;
 
   @media screen and (max-width: 768px) {
-    margin-top: -3rem;
-  }
-
-  .title-collection {
-    h2 {
-      position: absolute;
-      top: 0rem;
-      left: 0;
-
-      user-select: none;
-      font-size: 8em;
-      font-weight: bold;
-      background-color: rgba(0, 0, 0, 0.1);
-      color: transparent;
-      text-shadow: 2px 2px 3px rgba(255, 255, 255, .7);
-      -webkit-background-clip: text;
-      -moz-background-clip: text;
-      background-clip: text;
-
-      @media screen and (max-width: 768px) {
-        padding: 1rem;
-        font-size: 3.5em;
-      }
-    }
-
+    padding-top: 4rem;
+    padding-bottom: 4rem;
   }
 
   .collection-content {
-    margin-top: 9rem;
+    // margin-top: 9rem;
+    // padding: 2rem;
     height: 100%;
 
     .title {
@@ -55,13 +34,13 @@
       .over-f {
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.3);
+        background-color: rgba(0, 0, 0, 0.2);
       }
 
       .collection-after {
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.4);
         color: #ffffff;
 
         h4 {

@@ -18,24 +18,32 @@
     }
   }
 
-
+  .promo-price {
+    color: #19191956;
+    text-decoration: line-through;
+    font-size: .8em;
+  }
 
   .slick-n {
     top: 15rem !important;
     right: 1rem;
+
     @media screen and (max-width: 650px) {
       top: 10rem !important;
       right: 0rem;
     }
   }
+
   .slick-p {
     top: 15rem !important;
     left: 1rem;
+
     @media screen and (max-width: 650px) {
       top: 10rem !important;
       left: 0rem;
     }
   }
+
   .slick-dots {
     position: relative;
     top: 0rem;
@@ -58,188 +66,212 @@
 
 
 
-.shop-view-top {
-  margin-top: 3rem;
-  background-color: #F5F5F5;
+  .shop-view-top {
+    margin-top: 3rem;
+    background-color: #F5F5F5;
 
-  .title-product {
-    h1 {
-      font-family: satisfy, sans-serif;
-      font-size: 5em;
-      font-weight: bold;
-      color: #191919;
-      margin: 2rem;
-
-      @media screen and (max-width: 768px) {
-        font-size: 3em;
-      }
-    }
-  }
-  .title-link{
-    position: relative;
-    margin-top: -2rem;
-    padding: .5rem;
-    a {
-    color: #191919;
-    &:hover {
-      color: $pink-color;
-    }
-  }
-  span {
-    color: $pink-color;
-  }
-    }
-
-}
-
-
-
-
-
-.shop-view-product {
-  min-height: 70vh;
-  padding: 2rem;
-
-
-  @media screen and (max-width: 768px) {
-    text-align: center;
-    padding: 0;
-  }
-
-
-  .shop-view-left {
-    .slick-list {
-      margin: auto;
-      max-width: 37rem;
-    }
-  }
-
-  .shop-view-right {
-    .shop-view-right-infos {
-      margin: auto;
-      padding: 1rem;
-      max-width: 400px;
-      font-size: .9em;
-
-      .title {
+    .title-product {
+      h1 {
+        font-family: satisfy, sans-serif;
+        font-size: 5em;
         font-weight: bold;
-      }
-
-      h2 {
-        text-align: end;
         color: #191919;
-        font-size: 2em;
-        font-weight: bold;
+        margin: 2rem;
 
-        .avis {
-          font-size: .5em;
-          font-weight: 100;
+        @media screen and (max-width: 768px) {
+          font-size: 3em;
+        }
+      }
+    }
+
+    .title-link {
+      position: relative;
+      margin-top: -2rem;
+      padding: .5rem;
+
+      a {
+        color: #191919;
+
+        &:hover {
+          color: $pink-color;
         }
       }
 
-      .MuiAlert-standardError,
-      .MuiAlert-standardSuccess {
-        cursor: pointer;
+      span {
+        color: $pink-color;
       }
+    }
 
-      .share-media {
-        cursor: pointer;
-        padding: .2rem;
+  }
 
-        svg {
-          margin: .2rem;
-          font-size: 1.5em;
-        }
 
-        span:hover {
-          color: #f50057;
-        }
+
+
+
+  .shop-view-product {
+    min-height: 70vh;
+    padding: 2rem;
+
+
+    @media screen and (max-width: 768px) {
+      text-align: center;
+      padding: 0;
+    }
+
+
+    .shop-view-left {
+      .slick-list {
+        margin: auto;
+        max-width: 37rem;
       }
+    }
 
-      .add-cart-content {
+    .shop-view-right {
+      .shop-view-right-infos {
+        margin: auto;
+        padding: 1rem;
+        max-width: 400px;
+        font-size: .9em;
 
-        .MuiAlert-standardInfo .MuiSvgIcon-fontSizeInherit {
-          margin-top: .5rem;
+        .title {
+          font-weight: bold;
         }
 
-        .btn-qty-cart {
-          display: inline;
+        h2 {
+          text-align: end;
+          color: #191919;
+          font-size: 2em;
+          font-weight: bold;
+
+          .avis {
+            font-size: .5em;
+            font-weight: 100;
+          }
+        }
+
+        .MuiAlert-standardError,
+        .MuiAlert-standardSuccess {
           cursor: pointer;
-          font-size: 20px;
-          color: rgb(168, 168, 168);
-          padding: 10px;
-          -webkit-user-select: none;
-          -khtml-user-select: none;
-          -moz-user-select: none;
-          -o-user-select: none;
-          user-select: none;
+        }
 
-          &:hover {
-            color: black;
-            transition-duration: .5s;
+        .share-media {
+          cursor: pointer;
+          padding: .2rem;
+
+          svg {
+            margin: .2rem;
+            font-size: 1.5em;
           }
 
+          span:hover {
+            color: #f50057;
+          }
+        }
+
+        .add-cart-content {
+
+          .MuiAlert-standardInfo .MuiSvgIcon-fontSizeInherit {
+            margin-top: .5rem;
+          }
+
+          .btn-qty-cart {
+            display: inline;
+            cursor: pointer;
+            font-size: 20px;
+            color: rgb(168, 168, 168);
+            padding: 10px;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+
+            &:hover {
+              color: black;
+              transition-duration: .5s;
+            }
+
+          }
+        }
+
+        .promotion {
+          color: #ffffff;
+          position: relative;
+          bottom: -2rem;
+          right: 0rem;
+          width: 45px;
+          padding: .2rem;
+          font-size: .8em;
+          background-color: #f54337;
+          pointer-events: none;
+        }
+
+        .novelty {
+          color: #ffffff;
+          position: relative;
+          bottom: -2rem;
+          right: 0rem;
+          width: 33px;
+          padding: .2rem;
+          font-size: .8em;
+          background-color: #2979ff;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .shop-view-details {
+    margin-top: 4rem;
+
+    .shop-view-content-1 {
+      padding: 1rem;
+
+      .MuiBox-root {
+        min-height: 35rem;
+        background: #F5F5F5;
+      }
+
+      .motion-slide {
+        margin-top: 19rem;
+      }
+
+      .motion-mask {
+        margin-top: 2rem;
+        width: 60% !important;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+
+        @media screen and (max-width: 767px) {
+          width: 80% !important;
         }
       }
 
-      // .payment-secure {
-      //   margin: 1em;
-      // }
-    }
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.shop-view-details {
-  margin-top: 4rem;
-
-  .shop-view-content-1 {
-    padding: 1rem;
-
-    .MuiBox-root {
-      min-height: 35rem;
-      background: #F5F5F5;
-    }
-
-    .motion-slide {
-      margin-top: 19rem;
-    }
-
-    .motion-mask {
-      margin-top: 2rem;
-      width: 60% !important;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      border-radius: 5px;
-
-      @media screen and (max-width: 767px) {
-        width: 80% !important;
-      }
-    }
-
-    .motion-carousel {
-      position: relative;
-      top: -12rem;
-      height: 100px;
-      width: 100%;
-
-      .motion-img-slide {
+      .motion-carousel {
+        position: relative;
+        top: -12rem;
         height: 100px;
-      }
-    }
+        width: 100%;
 
-  }
+        .motion-img-slide {
+          height: 100px;
+        }
+      }
+
+    }
 
 
   }
@@ -250,9 +282,11 @@
 
   .shop-view-same-cat {
     height: 30rem;
+
     h2 {
       margin-top: 2rem;
     }
+
     .slick-component {
       margin-top: 4rem;
     }
@@ -280,23 +314,35 @@
 
 
   .title-collection {
+    // h2 {
+    //   position: absolute;
+    //   top: -3rem;
+    //   left: 0;
+
+    //   user-select: none;
+    //   font-size: 5em;
+    //   font-weight: bold;
+    //   background-color: rgba(0, 0, 0, 0.1);
+    //   color: transparent;
+    //   text-shadow: 2px 2px 3px rgba(255, 255, 255, .7);
+    //   -webkit-background-clip: text;
+    //   -moz-background-clip: text;
+    //   background-clip: text;
+
+    //   @media screen and (max-width: 768px) {
+    //     font-size: 2.2em;
+    //     top: -1rem;
+    //   }
+    // }
     h2 {
       position: absolute;
       top: -3rem;
       left: 0;
-
+      font-size: 3em;
       user-select: none;
-      font-size: 5em;
-      font-weight: bold;
-      background-color: rgba(0, 0, 0, 0.1);
-      color: transparent;
-      text-shadow: 2px 2px 3px rgba(255, 255, 255, .7);
-      -webkit-background-clip: text;
-      -moz-background-clip: text;
-      background-clip: text;
 
       @media screen and (max-width: 768px) {
-        font-size: 2.2em;
+        font-size: 2em;
         top: -1rem;
       }
     }

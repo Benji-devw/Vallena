@@ -21,34 +21,6 @@ const OrdersComponent = (props) => {
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
-  
-  // Statut
-  // const [inProgress, setInProgress] = useState(true)
-  // const [finish, setFinish] = useState(false)
-  // const handleCheckboxChangeProgress = (e) => { setInProgress(e.target.checked) }
-  // const handleCheckboxChangeFinish = (e) => { setFinish(e.target.checked) }
-  // const [cmd, setCmd] = useState()
-  // const [display, setDisplay] = useState(false)
-  // const confirm = (id) => {
-  //   setCmd(cmd => ({ ...cmd, statut: {
-  //       inProgress: inProgress,
-  //       finish: finish
-  //     }}))
-  //   if (id === cmd._id) {
-  //     setDisplay(true)
-  //   }
-  // }
-  // const update = async (id) => {
-  //   // console.log('id', id)
-  //   // console.log(cmd._id);
-  //   if(id === cmd._id ) {
-  //     await apiCallOrders.updateOrderById(id, cmd).then(res => {
-  //     })
-  //     window.alert(`Status changé !`)
-  //     window.location.reload(false)
-  //   }
-  //   else {window.alert(`Veulliez recochez les statut et confirmer puis envoyer ! `)}
-  // }
 
 
   return (

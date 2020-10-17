@@ -23,7 +23,8 @@ import Users from './components/Dashboard/views/Users/Users'
 import CookieConsent, { Cookies } from "react-cookie-consent";
 
 import ProductView from './components/sections/Shop/Shop_Product_View'
-
+import { addFilters } from './lib/actions'
+import { useDispatch } from 'react-redux';
 const App = props => {
   // console.log('app', props);
   const { items, saveLocalStorage, filters, saveFilters } = props
@@ -44,11 +45,16 @@ const App = props => {
   }
 
 
+  const dispatch = useDispatch()
+  if (localStorage.getItem('Filters') === null) {
+    localStorage.setItem('Filters', JSON.stringify([{ "cat": [], "matter": [], "color": [], "collection": [], "promotion": [], "novelty": [] }]))
+    dispatch(addFilters([], [], [], [], [], []))
+  }
 
   useEffect(() => {     // s'execute quand il y a un changement ds l'etat local des items(Cart) (qty, delete, ...)
     saveLocalStorage(items)   // savegarde du panier dans le navigateur*
     saveFilters(filters)
-  }, [saveLocalStorage, items, saveFilters, filters])
+  }, [saveLocalStorage, items, saveFilters, filters, dispatch])
 
   return (
     <>
@@ -59,28 +65,25 @@ const App = props => {
 
         <Switch>
 
-          <Route path="/shop" component={Shop} />
-          <Route path="/product/:id" component={ProductView} />
+          <Route exact path="/shop" component={Shop} />
+          <Route exact path="/product/:id" component={ProductView} />
 
           <Route path="/" exact={true} component={Layout}/>
           
-          <Route path="/payment" component={Checkout} />
-          <Route path="/success" component={Success} />
+          <Route exact path="/payment" component={Checkout} />
+          <Route exact path="/success" component={Success} />
 
-          <Route path="/login" component={SignIn} />
-          <Route path="/Signup" component={SignUp} />
+          <Route exact path="/login" component={SignIn} />
+          <Route exact path="/Signup" component={SignUp} />
 
           <PrivateRoute path="/dashboard" component={Admin} />
           <PrivateRoute path="/dashboard/listitems" component={ListItemsView} />
           <PrivateRoute path="/dashboard/orders" component={Orders} />
           <PrivateRoute path="/dashboard/users" component={Users} />
 
-          <Route path="/update/:id" component={ProductUpdate} />   {/* Lien => Update_Product.js */}
+          <Route exact path="/update/:id" component={ProductUpdate} />   {/* Lien => Update_Product.js */}
           
-
-          {/* <Route path="/product/:id" component={ShopProductView} />   Lien => Update_Product.js */}
-
-          <Route path="/" component={() => <div className="mt-5 text-center"><h1>Erreur 404</h1></div>} />
+          <Route exact component={() => <div className="mt-5 text-center"><h1>Erreur 404</h1></div>} />
 
         </Switch>
 

@@ -93,7 +93,7 @@ export default function Orders() {
       window.alert(`Status changé !`)
       window.location.reload(false)
     }
-    else {window.alert(`Vous essayez d'envoyer une autre commande ! Veulliez recochez les statut et confirmer puis envoyer ! `)}
+    else {window.alert(`Tu essaies d'envoyer une autre commande ! Il faut recochez les statut et confirmer puis envoyer ! `)}
   }
 
 
@@ -209,8 +209,9 @@ export default function Orders() {
           </AccordionSummary>
           <AccordionDetails>
             <div key={id} className="row no-gutters" style={{ width: "100%" }}>
-                <h5 style={{position: "absolute", right:"14rem"}}>Statut : </h5>
+
               <div className="col-12 statut-order text-right" style={{marginTop:"5px"}}>
+                <h5 style={{position: "relative", right:"1rem", display:'inline-block'}}>Statut : </h5>
                 <label htmlFor={`prep-${commande._id}`}>Préparation</label>
                 <input type="checkbox" className="mr-4" id={`prep-${commande._id}`}
                   defaultChecked={commande.statut.inProgress}

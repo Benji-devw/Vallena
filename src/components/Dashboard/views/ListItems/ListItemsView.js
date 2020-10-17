@@ -64,7 +64,7 @@ class DeleteProduct extends React.Component {
 
 
 
-export default function Orders() {
+export default function ListItemsView() {
   const classes = useStyles();
   const [ isLoading, setIsLoading] = useState(true)
   const [products, setProducts] = useState([])

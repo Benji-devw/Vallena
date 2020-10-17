@@ -5,19 +5,36 @@
   min-height: 60rem;
   background: white;
 
-  .filter-content-top {}
+  .filter-content-top {
+    span {
+      color: rgba(0, 0, 0, 0.8);
 
+    }
+  }
 
+  .MuiFormControlLabel-label {
+    color: rgba(0, 0, 0, 0.7);
+
+  }
 
 
 
 
   .filter-content-left {
-
+    padding: 1rem;
     .MuiAccordionSummary-root {
-      background: #F1F1F1;
+      color: rgba(0, 0, 0, 0.5);
+      border-top: 1px solid rgba(0, 0, 0, 0.3);
 
-      &:hover {}
+      &:hover {
+        color: rgba(0, 0, 0, 0.8);
+      }
+    }
+
+    .MuiAccordion-root {
+      &::before {
+        display: none;
+      }
     }
 
   }
@@ -35,6 +52,7 @@
   .MuiFormControlLabel-root {
     height: 20px;
     width: 100%;
+
     @media screen and (max-width: 991px) {
       width: auto;
     }
@@ -59,7 +77,7 @@
       padding: 5px;
       display: inline-block;
       list-style: none;
-      color: $dark-color;
+      // color: $dark-color;
       font-weight: 400;
       cursor: pointer;
       width: 100%;
@@ -74,24 +92,26 @@
       }
 
       ul {
-
         display: block;
       }
 
       li {
         transition-duration: .3s;
-        // border-top: 1px solid #f50057;
-        padding: .4rem;
-          @media screen and (max-width: 991px) {
-            border-left: none;
-          }
+        padding: .3rem;
+        color: rgba(0, 0, 0, 0.7);
+
+        @media screen and (max-width: 991px) {
+          border-left: none;
+          margin-left: 0rem;
+
+        }
+
         &:hover {
           transition-duration: .3s;
           margin-left: 10px;
 
-
           @media screen and (max-width: 991px) {
-            margin: 0rem;
+            margin-left: 0rem;
             border-left: none;
           }
         }
@@ -101,7 +121,8 @@
     .active {
       margin-left: 10px;
       // background-color: rgba(0, 0, 0, 0.05);
-      border-left  : 1px solid #f50057;
+      border-left: 1px solid #f50057;
+      color: #f50057 !important;
 
       @media screen and (max-width: 991px) {
         margin-left: 0;

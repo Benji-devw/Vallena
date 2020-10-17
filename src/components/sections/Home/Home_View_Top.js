@@ -4,11 +4,11 @@ import Slider from "react-slick";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
-import visage from '../../../scss/img/visage.svg';
+import visage from '../../../scss/img/home/img-1.png';
 // import promo from '../../../scss/img/promo.png';
 // import round from '../../../scss/img/round.png';
 // import Logo from '../../../scss/img/Logo-Vallena.svg';
-import deposit from '../../../scss/img/depositphotos_46127747-stock-photo-sewing-tools.png';
+// import deposit from '../../../scss/img/depositphotos_46127747-stock-photo-sewing-tools.png';
 import Button from '@material-ui/core/Button';
 
 
@@ -50,7 +50,7 @@ const SlideItems = props => {
   const [productsDb, setProductsDb] = useState([])
 
   const settings = {
-    dots: true,
+    // dots: true,
     infinite: true,
     // autoplay: true,
     speed: 800,
@@ -78,12 +78,12 @@ const SlideItems = props => {
 
   return (
 
-      <div className="row justify-content-center">
+      <div className="row justify-content-center no-gutters">
         <div className="col-lg-12 pl-0 pl-lg-3 pr-0 pr-lg-3 mt-3">
 
         <Slider {...settings}>
           <div>
-          <div className="container">
+            <div className="container">
           <div className="row slick-content content-one align-items-center">
 
               <div className="col-md-6 test text-center">
@@ -91,7 +91,9 @@ const SlideItems = props => {
                   {/* <img src={Logo} alt="logo" className="logo-vallena" /> */}
                 <h2>Vallena.fr</h2>
 
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel sem consectetur, tincidunt leo vitae, euismod purus.</p>
+                  <p>Les produits sont fabriqués dans un petit atelier de couture d'Ardèche.<br />
+                    Ils sont pour la plupart, fait à la main et donc en quantité réduite mais en majorité UNIQUE,...
+                    </p>
                     <Link to="/shop">
                       <Button variant="contained" color="secondary">
                         Boutique <MdKeyboardArrowRight className="ml-1" 
@@ -100,17 +102,18 @@ const SlideItems = props => {
                         />
                       </Button>
                     </Link>
-              </div>
 
-              <div className="col-md-6 test">
-                <img src={visage} alt="visage" className="img-fluid visage" />
-                  <img src={deposit} alt="visage" className="img-fluid mx-auto deposit" />
-                
+                    </div>
+              <div className="col-md-6 test text-center">
+
+                    <img src={visage} alt="none"className="img-fluid text-right" />
+          </div>
+
               </div>
-    
           </div>
           </div>
-          </div>
+
+          
             {productsDb.map(item => item.yearCollection === 2020 &&
               <div key={item._id}>
               <div className="container">

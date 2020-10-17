@@ -15,8 +15,8 @@
 @import './partials/home';
 @import './partials/home/slider_home_one';
 @import './partials/home/home_collection';
-@import './partials/home/home_promotion';
 @import './partials/home/home_promo_news';
+@import './partials/home/home_cards_display';
 
 //Shop
 @import './partials/shop-display-products';
@@ -139,6 +139,10 @@ a {
   bottom: 1rem;
 }
 
+.color-icon {
+  color: rgba(0, 0, 0, 0.7);
+}
+
 .hovered {
   transform: scale(2);
 }
@@ -219,9 +223,11 @@ a {
 [data-scroll] {
   transition: transform .8s;
 }
+
 [data-scroll="in"] {
   transform: translateY(0);
 }
+
 [data-scroll="out"] {
   transform: translateY(100px);
 

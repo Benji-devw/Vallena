@@ -112,34 +112,31 @@ const useStyles = makeStyles((theme) => ({
 
 
 const DisplayComponents = () => {
-
-
-return (
-  <>
-    {
-      window.location.pathname === '/dashboard' &&
-      <Dashboard active={false}/>
-    }
-    {
-      window.location.pathname === '/dashboard/listitems' &&
-      <ListItemsView />
-    }    
-    {
-      window.location.pathname === '/dashboard/orders' &&
-      <Orders />
-    }    
-    {
-      window.location.pathname === '/dashboard/users' &&
-      <Users />
-    }
-    {/* { // CONTROL
+  return (
+    <>
+      {
+        window.location.pathname === '/dashboard' &&
+        <Dashboard active={false} />
+      }
+      {
+        window.location.pathname === '/dashboard/listitems' &&
+        <ListItemsView />
+      }
+      {
+        window.location.pathname === '/dashboard/orders' &&
+        <Orders />
+      }
+      {
+        window.location.pathname === '/dashboard/users' &&
+        <Users />
+      }
+      {/* { // CONTROL
       window.location.pathname !== '/dashboard/orders' || '/dashboard/listitems' &&
       <Redirect to='/' />
     } */}
-  </>
-);}
-
-
+    </>
+  );
+}
 
 const Admin = props => {
   const classes = useStyles();
@@ -193,7 +190,7 @@ const Admin = props => {
         </Box> */}
       </main>
 
-      </div>
+    </div>
   );
 }
 export default Admin;    

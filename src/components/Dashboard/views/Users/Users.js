@@ -15,8 +15,9 @@ export default function Orders() {
 
   const delUser = (userName) => {
     if (window.confirm('Confirmer la suppression ?')) {
-      API.deleteUser(userName)
-      window.location.reload(false)
+    //   API.deleteUser(userName)
+    //   window.location.reload(false)
+    alert('Suppression désactivé !')
     }
   }
   

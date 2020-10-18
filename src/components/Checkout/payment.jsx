@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import PayPalButton from './Paypal'
-// import TransferList from './old/Transfer_List';
 import RowItem from './Row_Item'
+// import TransferList from './old/Transfer_List';
 // import { Redirect } from "react-router-dom";
 
 const PaymentForm = props => {

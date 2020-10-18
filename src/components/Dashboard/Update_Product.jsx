@@ -94,9 +94,9 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
         
             
         const newCollection = this.state.imgCollection
-        console.log('newCollection', newCollection)
+        // console.log('newCollection', newCollection)
         const copyCollection = this.state.imgCollectionCopy
-        console.log('copyCollection', copyCollection)
+        // console.log('copyCollection', copyCollection)
 
             for (const key of Object.keys(newCollection)) {              // Crée un nouvel objet FormData et construit une paires clé/valeur représentant les champs du formulaire et leurs valeurs,
             formData.append('imgCollection', newCollection[key])     // Ajoute une nouvelle valeur à une clé existante dans un objet FormData, ou ajoute la clé si elle n'existe pas encore.
@@ -131,12 +131,13 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
         formData.append('reporterProduct', reporterProduct)
         formData.append('visible', visible)
 
-                                                      
-        apiCall.updateProductById(id, formData)
+        alert('Modification désactivé !')
+
+        // apiCall.updateProductById(id, formData)
         // .then(res => {    
         //         console.log('2 UPDATE res.data......', res)
         //     }).catch(() => {  } ) 
-        window.alert(`Modification OK !`)
+        // window.alert(`Modification OK !`)
         // window.location = "/dashboard/listitems";
     }
 
@@ -178,8 +179,8 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
 
 
     render() {
-        console.log('imgCollection', this.state.imgCollection)
-        console.log('imgCollectioncopy', this.state.imgCollectionCopy)
+        // console.log('imgCollection', this.state.imgCollection)
+        // console.log('imgCollectioncopy', this.state.imgCollectionCopy)
         
         const {imgCollection} = this.state
         const imgDisplay = []
@@ -193,7 +194,7 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                 <Container>
                 <Form>  
 
-                <Title className="mt-5">Update product</Title>
+                <Title style={{marginTop:"7rem"}} className="">Update product</Title>
 
                 <Form.Row className="justify-content-md-center">
                     <Form.Group as={Col} md="4" controlId="validationCustom01">

@@ -19,9 +19,9 @@ class LinksAdmin extends Component {
 						<Item>
 							<Link to="/Login" email="test" className="nav-link">Login</Link>
 						</Item>
-						<Item>
+						{/* <Item>
 							<Link to="/signup" className="nav-link">Signup</Link>
-						</Item>
+						</Item> */}
 					</>
 				)
 			} else {

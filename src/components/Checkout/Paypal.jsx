@@ -21,9 +21,9 @@ const PayPalBtn = (props) => {
       apiCall.updateProductById(id, formData)         // Lien => src/apiCall/index.js
          .then(res => {
             console.log('Quantity update Done !', res)
-            window.alert(`Modification OK !`)
+            // window.alert(`Modification OK !`)
          }).catch(() => { })
-      // window.location = "/Success";
+      window.location = "/Success";
    }
 
    return (
@@ -55,7 +55,6 @@ const PayPalBtn = (props) => {
                   console.log(items)
                   const calcul = (items.map(item => {
                      const newProductQuantity = item.details.quantityProduct - item.quantity;
-                     // console.log('newProductQuantity', newProductQuantity)
                      return {
                         ...item.details, quantityProduct: newProductQuantity
                      }
@@ -63,7 +62,6 @@ const PayPalBtn = (props) => {
                   // Update quantityProduct in db
                   calcul.map(change => (
                      <>
-                        {/* {console.log('change', change)} */}
                         {handleUpdateProduct(change._id, change)}
                      </>
                   ))
@@ -90,15 +88,10 @@ const PayPalBtn = (props) => {
                   // SANDBOX
                   currency: "EUR",
                   clientId: "AX2P46p1RbwouBK4mOZokjgcbCfNqRd_Fmf8R5Kx0qUH-F6wBgoNVSm47PF5_45m-UQoup6SuBWXXKCF",
-                  // PRODUCTION - https://developer.paypal.com/developer/applications/
-                  // clientId: "AQtzB08CGU4_quL2r6GTR_nB5iOZVgIuhYdJ7HG3-y7aJMHJCuFBc5oANY2MlZnJG9hn2_HGalUkjjIR",
                }}
             />
             </div>
-
          </div>
-
-    
       </>
    );
 }

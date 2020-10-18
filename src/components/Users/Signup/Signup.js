@@ -190,7 +190,7 @@ const  SignUp = () => {
               />
             </Grid>
           </Grid>
-          <Button
+          {/* <Button
             fullWidth
             variant="contained"
             color="primary"
@@ -198,7 +198,7 @@ const  SignUp = () => {
             onClick={send}
           >
             envoyer
-          </Button>
+          </Button> */}
           <Grid container justify="flex-end">
             <Grid item>
               <Link href="/login" variant="body2">

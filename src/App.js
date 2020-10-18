@@ -67,24 +67,19 @@ const App = props => {
 
           <Route exact path="/shop" component={Shop} />
           <Route exact path="/product/:id" component={ProductView} />
-
           <Route path="/" exact={true} component={Layout}/>
-          
           <Route exact path="/payment" component={Checkout} />
           <Route exact path="/success" component={Success} />
-
           <Route exact path="/login" component={SignIn} />
           <Route exact path="/Signup" component={SignUp} />
+          <Route exact path="/update/:id" component={ProductUpdate} />
 
           <PrivateRoute path="/dashboard" component={Admin} />
           <PrivateRoute path="/dashboard/listitems" component={ListItemsView} />
           <PrivateRoute path="/dashboard/orders" component={Orders} />
           <PrivateRoute path="/dashboard/users" component={Users} />
 
-          <Route exact path="/update/:id" component={ProductUpdate} />   {/* Lien => Update_Product.js */}
-          
-          <Route exact component={() => <div className="mt-5 text-center"><h1>Erreur 404</h1></div>} />
-
+          <Route component={() => <div className="mt-5 pt-5 text-center"><h1>404</h1></div>} />
         </Switch>
 
         {/* </ClientProfileContext> */}

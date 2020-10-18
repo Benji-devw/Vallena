@@ -52,12 +52,13 @@ class DeleteProduct extends React.Component {
   delproduct = event => {
     // event.preventDefault()
     if (window.confirm(`Confirmer la suppréssion du produit ID: ${this.props.id}`,)) {
-      apiCall.deleteProductById(this.props.id)
-      window.location.reload()
+      // apiCall.deleteProductById(this.props.id)
+      // window.location.reload()
+      alert('Suppression désactivé !')
     }
   }
   render() {
-    return <Delete onClick={this.delproduct}><DeleteIcon className="edit-icon" style={{ color:"#f44336"}} /></Delete>
+    return <Delete onClick={this.delproduct}><DeleteIcon disabled className="edit-icon" style={{ color:"#f44336"}} /></Delete>
   }
 }
 

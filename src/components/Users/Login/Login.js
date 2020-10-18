@@ -58,8 +58,8 @@ const useStyles = makeStyles((theme) => ({
 const SignIn = () => {
   const classes = useStyles();
 
-  const [email, setEmail] = useState()
-  const [password, setPassword] = useState()
+  const [email, setEmail] = useState("ben.nav@pm.me")
+  const [password, setPassword] = useState("eee")
   const [alert, setAlert] = useState([])
 
   const send = async () => {
@@ -106,6 +106,8 @@ const SignIn = () => {
             autoFocus
             helperText={alert === "emailerror" ? 'Champ incorrect' : ""}
             onChange={e => setEmail(e.target.value)}
+            defaultValue="ben.nav@pm.me"
+
           />
           <TextField
             error={alert === "passworderror" ? true : false}
@@ -119,7 +121,7 @@ const SignIn = () => {
             id="password"
             helperText={alert === "passworderror" ? 'Champ incorrect' : ""}
             onChange={e => setPassword(e.target.value)}
-
+            defaultValue="eee"
             autoComplete="current-password"
           />
           <FormControlLabel
@@ -142,7 +144,7 @@ const SignIn = () => {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="/signup" variant="body2">
+              <Link href="#" variant="body2">
                 {"Pas de comtpe ? Inscription"}
               </Link>
             </Grid>

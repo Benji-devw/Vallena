@@ -25,6 +25,10 @@ This code is released under the MIT license.
 
 ## Git
 git remote add origin https://github.com/Benji-devw/Vallena.git
+<<<<<<< HEAD
+=======
+
+>>>>>>> 839c436fb715d94cd3a90710a5f5553d84e773e4
 git push -u origin dev
 
 ### STRIPE ###

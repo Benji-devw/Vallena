@@ -1,6 +1,5 @@
 // HOME_VIEW_TOP
 .home-best-cards {
-
   min-height: 40rem;
 
 
@@ -40,10 +39,10 @@
   .home-card {
     margin-bottom: 2rem;
 
-    // transition: all .5s;
-    &:hover {
-      // box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
-    }
+    transition: all .5s;
+    // &:hover {
+    //   box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
+    // }
 
     .home-card-content {
       overflow: hidden;
@@ -54,6 +53,10 @@
         position: relative;
         left: -4rem;
         width: 23rem;
+        @media (max-width: 576px) {
+          left: -7rem;
+          width: 35rem;
+        }
       }
 
       .hover-tab-disable {
@@ -67,12 +70,18 @@
         height: 25rem;
         width: 100%;
         background-color: rgba(255, 255, 255, 0.5);
+        @media (max-width: 576px) {
+          top: -32rem;
+        }
 
         .hover-tab-content {
           position: relative;
           bottom: -15rem;
           // margin-top: 5rem;
           width: 100%;
+          @media (max-width: 576px) {
+            bottom: -12rem;
+          }
 
           span {
             color: #191919;

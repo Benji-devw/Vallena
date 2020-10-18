@@ -75,7 +75,7 @@ class ListProducts extends Component {
       return (
          <>
             
-            <div ref={this.myRef} className="row pl-5 pr-5">
+            <div ref={this.myRef} className="row top-filters">
                
                <div className="col-md-6 toogle-display p-0">
                   <ul>

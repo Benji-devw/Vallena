@@ -1,13 +1,16 @@
 import React from 'react';
 
-// import Link from '../Link/Link';
+import { Link } from 'react-router-dom';
+import imgPayment from '../../../scss/img/payments.png'
 
 const footer = () => {
   return (
     <footer>
       <div className='container text-light pt-5'>
         <div className='row'>
-          <div className='col-sm-6 col-md-6 col-lg-4 mb-5'>
+
+
+          {/* <div className='col-md-4 mb-5'>
             <div className='footer-title'>
               <h6>About Us</h6>
             </div>
@@ -24,69 +27,84 @@ const footer = () => {
                 Learn more
               </button>
             </div>
-          </div>
-          <div className='col-sm-6 col-md-6 col-lg-2 mb-5'>
+          </div> */}
+
+
+
+
+          <div className='col-md-4 mb-5 text-center'>
             <div className='footer-title'>
-              <h6>Quick Links</h6>
+              <h5>Vallena</h5>
             </div>
             <div className='footer-content'>
-              {/* <ul className='list-group quick-links'>
+              <p>
+                <small className='text-muted'>
+                  Aenean suscipit eget mi act fermentum phasellus vulputate
+                  turpis tincidunt. Aenean suscipit eget. Aenean suscipit eget
+                  mi act fermentum phasellus vulputate turpis tincidunt. Aenean
+                  suscipit ege Aenean suscipit eget mi act fermentum phasellus.
+                </small>
+              </p>
+              {/* <button className='btn btn-sm btn-primary rounded-0'>
+                Learn more
+              </button> */}
+            </div>
+          </div>
+
+
+
+
+
+          <div className='col-md-4 col-style text-center'>
+            <div className='footer-title'>
+              <h6>Liens rapides</h6>
+            </div>
+            <div className='footer-content'>
+              <ul className='list-group quick-links'>
                 <li>
-                  <Link target='home' offset={-120}>
+                  <Link to="#" target='/' offset={-120}>
                     Home
                   </Link>
                 </li>
                 <li>
-                  <Link target='about'>About</Link>
+                  <Link to="#" target='#'>About</Link>
                 </li>
                 <li>
-                  <Link target='services'>Services</Link>
+                  <Link to="#" target='#'>Services</Link>
                 </li>
                 <li>
-                  <Link target='blog'>Blog</Link>
+                  <Link to="#" target='#'>Blog</Link>
                 </li>
                 <li>
-                  <Link target='contact'>Contact</Link>
+                  <Link to="#" target='#'>Contact</Link>
                 </li>
-              </ul> */}
+              </ul>
             </div>
           </div>
-          <div className='col-sm-6 col-md-6 col-lg-3 mb-5'>
-            <div className='footer-title'>
-              <h6>Latest News</h6>
-            </div>
-            <div className='footer-content'>
-              <p>
-                <small className='text-muted'>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </small>
-              </p>
-              <p>
-                <small className='text-muted'>
-                  Pellentesque et pulvinar enim. Quisque at tempor ligula Natus
-                  error sit voluptatem
-                </small>
-              </p>
-              <p>
-                <small className='text-muted'>accusantium doloremque</small>
-              </p>
-            </div>
-          </div>
-          <div className='col-sm-6 col-md-6 col-lg-3 mb-5'>
+
+
+
+
+
+
+          
+
+
+          <div className='col-md-4 col-style text-center'>
             <div className='footer-title'>
               <h6>Contact Us</h6>
             </div>
             <div className='footer-content'>
               <p className='text-muted'>
-                <small>Address : 123 main street, Algiers, Algeria</small>
+                <small>Address : Paris</small>
               </p>
               <p className='text-muted'>
-                <small>Phone : +213 (0) 123 456 789</small>
+                <small>Phone : 06 74 18 08 82</small>
               </p>
               <p className='text-muted'>
-                <small>E-mail : contact@email.com</small>
+                <small>E-mail : ben.nav@pm.me</small>
               </p>
-              <div className='social-media mt-4'>
+              {/* <div className='social-media mt-4'>
                 <a href='!#' className='text-light'>
                   <i className='fab fa-facebook-f mr-4' />
                 </a>
@@ -99,13 +117,21 @@ const footer = () => {
                 <a href='!#' className='text-light'>
                   <i className='fab fa-github' />
                 </a>
-              </div>
+              </div> */}
             </div>
+
+
+
           </div>
         </div>
       </div>
-      <div className='bottom-footer pt-3 pb-3 text-center'>
-        <small>© All Right Reserved</small>
+
+      <div className="row no-gutters">
+        <div className='col bottom-footer pb-2 text-center'>
+          <img src={imgPayment} alt="payment" className="img-fluid m-2" />
+          <br />
+          <small>© All Right Reserved</small>
+        </div>
       </div>
     </footer>
   );

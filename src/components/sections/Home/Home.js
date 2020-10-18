@@ -28,19 +28,15 @@ const Home = () => {
         </div>
       {/* </Parallax> */}
 
-      <div className="home-promo-novelty">
+      <div className="home-promo-novelty pb-5 pt-5">
         <HomePromoNews data={datas} />
       </div>
 
-      <div id="collection" className="collection-home">
+      <div id="collection" className="collection-home pb-5  pt-5">
         <HomeCollection data={datas} />
       </div>     
-      
-       <div id="home-category" className="category-home">
-        {/* <HomeCategory data={datas} /> */}
-      </div>
 
-      <div id="home-best-cards" className="home-best-cards">
+      <div id="home-best-cards" className="home-best-cards pb-5  pt-5">
         <HomeCardsDisplay data={datas} />
       </div>
 

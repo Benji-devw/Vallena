@@ -4,7 +4,7 @@ import apiCall from '../../../apiCall/Products_Api'
 import Alert from '@material-ui/lab/Alert';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import ScrollAnimation from 'react-animate-on-scroll'
+// import ScrollAnimation from 'react-animate-on-scroll'
 
 
 
@@ -56,7 +56,7 @@ const HomeCards = (props) => {
           </div>
 
 
-          <div className={`text-center home-card-desc`}>
+          <div className="text-center home-card-desc">
             <p>{item.tags}</p>
             <h2>{item.titleProduct}</h2>
 

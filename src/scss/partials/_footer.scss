@@ -1,18 +1,44 @@
 footer {
   background: #191919;
 
+  h5 {
+    font-family: satisfy, sans-serif;
+    font-size: 4em;
+    font-weight: 400;
+    letter-spacing: 2px;
+    ;
+  }
+
+  h6 {
+    font-size: 1.3rem;
+    font-weight: 100;
+    color: #F5F5F5;
+  }
+
+
+
+
   .footer-title {
     position: relative;
     margin-bottom: 2rem;
+    color: #F5F5F5;
 
     &:after {
       content: '';
       display: inline-block;
-      position: absolute;
+      // position: absolute;
       width: 50px;
       height: 2px;
-      background: #248eff;
+      background: $pink-color;
       top: 30px;
+    }
+  }
+
+  .col-style {
+    margin-top: 3rem;
+
+    @media (max-width: 768px) {
+      margin-top: 0rem;
     }
   }
 

@@ -1,3 +1,13 @@
+.top-filters {
+  padding-left: 2rem;
+  padding-right: 2rem;
+
+  @media screen and (max-width: 768) {
+    padding-left: .5rem;
+    padding-right: .5rem;
+  }
+}
+
 .toogle-display {
 
   ul {
@@ -95,43 +105,43 @@
 }
 
 .list-display {
-  padding: 1rem;
+  padding: .5rem;
   margin-top: 2rem;
-
-  @media screen and (max-width: 576px) {
-    height: 80vh;
+  // transition: all .2s linear;
+  @media screen and (max-width: 767px) {
+    text-align: center;
+    // height: 80vh;
   }
 
-  // .test {
-  //   position: absolute;
-  //   width: 10rem;
-  // }
+
 
   .product-item {
     img {
-      max-width: 80%;
+      max-width: 90%;
     }
   }
 
   .promotion {
     top: .2rem;
-    right: 4rem;
+    right: 2.5rem;
   }
 
   .novelty {
     top: .2rem;
-    right: 4rem;
+    right: 2.5rem;
   }
 }
 
 .grid-display {
   padding: 1.5rem;
   text-align: center;
-
-  // transition: all 1s linear;
+  transition: all .2s linear;
   .product-item {
     img {
       width: 100%;
+      @media screen and (max-width: 576px) {
+        width: 90%;
+      }
     }
   }
 

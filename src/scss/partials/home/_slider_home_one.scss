@@ -29,7 +29,7 @@
 
   .slick-dots {
     // background-color: #F5F5F5;
-    bottom: -1rem;
+    bottom: 0rem;
 
     li button::before {
       font-size: 8px;
@@ -134,7 +134,7 @@
       .content-two {
         height: 30rem;
         img {
-          max-height: 350px;
+          max-height: 280px;
 
           @media screen and (max-width: 768px) {
             padding-bottom: 5rem;

@@ -10,12 +10,13 @@ import { updateCart, removeFromCart } from '../../lib/actions'
 
 const RowItem = props => {
    // console.log('props', props)
-   const { id, quantity, details } = props.item    // Redux
+   const { id, quantity, details } = props.item
    const item = details
-
    const [qty, setQty] = useState(quantity)
-   const dispatch = useDispatch()				        // Dispatch le store localement pr le lire les actions et fontions
 
+   const dispatch = useDispatch()
+
+   /***** Redux *****/
    const update = (action) => {
       if (action === 'increment') { 
          setQty(item.quantityProduct > qty ? qty + 1 : qty) 
@@ -23,8 +24,8 @@ const RowItem = props => {
       if (action === 'decrement') { setQty(qty - 1) }
    }
 
-   useEffect(() => {                 // est executé lors d'un chagement local du component
-      dispatch(updateCart(id, qty))   // change la quantity dans le panier lors de " increment et decrement "
+   useEffect(() => {
+      dispatch(updateCart(id, qty))
    }, [dispatch, id, qty])
 
    const remove = id => {
@@ -38,7 +39,7 @@ const RowItem = props => {
       {item ? (
          <>
          <div className="row m-4 row-item align-items-center no-gutters">
-            <div className="col-md-4 text-center">
+            <div className="col-md-6 text-center">
             <h2>{item.titleProduct}</h2>
             <Link to={`/product/${item._id}`}>
             <img
@@ -49,7 +50,7 @@ const RowItem = props => {
             </Link>
          </div>
 
-         <div className="col-md-8">
+         <div className="col-md-6">
             <div className="row no-gutters">
 
                <div className="col-sm-6 cart-qty align-self-center text-center">

@@ -25,8 +25,8 @@ const DisplayProducts = (props) => {
    const [matterCheck, setMatterCheck] = useState([]);
    const [colorCheck, setColorCheck] = useState([]);
    const [collectionCheck, setCollectionCheck] = useState([]);
-   // const [promotionCheck, setPromotionCheck] = useState([]);
-   // const [noveltyCheck, setNoveltyCheck] = useState([]);
+   const [promotionCheck, setPromotionCheck] = useState([]);
+   const [noveltyCheck, setNoveltyCheck] = useState([]);
 
    // For API Products
    const [allFilters, setAllFilters] = useState({
@@ -175,8 +175,8 @@ const DisplayProducts = (props) => {
       setMatterCheck(filtersFromRedux[0].matter)
       setColorCheck(filtersFromRedux[0].color)
       setCollectionCheck(filtersFromRedux[0].collection)
-      setCollectionCheck(filtersFromRedux[0].promotion)
-      setCollectionCheck(filtersFromRedux[0].novelty)
+      setPromotionCheck(filtersFromRedux[0].promotion)
+      setNoveltyCheck(filtersFromRedux[0].novelty)
 
       const newVal = { ...allFilters }
       newVal.categoryProduct = filtersFromRedux[0].cat
@@ -191,8 +191,6 @@ const DisplayProducts = (props) => {
          window.scrollTo({ top: 0 });
          setTest(false)
       }
-
-      // setBySort(localStorage.getItem('BySort'))
 
       if (allProducts.length <= 0) {
          apiCall.getProducts().then(res => { setAllProducts(res.data.products) });

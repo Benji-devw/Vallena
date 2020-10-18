@@ -17,11 +17,8 @@ const Layout = () => {
   return (
     <Fragment>
       <main>
-   
-   
-            <Sections/>
+          <Sections/>
   
-
           {/* <aside className={sidebarToggle ? 'sidebar sidebarOpen' : 'sidebar sidebarClosed'}>
             <div className={sidebarToggle ? "cart-btn mt-5 push-in" : "cart-btn mt-5 push-out" }
                 onClick={sidebarToggle ? closeSidebar : openSidebar}

@@ -49,12 +49,6 @@ const HomeCollection = () => {
       <div className="row align-items-center no-gutters">
       <div className="col-lg-12 p-2">
 
-        {/* <div className="title-collection">
-          <h2>
-          C O L L E C T I O N S
-          </h2>
-        </div> */}
-
         {/* <div className="container"> */}
           {/* <Parallax speed={1} data-scroll> */}
           {/* <ScrollAnimation animateIn='fadeIn' animateOut='fadeOut'> */}
@@ -83,7 +77,7 @@ const HomeCollection = () => {
           </div>
             </ScrollAnimation>
 
-          <ScrollAnimation className="col-md-4" animateIn='fadeIn' delay={150}>
+          <ScrollAnimation className="col-md-4" animateIn='fadeIn' delay={250}>
           <div className={`collection text-center ${classes.bgWomen} ${classes.imgConf}`}
             onMouseEnter={() => setToogleDisplay('women')}
             onMouseLeave={() => setToogleDisplay()}
@@ -107,7 +101,7 @@ const HomeCollection = () => {
             </ScrollAnimation>
 
 
-          <ScrollAnimation className="col-md-4" animateIn='fadeIn' delay={250}>
+          <ScrollAnimation className="col-md-4" animateIn='fadeIn' delay={450}>
           <div className={`collection text-center ${classes.bgBaby} ${classes.imgConf}`}
             onMouseEnter={() => setToogleDisplay('baby')}
             onMouseLeave={() => setToogleDisplay()}
@@ -131,10 +125,9 @@ const HomeCollection = () => {
           </ScrollAnimation>
 
         </div>
-          {/* </Parallax> */}
+        {/* </Parallax> */}
         {/* </div> */}
-
-          {/* </ScrollAnimation> */}
+        {/* </ScrollAnimation> */}
         </div>
       </div>
     </div>

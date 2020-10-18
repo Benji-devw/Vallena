@@ -5,9 +5,6 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 import visage from '../../../scss/img/home/img-1.png';
-// import promo from '../../../scss/img/promo.png';
-// import round from '../../../scss/img/round.png';
-// import Logo from '../../../scss/img/Logo-Vallena.svg';
 // import deposit from '../../../scss/img/depositphotos_46127747-stock-photo-sewing-tools.png';
 import Button from '@material-ui/core/Button';
 
@@ -50,7 +47,7 @@ const SlideItems = props => {
   const [productsDb, setProductsDb] = useState([])
 
   const settings = {
-    // dots: true,
+    dots: true,
     infinite: true,
     // autoplay: true,
     speed: 800,
@@ -67,9 +64,7 @@ const SlideItems = props => {
     setProductsDb(props.data)
   }, [props.data]);
   
-  const saveFilterByCat = (cat) => {
-    localStorage.setItem('filterByCat', cat)
-  }
+ 
   // countapi.visits().then((result) => {
   //   console.log(result.value);
   // });
@@ -90,15 +85,16 @@ const SlideItems = props => {
 
                   {/* <img src={Logo} alt="logo" className="logo-vallena" /> */}
                 <h2>Vallena.fr</h2>
-
-                  <p>Les produits sont fabriqués dans un petit atelier de couture d'Ardèche.<br />
+                  {/* <p>Les produits sont fabriqués dans un petit atelier de couture d'Ardèche.<br />
                     Ils sont pour la plupart, fait à la main et donc en quantité réduite mais en majorité UNIQUE,...
+                    </p> */}
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec convallis justo. <br /> 
+                    Nam finibus lobortis nisl, vel bibendum ex sollicitudin ultrices. Suspendisse potenti. Curabitur quis augue lorem.
                     </p>
                     <Link to="/shop">
                       <Button variant="contained" color="secondary">
                         Boutique <MdKeyboardArrowRight className="ml-1" 
                           style={{fontSize:"1.7em"}} 
-                          onClick={saveFilterByCat('All')}
                         />
                       </Button>
                     </Link>
@@ -117,7 +113,7 @@ const SlideItems = props => {
             {productsDb.map(item => item.yearCollection === 2020 &&
               <div key={item._id}>
               <div className="container">
-              <div className="row slick-content content-two align-items-center">
+              <div className="row slick-content content-two align-items-center p-3">
                 <div className="col-md-6">
                   <span className="collection">Collection 2020</span>
                   <h3>{item.titleProduct}</h3> <br />
@@ -131,7 +127,7 @@ const SlideItems = props => {
                     </Link>
                 </div>
 
-                <div className="col-md-6">
+                <div className="col-md-6 p-3">
                   {/* <img src={round} alt="round" className="round" /> */}
                   <img src={item.imgCollection[0]} alt={item.titleProduct} className="img-fluid mx-auto" />
 
@@ -142,37 +138,7 @@ const SlideItems = props => {
               </div>
             )}
          
-        
-
-          {/* <div>
-          <div className="container">
-          <div className="row slick-content content-three align-items-center">
-
-            <div className="col-md-6 test">
-              <h2>Bienvenue sur <br /> Vallena.fr</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel sem consectetur, tincidunt leo vitae, euismod purus.</p>
-            </div>
-
-            <div className="col-md-6 test">
-              <img src={round} alt="round" className="round" />
-              <img src={tab} alt="visage" className="img-fluid mx-auto" />
-
-            </div>
-
-          </div>
-          </div>
-          </div> */}
-
-          {/* 
-          <div>
-            <h3>4</h3>
-          </div>
-          <div>
-            <h3>5</h3>
-          </div>
-          <div>
-            <h3>6</h3>
-          </div> */}
+    
         </Slider>
 
       </div>

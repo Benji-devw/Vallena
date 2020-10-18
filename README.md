@@ -31,9 +31,6 @@ git remote add origin https://github.com/Benji-devw/Vallena.git
 >>>>>>> 839c436fb715d94cd3a90710a5f5553d84e773e4
 git push -u origin dev
 
-### STRIPE ###
-ben.nav@pm.me 		Navnav1337&
-pk_test_51HByVWAkOHy2ySzJ6pDEd2IqFEpveJBaanEqrf1DKGjNTNMM9vyB4Ehw2R5n12jd8mObnQGwOTDcQoDE7bOiSoxB00UwSgbNZN
-sk_test_51HByVWAkOHy2ySzJsKYxCeY58qLO7YLFNdYnhHjuOsIeyxdtfbVNYC3w8D1IhTlYwl21Bm3XIGQnMasxTNiAA2bZ00Mfy71kn6
+
 
 

@@ -157,7 +157,7 @@ const ProductView = props => {
                <div className="col mt-4">
                   <div className="title-collection">
                      <h2>
-                     MEME CATEGORIES
+                     MEME CATEGORIE
                      </h2>
                   </div>
 

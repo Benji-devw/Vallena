@@ -83,7 +83,7 @@ const MainListItems = props => {
       <ListItemIcon>
         <ExitToAppIcon />
       </ListItemIcon>
-      <ListItemText primary="Integrations" />
+      <ListItemText primary="Logout" />
     </ListItem>
   </div>
   )

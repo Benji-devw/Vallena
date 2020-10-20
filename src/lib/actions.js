@@ -1,5 +1,3 @@
-// Creation des actions (valeurs: item ,quantity, product ) que l'on passe a reducers en payload
-// Action (objet) est appelée par un  container dont la mission sera de mettre à jour l'interface en utilisant les actions et en récupérant les states
 /*
  * action types
  * type est obligatoire pour chaque  action
@@ -21,6 +19,8 @@ export const actions = {
  * Action creator
  */
 
+/***** Cart *****/
+/*****/
  // Add in Redux
 const uid = () => Math.random().toString(34).slice(2)
 export function addtoCart (item, quantity) {
@@ -45,7 +45,6 @@ export function removeFromCart (id) {
    }
 }
 
-// Save in  localStorage
 export function saveCart (items) {
    return {
       type: actions.SAVE_CART,
@@ -60,6 +59,9 @@ export function resetCart () {
 }
 
 
+
+/***** Filters *****/
+/*****/
 export function addFilters(cat, matter, color, collection, promotion, novelty) {
    return {
       type: actions.ADD_FILTERS,

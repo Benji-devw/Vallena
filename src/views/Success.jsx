@@ -9,10 +9,7 @@ import Button from '@material-ui/core/Button';
 
 
 const SuccessOk = props => {
-   console.log('props', props)
-
    const [order, setOrder] = useState([])
-   console.log('order', order)
    const [items, setItems] = useState([])
 
 
@@ -82,7 +79,6 @@ const SuccessOk = props => {
                   </div>
                </div>
                   
-
 
                <table className="table m-4 table-striped">
                   <thead>

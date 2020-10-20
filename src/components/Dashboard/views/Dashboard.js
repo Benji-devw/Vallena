@@ -74,11 +74,10 @@ export default function Dashboard() {
       order.map(e => e.client.map(f => calc.push(parseInt(f.amount.value))))
       let sum = calc.reduce((a, b) => {
         return a + b
-      }, 0) // reduce map sur les montant les add av a et b et increment
+      }, 0)
       return sum
     } else { return 0 }
   }
-  // console.log(sumOrders());
 
   
   useEffect(() => {

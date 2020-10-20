@@ -268,7 +268,7 @@ export default function ListItemsView() {
         </Grid >
       </div>
       <div className="row">
-        <InsertProduct />
+        <InsertProduct data={products}/>
       </div>
     </React.Fragment>
   );

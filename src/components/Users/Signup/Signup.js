@@ -93,10 +93,11 @@ const  SignUp = () => {
     };
 
       API.signup({username, email, password}).then(res => {
-        console.log(res);
-        window.location = "/login";
+        // console.log(res);
+        // window.location = "/login";
         // localStorage.setItem("token", data.token);
         // console.log('SIGNUP OK');
+        alert('Inscription désactivé !')
       })
 
   };
@@ -190,7 +191,7 @@ const  SignUp = () => {
               />
             </Grid>
           </Grid>
-          {/* <Button
+          <Button
             fullWidth
             variant="contained"
             color="primary"
@@ -198,7 +199,7 @@ const  SignUp = () => {
             onClick={send}
           >
             envoyer
-          </Button> */}
+          </Button>
           <Grid container justify="flex-end">
             <Grid item>
               <Link href="/login" variant="body2">

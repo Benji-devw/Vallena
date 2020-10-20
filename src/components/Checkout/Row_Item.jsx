@@ -2,14 +2,12 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-
 import { useDispatch } from 'react-redux';
 import { updateCart, removeFromCart } from '../../lib/actions'
 
 
 
 const RowItem = props => {
-   // console.log('props', props)
    const { id, quantity, details } = props.item
    const item = details
    const [qty, setQty] = useState(quantity)
@@ -17,6 +15,7 @@ const RowItem = props => {
    const dispatch = useDispatch()
 
    /***** Redux *****/
+   /*****/
    const update = (action) => {
       if (action === 'increment') { 
          setQty(item.quantityProduct > qty ? qty + 1 : qty) 
@@ -30,7 +29,6 @@ const RowItem = props => {
 
    const remove = id => {
       dispatch(removeFromCart(id))
-      // window.location.reload(false);
    }
 
 

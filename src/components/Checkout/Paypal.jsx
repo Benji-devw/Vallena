@@ -1,13 +1,12 @@
 import React from 'react';
 import { PayPalButton } from "react-paypal-button-v2";
 import { useDispatch } from 'react-redux';
-// import Success from './Success'
 import { resetCart } from '../../lib/actions';
 import apiCallOrders from '../../apiCall/Orders_Api'
 import apiCall from '../../apiCall/Products_Api'
+// import Success from './Success'
 
 const PayPalBtn = (props) => {
-   // console.log('props', props)
 
    const dispatch = useDispatch()
    const statut = { inProgress: true, finish: false };
@@ -30,11 +29,6 @@ const PayPalBtn = (props) => {
       <>
          <div className="row mt-5 p-3 zoomIn align-items-center justify-content-center">
 
-            {/* <div className="col-12 text-right">
-                  <CancelIcon onClick={closeModal} style={{cursor:"pointer"}} />
-               <hr />
-            </div> */}
-
             <div className="col-12">
             <PayPalButton
                   style={{
@@ -47,9 +41,6 @@ const PayPalBtn = (props) => {
                amount={amount}
 
                onSuccess={(details, data) => {
-                  // console.log('data', data)
-                  // console.log('details', details)
-
                   // alert("Transaction completed by " + details.payer.name.given_name);
 
                   console.log(items)
@@ -71,9 +62,7 @@ const PayPalBtn = (props) => {
                   const payer = details.payer
                   const payload = { items, payer, client, amount, statut }
                   apiCallOrders.insertOrder(payload).then(res => {
-                     // console.log('res', res)
-                     // window.alert(`New Order inserted Done !`)
-                     console.log("Order enregistré")
+                     // console.log("Order enregistré")
                      const reset = () => {
                         dispatch(resetCart())
                      }

@@ -4,46 +4,46 @@ import Success from './views/Success'
 // import ClientProfileContext from './lib/ClientProfileContext'
 // import IndexDbInit from './lib/IndexBdInit'
 
+/***** Views *****/
+/*****/
 import Shop from './views/Shop'
 import Layout from './views/Layout'
 import Checkout from './views/checkout'
-
+import ProductView from './components/sections/Shop/Shop_Product_View'
+/***** UI *****/
+/*****/
 import Header from './components/UI/Header/Header';
 import SignIn from './components/Users/Login/Login'
 import SignUp from './components/Users/Signup/Signup'
 import { PrivateRoute } from "./components/PrivateRoute";
 import { ProductUpdate } from './components/Dashboard/Update_Product'
-
-// Dashboard
+/***** Dashboard *****/
+/*****/
 import Admin from './components/Dashboard'
 import ListItemsView from './components/Dashboard/views/ListItems/ListItemsView'
 import Orders from './components/Dashboard/views/Orders/Orders'
 import Users from './components/Dashboard/views/Users/Users'
-
-import CookieConsent, { Cookies } from "react-cookie-consent";
-
-import ProductView from './components/sections/Shop/Shop_Product_View'
+/***** Redux *****/
+/*****/
 import { addFilters } from './lib/actions'
 import { useDispatch } from 'react-redux';
+import CookieConsent, { Cookies } from "react-cookie-consent";
+
+
 const App = props => {
-  // console.log('app', props);
   const { items, saveLocalStorage, filters, saveFilters } = props
+  const checkCookies = Cookies.get("userExp")
   
   // Cookies & CounterAPI
   const updateCounter = async () => {
     const data = await fetch("https://api.countapi.xyz/hit/localhost3000/visits")
     const count = await data.json()
     return count
-    // console.log(data);
-    // console.log('count', count)
     }
-  const checkCookies = Cookies.get("userExp")
   if (!checkCookies) {
-    // Si pas de cookies set cookies et +1 counterAPI
     Cookies.set("userExp", "1");
     updateCounter()
   }
-
 
   const dispatch = useDispatch()
   if (localStorage.getItem('Filters') === null) {
@@ -51,8 +51,8 @@ const App = props => {
     dispatch(addFilters([], [], [], [], [], []))
   }
 
-  useEffect(() => {     // s'execute quand il y a un changement ds l'etat local des items(Cart) (qty, delete, ...)
-    saveLocalStorage(items)   // savegarde du panier dans le navigateur*
+  useEffect(() => {
+    saveLocalStorage(items)
     saveFilters(filters)
   }, [saveLocalStorage, items, saveFilters, filters, dispatch])
 

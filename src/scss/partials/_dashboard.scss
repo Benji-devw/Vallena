@@ -143,6 +143,9 @@
 
 
   // Orders
+  .orders {
+    min-height: 50rem;
+  }
   .MuiAccordionSummary-root {
     &:hover {
       background: #F5F5F5;

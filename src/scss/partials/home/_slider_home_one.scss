@@ -24,7 +24,10 @@
     font-weight: bold;
   }
 
-
+  .btn-shop {
+    position: relative;
+    z-index: 500;
+  }
 
 
   .slick-dots {
@@ -143,7 +146,7 @@
 
         h3 {
           font-family: satisfy, sans-serif;
-          font-size: 4em;
+          font-size: 3.5em;
           font-weight: lighter;
           padding: .3rem;
           line-height: .8em;

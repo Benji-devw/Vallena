@@ -9,29 +9,6 @@ const footer = () => {
       <div className='container text-light pt-5'>
         <div className='row'>
 
-
-          {/* <div className='col-md-4 mb-5'>
-            <div className='footer-title'>
-              <h6>About Us</h6>
-            </div>
-            <div className='footer-content'>
-              <p>
-                <small className='text-muted'>
-                  Aenean suscipit eget mi act fermentum phasellus vulputate
-                  turpis tincidunt. Aenean suscipit eget. Aenean suscipit eget
-                  mi act fermentum phasellus vulputate turpis tincidunt. Aenean
-                  suscipit ege Aenean suscipit eget mi act fermentum phasellus.
-                </small>
-              </p>
-              <button className='btn btn-sm btn-primary rounded-0'>
-                Learn more
-              </button>
-            </div>
-          </div> */}
-
-
-
-
           <div className='col-md-4 mb-5 text-center'>
             <div className='footer-title'>
               <h5>Vallena</h5>
@@ -50,8 +27,6 @@ const footer = () => {
               </button> */}
             </div>
           </div>
-
-
 
 
 
@@ -84,12 +59,6 @@ const footer = () => {
 
 
 
-
-
-
-          
-
-
           <div className='col-md-4 col-style text-center'>
             <div className='footer-title'>
               <h6>Contact Us</h6>
@@ -99,10 +68,10 @@ const footer = () => {
                 <small>Address : Paris</small>
               </p>
               <p className='text-muted'>
-                <small>Phone : 06 74 18 08 82</small>
+                <small>Phone :</small>
               </p>
               <p className='text-muted'>
-                <small>E-mail : ben.nav@pm.me</small>
+                <small>E-mail : test@test.me</small>
               </p>
               {/* <div className='social-media mt-4'>
                 <a href='!#' className='text-light'>
@@ -119,7 +88,6 @@ const footer = () => {
                 </a>
               </div> */}
             </div>
-
 
 
           </div>

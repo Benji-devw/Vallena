@@ -14,33 +14,6 @@
 }
 
 
-.nav-icons {
-  cursor: pointer;
-  height: 70px;
-
-  svg {
-    padding: .2rem;
-    margin-top: 1rem;
-    color: rgba(0, 0, 0, .8);
-    font-size: 2em;
-  }
-}
-
-.badge-icons {
-  position: relative;
-  top: -2.3rem;
-  right: -1.3rem;
-  color: #fff;
-  text-align: center;
-  font-size: .7rem;
-  padding: .1rem .3rem;
-  user-select: none;
-  pointer-events: none;
-
-  background-color: $pinkFade-color;
-}
-
-
 
 
 .header {
@@ -143,69 +116,9 @@
 
 
 
-.toggle-nav {
-
-  // ul {
-  //   height: 200px;
-  //   width: 200px;
-  // }
-  .nav-icons {
-    position: relative;
-    left: 0;
-    cursor: pointer;
-    height: 50px;
-    display: inline-block;
-
-    svg {
-      padding: .2rem;
-      margin-top: 1rem;
-      color: rgba(0, 0, 0, .8);
-      font-size: 2em;
-    }
-  }
-
-  .badge-icons {
-    position: relative;
-    top: 0rem;
-    right: 1rem;
-    color: #fff;
-    text-align: center;
-    font-size: .7rem;
-    padding: .1rem .3rem;
-    user-select: none;
-    pointer-events: none;
-
-    background-color: $pinkFade-color;
-  }
-
-  .nav-link {
-    text-transform: uppercase;
-    color: #191919 !important;
-    font-size: 0.9rem;
-
-    &:hover {
-      color: darken($pink-color, 6%) !important;
-    }
-
-    &.active {
-      color: lighten($pink-color, 5%) !important;
-    }
-
-
-  }
-}
 
 
 
-
-
-
-
-
-
-
-
-.navbar-toggler {
 
   .btn-toggle-nav {
     outline: none;
@@ -213,63 +126,69 @@
   }
 
   .nav-icons {
-    z-index: 50;
-    position: absolute;
-    top: -.5rem;
     cursor: pointer;
-    height: 50px;
-
-    svg {
-      padding: .2rem;
-      margin-left: 2rem;
-      color: rgba(0, 0, 0, .8);
-      font-size: 1.7em;
-    }
-
-  }
-
-  .nav-icons2 {
-    z-index: 50;
-    position: absolute;
-    top: 0rem;
-    cursor: pointer;
-    height: 50px;
-
-    svg {
-      padding: .2rem;
-      margin-left: 1.5rem;
-      color: rgba(0, 0, 0, .8);
-      font-size: 1.7em;
-    }
-
-  }
-
-
-
-  .badge-icons {
     position: relative;
-    top: -2.3rem;
-    right: -3.3rem;
-    color: #fff;
-    text-align: center;
-    font-size: .7rem;
-    padding: .1rem .3rem;
-    user-select: none;
-    pointer-events: none;
-    background-color: $pinkFade-color;
+    z-index: 200;
+      @media (min-width: 1200px) {
+        top: .5rem;
+        right: .5rem;
+      }
+    svg {
+      padding: .2rem;
+      margin-top: -1rem;
+      color: rgba(0, 0, 0, .8);
+      font-size: 2em;
+    }
+    span {
+      position: relative;
+      top: 0rem;
+      right: -1rem;
+      color: #fff;
+      text-align: center;
+      font-size: .7rem;
+      padding: .1rem .3rem;
+      user-select: none;
+      pointer-events: none;
+  
+      background-color: $pinkFade-color;
+      @media (max-width: 768px) {
+        right: -3rem;
+      }
+      @media (min-width: 1200px) {
+        top: -1.2rem;
+        right: -2.2rem;
+      }
+    }
   }
 
-  .badge-icons2 {
+
+  .nav-icons-small {
+    cursor: pointer;
     position: absolute;
-    top: 0rem;
-    right: 0rem;
-    color: #fff;
-    text-align: center;
-    font-size: .7rem;
-    padding: .1rem .3rem;
-    user-select: none;
-    pointer-events: none;
+    right: -3rem;
+    z-index: 200;
 
-    background-color: $pinkFade-color;
+    svg {
+      color: rgba(0, 0, 0, .8);
+      font-size: 1.4em;
+    }
+    span {
+      position: relative;
+      top: -.5rem;
+      left: 2rem;
+      color: #fff;
+      text-align: center;
+      font-size: .7rem;
+      padding: .1rem .3rem;
+      user-select: none;
+      pointer-events: none;
+  
+      background-color: $pinkFade-color;
+    }
   }
-}
+
+  .test {
+    @media (max-width: 768px) {
+      right: -.7rem;
+    }
+  }

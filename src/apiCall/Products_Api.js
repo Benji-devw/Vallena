@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const apiCall = axios.create({
+    // baseURL: '/api',
     baseURL: 'http://localhost:8800/api',
 })
 
@@ -9,8 +10,7 @@ const updateProductById = (id, payload) => apiCall.put(`/update/${id}`, payload)
 const getProducts = payload => apiCall.get(`/`, payload)                            // Lien => Api=>productRouter.js./getProducts
 const getProductById = id => apiCall.get(`/${id}`)
 const deleteProductById = id => apiCall.delete(`/${id}`)
-
-const getProductsPost = payload => apiCall.post(`/getProductsPost`, payload)                            // Lien => Api=>productRouter.js./getProducts
+const getProductsPost = payload => apiCall.post(`/getproductspost`, payload)                            // Lien => Api=>productRouter.js./getProducts
 
 const apis = {
     insertProduct,
@@ -18,7 +18,6 @@ const apis = {
     getProducts,
     getProductById,
     deleteProductById,
-
     getProductsPost
 }
 

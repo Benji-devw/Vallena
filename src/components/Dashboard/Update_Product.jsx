@@ -17,19 +17,20 @@ const Button = styled.button.attrs({ className: `btn btn-primary`, })`
 
 
 
-export class ProductUpdate extends Component {        // lien => Dashboard.js
+export class ProductUpdate extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
+            forList: [],
             id: this.props.match.params.id,
             imgCollection: [],      imgCollectionCopy: [],
             titleProduct: '',       descriptionProduct: '',
             priceProduct: '',       categoryProduct: '',
             sizeProduct: '',        weightProduct: '',
             quantityProduct: '',    reporterProduct: '',
-
-            tags: '',   matter: '', composition: '', fabrication: '',  color: '', oldPriceProduct: '', yearCollection: '', entretien: '',
+            tags: '',   matter: '', composition: '', fabrication: '',  
+            color: '', oldPriceProduct: '', yearCollection: '', entretien: '',
             novelty: true, displaySlideHome: true,
 
             visible: true, 
@@ -46,7 +47,6 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
         const descriptionProduct = event.target.validity.valid
             ? event.target.value
             : this.state.descriptionProduct
-
         this.setState({ descriptionProduct })
     }
 
@@ -60,7 +60,6 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
         displayimgC.style.visibility = 'hidden'
         displayimgC.style.height = "0px"
         const readAndPreview = (file) => {
-            // Veillez à ce que `file.name` corresponde à nos critères d’extension
             if (/\.(jpe?g|png|jpg|gif)$/i.test(file.name)) {
                 var reader = new FileReader();
                 reader.addEventListener("load", function () {
@@ -98,11 +97,11 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
         const copyCollection = this.state.imgCollectionCopy
         // console.log('copyCollection', copyCollection)
 
-            for (const key of Object.keys(newCollection)) {              // Crée un nouvel objet FormData et construit une paires clé/valeur représentant les champs du formulaire et leurs valeurs,
+            for (const key of Object.keys(newCollection)) {           // Crée un nouvel objet FormData et construit une paires clé/valeur représentant les champs du formulaire et leurs valeurs,
             formData.append('imgCollection', newCollection[key])     // Ajoute une nouvelle valeur à une clé existante dans un objet FormData, ou ajoute la clé si elle n'existe pas encore.
             }
-            for (const key of Object.keys(copyCollection)) {              // Crée un nouvel objet FormData et construit une paires clé/valeur représentant les champs du formulaire et leurs valeurs,
-                formData.append('copyCollection', copyCollection[key])     // Ajoute une nouvelle valeur à une clé existante dans un objet FormData, ou ajoute la clé si elle n'existe pas encore.
+            for (const key of Object.keys(copyCollection)) {
+                formData.append('copyCollection', copyCollection[key])
             }
 
        
@@ -133,12 +132,16 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
 
         alert('Modification désactivé !')
 
-        // apiCall.updateProductById(id, formData)
-        // .then(res => {    
-        //         console.log('2 UPDATE res.data......', res)
-        //     }).catch(() => {  } ) 
-        // window.alert(`Modification OK !`)
-        // window.location = "/dashboard/listitems";
+        apiCall.updateProductById(id, formData)
+        .then(res => {    
+                // console.log('2 UPDATE res.data......', res)
+                window.alert(`Modification désactivé !`)
+                // window.alert(`Modification OK !`)
+                // window.location = "/dashboard/listitems";
+            }).catch(err => { 
+                // console.log(err)
+                console.log(`Modification désactivé !`)
+             } ) 
     }
 
 
@@ -147,7 +150,6 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
         const { id } = this.state
         const product = await apiCall.getProductById(id)        // Lien => src/apiCall/index.js
         // console.log('product', product)
-        // 2 - Rempli les input avec les valeurs
         this.setState({
             imgCollection: product.data.data.imgCollection,
             imgCollectionCopy: product.data.data.imgCollection,
@@ -174,6 +176,9 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
             reporterProduct: product.data.data.reporterProduct,
             visible: product.data.data.visible,
         })
+        apiCall.getProducts().then(products => {
+            this.setState({ forList: products.data.products})
+        })
     }
 
 
@@ -182,12 +187,25 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
         // console.log('imgCollection', this.state.imgCollection)
         // console.log('imgCollectioncopy', this.state.imgCollectionCopy)
         
-        const {imgCollection} = this.state
+        const {imgCollection, forList} = this.state
         const imgDisplay = []
 
         for (let i = 0; i < imgCollection.length; i++) {
             imgDisplay.push(<img src={imgCollection[i]} key={[i]} alt="img" className="img-responsive m-3" style={{ height: '200px' }} />);
         }
+
+        // Filter catList
+        const categorySet = new Set(forList.map(cat => cat.categoryProduct));
+        const catList = Array.from(categorySet).sort();
+        // Filter MatterList
+        // const matterSet = new Set(forList.map(p => p.matter));
+        // const matterList = Array.from(matterSet).sort();
+        // Filter ColorList
+        // const colorSet = new Set(forList.map(p => p.color));
+        // const colorList = Array.from(colorSet).sort();
+        // Filter CollectionList
+        // const collectionSet = new Set(forList.map(p => p.yearCollection.toString()));
+        // const collectionList = Array.from(collectionSet).sort();
 
         return (
             <Wrapper>
@@ -209,28 +227,27 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                     </Form.Group>
 
                     <Form.Group as={Col} md="4" controlId="validationCustom02">
-
                         <Form.Control
                             label="Catégorie"
                             as="select"
                             onChange={(e) => this.setState({ categoryProduct: e.target.value })}
-                            required
                         >
                             <option>{this.state.categoryProduct}</option>
-                            <option>Masques</option>
-                            <option>Accessoire</option>
-                            <option>Bébé</option>
-                            <option>Pochettes</option>
-                            <option>Trousse</option>
-                            <option>Dingettes</option>
-                            <option>Panière</option>
-                            <option>Attache tétine</option>
-                            <option>Sac à dos</option>
-                            <option>Couverture</option>
-                            <option>Bavoir</option>
-                            <option>Doudou</option>
+                            {catList.map((category, index) => (
+                                <option key={index}>{category}</option>
+                            ))}
+
                         </Form.Control>
-                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                        {/* <span className="text-danger">{this.state.alert === "catError" && "champ incorrect"}</span> */}
+
+                    </Form.Group>
+                    <Form.Group as={Col} md="4" controlId="validationCustom33">
+                        <Form.Control
+                            placeholder="Créer une catégorie"
+                            type="text"
+                            onChange={(e) => this.setState({ categoryProduct: e.target.value })}
+                        />
+                        {/* <span className="text-danger">{this.state.alert === "catError" && "champ incorrect"}</span> */}
                     </Form.Group>
                 </Form.Row>
 
@@ -469,7 +486,7 @@ export class ProductUpdate extends Component {        // lien => Dashboard.js
                                 multiple
                                 feedbackTooltip
                                 custom
-                                required
+                                // required
                             />
                         </Form.Group>
                         </Form.Row> 

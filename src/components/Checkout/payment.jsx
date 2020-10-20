@@ -16,7 +16,7 @@ const PaymentForm = props => {
 
    const [subTotal, setSubTotal] = useState(0)
    const [total, setTotal] = useState(0)
-   // console.log('total', total)
+
 
    const [shipping, setShipping] = useState(5.50)
 

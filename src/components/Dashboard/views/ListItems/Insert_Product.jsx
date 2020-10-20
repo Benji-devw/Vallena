@@ -19,7 +19,7 @@ export class InsertProduct extends Component {
         super(props)
         this.state = {
             imgCollection: [],
-            catProduct: [],
+            forList: [],
             titleProduct: '',        descriptionProduct: '',
             priceProduct: '',        categoryProduct: '',
             sizeProduct: '',         weightProduct: '',
@@ -27,7 +27,7 @@ export class InsertProduct extends Component {
             promotionProduct: false, stockProduct: true,
 
             tags: '', matter: '', composition: '', fabrication: '', color: '', oldPriceProduct: 0, yearCollection: '', entretien: '',
-            novelty: true, displaySlideHome: true,
+            novelty: false, displaySlideHome: false,
 
             visible: true,  notes: 0,
             comments: ['premier commentaire'],           
@@ -38,14 +38,6 @@ export class InsertProduct extends Component {
 
     componentDidMount = async () => {
         this.setState({ isLoading: true })
-
-        await apiCall.getProducts().then(product => {
-            // console.log('products', product.data.products)
-            this.setState({
-                catProduct: product.data.products,
-                isLoading: false,
-            })
-        })
         window.scrollTo({ top: 0 });
     }
     
@@ -74,7 +66,7 @@ export class InsertProduct extends Component {
                     preview.appendChild(image);
                 }, false);
                 reader.readAsDataURL(file);
-            }
+            } else { alert('Fichier incorrect !')}
         }
         if (files) {
             [].forEach.call(files, readAndPreview);
@@ -155,9 +147,9 @@ export class InsertProduct extends Component {
                 
                 apiCall.insertProduct(formData).then(res => {
                     // console.log('2 res.data......', res.data)
-                    window.alert('Produit Ajouté !')
-                    window.location = "/dashboard/listitems";
-
+                    // window.alert('Produit Ajouté !')
+                    // window.location = "/dashboard/listitems";
+                    window.alert(`Modification désactivé !`)
                 }).catch(function (erreur) { console.log(erreur)});
             }
         
@@ -166,12 +158,18 @@ export class InsertProduct extends Component {
 
 
     render() {
-        // Filter catProduct
-        const catSuggest = this.state.catProduct
-        const categorySet = new Set(catSuggest.map(p => p.categoryProduct));
-        const categories = Array.from(categorySet).sort();
-
-        // console.log(this.state.matter);
+        // Filter catList
+        const categorySet = new Set(this.props.data.map(cat => cat.categoryProduct));
+        const catList = Array.from(categorySet).sort();
+        // Filter MatterList
+        const matterSet = new Set(this.props.data.map(mat => mat.matter));
+        const matterList = Array.from(matterSet).sort();
+        // Filter ColorList
+        const colorSet = new Set(this.props.data.map(col => col.color));
+        const colorList = Array.from(colorSet).sort();
+        // Filter CollectionList
+        const collectionSet = new Set(this.props.data.map(yearCol => yearCol.yearCollection.toString()));
+        const collectionList = Array.from(collectionSet).sort();
         return (
             <Container>
             <Wrapper>
@@ -180,7 +178,7 @@ export class InsertProduct extends Component {
                 <h3 className="mb-5">Création d'un produit</h3>
 
                 <Form.Row className="justify-content-md-center">
-                    <Form.Group as={Col} md="4" controlId="validationCustom01">
+                    <Form.Group as={Col} md="4" controlId="validationCustom01"  className="d-flex align-items-end">
                         <Form.Control
                             placeholder="Nom du produit"
                             type="text"
@@ -191,14 +189,14 @@ export class InsertProduct extends Component {
                     </Form.Group>
 
                     <Form.Group as={Col} md="4" controlId="validationCustom02">
+                        <Form.Label>Catégories</Form.Label>
                         <Form.Control
-                            label="Catégorie"
+                            label="Catégories"
                             as="select"
-                            // onChange={this.handleChangeInputCategoryProduct}
                             onChange={(e) => this.setState({ categoryProduct: e.target.value })}
                         >
                             <option></option>
-                            {categories.map((category, index) => (
+                            {catList.map((category, index) => (
                                 <option key={index}>{category}</option>
                             ))}
 
@@ -206,11 +204,10 @@ export class InsertProduct extends Component {
                         <span className="text-danger">{this.state.alert === "catError" && "champ incorrect"}</span>
 
                     </Form.Group>
-                    <Form.Group as={Col} md="4" controlId="validationCustom33">
+                    <Form.Group as={Col} md="4" controlId="validationCustom33" className="d-flex align-items-end">
                         <Form.Control
                             placeholder="Créer une catégorie"
                             type="text"
-                            // onChange={this.handleChangeInputCategoryProduct}
                             onChange={(e) => this.setState({ categoryProduct: e.target.value })}
                         />
                         <span className="text-danger">{this.state.alert === "catError" && "champ incorrect"}</span>
@@ -222,7 +219,6 @@ export class InsertProduct extends Component {
                     <Form.Group as={Col} md="8" controlId="validationCustom03">
                         <Form.Control as="textarea" rows="5"
                             placeholder="Description de produit..."
-                            // onChange={this.handleChangeInputDescriptionProduct}
                             onChange={(e) => this.setState({ descriptionProduct: e.target.value })}
                             required
                         />
@@ -277,6 +273,7 @@ export class InsertProduct extends Component {
     
 
 
+
                 <Form.Row className="justify-content-md-center">
                     <Form.Group as={Col} md="3" controlId="validationCustom26">
                         <Form.Label>Entretien</Form.Label>
@@ -286,16 +283,6 @@ export class InsertProduct extends Component {
                             onChange={(e) => this.setState({ entretien: e.target.value })}
                         />
                         <span className="text-danger">{this.state.alert === "entretienError" && "champ incorrect"}</span>
-                    </Form.Group>
-
-                    <Form.Group as={Col} md="3" controlId="validationCustom26">
-                        <Form.Label>Matière</Form.Label>
-                        <InputText
-                            placeholder='Matière'
-                            type="text"
-                            onChange={(e) => this.setState({ matter: e.target.value })}
-                        />
-                        <span className="text-danger">{this.state.alert === "matterError" && "champ incorrect"}</span>
                     </Form.Group>
 
                     <Form.Group as={Col} md="3" controlId="validationCustom27">
@@ -321,27 +308,93 @@ export class InsertProduct extends Component {
                 </Form.Row>
 
 
+
+
+
                 <Form.Row className="justify-content-md-center">
-                    <Form.Group as={Col} md="3" controlId="validationCustom25">
+                    <Form.Group as={Col} md="4" controlId="validationCustom2656">
+                        <Form.Label>Matière</Form.Label>
+                        <Form.Control
+                            label="Matière"
+                            as="select"
+                            onChange={(e) => this.setState({ matter: e.target.value })}
+                        >
+                            <option></option>
+                            {matterList.map((matter, index) => (
+                                <option key={index}>{matter}</option>
+                            ))}
+                        </Form.Control>
+                        <span className="text-danger">{this.state.alert === "matterError" && "champ incorrect"}</span>
+                    </Form.Group>
+                    <Form.Group as={Col} md="4" controlId="validationCustom336"  className="d-flex align-items-end">
+                        <Form.Control
+                            placeholder="Créer une matière"
+                            type="text"
+                            onChange={(e) => this.setState({ matter: e.target.value })}
+                        />
+                        <span className="text-danger">{this.state.alert === "catError" && "champ incorrect"}</span>
+                    </Form.Group>
+                </Form.Row>
+
+
+
+                <Form.Row className="justify-content-md-center">
+                    <Form.Group as={Col} md="4" controlId="validationCustom56">
                         <Form.Label>Couleur</Form.Label>
+                        <Form.Control
+                            label="Couleur"
+                            as="select"
+                            onChange={(e) => this.setState({ color: e.target.value })}
+                        >
+                            <option></option>
+                            {colorList.map((color, index) => (
+                                <option key={index}>{color}</option>
+                            ))}
+                        </Form.Control>
+                        <span className="text-danger">{this.state.alert === "colorError" && "champ incorrect"}</span>
+                    </Form.Group>
+                    <Form.Group as={Col} md="4" controlId="validationCustom25"  className="d-flex align-items-end">
                         <InputText
-                            placeholder="Couleur"
+                            placeholder="Créer une couleur"
                             type="text"
                             onChange={(e) => this.setState({ color: e.target.value })}
                             required
                         />
                         <span className="text-danger">{this.state.alert === "colorError" && "champ incorrect"}</span>
                     </Form.Group>
-                    <Form.Group as={Col} md="3" controlId="validationCustom25">
+                </Form.Row>
+
+
+
+                <Form.Row className="justify-content-md-center">
+                    <Form.Group as={Col} md="4" controlId="validationCustom5446">
                         <Form.Label>Année Collection</Form.Label>
+                        <Form.Control
+                            label="Créer une Collection"
+                            as="select"
+                            onChange={(e) => this.setState({ yearCollection: e.target.value })}
+                        >
+                            <option></option>
+                            {collectionList.map((collection, index) => (
+                                <option key={index}>{collection}</option>
+                            ))}
+                        </Form.Control>
+                        <span className="text-danger">{this.state.alert === "yearColError" && "champ incorrect"}</span>
+                    </Form.Group>
+                    <Form.Group as={Col} md="3" controlId="validationCustom23325"  className="d-flex align-items-end">
                         <InputText
-                            placeholder="Année Collection"
+                            placeholder="Créer une Collection"
                             type="number"
                             onChange={(e) => this.setState({ yearCollection: e.target.value })}
                             required
                         />
                         <span className="text-danger">{this.state.alert === "yearColError" && "champ incorrect"}</span>
                     </Form.Group>
+                </Form.Row>
+
+
+
+                <Form.Row className="justify-content-md-center">
                     <Form.Group as={Col} md="6" controlId="validationCustom25">
                         <Form.Label>Mot clé</Form.Label>
                         <InputText
@@ -449,13 +502,15 @@ export class InsertProduct extends Component {
                     </Form.Group>
                 </Form.Row> 
 
-                <Form.Row className="justify-content-md-center p-3">
-                    <div id="preview"></div>
+                <Form.Row className="justify-content-md-center m-3">
+                    <div id="preview" style={{
+                        boxShadow: "0 0 5px rgba(0, 0, 0, .3)"
+                    }}></div>
 
                 </Form.Row>
                 
 
-                <Button onClick={this.handleIncludeNewProduct}>Envoyer</Button>
+                <Button onClick={this.handleIncludeNewProduct} disabled>Créer le produit</Button>
 
                 </Form>
             </Wrapper>

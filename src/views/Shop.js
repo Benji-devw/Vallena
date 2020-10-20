@@ -11,9 +11,7 @@ const Shop = () => {
         <DisplayProducts/>
         </div>
       </main>
-      
       <Footer />
-
     </Fragment>
   );
 }

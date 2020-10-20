@@ -1,19 +1,17 @@
-// Le reducer a pour rôle d'utiliser l'action pour mettre à jour le global state.
-// Recupère les valeurs de action.js et les passe a ./containers/index.js
-// Effectuer les mises à jour sur le  state
-
 import { actions } from './actions'
 
-// 1 - Savegarde du panier et product dans le navigateur (application)
+
+/***** Save cart in navigateur *****/
+/*****/
 const saveToLocalStorage = object => {
    localStorage.setItem("items", JSON.stringify(object))
 }
 const saveFiltering = object => {
-   // console.log('object', object)
    localStorage.setItem("Filters", JSON.stringify(object))
 }
 
-// 2 - Initialisation du panier et product localStorage
+/***** Init Cart & filters in localstorage *****/
+/*****/
 const initialState = {
    // si ds le navigateur application il y a un item on renvoi l'item sinon un tableau vide
    items: JSON.parse(localStorage.getItem("items")) !== null ? JSON.parse(localStorage.getItem("items")) : [],
@@ -21,14 +19,12 @@ const initialState = {
 }
 
 export default function onlineStoreApp(state = initialState, action) {
-   // console.log('action', action.type)
-   // console.log('state', state)
-   // console.log('initialState', initialState)
 
    switch (action.type) {
 
-      /// CART ///
-      // Créer une copie ds le store av Object.assign(...)
+      /***** Cart *****/
+      /*****/
+      // Créate copy with Object.assign(...)
       case actions.ADD_TO_CART: return Object.assign({}, state, { items: [...state.items, action.payload] });
 
       case actions.UPDATE_CART: return Object.assign({}, state, {
@@ -59,7 +55,8 @@ export default function onlineStoreApp(state = initialState, action) {
          })
 
 
-      /// FILTERS ///
+      /***** Filters *****/
+      /*****/
       case actions.ADD_FILTERS: return Object.assign({}, state, { filters: [...state.filters, action.payload] });
 
       case actions.UPDATE_FILTERS: return Object.assign({}, state, {
@@ -75,7 +72,6 @@ export default function onlineStoreApp(state = initialState, action) {
          )
       })
       case actions.SAVE_FILTERS:
-         // saveFiltering(state.filters)
          saveFiltering(action.payload.filters)
          return state
 

@@ -192,18 +192,19 @@ const Nav = props => {
 
 
           <div className="col-4">
-
             <div className={`navbar-toggler mx-auto`}
               onClick={toggleNav}
             >
               <div className="row">
                 <div className="col-8">
                   <ul className='navbar-nav ml-auto align-items-center'>
-                    <li className="nav-icons2">
+
+                    <li className="nav-icons-small test">
+                      <span className={`badge-icons badge-pill`}>0</span>
                       <FavoriteBorderIcon />
-                      <span className={`badge-icons2 badge-pill`}>0</span>
                     </li>
-                    <li className="nav-icons ml-2">
+
+                    <li className="nav-icons-small">
                       <CartModal />
                     </li>
 
@@ -213,9 +214,9 @@ const Nav = props => {
                   {TemporaryDrawer()}
                 </div>
               </div>
-
-              
             </div>
+
+
 
             <div className={`collapse navbar-collapse `}>
               <ul className='navbar-nav ml-auto align-items-center'>
@@ -226,8 +227,8 @@ const Nav = props => {
                   <LinkScroll target='contact' classes='nav-link'>  Contact  </LinkScroll>
                 </li>
                 <li className="nav-icons">
-                  <FavoriteBorderIcon />
                   <span className={`badge-icons badge-pill`}>0</span>
+                  <FavoriteBorderIcon />
                 </li>
                 <li className="nav-icons ml-2">
                   <CartModal />

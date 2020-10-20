@@ -20,7 +20,7 @@ const Card = props => {
          <div className="row justify-content-center product-item">
 
             <div className={`product-images align-items-center ${display === 'list-display' ? 'col-md-6 text-center' : ''}`}>
-               <div className="" >
+               <div>
                   <Link to={`/product/${product._id}`} >
                      <img src={hov === 'hov' ? test2 : test} alt={product.titleProduct} 
                            className={`align-self-center`}
@@ -49,9 +49,9 @@ const Card = props => {
                {/* <b>{product.categoryProduct}</b>*/}
                <p>{product.tags}</p> 
                <p>
-                  <b>Matière:</b> {product.matter} <br />
-                  <b>color:</b> {product.color} <br />
-                  <b>collection:</b> {product.yearCollection}
+                  <b>Matière:</b> {product.matter}
+                     <b className="ml-2">color:</b> {product.color}
+                     <b className="ml-2">collection:</b> {product.yearCollection}
                </p>
             
                   <h5>€ {product.priceProduct}  {product.promotionProduct && <span className="promo-price">€ {product.oldPriceProduct} </span>}  </h5>

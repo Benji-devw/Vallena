@@ -3,10 +3,6 @@ import Dashboard from './views/Dashboard'
 import ListItemsView from './views/ListItems/ListItemsView'
 import Orders from './views/Orders/Orders'
 import Users from './views/Users/Users'
-// import imgConfig from '../../scss/img/config.svg'
-
-// import Box from '@material-ui/core/Box';
-
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
@@ -14,13 +10,14 @@ import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-// import NotificationsIcon from '@material-ui/icons/Notifications';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-// import Link from '@material-ui/core/Link';
-
-// import { mainListItems, secondaryListItems } from './listItems';
 import MenuItems from './Menu_Items';
+// import NotificationsIcon from '@material-ui/icons/Notifications';
+// import imgConfig from '../../scss/img/config.svg'
+// import Box from '@material-ui/core/Box';
+// import Link from '@material-ui/core/Link';
+// import { mainListItems, secondaryListItems } from './listItems';
 
 
 

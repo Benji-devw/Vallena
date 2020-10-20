@@ -17,7 +17,7 @@ const Home = () => {
     apiCall.getProducts().then(product => {
       setDatas(product.data.products)
     })
-  })
+  }, [])
 
   return (
     <section id='home'>

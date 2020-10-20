@@ -49,9 +49,9 @@ const SlideItems = props => {
   const settings = {
     dots: true,
     infinite: true,
-    // autoplay: true,
+    autoplay: true,
     speed: 800,
-    // fade: true,
+    fade: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplaySpeed: 4000,
@@ -92,7 +92,7 @@ const SlideItems = props => {
                     Nam finibus lobortis nisl, vel bibendum ex sollicitudin ultrices. Suspendisse potenti. Curabitur quis augue lorem.
                     </p>
                     <Link to="/shop">
-                      <Button variant="contained" color="secondary">
+                      <Button variant="contained" color="secondary" className="btn-shop">
                         Boutique <MdKeyboardArrowRight className="ml-1" 
                           style={{fontSize:"1.7em"}} 
                         />
@@ -121,7 +121,7 @@ const SlideItems = props => {
                     <h4>€ {item.priceProduct}</h4>
 
                     <Link to={`/product/${item._id}`}>
-                      <Button variant="outlined" color="secondary">
+                      <Button variant="outlined" color="secondary" className="btn-shop">
                         Découvrir <MdKeyboardArrowRight className="ml-1" style={{ fontSize: "1.7em" }} />
                       </Button>
                     </Link>

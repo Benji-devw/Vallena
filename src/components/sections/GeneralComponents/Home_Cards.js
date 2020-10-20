@@ -8,8 +8,6 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 
 
-
-
 const HomeCards = (props) => {
 
   const [productsDb, setProductsDb] = useState([])

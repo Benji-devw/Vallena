@@ -10,12 +10,11 @@ import Button from '@material-ui/core/Button';
 
 function CartHome() {
   const [show, setShow] = useState(false);
-  // Redux => Lit le state de redux et recup le nbr d'objet ds le panier
-  const items = useSelector(state => state.items)
   const [subTotal, setSubTotal] = useState(0)
   const [total, setTotal] = useState(0)
   const [shipping, setShipping] = useState(0)
-
+  const items = useSelector(state => state.items)
+  
   // Calcul Quantity article
   const getQty = items.map(e => e.quantity)
   let sum = getQty.reduce((a, b) => {
@@ -44,10 +43,10 @@ function CartHome() {
 
   return (
     <>
-      <div className="btn-cart nav-icons">
+        <span className={`badge-icons badge-pill`}>{items.length > 0 ? items.length : 0}</span>
         <RiShoppingCart2Line onClick={() => setShow(true)} />
-        <span className={`badge-icons badge-pill ${items.length > 0 && 'badge-primary'}`}>{items.length > 0 && items.length}</span>
-      </div>
+        {/* <span className={`badge-icons badge-pill ${items.length > 0 && 'badge-primary'}`}>{items.length > 0 && items.length}</span> */}
+
 
 
       <Modal

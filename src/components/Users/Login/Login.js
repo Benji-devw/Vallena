@@ -33,7 +33,7 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(10),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -78,7 +78,8 @@ const SignIn = () => {
       window.location = "/dashboard";
 
     } catch (error) {
-      console.error('ID incorret');
+      // console.error('ID incorret');
+      window.alert('ID incorret')
     }
   };
 

@@ -93,7 +93,7 @@ export default function Orders() {
       window.alert(`Status changé !`)
       window.location.reload(false)
     }
-    else {window.alert(`Tu essaies d'envoyer une autre commande ! Il faut recochez les statut et confirmer puis envoyer ! `)}
+    else {window.alert(`Tu essaies d'envoyer le statut d'une autre commande ! Il faut recocher les statuts et confirmer puis envoyer ! `)}
   }
 
 
@@ -201,7 +201,7 @@ export default function Orders() {
               </div>
             </div>
 
-            <div className="col-md-2">
+            <div className="col-md-2 status-container">
               <div className={`statut ${commande.statut.inProgress ? 'statut-inprogress' : ''}`}></div>
               <div className={`statut ${commande.statut.finish ? 'statut-finish' : ''}`}></div>
             </div>

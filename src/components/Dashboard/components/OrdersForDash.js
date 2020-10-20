@@ -51,7 +51,7 @@ const OrdersComponent = (props) => {
                 </div>
               </div>
             ))}
-              <div className="col-md-2">
+              <div className="col-md-2 status-container">
               <div className={`statut ${props.orders.statut.inProgress ? 'statut-inprogress' : ''}`}></div>
               <div className={`statut ${props.orders.statut.finish ? 'statut-finish' : ''}`}></div>
               </div>

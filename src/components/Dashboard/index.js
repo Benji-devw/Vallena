@@ -109,30 +109,24 @@ const useStyles = makeStyles((theme) => ({
 
 
 const DisplayComponents = () => {
-  return (
-    <>
-      {
-        window.location.pathname === '/dashboard' &&
-        <Dashboard active={false} />
-      }
-      {
-        window.location.pathname === '/dashboard/listitems' &&
-        <ListItemsView />
-      }
-      {
-        window.location.pathname === '/dashboard/orders' &&
-        <Orders />
-      }
-      {
-        window.location.pathname === '/dashboard/users' &&
-        <Users />
-      }
-      {/* { // CONTROL
-      window.location.pathname !== '/dashboard/orders' || '/dashboard/listitems' &&
-      <Redirect to='/' />
-    } */}
-    </>
-  );
+
+  switch (window.location.pathname) {
+    case '/dashboard':
+      return <Dashboard active={false} />
+
+    case '/dashboard/listitems':
+      return <ListItemsView />
+  
+    case '/dashboard/orders':
+      return <Orders />
+ 
+    case '/dashboard/users':
+      return <Users />
+  
+    default:
+        return <Dashboard active={false} />
+
+  }
 }
 
 const Admin = props => {

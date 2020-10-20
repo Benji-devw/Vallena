@@ -18,7 +18,7 @@ import Counter from '../components/Counter';
 import apiCallOrders from '../../../apiCall/Orders_Api'
 
 // import { useFetchAllOrders } from '../../../apiCall/FetchCall'
-import OrdersComponent from '../components/Orders'
+import OrdersComponent from '../components/OrdersForDash'
 
 
 

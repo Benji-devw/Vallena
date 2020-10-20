@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 const apiCall = axios.create({
-    // baseURL: '/api',
-    baseURL: 'http://localhost:8800/api',
+    baseURL: '/api/products',
+    // baseURL: 'http://localhost:8800/api',
 })
 
 const insertProduct = payload => apiCall.post(`/insert`, payload)            // Lien => Api=>productRouter.js/insertProduct

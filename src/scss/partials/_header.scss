@@ -129,10 +129,10 @@
     cursor: pointer;
     position: relative;
     z-index: 200;
-      @media (min-width: 1200px) {
-        top: .5rem;
-        right: .5rem;
-      }
+      // @media (min-width: 1200px) {
+      //   top: .5rem;
+      //   right: .5rem;
+      // }
     svg {
       padding: .2rem;
       margin-top: -1rem;
@@ -154,10 +154,10 @@
       @media (max-width: 768px) {
         right: -3rem;
       }
-      @media (min-width: 1200px) {
-        top: -1.2rem;
-        right: -2.2rem;
-      }
+      // @media (min-width: 1200px) {
+      //   top: -1.2rem;
+      //   right: -2.2rem;
+      // }
     }
   }
 

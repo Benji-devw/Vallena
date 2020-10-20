@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const apiCallOrders = axios.create({
-    baseURL: 'http://localhost:8802/api',
+    // baseURL: 'http://localhost:8802/api',
+    baseURL: '/api/orders',
 })
 
 const insertOrder = payload => apiCallOrders.post(`/order`, payload)      // Lien avec Api=>orderRouter.js (artid'eche/Api/orders/routes)

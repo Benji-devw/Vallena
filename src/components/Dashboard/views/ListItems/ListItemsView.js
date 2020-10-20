@@ -249,7 +249,7 @@ export default function ListItemsView() {
 
   return (
     <React.Fragment>
-      <div className={`row list-items mt-5`}>
+      <div className={`list-items mt-5`}>
       <h3>Liste des Produits : <span>resultat ({products.length})</span> </h3>
       <Grid item xs={12} className={`text-center ${classes.seeMore}`}>
         {!isLoading ? ( <>

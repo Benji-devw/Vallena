@@ -27,23 +27,11 @@ import Users from './components/Dashboard/views/Users/Users'
 /*****/
 import { addFilters } from './lib/actions'
 import { useDispatch } from 'react-redux';
-import CookieConsent, { Cookies } from "react-cookie-consent";
+import SetCookie from './utils/Cookie_Counter'
 
 
 const App = props => {
   const { items, saveLocalStorage, filters, saveFilters } = props
-  const checkCookies = Cookies.get("userExp")
-  
-  // Cookies & CounterAPI
-  const updateCounter = async () => {
-    const data = await fetch("https://api.countapi.xyz/hit/localhost3000/visits")
-    const count = await data.json()
-    return count
-    }
-  if (!checkCookies) {
-    Cookies.set("userExp", "1");
-    updateCounter()
-  }
 
   const dispatch = useDispatch()
   if (localStorage.getItem('Filters') === null) {
@@ -84,18 +72,8 @@ const App = props => {
 
         {/* </ClientProfileContext> */}
       </Router>
-      {!checkCookies &&
-        <>
-          <CookieConsent
-            buttonText="Ok"
-            expires={1}
-            style={{ background: "rgba(0, 0, 0, 0.7)" }}
-            buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
-          >
-            Ce site Web utilise des cookies pour améliorer l'expérience utilisateur.{" "}
-          </CookieConsent>
-        </>
-      }
+        {SetCookie()}
+
     </>
     );
 }

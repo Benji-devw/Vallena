@@ -14,11 +14,11 @@ export default function Orders() {
   const [isLoading, setIsLoading] = useState(true)
 
   const delUser = (userName) => {
-    if (window.confirm('Confirmer la suppression ?')) {
+    alert('Suppression désactivé !')
+    // if (window.confirm('Confirmer la suppression ?')) {
     //   API.deleteUser(userName)
     //   window.location.reload(false)
-    alert('Suppression désactivé !')
-    }
+    // }
   }
   
   useEffect(() => {

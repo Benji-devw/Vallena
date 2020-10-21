@@ -105,8 +105,6 @@ export class ProductUpdate extends Component {
             }
 
        
-         
-
         // formData.append('copyCollection', copyCollection)
         formData.append('titleProduct', titleProduct)
         formData.append('descriptionProduct', descriptionProduct)
@@ -132,16 +130,15 @@ export class ProductUpdate extends Component {
 
         alert('Modification désactivé !')
 
-        apiCall.updateProductById(id, formData)
-        .then(res => {    
-                // console.log('2 UPDATE res.data......', res)
-                window.alert(`Modification désactivé !`)
-                // window.alert(`Modification OK !`)
-                // window.location = "/dashboard/listitems";
-            }).catch(err => { 
-                // console.log(err)
-                console.log(`Modification désactivé !`)
-             } ) 
+        // apiCall.updateProductById(id, formData)
+        // .then(res => {    
+        //     console.log('2 UPDATE res.data......', res)
+        //     window.alert(`Modification OK !`)
+        //     // window.location = "/dashboard/listitems";
+        // }).catch(err => { 
+        //     console.log(err)
+        //     // console.log(`Modification désactivé !`)
+        // }) 
     }
 
 
@@ -412,7 +409,7 @@ export class ProductUpdate extends Component {
                             type="text"
                             defaultValue={this.state.reporterProduct}
                             onChange={(e) => this.setState({ reporterProduct: e.target.value })}
-                            required
+                            // required
                         />
                     </Form.Group>
                 </Form.Row>

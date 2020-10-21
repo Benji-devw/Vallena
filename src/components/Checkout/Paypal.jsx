@@ -16,8 +16,8 @@ const PayPalBtn = (props) => {
    const handleUpdateProduct = (id, data) => {
       var formData = new FormData();
       formData.append('quantityProduct', data.quantityProduct)
-      // ROUTE => serverURL/server.js/router.js/:id
-      apiCall.updateProductById(id, formData)         // Lien => src/apiCall/index.js
+
+      apiCall.updateProductById(id, formData)
          .then(res => {
             console.log('Quantity update Done !', res)
             // window.alert(`Modification OK !`)
@@ -43,7 +43,7 @@ const PayPalBtn = (props) => {
                onSuccess={(details, data) => {
                   // alert("Transaction completed by " + details.payer.name.given_name);
 
-                  console.log(items)
+                  // console.log(items)
                   const calcul = (items.map(item => {
                      const newProductQuantity = item.details.quantityProduct - item.quantity;
                      return {
@@ -51,11 +51,7 @@ const PayPalBtn = (props) => {
                      }
                   }))
                   // Update quantityProduct in db
-                  calcul.map(change => (
-                     <>
-                        {handleUpdateProduct(change._id, change)}
-                     </>
-                  ))
+                  calcul.map(change => (handleUpdateProduct(change._id, change)))
 
                   // Send order in db
                   const client = details.purchase_units

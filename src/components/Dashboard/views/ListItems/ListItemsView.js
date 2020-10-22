@@ -69,12 +69,14 @@ export default function ListItemsView() {
   const classes = useStyles();
   const [ isLoading, setIsLoading] = useState(true)
   const [products, setProducts] = useState([])
+  const [productsResultat, setProductsResultat] = useState()
 
   useEffect(() => {
     apiCall.getProducts().then(product => {
       // console.log('products', product)
       setProducts(product.data.products)
       setIsLoading(false)
+      setProductsResultat(product.data.products.length)
     })
   }, [])
 
@@ -250,7 +252,7 @@ export default function ListItemsView() {
   return (
     <React.Fragment>
       <div className={`list-items mt-5`}>
-      <h3>Liste des Produits : <span>resultat ({products.length})</span> </h3>
+      <h3>Liste des Produits: <span>resultat({productsResultat})</span> </h3>
       <Grid item xs={12} className={`text-center ${classes.seeMore}`}>
         {!isLoading ? ( <>
           {showTable && (

@@ -187,7 +187,7 @@ const Nav = props => {
 
 
           <div className="col-4 text-center nav-title">
-            <Link to='/' className='navbar-brand mx-auto'> Valelana.fr </Link>
+            <Link to='/' className='navbar-brand mx-auto'>Vallena</Link>
           </div>
 
 

@@ -8,10 +8,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 
 
-export default function Orders() {
+export default function Users() {
 
   const [users, setUsers] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [usersResultat, setUsersResultat] = useState()
 
   const delUser = (userName) => {
     alert('Suppression désactivé !')
@@ -28,6 +29,7 @@ export default function Orders() {
           const data = res.data.data
           setUsers(data)
           setIsLoading(false)
+          setUsersResultat(data.length)
         })
       } catch (error) {
         console.error('Users not found');
@@ -40,7 +42,7 @@ export default function Orders() {
   return (
     <React.Fragment>
       <div className={`users mt-5`}>
-      <h3 className="mb-4">Compte Admin : <span>resultat ({users.length}) </span></h3>
+      <h3 className="mb-4">Compte Admin: <span>resultat({usersResultat})</span></h3>
 
       {!isLoading ?
       ( <>

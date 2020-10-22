@@ -85,7 +85,7 @@ class ListProducts extends Component {
                <div className="col-12 sep-filters mx-auto">
                   <h3 className="">
                      {/* <div className="filter-result">Produit {this.state.products.length}</div> */}
-                                 Filtres actif :
+                                 Filtres actifs :
                            </h3>
                   <div className="mx-auto"></div>
                </div>

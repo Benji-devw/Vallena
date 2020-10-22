@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from 'react-redux';
 const DisplayProducts = () => {
    const [products, setProducts] = useState([])
    const [allProducts, setAllProducts] = useState([])
+   const [counting, setCounting] = useState()
 
    // Redux
    const dispatch = useDispatch()
@@ -158,7 +159,10 @@ const DisplayProducts = () => {
       showFilteredResult(newVal)
 
       if (allProducts.length <= 0) {
-         apiCall.getProducts().then(res => { setAllProducts(res.data.products) });
+         apiCall.getProducts().then(res => { 
+            setAllProducts(res.data.products) 
+            setCounting(res.data.products.length) 
+         });
       }
    }, [test, collectionCheck, allProducts.length, colorCheck, filterByCat, matterCheck, noveltyCheck, promotionCheck]);
 
@@ -221,7 +225,7 @@ const DisplayProducts = () => {
                   <ListProducts
                      products={products}
                      handleSort={handleSort}
-                     counting={allProducts.length}
+                     counting={counting}
                      // allFilters={allFilters}
                      sortRedux={filtersFromRedux[0]}
                   />

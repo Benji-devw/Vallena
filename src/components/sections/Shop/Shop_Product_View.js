@@ -25,8 +25,10 @@ const ProductView = props => {
    const itemsCart = useSelector(state => state.items)
    const [imgs, setImgs] = useState([])
    // const [datas, setDatas] = useState([])
-   // console.log('datas', datas)
-
+   console.log('data', data)
+   // if (data === []) {
+   //    window.location = ('/');
+   // }
 
    // Redux
    const dispatch = useDispatch()                        // Call dispatch to send redux
@@ -41,11 +43,12 @@ const ProductView = props => {
    const history = useHistory()
 
    useEffect(() => {
+
       apiCall.getProductById(props.match.params.id).then(res => {
          // console.log(res)
          setData(res.data.data)
          setImgs(res.data.data.imgCollection)   // SetImgs car dans data.imgCollection problème affichage (tab vide)
-      })
+      }).catch((err) => err && (window.location = ('/')))
       window.scrollTo({ top: 0 });
    }, [props.match.params.id]);
 

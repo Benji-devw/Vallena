@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import { PayPalButton } from "react-paypal-button-v2";
 import { useDispatch } from 'react-redux';
 import { resetCart } from '../../lib/actions';
-import apiCallOrders from '../../apiCall/Orders_Api'
-import apiCall from '../../apiCall/Products_Api'
+import apiCallOrders from '../../apiCall/Call_Api'
+import apiCallProdcuts from '../../apiCall/Call_Api'
 // import Success from './Success'
 import Button from '@material-ui/core/Button';
 
@@ -21,7 +21,7 @@ const PayPalBtn = (props) => {
       var formData = new FormData();
       formData.append('quantityProduct', data.quantityProduct)
 
-      apiCall.updateProductById(id, formData)
+      apiCallProdcuts.updateProductById(id, formData)
          .then(res => {
             // console.log('Quantity update Done !', res)
             // window.alert(`Modification OK !`)

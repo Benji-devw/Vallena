@@ -5,7 +5,7 @@ import {InsertProduct} from './Insert_Product';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
-import apiCall from '../../../../apiCall/Products_Api'
+import apiCallProdcuts from '../../../../apiCall/Call_Api'
 import 'react-table/react-table.css'
 import ReactTable from 'react-table'
 import styled from 'styled-components'
@@ -52,7 +52,7 @@ class DeleteProduct extends React.Component {
   delproduct = event => {
     // event.preventDefault()
     if (window.confirm(`Confirmer la suppréssion du produit ID: ${this.props.id}`,)) {
-      // apiCall.deleteProductById(this.props.id)
+      // apiCallProdcuts.deleteProductById(this.props.id)
       // window.location.reload()
       alert('Suppression désactivé !')
     }
@@ -72,7 +72,7 @@ export default function ListItemsView() {
   const [productsResultat, setProductsResultat] = useState()
 
   useEffect(() => {
-    apiCall.getProducts().then(product => {
+    apiCallProdcuts.getProducts().then(product => {
       // console.log('products', product)
       setProducts(product.data.products)
       setIsLoading(false)

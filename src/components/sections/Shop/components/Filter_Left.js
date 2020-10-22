@@ -31,12 +31,6 @@ const FilterLeft = props => {
 
 
    useEffect(() => {
-      // newVal.categoryProduct = filtersFromRedux[0].cat
-      // newVal.matter = filtersFromRedux[0].matter
-      // newVal.color = filtersFromRedux[0].color
-      // newVal.yearCollection = filtersFromRedux[0].collection
-      // newVal.promotionProduct = filtersFromRedux[0].promotion
-      // newVal.novelty = filtersFromRedux[0].novelty
       if (filtersFromRedux[0].matter.length > 0) { setExpandedMatter(true) }
       if (filtersFromRedux[0].color.length > 0) { setExpandedColor(true) }
       if (filtersFromRedux[0].collection.length > 0) { setExpandedCollection(true) }

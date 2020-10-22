@@ -1,9 +1,8 @@
 import axios from "axios";
-const headers = {
-  "Content-Type": "application/json"
-};
-const burl = "http://localhost:8805";
-// const burl = "/api/users";
+const headers = {"Content-Type": "application/json"};
+
+// const burl = "http://localhost:8805";
+const burl = "/api/users";
 
 export default {
   login: function (email, password) {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import API from "../../../utils/API";
+import CallUsers from "../../../apiCall/CallUsers.js";
 
 
 import Avatar from '@material-ui/core/Avatar';
@@ -72,7 +72,7 @@ const SignIn = () => {
       return;
     }
     try {
-      const { data } = await API.login(email, password);
+      const { data } = await CallUsers.login(email, password);
       localStorage.setItem("token", data.token);
       // console.log(data)
       window.location = "/dashboard";

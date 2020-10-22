@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import apiCall from '../../../../apiCall/Products_Api'
+import apiCallProdcuts from '../../../../apiCall/Call_Api'
 import {Container, Form, Col} from 'react-bootstrap'
 import styled from 'styled-components'
 
@@ -145,7 +145,7 @@ export class InsertProduct extends Component {
                 formData.append('notes', notes)
                 formData.append('comments', comments)
                 
-                apiCall.insertProduct(formData).then(res => {
+                apiCallProdcuts.insertProduct(formData).then(res => {
                     // console.log('2 res.data......', res.data)
                     // window.alert('Produit Ajouté !')
                     // window.location = "/dashboard/listitems";

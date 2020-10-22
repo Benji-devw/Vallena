@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
+import apiCallProdcuts from '../../../apiCall/Call_Api'
 import Alert from '@material-ui/lab/Alert';
 import { MdAddShoppingCart } from 'react-icons/md';
 // import {AiOutlineShareAlt} from 'react-icons/ai';
@@ -11,7 +12,6 @@ import HomeIcon from '@material-ui/icons/Home';
 
 import CenterMode from './components/carousel'
 import Footer from '../../UI/Footer/Footer'
-import apiCall from '../../../apiCall/Products_Api'
 import ScrollableTabsButtonForce from './components/Tabs_Product_View'
 import { addtoCart } from '../../../lib/actions'
 import SlickComponent from '../GeneralComponents/Slick_Component'
@@ -25,8 +25,10 @@ const ProductView = props => {
    const itemsCart = useSelector(state => state.items)
    const [imgs, setImgs] = useState([])
    // const [datas, setDatas] = useState([])
-   // console.log('datas', datas)
-
+   console.log('data', data)
+   // if (data === []) {
+   //    window.location = ('/');
+   // }
 
    // Redux
    const dispatch = useDispatch()                        // Call dispatch to send redux
@@ -41,11 +43,12 @@ const ProductView = props => {
    const history = useHistory()
 
    useEffect(() => {
-      apiCall.getProductById(props.match.params.id).then(res => {
+
+      apiCallProdcuts.getProductById(props.match.params.id).then(res => {
          // console.log(res)
          setData(res.data.data)
          setImgs(res.data.data.imgCollection)   // SetImgs car dans data.imgCollection problème affichage (tab vide)
-      })
+      }).catch((err) => err && (window.location = ('/')))
       window.scrollTo({ top: 0 });
    }, [props.match.params.id]);
 

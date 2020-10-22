@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import apiCall from '../../../apiCall/Products_Api'
+import apiCallProdcuts from '../../../apiCall/Call_Api'
 import Alert from '@material-ui/lab/Alert';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -14,8 +14,8 @@ const HomeCards = (props) => {
   const [ind, setInd] = useState('')
 
   useEffect(() => {
-    // apiCall.getProductsPost({ filters: {categoryProduct: props.cat} }).then(product => {
-    apiCall.getProductsPost({filters: {notes: JSON.stringify(props.val)}}).then(product => {
+    // apiCallProdcuts.getProductsPost({ filters: {categoryProduct: props.cat} }).then(product => {
+    apiCallProdcuts.getProductsPost({filters: {notes: JSON.stringify(props.val)}}).then(product => {
       setProductsDb(product.data.products)
     })
   }, [props.val]);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import API from "../../utils/API";
+import CallUsers from "../../apiCall/CallUsers.js";
 
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -19,7 +19,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const logout = () => {
   if (window.confirm('Deconnexion ?')) {
-    API.logout();
+    CallUsers.logout();
     window.location = "/"
   }
 }

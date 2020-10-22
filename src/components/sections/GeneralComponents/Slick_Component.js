@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Slider from "react-slick";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import apiCall from '../../../apiCall/Products_Api'
+import apiCallProdcuts from '../../../apiCall/Call_Api'
 
 
 
@@ -53,7 +53,7 @@ const SlickComponent = (props) => {
   const [ind, setInd] = useState('')
 
   useEffect(() => {
-    apiCall.getProductsPost({ filters: {categoryProduct: props.cat} }).then(product => {
+    apiCallProdcuts.getProductsPost({ filters: {categoryProduct: props.cat} }).then(product => {
       setProductsDb(product.data.products)
     })
   }, [props.cat]);

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import API from "../../../utils/API";
+import CallUsers from "../../../apiCall/CallUsers.js";
 
 
 import Avatar from '@material-ui/core/Avatar';
@@ -92,7 +92,7 @@ const  SignUp = () => {
       return;
     };
 
-      API.signup({username, email, password}).then(res => {
+      CallUsers.signup({username, email, password}).then(res => {
         // console.log(res);
         // window.location = "/login";
         // localStorage.setItem("token", data.token);

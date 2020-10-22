@@ -15,7 +15,7 @@ import Title from '../components/Title';
 import Chart from '../components/Chart';
 import Deposits from '../components/Deposits';
 import Counter from '../components/Counter';
-import apiCallOrders from '../../../apiCall/Orders_Api'
+import apiCallOrders from '../../../apiCall/Call_Api'
 
 // import { useFetchAllOrders } from '../../../apiCall/FetchCall'
 import OrdersComponent from '../components/OrdersForDash'

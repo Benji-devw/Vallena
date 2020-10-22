@@ -60,16 +60,21 @@
         height: 50px;
         margin: auto;
 
-        .makeStyles-toolbarIcon-8 {
+        .MuiList-root {
+          margin-top: -3.5rem;
+        }
+
+        .makeStyles-toolbarIcon-8,
+        .makeStyles-toolbarIcon-22,
+        .MuiIconButton-edgeStart,
+        .MuiIconButton-root,
+        .MuiTypography-root {
           display: none;
         }
         .MuiListItem-button {
           display: inline-block;
           width: 50px;
           margin-top: -.3rem;
-        }
-        .MuiIconButton-edgeStart {
-          display: none;
         }
       }
 

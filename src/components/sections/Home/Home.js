@@ -3,7 +3,7 @@ import SlideItems from './Home_View_Top'
 import HomeCollection from './Home_Collection'
 import HomeCardsDisplay from './Home_Cards_Display'
 import HomePromoNews from './Home_Promo_News'
-import apiCall from '../../../apiCall/Products_Api'
+import apiCallProdcuts from '../../../apiCall/Call_Api'
 
 // import Parallax from 'react-rellax'
 
@@ -14,7 +14,7 @@ const Home = () => {
   const [datas, setDatas] = useState([])
 
   useEffect(() => {
-    apiCall.getProducts().then(product => {
+    apiCallProdcuts.getProducts().then(product => {
       setDatas(product.data.products)
     })
   }, [])

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import apiCall from '../../apiCall/Products_Api'
+import apiCallProdcuts from '../../apiCall/Call_Api'
 import { Container, Form, Col} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
@@ -105,8 +105,6 @@ export class ProductUpdate extends Component {
             }
 
        
-         
-
         // formData.append('copyCollection', copyCollection)
         formData.append('titleProduct', titleProduct)
         formData.append('descriptionProduct', descriptionProduct)
@@ -132,23 +130,22 @@ export class ProductUpdate extends Component {
 
         alert('Modification désactivé !')
 
-        apiCall.updateProductById(id, formData)
-        .then(res => {    
-                // console.log('2 UPDATE res.data......', res)
-                window.alert(`Modification désactivé !`)
-                // window.alert(`Modification OK !`)
-                // window.location = "/dashboard/listitems";
-            }).catch(err => { 
-                // console.log(err)
-                console.log(`Modification désactivé !`)
-             } ) 
+        // apiCallProdcuts.updateProductById(id, formData)
+        // .then(res => {    
+        //     console.log('2 UPDATE res.data......', res)
+        //     window.alert(`Modification OK !`)
+        //     // window.location = "/dashboard/listitems";
+        // }).catch(err => { 
+        //     console.log(err)
+        //     // console.log(`Modification désactivé !`)
+        // }) 
     }
 
 
     componentDidMount = async () => {
         window.scrollTo({ top: 0 });
         const { id } = this.state
-        const product = await apiCall.getProductById(id)        // Lien => src/apiCall/index.js
+        const product = await apiCallProdcuts.getProductById(id)        // Lien => src/apiCallProdcuts/index.js
         // console.log('product', product)
         this.setState({
             imgCollection: product.data.data.imgCollection,
@@ -176,7 +173,7 @@ export class ProductUpdate extends Component {
             reporterProduct: product.data.data.reporterProduct,
             visible: product.data.data.visible,
         })
-        apiCall.getProducts().then(products => {
+        apiCallProdcuts.getProducts().then(products => {
             this.setState({ forList: products.data.products})
         })
     }
@@ -412,7 +409,7 @@ export class ProductUpdate extends Component {
                             type="text"
                             defaultValue={this.state.reporterProduct}
                             onChange={(e) => this.setState({ reporterProduct: e.target.value })}
-                            required
+                            // required
                         />
                     </Form.Group>
                 </Form.Row>

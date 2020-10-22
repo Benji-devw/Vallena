@@ -1,5 +1,5 @@
 import React, {useEffect, useState}  from 'react';
-import apiCallOrders from '../../../../apiCall/Orders_Api';
+import apiCallOrders from '../../../../apiCall/Call_Api';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -60,7 +60,7 @@ export default function Orders() {
 
   const [order, setOrder] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-
+  const [ordersResultat, setOrdersResultat] = useState()
   const [short, setShort] = useState("croissant")
   
   const [expanded, setExpanded] = useState(false);
@@ -106,6 +106,7 @@ export default function Orders() {
 
   useEffect(() => {
     apiCallOrders.getAllOrders().then(order => {
+      setOrdersResultat(order.data.data.length)
       const term = searchBar.toLowerCase()
       const fullList = order.data.data
       if (short === "croissant") {
@@ -137,7 +138,7 @@ export default function Orders() {
   return (
     <React.Fragment>
       <div className={`orders mt-5 ${classes.container}`}>
-      <h3 className="mb-4">Liste des Commandes : <span>resultat ({order.length}) </span></h3>
+      <h3 className="mb-4">Liste des Commandes: <span>resultat({ordersResultat})</span></h3>
 
         <div className="row">
           <div className="col-sm-6 text-left">

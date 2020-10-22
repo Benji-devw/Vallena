@@ -44,7 +44,11 @@ const PaymentForm = props => {
    // const [rightdiv, setRight] = useState([]);
    // const handleLeft = (data) => {setLeft({leftdiv: data})}
    // const handleRight = (data) => {setRight({ rightdiv: data })}
-
+   const [showDiv, setShowDiv] = useState(false)
+   const handlePay = () => {
+      setShowDiv(true)
+   }
+   
 
    return (
       <>
@@ -60,12 +64,12 @@ const PaymentForm = props => {
 
             <div id="payment" className="container">
             <article>
-               <div className="row p-3">
+               <div className="row justify-content-center p-3">
                   
                   {/* Order summary */}
-                  <div className="col-md-8 order-summary justify-content-center p-3">
-
-                     {items.map((item, i) => <RowItem key={i} item={item} onCloseModal={closeModal}/>)}
+                  {!showDiv ? (
+                      <div className={`col-md-8 order-summary p-3`}>
+                        {items.map((item, i) => <RowItem key={i} item={item} onCloseModal={closeModal}/>)}
 
                      {/* <TransferList onHandleLeft={handleLeft} onHandleRight={handleRight} /> */}
 
@@ -81,13 +85,15 @@ const PaymentForm = props => {
                      <h4 className="text-right">€{subTotal === 0.00 ? "0.00 " : total.toFixed(2)}</h4>
                      </div>
                   </div>
-                  <div className="col-md-4">
+                  ) : ('')}
+                 
+                  <div className={`${showDiv ? "col-md-6 fadeIn" : "col-md-4"}`} style={{userSelect:"auto"}}>
                         Card Type: <b>Visa</b> <br />
                         Card Number: <b>4020026056914040</b> <br />
                         Expiration Date: <b>04/2023</b> <br />
                         CVV: <b>087</b>
                      {items.length > 0 ?
-                        (<PayPalButton amount={total} items={items}/>)
+                        (<PayPalButton amount={total} items={items} handlePay={handlePay}/>)
                         : ('')
                      }
                      {/* <PayPalButton amount={total} items={items} left={leftdiv} right={rightdiv} /> */}

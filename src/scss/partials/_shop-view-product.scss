@@ -109,7 +109,7 @@
 
 
   .shop-view-product {
-    min-height: 70vh;
+    min-height: 50rem;
     padding: 2rem;
 
 
@@ -180,11 +180,11 @@
             font-size: 20px;
             color: rgb(168, 168, 168);
             padding: 10px;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -o-user-select: none;
-            user-select: none;
+            // -webkit-user-select: none;
+            // -khtml-user-select: none;
+            // -moz-user-select: none;
+            // -o-user-select: none;
+            // user-select: none;
 
             &:hover {
               color: black;
@@ -339,7 +339,7 @@
       top: -3rem;
       left: 0;
       font-size: 3em;
-      user-select: none;
+      // user-select: none;
 
       @media screen and (max-width: 768px) {
         font-size: 2em;

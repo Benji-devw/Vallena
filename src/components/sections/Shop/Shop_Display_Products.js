@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import apiCall from '../../../apiCall/Products_Api'
+import apiCallProdcuts from '../../../apiCall/Call_Api'
 import ListProducts from './Shop_List_Products';
 import FilterTop from './components/Filter_Top';
 import FilterLeft from './components/Filter_Left'
@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from 'react-redux';
 const DisplayProducts = () => {
    const [products, setProducts] = useState([])
    const [allProducts, setAllProducts] = useState([])
+   const [counting, setCounting] = useState()
 
    // Redux
    const dispatch = useDispatch()
@@ -41,7 +42,7 @@ const DisplayProducts = () => {
       const valForRedux = { ...filters }
       dispatch(updateFilters(valForRedux.categoryProduct, valForRedux.matter, valForRedux.color, valForRedux.yearCollection, valForRedux.promotionProduct, valForRedux.novelty))
 
-      apiCall.getProductsPost(variables).then(res => {
+      apiCallProdcuts.getProductsPost(variables).then(res => {
          setProducts([...res.data.products])
       })
    }
@@ -158,7 +159,10 @@ const DisplayProducts = () => {
       showFilteredResult(newVal)
 
       if (allProducts.length <= 0) {
-         apiCall.getProducts().then(res => { setAllProducts(res.data.products) });
+         apiCallProdcuts.getProducts().then(res => { 
+            setAllProducts(res.data.products) 
+            setCounting(res.data.products.length) 
+         });
       }
    }, [test, collectionCheck, allProducts.length, colorCheck, filterByCat, matterCheck, noveltyCheck, promotionCheck]);
 
@@ -221,7 +225,7 @@ const DisplayProducts = () => {
                   <ListProducts
                      products={products}
                      handleSort={handleSort}
-                     counting={allProducts.length}
+                     counting={counting}
                      // allFilters={allFilters}
                      sortRedux={filtersFromRedux[0]}
                   />

@@ -1,7 +1,7 @@
-import API from "./API";
+import CallUsers from "../apiCall/CallUsers.js";
 
 // remove the token and user from the session storage
 export const disconnect = () => {
-     API.logout();
+     CallUsers.logout();
      window.location = "/";
 };

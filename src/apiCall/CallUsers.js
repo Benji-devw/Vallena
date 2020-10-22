@@ -1,7 +1,6 @@
 import axios from "axios";
-const headers = {
-  "Content-Type": "application/json"
-};
+const headers = {"Content-Type": "application/json"};
+
 const burl = "http://localhost:8805";
 // const burl = "/api/users";
 

@@ -1,6 +1,6 @@
 import React, {useEffect, useState}  from 'react';
 import PuffLoader from "react-spinners/PuffLoader";
-import API from "../../../../utils/API";
+import CallUsers from "../../../../apiCall/CallUsers";
 import userImg from '../../../../scss/img/user.png'
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -8,26 +8,28 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 
 
-export default function Orders() {
+export default function Users() {
 
   const [users, setUsers] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [usersResultat, setUsersResultat] = useState()
 
   const delUser = (userName) => {
-    if (window.confirm('Confirmer la suppression ?')) {
-    //   API.deleteUser(userName)
-    //   window.location.reload(false)
     alert('Suppression désactivé !')
-    }
+    // if (window.confirm('Confirmer la suppression ?')) {
+    //   CallUsers.deleteUser(userName)
+    //   window.location.reload(false)
+    // }
   }
   
   useEffect(() => {
     const getUsers = async () => {
       try {
-        await API.getUsers().then(res => {
+        await CallUsers.getUsers().then(res => {
           const data = res.data.data
           setUsers(data)
           setIsLoading(false)
+          setUsersResultat(data.length)
         })
       } catch (error) {
         console.error('Users not found');
@@ -40,7 +42,7 @@ export default function Orders() {
   return (
     <React.Fragment>
       <div className={`users mt-5`}>
-      <h3 className="mb-4">Compte Admin : <span>resultat ({users.length}) </span></h3>
+      <h3 className="mb-4">Compte Admin: <span>resultat({usersResultat})</span></h3>
 
       {!isLoading ?
       ( <>

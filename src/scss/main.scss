@@ -50,9 +50,13 @@
 @import "~fontsource-roboto/index.css";
 
 
-// html {
-//   scroll-behavior: smooth;
-// }
+html {
+  scroll-behavior: smooth;
+  -moz-user-select: auto !important;
+  -webkit-user-select: auto !important;
+  -ms-user-select: auto !important;
+  user-select: auto !important;
+}
 
 body {
   // font-family: usual, sans-serif;
@@ -63,6 +67,11 @@ body {
   line-height: 20px;
   font-weight: 400;
   letter-spacing: 0em;
+
+  -moz-user-select: auto !important;
+  -webkit-user-select: auto !important;
+  -ms-user-select: auto !important;
+  user-select: auto !important;
 }
 
 
@@ -101,8 +110,14 @@ a {
 .hide-div {
   display: none;
 }
+.show-div {
+  display: block;
+}
 
-
+.content-list-payment {
+  display: none;
+  transition: 1s;
+}
 
 
 

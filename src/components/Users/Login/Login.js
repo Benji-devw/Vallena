@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import API from "../../../utils/API";
+import CallUsers from "../../../apiCall/CallUsers.js";
 
 
 import Avatar from '@material-ui/core/Avatar';
@@ -58,8 +58,8 @@ const useStyles = makeStyles((theme) => ({
 const SignIn = () => {
   const classes = useStyles();
 
-  const [email, setEmail] = useState("ben.nav@pm.me")
-  const [password, setPassword] = useState("eee")
+  const [email, setEmail] = useState("admin@pm.me")
+  const [password, setPassword] = useState("RootAdmin&")
   const [alert, setAlert] = useState([])
 
   const send = async () => {
@@ -72,7 +72,7 @@ const SignIn = () => {
       return;
     }
     try {
-      const { data } = await API.login(email, password);
+      const { data } = await CallUsers.login(email, password);
       localStorage.setItem("token", data.token);
       // console.log(data)
       window.location = "/dashboard";
@@ -107,7 +107,7 @@ const SignIn = () => {
             autoFocus
             helperText={alert === "emailerror" ? 'Champ incorrect' : ""}
             onChange={e => setEmail(e.target.value)}
-            defaultValue="ben.nav@pm.me"
+            defaultValue="admin@pm.me"
 
           />
           <TextField
@@ -122,7 +122,7 @@ const SignIn = () => {
             id="password"
             helperText={alert === "passworderror" ? 'Champ incorrect' : ""}
             onChange={e => setPassword(e.target.value)}
-            defaultValue="eee"
+            defaultValue="RootAdmin&"
             autoComplete="current-password"
           />
           <FormControlLabel

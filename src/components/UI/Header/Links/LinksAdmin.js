@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-import API from "../../../../utils/API";
+import CallUsers from "../../../../apiCall/CallUsers.js";
 
 const Collapse = styled.div.attrs({ className: 'collpase navbar-collapse', })``
 const List = styled.div.attrs({ className: 'navbar-nav mr-auto', })``
@@ -13,7 +13,7 @@ class LinksAdmin extends Component {
 	render() {
 
 		const Greeting = () => {
-			if (API.isAuth() === false) {
+			if (CallUsers.isAuth() === false) {
 				return (
 					<>
 						<Item>

@@ -25,7 +25,7 @@ const ProductView = props => {
    const itemsCart = useSelector(state => state.items)
    const [imgs, setImgs] = useState([])
    // const [datas, setDatas] = useState([])
-   console.log('data', data)
+
    // if (data === []) {
    //    window.location = ('/');
    // }

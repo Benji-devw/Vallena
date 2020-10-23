@@ -1,6 +1,6 @@
 # Vallena.fr
 - Vente rapide de produit
-- Atlier de couture
+- Atelier de couture
 
 
 

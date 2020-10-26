@@ -19,6 +19,7 @@ class ListProducts extends Component {
    scrollToMyRef = () => window.scrollTo(0, this.myRef.offsetTop);
 
    componentDidMount() {
+      window.scrollTo({ top: 0 });
       if (this.props.products.length >= 0) {
          setTimeout(() => {
             this.setState({ isLoaded: true })

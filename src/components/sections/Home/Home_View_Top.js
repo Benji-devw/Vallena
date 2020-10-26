@@ -88,10 +88,10 @@ const SlideItems = props => {
                   {/* <p>Les produits sont fabriqués dans un petit atelier de couture d'Ardèche.<br />
                     Ils sont pour la plupart, fait à la main et donc en quantité réduite mais en majorité UNIQUE,...
                     </p> */}
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec convallis justo. <br /> 
-                    Nam finibus lobortis nisl, vel bibendum ex sollicitudin ultrices. Suspendisse potenti. Curabitur quis augue lorem.
+                  <p>ATELIER DE COUTURE<br /> 
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec convallis justo. Nam finibus lobortis nisl, vel bibendum ex sollicitudin ultrices. Suspendisse potenti. Curabitur quis augue lorem.
                     </p>
-                    <Link to="/shop">
+                    <Link to="/shop"  className="slideInUp">
                       <Button variant="contained" color="secondary" className="btn-shop">
                         Boutique <MdKeyboardArrowRight className="ml-1" 
                           style={{fontSize:"1.7em"}} 
@@ -118,7 +118,7 @@ const SlideItems = props => {
                   <span className="collection">Collection 2020</span>
                   <h3>{item.titleProduct}</h3> <br />
                   <p>{item.descriptionProduct}</p>
-                    <h4>€ {item.priceProduct}</h4>
+                    <h4>{item.priceProduct} €</h4>
 
                     <Link to={`/product/${item._id}`}>
                       <Button variant="outlined" color="secondary" className="btn-shop">
@@ -127,7 +127,7 @@ const SlideItems = props => {
                     </Link>
                 </div>
 
-                <div className="col-md-6 p-3">
+                <div className="col-md-6 p-2">
                   {/* <img src={round} alt="round" className="round" /> */}
                   <img src={item.imgCollection[0]} alt={item.titleProduct} className="img-fluid mx-auto" />
 

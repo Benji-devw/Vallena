@@ -54,7 +54,7 @@ const Card = props => {
                      <b className="ml-2">collection:</b> {product.yearCollection}
                </p>
             
-                  <h5>€ {product.priceProduct}  {product.promotionProduct && <span className="promo-price">€ {product.oldPriceProduct} </span>}  </h5>
+                  <h5>{product.priceProduct} €  {product.promotionProduct && <span className="promo-price">{product.oldPriceProduct} €</span>}  </h5>
                   {product.quantityProduct < 1 && <Alert severity="error" className="rupture">Rupture</Alert>}
          
             </div>

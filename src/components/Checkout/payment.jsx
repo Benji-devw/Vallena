@@ -5,10 +5,10 @@ import RowItem from './Row_Item'
 // import TransferList from './old/Transfer_List';
 // import { Redirect } from "react-router-dom";
 
-const PaymentForm = props => {
+const PaymentForm = () => {
    const items = useSelector(state => state.items)
 
-   // Calcul Quantity article
+   // Calcul Quantity articles
    const getQty = items.map(e => e.quantity)
    let sum = getQty.reduce((a, b) => {
       return a + b
@@ -20,7 +20,12 @@ const PaymentForm = props => {
 
    const [shipping, setShipping] = useState(5.50)
 
+   const [forMom, setForMom ] = useState(true)
    useEffect(() => {
+      if (forMom) {
+         window.scrollTo({ top: 0 });
+         setForMom(false)
+      }
       let totals = items.map(item => {
          return item.quantity * item.details.priceProduct
       })
@@ -68,21 +73,21 @@ const PaymentForm = props => {
                   
                   {/* Order summary */}
                   {!showDiv ? (
-                      <div className={`col-md-8 order-summary p-3`}>
-                        {items.map((item, i) => <RowItem key={i} item={item} onCloseModal={closeModal}/>)}
+                  <div className={`col-md-8 order-summary p-3`}>
+                     {items.map((item, i) => <RowItem key={i} item={item} onCloseModal={closeModal}/>)}
 
                      {/* <TransferList onHandleLeft={handleLeft} onHandleRight={handleRight} /> */}
 
                      <hr />
                      <div className="order-summary-total">
                            <p className="text-left">Sous-total ({sum} articles):</p>
-                     <p className="text-right">€{subTotal.toFixed(2)}</p>
+                     <p className="text-right">{subTotal.toFixed(2)} €</p>
 
                      <p className="text-left">Frais livraison</p>
-                     <p className="text-right">{total < 30 ? '€'+shipping.toFixed(2) : 'Offert'} <br /> <span style={{fontSize:".7em"}}>Livraison OFFERT à partir de 30€</span></p>
+                     <p className="text-right">{total < 30 ? shipping.toFixed(2) + ' €' : 'Offert'} <br /> <span style={{fontSize:".7em"}}>Livraison OFFERT à partir de 30€</span></p>
                      <hr />
                      <h3 className="text-left">Total</h3>
-                     <h4 className="text-right">€{subTotal === 0.00 ? "0.00 " : total.toFixed(2)}</h4>
+                     <h4 className="text-right">{subTotal === 0.00 ? "0.00 " : total.toFixed(2)} €</h4>
                      </div>
                   </div>
                   ) : ('')}
@@ -96,7 +101,6 @@ const PaymentForm = props => {
                         (<PayPalButton amount={total} items={items} handlePay={handlePay}/>)
                         : ('')
                      }
-                     {/* <PayPalButton amount={total} items={items} left={leftdiv} right={rightdiv} /> */}
                   </div>
                </div>
 

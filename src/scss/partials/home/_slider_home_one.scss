@@ -137,10 +137,15 @@
       .content-two {
         height: 30rem;
         img {
-          max-height: 280px;
+          max-height: 350px;
 
           @media screen and (max-width: 768px) {
             padding-bottom: 5rem;
+          }
+        }
+        p {
+          @media screen and (max-width: 768px) {
+            display: none;
           }
         }
 
@@ -162,8 +167,8 @@
             background: #f50057;
           }
 
-          @media screen and (max-width: 576px) {
-            font-size: 2em;
+          @media screen and (max-width: 768px) {
+            font-size: 2.5em;
           }
         }
 

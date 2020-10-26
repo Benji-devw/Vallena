@@ -71,14 +71,14 @@ function CartHome() {
             <div className="col-md-4">
               <div className="order-summary-cart-total">
                 <div className="order-summary-total">
-                  <p className="text-left">Sous-total ({sum} articles):</p>
-                  <p className="text-right">€{subTotal}</p>
+                  <p className="text-left">Sous-total ({sum} {sum > 1 ? "articles": "article"} )</p>
+                  <p className="text-right">{subTotal}€</p>
 
                   <p className="text-left">Frais livraison</p>
                   <p className="text-right">{subTotal < 30 ? '€' + shipping : 'Offert'} <br /> <span style={{ fontSize: ".7em" }}>Livraison OFFERT à partir de 30€</span></p>
                   <hr />
                   <h3 className="text-left">Total</h3>
-                  <h4 className="text-right">€{total}</h4>
+                  <h4 className="text-right">{total}€</h4>
                 </div>
                 <hr />
                 {items.length > 0 && (

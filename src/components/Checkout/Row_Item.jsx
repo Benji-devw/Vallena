@@ -51,7 +51,7 @@ const RowItem = props => {
          <div className="col-md-6">
             <div className="row no-gutters">
 
-               <div className="col-sm-6 cart-qty align-self-center text-center">
+               <div className="col-sm-6 cart-qty align-self-center text-center" style={{userSelect:"none"}}>
                   <div className="qty-content">
                      <button className="btn-cart-qty" type="button"
                      onClick={() => {
@@ -70,11 +70,10 @@ const RowItem = props => {
                      </button>
                      <span style={{ border: "none" }}>{item.priceProduct}€/u</span> 
                   </div>
-                  
                </div>
                
                <div className="col-sm-6 cart-price text-right">
-                  <h2>€ {qty * item.priceProduct}</h2>
+                  <h2>{qty * item.priceProduct} €</h2>
                   <IconButton aria-label="delete" className="btn-cart-remove"
                      onClick={() => {
                         if (window.confirm("Etes vous sur de vouloir supprimer le produit ?"))
@@ -83,7 +82,6 @@ const RowItem = props => {
                   >
                      <DeleteIcon />
                   </IconButton>
-             
                </div>
 
             </div>

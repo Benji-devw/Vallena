@@ -10,14 +10,15 @@
       width: 280px;
       position: relative;
       z-index: 50;
-      color: #ffffff;
+      color: #191919;
       font-size: 2.2em;
       // font-weight: bold;
       display: block;
       padding: .5rem;
       margin: auto;
-      background-color: rgba(0, 0, 0, 0.6);
+      // background-color: rgba(0, 0, 0, 0.6);
       margin: auto;
+      user-select: none;
     }
   }
 
@@ -29,7 +30,7 @@
     // margin-right: 20rem;
 
     .home-novelty {
-      height: 25rem;
+      height: 22rem;
       overflow: hidden;
       transition: all .5s;
 
@@ -40,10 +41,25 @@
 
       .home-novelty-content {
         background-image: url('./img/home/accessoires.jpg');
-        background-size: cover;
-        background-position: 0rem 0rem;
+        background-size: 100% 100%;
+        background-position: center;
         background-repeat: no-repeat;
         height: 100%;
+
+        transition: background-size 2s ease-in;
+        -moz-transition: background-size 2s ease-in;
+        -ms-transition: background-size 2s ease-in;
+        -o-transition: background-size 2s ease-in;
+        -webkit-transition: background-size 2s ease-in;
+
+        &:hover {
+          background-size: 110% 110%;
+          transition: background-size 3s ease-in;
+          -moz-transition: background-size 3s ease-in;
+          -ms-transition: background-size 3s ease-in;
+          -o-transition: background-size 3s ease-in;
+          -webkit-transition: background-size 3s ease-in;
+        }
 
         .nov {
           position: absolute;
@@ -52,38 +68,7 @@
           // background-color: #2978ffec;
           background-color: rgba(255, 255, 255, 0.7);
           border-radius: 50%;
-          transition: all .7s;
-
-          // h3 {
-          //   transition: all .7s;
-          //   color: #191919;
-          //   padding: .5rem;
-          //   border: 1px solid #191919;
-          //   font-size: 1.2em;
-          //   width: 120px;
-          //   &:hover {
-          //     color: #ffffff;
-          //     background-color: #191919;
-
-          //   }
-          // }
-          // .no-move {
-          //   position: relative;
-          //   z-index: 150;
-          //   right: -2rem;
-          //   bottom: -13rem;
-          //   user-select: none;
-          // }
-          // .move-left {
-          //   position: relative;
-          //   z-index: 150;
-          //   right: -4rem;
-          //   bottom: -15rem;
-
-          //   @media screen and (max-width: 991px) {
-          //     bottom: -27rem;
-          //   }
-          // }
+          transition: .7s;
         }
 
         h3 {
@@ -124,7 +109,7 @@
     // margin-right: 10rem;
 
     .home-promo {
-      height: 25rem;
+      height: 22rem;
       overflow: hidden;
       transition: all .5s;
 
@@ -135,10 +120,19 @@
 
       .home-promo-content {
         background-image: url('./img/home/mall-background-.jpg');
-        background-size: cover;
-        background-position: 0rem 0rem;
+        background-size: 110% 100%;
+        background-position: center;
         background-repeat: no-repeat;
         height: 100%;
+
+        &:hover {
+          background-size: 120% 110%;
+          transition: background-size 3s ease-in;
+          -moz-transition: background-size 3s ease-in;
+          -ms-transition: background-size 3s ease-in;
+          -o-transition: background-size 3s ease-in;
+          -webkit-transition: background-size 3s ease-in;
+        }
 
         .prom {
           position: absolute;
@@ -147,38 +141,7 @@
           // background-color: #f54437ec;
           background-color: rgba(255, 255, 255, 0.7);
           border-radius: 50%;
-          transition: all .7s;
-
-          // h3 {
-          //   transition: all .7s;
-          //   color: #191919;
-          //   padding: .5rem;
-          //   border: 1px solid #191919;
-          //   font-size: 1.2em;
-          //   width: 120px;
-
-          //   &:hover {
-          //     color: #ffffff;
-          //     background-color: #191919;
-          //   }
-          // }
-          // .no-move {
-          //   position: relative;
-          //   z-index: 150;
-          //   left: 10.5rem;
-          //   bottom: -13rem;
-          //   user-select: none;
-          // }
-          // .move-left {
-          //   position: relative;
-          //   z-index: 150;
-          //   left: 18.5rem;
-          //   bottom: -15rem;
-
-          //   @media screen and (max-width: 991px) {
-          //     bottom: -27rem;
-          //   }
-          // }
+          transition: .7s;
         }
 
         h3 {
@@ -187,7 +150,7 @@
           top: 2rem;
           z-index: 50;
           // user-select: none;
-          transition: all .7s;
+          transition: .7s;
           color: #191919;
           padding: .5rem;
           border: 1px solid #191919;

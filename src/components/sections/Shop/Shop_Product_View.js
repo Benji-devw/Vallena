@@ -15,11 +15,31 @@ import Footer from '../../UI/Footer/Footer'
 import ScrollableTabsButtonForce from './components/Tabs_Product_View'
 import { addtoCart } from '../../../lib/actions'
 import SlickComponent from '../GeneralComponents/Slick_Component'
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
+
+
+
+function AlertToAdd(props) {
+   return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 
 
 const ProductView = props => {
+   const [open, setOpen] = useState(false);
+
+   const handleClick = () => {
+      setOpen(true);
+   };
+   const handleClose = (event, reason) => {
+      if (reason === 'clickaway') {
+         return;
+      }
+
+      setOpen(false);
+   };
 
    const [data, setData] = useState([])   // [] car a l'arrivé sur la page data est vide et react provoque une erreur
    const itemsCart = useSelector(state => state.items)
@@ -91,8 +111,6 @@ const ProductView = props => {
                            <b>Tags :</b> {data.tags}
                         </p>
                   
-                        
-                
                      <hr />
                         {data.promotionProduct &&
                            <div className="promotion">Promo</div>
@@ -101,12 +119,12 @@ const ProductView = props => {
                            <div className="novelty">New</div>
                         }
 
-                        <h2>€ {data.priceProduct}  {data.promotionProduct && <span className="promo-price">€ {data.oldPriceProduct} </span>} <span className="avis">avis(0)</span></h2> 
+                        <h2>{data.priceProduct} € {data.promotionProduct && <span className="promo-price"> {data.oldPriceProduct} €</span>} <span className="avis">avis(0)</span></h2> 
                      
                      {data.quantityProduct > 0 ? 	// Affichage à la volée avec opérateur ternaire
-                     <div className="add-cart-content flipInX">
+                     <div className="add-cart-content">
                         {!findId ?
-                           <div className="addToCart">
+                           <div className="addToCart" style={{userSelect:"none"}}>
                                  <Alert severity="info"> {data.quantityProduct} en stock
                               <div className="btn-qty-cart"
                                  onClick={() => setQty(qty > 1 ? qty - 1 : 1)}		// tant que qty est supp a 1 ? qty -1 sinon return 1
@@ -121,15 +139,16 @@ const ProductView = props => {
                               <MdAddShoppingCart size="2em" className="ml-3" style={{ cursor: "pointer" }}
                                  onClick={() => {
                                  add(data, qty)
+                                 handleClick()
                                  }
                                  } />
                            
                            </Alert>
                            </div>
                            : 
-                              <Alert onClick={() => { history.goBack() }} severity="success">Dans votre panier !</Alert>
+                              <Alert onClick={() => { history.goBack() }} severity="success" className="fadeIn">Dans votre panier !</Alert>
                            }
-                     </div> : <Alert onClick={() => { history.goBack() }} severity="error" className="flipInX">Rupture !</Alert>}
+                     </div> : <Alert onClick={() => { history.goBack() }} severity="error" className="fadeIn">Rupture !</Alert>}
 
 
                      <div className="share-media">
@@ -171,6 +190,13 @@ const ProductView = props => {
             </section>
          
       </div>
+
+         <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+            <AlertToAdd onClose={handleClose} severity="success">
+               Ajouté au panier !
+            </AlertToAdd>
+         </Snackbar>
+
       <Footer />
       </>
    )

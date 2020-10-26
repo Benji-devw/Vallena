@@ -60,20 +60,19 @@ const HomePromoNews = () => {
           <div className="row novelty justify-content-center no-gutters">
 
             <div className="col-12 home-novelty">
-              <Link to="/shop" onClick={() => homeSort('novelty')}>
               <div className="row align-items-center home-novelty-content"
                 onMouseEnter={() => setHovNovelty(true)}
                 onMouseLeave={() => setHovNovelty(false)}
               >
                 <div className="col title text-center">
-                  <h2 className="">Nouveautés</h2>
+                  <h2 className="">NOUVEAUTÉS</h2>
                 </div>
                   <div className={`nov text-left ${hovNovelty ? classes.imgConfNoveltyHover : classes.imgConfNovelty}`}>
                   </div>
+                  <Link to="/shop" onClick={() => homeSort('novelty')}>
                   <h3 className={`no-move`}><ArrowBackIosIcon />Decouvrir</h3>
-              
+                  </Link>
               </div>
-            </Link>
             </div>
          
           </div>
@@ -84,7 +83,6 @@ const HomePromoNews = () => {
         <div className="row promo justify-content-center no-gutters">
 
             <div className="col-12 home-promo">
-              <Link to="/shop" onClick={() => homeSort('promo')}>
               <div className="row align-items-center home-promo-content"
                 onMouseEnter={() => setHovPromo(true)}
                 onMouseLeave={() => setHovPromo(false)}
@@ -92,14 +90,15 @@ const HomePromoNews = () => {
                 <div className="col title text-center">
                    
                   {/* <div className="test"></div> */}
-                  <h2 className="">Promotions</h2>
+                  <h2 className="">PROMOTIONS</h2>
                 </div>
                 <div className={`prom text-left ${hovPromo ? classes.imgConfPromoHover : classes.imgConfPromo}`}>
                 </div>
+                <Link to="/shop" onClick={() => homeSort('promo')}>
                   <h3 className={`no-move`}>Decouvrir<ArrowForwardIosIcon /></h3>
+                </Link>
 
               </div>
-              </Link>
             </div>
 
         </div>

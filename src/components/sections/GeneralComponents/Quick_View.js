@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Slider from "react-slick";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import apiCallProdcuts from '../../../apiCall/Call_Api'
-import Alert from '@material-ui/lab/Alert';
 
 
 
@@ -19,7 +18,6 @@ function SampleNextArrow(props) {
         position: "absolute",
         top: "30%",
         right: "-2rem",
-        color:"rgba(0, 0, 0, 0.3)",
         fontSize: "2.5em",
         cursor: "pointer"
       }}
@@ -38,7 +36,6 @@ function SamplePrevArrow(props) {
         top: "30%",
         left: "-2rem",
         zIndex: 100,
-        color: "rgba(0, 0, 0, 0.3)",
         fontSize: "2.5em",
         cursor: "pointer"
       }}
@@ -76,17 +73,17 @@ const SlickComponent = (props) => {
       {
         breakpoint: 991,
         settings: {
-          initialSlide: 0,
           slidesToShow: 2,
           slidesToScroll: 2,
+          initialSlide: 0
         }
       },
       {
         breakpoint: 468,
         settings: {
-        initialSlide: 0,
         slidesToShow: 1,
         slidesToScroll: 1,
+        initialSlide: 1
       }
     }]
   };
@@ -109,15 +106,11 @@ const SlickComponent = (props) => {
                   <div className={`after-img ${ind === index ? "fadeIn" : 'fadeOut'}`}>
                     <span>Découvrir</span>
                   </div>
-                {item.promotionProduct && <div className="promotion">Promo</div>}
-                {item.novelty && <div className="novelty">New</div>}
                 </Link>
               </div>
               <div className={`text-center slick-dets`}>
-                <p className="tags">{item.tags}</p> 
-                <h3>{item.titleProduct}</h3>
+                <h2>{item.titleProduct}</h2>
                 <h5>€ {item.priceProduct}  {item.promotionProduct && <span className="promo-price">€ {item.oldPriceProduct} </span>}  </h5>
-                {item.quantityProduct < 1 && <Alert severity="error" className="rupture mx-auto p-1" style={{width:"110px",}}>Rupture</Alert>}
               </div>
             </div>
           )}

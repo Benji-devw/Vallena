@@ -2,15 +2,15 @@
 .slider-home-one {
   background-color: #F5F5F5;
 
-  h2 {
-    font-family: satisfy, sans-serif;
-    font-size: 7em;
-    font-weight: bold;
+  // h2 {
+  //   font-family: satisfy, sans-serif;
+  //   font-size: 7em;
+  //   font-weight: bold;
 
-    @media screen and (max-width: 576px) {
-      font-size: 4em;
-    }
-  }
+  //   @media screen and (max-width: 576px) {
+  //     font-size: 4em;
+  //   }
+  // }
 
   p {
     font-size: 1em;
@@ -20,13 +20,15 @@
     }
   }
 
-  h4 {
-    font-weight: bold;
-  }
+  // h4 {
+  //   font-weight: bold;
+  // }
 
-  .btn-shop {
+
+  .slick-current{
     position: relative;
-    z-index: 500;
+    z-index: 50;
+
   }
 
 
@@ -149,10 +151,9 @@
           }
         }
 
-        h3 {
+        h2 {
           font-family: satisfy, sans-serif;
           font-size: 3.5em;
-          font-weight: lighter;
           padding: .3rem;
           line-height: .8em;
           margin-top: 1rem;

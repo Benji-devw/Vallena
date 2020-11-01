@@ -20,7 +20,6 @@ import MuiAlert from '@material-ui/lab/Alert';
 
 
 
-
 function AlertToAdd(props) {
    return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -112,14 +111,10 @@ const ProductView = props => {
                         </p>
                   
                      <hr />
-                        {data.promotionProduct &&
-                           <div className="promotion">Promo</div>
-                        }
-                        {data.novelty &&
-                           <div className="novelty">New</div>
-                        }
+                        {data.promotionProduct && <div className="promotion">Promo</div> }
+                        {data.novelty &&  <div className="novelty">New</div> }
 
-                        <h2>{data.priceProduct} € {data.promotionProduct && <span className="promo-price"> {data.oldPriceProduct} €</span>} <span className="avis">avis(0)</span></h2> 
+                        <h3>{data.priceProduct} € {data.promotionProduct && <span className="promo-price"> {data.oldPriceProduct} €</span>} <span className="avis">avis(0)</span></h3> 
                      
                      {data.quantityProduct > 0 ? 	// Affichage à la volée avec opérateur ternaire
                      <div className="add-cart-content">
@@ -168,6 +163,11 @@ const ProductView = props => {
             <section className="shop-view-details">
                <article className="row shop-view-content-1 align-items-center justify-content-center p-0 m-0">
                   <div className="col-md-12 text-center p-0 m-0">
+
+
+
+
+
                      <ScrollableTabsButtonForce data={data} images={imgs}/>
                   </div>
                </article>

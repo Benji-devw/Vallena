@@ -26,11 +26,11 @@ export default function Counter() {
   const [sumCounter, setSumCounter] = useState()
   const formatValue = (value) => value.toFixed(0);
 
-  const result = 1925 + sumCounter
+  const result = 2402 + sumCounter
 
   useEffect(() => {
     const sumCounter = async () => {
-      const dataCount = await fetch("https://api.countapi.xyz/get/localhost3000/visits")
+      const dataCount = await fetch("https://api.countapi.xyz/get/localhost3000/counterVisit")
       const count = await dataCount.json()
       setSumCounter(count.value)
     }
@@ -46,8 +46,8 @@ export default function Counter() {
     { name: 'juil', visits: 425 },
     { name: 'aout', visits: 524 },
     { name: 'sept', visits: 354 },
-    { name: 'oct', visits: sumCounter },
-    { name: 'nov', visits: undefined },
+    { name: 'oct', visits: 477 },
+    { name: 'nov', visits: sumCounter },
     { name: 'dec', visits: undefined },
   ];
   return (
@@ -60,13 +60,14 @@ export default function Counter() {
 
         <div className="counter-chart text-right" style={{ width: '110%', height: 180 }}>
         
-          <div style={{ color: "#FC9006", fontSize:"2em" }}>
+          <div style={{ color: "#FC9006", fontSize:"1.6em" }}>
             Total <AnimatedNumber value={result.toFixed()} formatValue={formatValue} />
           </div>
    
           <ResponsiveContainer>
             <ComposedChart
               data={data}
+              className="mt-4"
             >
               <CartesianGrid stroke="#f5f5f5" />
               <XAxis dataKey="name" />

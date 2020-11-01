@@ -5,7 +5,8 @@ const SetCookie = () => {
    const checkCookies = Cookies.get("CookieConsent")
    // Cookies & CounterAPI
    const updateCounter = async () => {
-      const data = await fetch("https://api.countapi.xyz/hit/localhost3000/visits")
+      // const data = await fetch("https://api.countapi.xyz/set/monsite.com/counterVisit?value=0")
+      const data = await fetch("https://api.countapi.xyz/hit/localhost3000/counterVisit")
       const count = await data.json()
       return count
    }

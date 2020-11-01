@@ -8,7 +8,7 @@ import InputBase from '@material-ui/core/InputBase';
 import { makeStyles } from '@material-ui/core/styles';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Button from '@material-ui/core/Button';
-
+import ScrollingMenu from './Shop_Menu'
 
 import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
@@ -67,7 +67,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
+/***** Small Menu *****/
+/*****************/
 function TemporaryDrawer() {
   const classes = useStyles();
   const [state, setState] = React.useState({
@@ -140,8 +141,7 @@ function TemporaryDrawer() {
 }
 
 
-/***** NAVBAR *****/
-/*****************/
+
 const Nav = props => {
   const [navClass, setNavClass] = useState('');
   const [toggeledNav, settoggeledNav] = useState(false);
@@ -166,7 +166,6 @@ const Nav = props => {
   return (
     <nav className={`navbar navbar-expand-md no-gutters p-0 ${navClass}`}>
       <div className='container'>
-
         <div className="row justify-content-center align-items-center" style={{ width: "100%" }}>
 
           <div className="col-4 search-bar">
@@ -199,7 +198,7 @@ const Nav = props => {
                 <div className="col-8">
                   <ul className='navbar-nav ml-auto align-items-center'>
 
-                    <li className="nav-icons-small test">
+                    <li className="nav-icons-small last">
                       <span className={`badge-icons badge-pill`}>0</span>
                       <FavoriteBorderIcon />
                     </li>
@@ -220,9 +219,9 @@ const Nav = props => {
 
             <div className={`collapse navbar-collapse `}>
               <ul className='navbar-nav ml-auto align-items-center'>
-                <Link to='/shop' className='nav-link'>
-                  <li classes=''> Boutique </li>
-                </Link>
+
+                <ScrollingMenu />
+
                 <li className='nav-item'>
                   <LinkScroll target='contact' classes='nav-link'>  Contact  </LinkScroll>
                 </li>
@@ -244,9 +243,6 @@ const Nav = props => {
 
 
         </div>
-
-
-
       </div>
     </nav>
   );

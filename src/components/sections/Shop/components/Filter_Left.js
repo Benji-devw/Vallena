@@ -64,7 +64,7 @@ const FilterLeft = props => {
                </AccordionSummary>
                <AccordionDetails>
                   <div className="filter-category">
-                     <ul className="category-list" defaultValue={filtersFromRedux[0].cat} >
+                     <ul className="category-list m-0" defaultValue={filtersFromRedux[0].cat} >
                         <li className={`cat-list ${filtersFromRedux[0].cat.length <= 0 ? 'active secondary' : ''}`}
                            onClick={() => {
                               props.filterProductsByCat([]);

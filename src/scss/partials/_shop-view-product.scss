@@ -12,7 +12,6 @@
       font-size: .9rem;
 
       span {
-        font-family: usual, sans-serif;
         padding-left: 1rem;
       }
     }
@@ -72,12 +71,8 @@
 
     .title-product {
       h1 {
-        font-family: satisfy, sans-serif;
         font-size: 5em;
-        font-weight: bold;
-        color: #191919;
         margin: 2rem;
-
         @media screen and (max-width: 768px) {
           font-size: 3em;
         }
@@ -88,15 +83,12 @@
       position: relative;
       margin-top: -2rem;
       padding: .5rem;
-
       a {
         color: #191919;
-
         &:hover {
           color: $pink-color;
         }
       }
-
       span {
         color: $pink-color;
       }
@@ -111,7 +103,6 @@
   .shop-view-product {
     min-height: 50rem;
     padding: 2rem;
-
 
     @media screen and (max-width: 768px) {
       text-align: center;
@@ -131,21 +122,12 @@
         margin: auto;
         padding: 1rem;
         max-width: 400px;
-        font-size: .9em;
 
-        .title {
-          font-weight: bold;
-        }
-
-        h2 {
+        h3 {
           text-align: end;
-          color: #191919;
-          font-size: 2em;
-          font-weight: bold;
-
+          font-size: 1.5em;
           .avis {
-            font-size: .5em;
-            font-weight: 100;
+            font-size: .6em;
           }
         }
 
@@ -199,9 +181,8 @@
           position: relative;
           bottom: -2rem;
           right: 0rem;
-          width: 45px;
+          width: 55px;
           padding: .2rem;
-          font-size: .8em;
           background-color: #f54337;
           pointer-events: none;
         }
@@ -211,9 +192,8 @@
           position: relative;
           bottom: -2rem;
           right: 0rem;
-          width: 33px;
+          width: 40px;
           padding: .2rem;
-          font-size: .8em;
           background-color: #2979ff;
           pointer-events: none;
         }
@@ -240,9 +220,37 @@
     .shop-view-content-1 {
       padding: 1rem;
 
+      .details-view-1 {
+        position: relative;
+        top: 10rem;
+        left: 5%;
+        text-align: left;
+        width: 180px;
+        overflow: hidden;
+        padding: .5rem;
+        border-top: 1px solid rgba(0,0,0,.8);
+          @media screen and (min-width: 2600px) {
+            display: none;
+          }     
+          @media screen and (max-width: 1230px) {
+            display: none;
+          }
+        p {
+          font-size: 1.1em;
+        }
+      }
+      #scrollable-force-tabpanel-0,
+      #scrollable-force-tabpanel-1,
+      #scrollable-force-tabpanel-2,
+      #scrollable-force-tabpanel-3 {
+        background-color: #F5F5F5;
+      }
+      // #scrollable-force-tabpanel-1, {
+      //   height: 30rem;
+      // }
       .MuiBox-root {
-        min-height: 35rem;
-        background: #F5F5F5;
+        min-height: 50vh;
+        // background: #F5F5F5;
       }
 
       .motion-slide {
@@ -252,6 +260,7 @@
       .motion-mask {
         margin-top: 2rem;
         width: 60% !important;
+        max-width: 700px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         border-radius: 5px;
 
@@ -314,33 +323,10 @@
 
 
   .title-collection {
-    // h2 {
-    //   position: absolute;
-    //   top: -3rem;
-    //   left: 0;
-
-    //   user-select: none;
-    //   font-size: 5em;
-    //   font-weight: bold;
-    //   background-color: rgba(0, 0, 0, 0.1);
-    //   color: transparent;
-    //   text-shadow: 2px 2px 3px rgba(255, 255, 255, .7);
-    //   -webkit-background-clip: text;
-    //   -moz-background-clip: text;
-    //   background-clip: text;
-
-    //   @media screen and (max-width: 768px) {
-    //     font-size: 2.2em;
-    //     top: -1rem;
-    //   }
-    // }
     h2 {
       position: absolute;
-      top: -3rem;
+      top: -2rem;
       left: 0;
-      font-size: 3em;
-      // user-select: none;
-
       @media screen and (max-width: 768px) {
         font-size: 2em;
         top: -1rem;
@@ -365,22 +351,18 @@
   }
 
   th {
-    padding: .3em;
-    font-weight: 100;
+    padding: .4em;
+    font-weight: 600;
     border-top: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    max-width: 7rem;
+    max-width: 6rem;
   }
 
   td {
-    padding: .3em;
-    font-size: .9em;
+    padding: .4em;
     border-top: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     border-left: 1px solid rgba(0, 0, 0, 0.1);
   }
 
-  // thead th {
-  //   border: none;
-  // }
 }

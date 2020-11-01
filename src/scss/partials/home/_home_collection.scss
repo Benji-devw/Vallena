@@ -19,11 +19,11 @@
       position: absolute;
       top: 40%;
 
-      h3 {
+      h2 {
         width: 50%;
         margin: auto;
         color: #ffffff;
-        border: 0.5px solid #ffffff;
+        border: 1px solid #ffffff;
         padding: .5rem;
       }
     }
@@ -42,18 +42,16 @@
         height: 100%;
         background-color: rgba(0, 0, 0, 0.4);
         color: #ffffff;
-
-        h4 {
+        
+        h2 {
+          color: #ffffff;
           width: 100%;
-          font-size: 2.2em;
-          font-weight: 500;
           position: absolute;
           top: 30%;
         }
 
         p {
           width: 100%;
-          font-size: .9em;
           position: absolute;
           text-align: center;
           top: 40%;
@@ -64,11 +62,14 @@
           position: absolute;
           top: 60%;
 
-          h5 {
-            width: 40%;
+          h3 {
             margin: auto;
-            border: 1px solid #ffffff;
-            font-weight: 100;
+            z-index: 50;
+            color: #fff;
+            padding: .5rem;
+            border: 1px solid #fff;
+            width: 120px;
+            transition: all .7s;
 
             &:hover {
               color: #191919;

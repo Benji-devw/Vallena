@@ -6,7 +6,7 @@ import FilterLeft from './components/Filter_Left'
 import { updateFilters } from '../../../lib/actions'
 import { useSelector, useDispatch } from 'react-redux';
 
-
+import ScrollTop from '../GeneralComponents/Scroll_Top_Btn'
 
 
 const DisplayProducts = () => {
@@ -138,16 +138,16 @@ const DisplayProducts = () => {
 
 
 
-   const [test, setTest] = useState(true)
+   const [forMom, setFroMom] = useState(true)
    useEffect(() => {
-      if (test) {
+      if (forMom) {
          setFilterByCat(filtersFromRedux[0].cat)
          setMatterCheck(filtersFromRedux[0].matter)
          setColorCheck(filtersFromRedux[0].color)
          setCollectionCheck(filtersFromRedux[0].collection)
          setPromotionCheck(filtersFromRedux[0].promotion)
          setNoveltyCheck(filtersFromRedux[0].novelty)
-         setTest(false)
+         setFroMom(false)
       }
 
       const newVal = {}
@@ -165,7 +165,7 @@ const DisplayProducts = () => {
             setCounting(res.data.products.length) 
          });
       }
-   }, [test, collectionCheck, allProducts.length, colorCheck, filterByCat, matterCheck, noveltyCheck, promotionCheck]);
+   }, [forMom, collectionCheck, allProducts.length, colorCheck, filterByCat, matterCheck, noveltyCheck, promotionCheck]);
 
 
 
@@ -233,6 +233,7 @@ const DisplayProducts = () => {
                </div>
             </div>
          </section>
+         <ScrollTop />
       </>
    )
 }

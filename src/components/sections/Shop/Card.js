@@ -11,57 +11,52 @@ const Card = props => {
    const display = props.display
 
    const [hov, setHov] = useState('')
-   const test = product.imgCollection[0]
-   const test2 = product.imgCollection[1]
+   const firstImg = product.imgCollection[0]
+   const secondImg = product.imgCollection[1]
 
 
       return (
          <Fade in={true}>
-         <div className="row justify-content-center product-item">
+         <div className="row justify-content-center product-item no-gutters">
 
             <div className={`product-images align-items-center ${display === 'list-display' ? 'col-md-6 text-center' : ''}`}>
-               <div>
+        
                   <Link to={`/product/${product._id}`} >
-                     <img src={hov === 'hov' ? test2 : test} alt={product.titleProduct} 
-                           className={`align-self-center`}
+                     <img src={secondImg} alt={product.titleProduct} 
+                        className={` second-image`}
+                     />
+                     <img src={firstImg} alt={product.titleProduct} 
+                        className={`align-self-center first-image ${hov === "hov" ? "fadeOut" : ""}`}
                         onMouseEnter={() => setHov('hov')}
                         onMouseLeave={() => setHov('')}
-                     />
+                        // style={{position:"absolute", left:".5rem", width:"93%"}}
+                     />  
+                     {/* <img src={hov === "hov" ? firstImg : secondImg} alt={product.titleProduct} 
+                        className={`align-self-center first-image ${hov === "hov" ? "" : ""}`}
+                        onMouseEnter={() => setHov('hov')}
+                        onMouseLeave={() => setHov('')}
+                        // style={{position:"absolute", left:".5rem", width:"93%"}}
+                     />   */}
                   </Link>
-               </div>
-               
-               {/* {product.quantityProduct < 1 && <div className="rupture bg-danger">Rupture</div>}
-               {product.promotionProduct && <div className="promotion bg-success">-20 %</div>} */}
-                  {product.promotionProduct && 
-                  <div className="promotion">Promo</div>
-                  }
-                  {product.novelty &&
-                     <div className="novelty">New</div>
-                  }
+               {product.promotionProduct && <div className="promotion">Promo</div> }
+               {product.novelty && <div className="novelty">New</div> }
             </div>
 
             <div className={`product-details ${display === 'list-display' && 'col-md-6'}`}>
-               <h2>{product.titleProduct}</h2>
+               <p className="tags">{product.tags}</p> 
+               <h3>{product.titleProduct}</h3>
+
+               <h5>{product.priceProduct} €  {product.promotionProduct && <span className="promo-price">{product.oldPriceProduct} €</span>}  </h5>
 
                {display === 'list-display' && (
-                  <p>{product.descriptionProduct}</p>
+                  <p className="description">{product.descriptionProduct}</p>
                )}
-               {/* <b>{product.categoryProduct}</b>*/}
-               <p>{product.tags}</p> 
-               <p>
-                  <b>Matière:</b> {product.matter}
-                     <b className="ml-2">color:</b> {product.color}
-                     <b className="ml-2">collection:</b> {product.yearCollection}
-               </p>
-            
-                  <h5>{product.priceProduct} €  {product.promotionProduct && <span className="promo-price">{product.oldPriceProduct} €</span>}  </h5>
-                  {product.quantityProduct < 1 && <Alert severity="error" className="rupture">Rupture</Alert>}
-         
+
+               {product.quantityProduct < 1 && <Alert severity="error" className="rupture">Rupture</Alert>}
             </div>
 
          </div>
          </Fade>
-   
       );
    
 }

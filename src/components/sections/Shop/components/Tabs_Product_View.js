@@ -11,6 +11,7 @@ import HelpIcon from '@material-ui/icons/Help';
 import Box from '@material-ui/core/Box';
 
 import MotionFramer from './motionScall/Motion_framer'
+import ScrollAnimation from 'react-animate-on-scroll'
 
 
 
@@ -85,6 +86,14 @@ const ScrollableTabsButtonForce = props => {
          </AppBar>
 
          <TabPanel value={value} index={0}>
+
+            <div className="details-view-1">
+            <ScrollAnimation animateIn='fadeIn' delay={0}><p>{data.sizeProduct}</p></ScrollAnimation>
+            <ScrollAnimation animateIn='fadeIn' delay={300}><p>{data.weightProduct}</p></ScrollAnimation>
+            <ScrollAnimation animateIn='fadeIn' delay={600}><p>{data.matter}</p></ScrollAnimation>
+            <ScrollAnimation animateIn='fadeIn' delay={900}><p>{data.composition}</p></ScrollAnimation>
+            {/* <ScrollAnimation animateIn='FadeIn' delay={2000}><p>{data.fabrication}</p></ScrollAnimation> */}
+            </div>
             <MotionFramer images={imgs} />
          </TabPanel>
 

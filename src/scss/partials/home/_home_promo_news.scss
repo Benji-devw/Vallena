@@ -10,13 +10,8 @@
       width: 280px;
       position: relative;
       z-index: 50;
-      color: #191919;
-      font-size: 2.2em;
-      // font-weight: bold;
       display: block;
       padding: .5rem;
-      margin: auto;
-      // background-color: rgba(0, 0, 0, 0.6);
       margin: auto;
       user-select: none;
     }
@@ -54,11 +49,11 @@
 
         &:hover {
           background-size: 110% 110%;
-          transition: background-size 3s ease-in;
-          -moz-transition: background-size 3s ease-in;
-          -ms-transition: background-size 3s ease-in;
-          -o-transition: background-size 3s ease-in;
-          -webkit-transition: background-size 3s ease-in;
+          transition: background-size 2s ease-in;
+          -moz-transition: background-size 2s ease-in;
+          -ms-transition: background-size 2s ease-in;
+          -o-transition: background-size 2s ease-in;
+          -webkit-transition: background-size 2s ease-in;
         }
 
         .nov {
@@ -73,21 +68,17 @@
 
         h3 {
           position: absolute;
-          right: 1rem;
+          right: .5rem;
           top: 2rem;
           z-index: 50;
-          // user-select: none;
-          transition: all .7s;
-          color: #191919;
           padding: .5rem;
           border: 1px solid #191919;
-          font-size: 1.2em;
-          width: 120px;
+          width: 130px;
+          transition: all .7s;
 
           &:hover {
             color: #ffffff;
             background-color: #191919;
-
           }
         }
 
@@ -133,11 +124,11 @@
 
         &:hover {
           background-size: 120% 110%;
-          transition: background-size 3s ease-in;
-          -moz-transition: background-size 3s ease-in;
-          -ms-transition: background-size 3s ease-in;
-          -o-transition: background-size 3s ease-in;
-          -webkit-transition: background-size 3s ease-in;
+          transition: background-size 2s ease-in;
+          -moz-transition: background-size 2s ease-in;
+          -ms-transition: background-size 2s ease-in;
+          -o-transition: background-size 2s ease-in;
+          -webkit-transition: background-size 2s ease-in;
         }
 
         .prom {
@@ -152,16 +143,13 @@
 
         h3 {
           position: absolute;
-          left: 1rem;
+          left: .5rem;
           top: 2rem;
           z-index: 50;
-          // user-select: none;
           transition: .7s;
-          color: #191919;
           padding: .5rem;
           border: 1px solid #191919;
-          font-size: 1.2em;
-          width: 120px;
+          width: 130px;
 
           &:hover {
             color: #ffffff;

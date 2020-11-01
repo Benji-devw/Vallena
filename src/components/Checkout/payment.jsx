@@ -61,7 +61,7 @@ const PaymentForm = () => {
                <div className="row no-gutters payment-header">
                   <article className="container">
                      <div className="col-12 title">
-                        <h2 className="title">Votre Commande : </h2>
+                        <h1 className="title">Votre Commande : </h1>
                      </div>
                   </article>
                </div>
@@ -80,7 +80,7 @@ const PaymentForm = () => {
 
                      <hr />
                      <div className="order-summary-total">
-                           <p className="text-left">Sous-total ({sum} articles):</p>
+                     <p className="text-left">Sous-total ({sum} articles):</p>
                      <p className="text-right">{subTotal.toFixed(2)} €</p>
 
                      <p className="text-left">Frais livraison</p>

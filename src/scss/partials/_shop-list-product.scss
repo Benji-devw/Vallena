@@ -37,7 +37,6 @@
 
   h3 {
     color: $pink-color;
-    font-weight: 500;
     font-size: 1.2em;
   }
 }
@@ -84,7 +83,7 @@
     position: absolute;
     color: #ffffff;
     top: 2rem;
-    right: 1rem;
+    right: 1.7rem;
     padding: .2rem;
     font-size: .8em;
     background-color: #f54337;
@@ -95,7 +94,7 @@
     position: absolute;
     color: #ffffff;
     top: 2rem;
-    right: 1rem;
+    right: 1.7rem;
     padding: .2rem;
     font-size: .8em;
     background-color: #2979ff;
@@ -104,58 +103,119 @@
 
 }
 
+
+
+
+
+
+
+
+/***** CARDS *****/
+/*****/
+
+
+.grid-display {
+  padding-top: 2rem;
+  text-align: center;
+  // transition: all .5s linear;
+
+  // overflow: hidden;
+  .product-item {
+    
+    .first-image {
+      width: 90.6%;
+      position: absolute;
+      top: 2rem;
+      left: .9rem;
+      
+      @media screen and (max-width: 1200px) {
+        width: 89%;
+      }
+      @media screen and (max-width: 991px) {
+        width: 92%;
+      }      
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+      // @media screen and (max-width: 576px) {
+      //   display: none;
+      // }
+    }    
+    .second-image {
+      width: 100%;
+      position: relative;
+      top: 0rem;
+      left: 0rem;
+      @media screen and (max-width: 576px) {
+        width: 90%;
+      }
+    }
+
+  }
+}
+
+
 .list-display {
   // padding: .5rem;
   margin-top: 2rem;
   margin-bottom: 4rem;
+
   // transition: all .2s linear;
   @media screen and (max-width: 767px) {
     text-align: center;
     // height: 80vh;
   }
 
-
-
   .product-item {
-    img {
-      max-width: 90%;
-    }
-  }
-
-  .promotion {
-    top: .2rem;
-    right: 2.5rem;
-  }
-
-  .novelty {
-    top: .2rem;
-    right: 2.5rem;
-  }
-}
-
-.grid-display {
-  padding: 1.5rem;
-  text-align: center;
-  transition: all .2s linear;
-  .product-item {
-    img {
-      width: 100%;
+    .first-image {
+      width: 94%;
+      position: absolute;
+      top: 0rem;
+      left: .9rem;
+      @media screen and (max-width: 1200px) {
+        // width: 94%;
+        left: .7rem;
+      }
+      @media screen and (max-width: 991px) {
+        // width: 93%;
+      }      
+      @media screen and (max-width: 768px) {
+        // width: 94.7%;
+        // left: .95em;
+        display: none;
+      }
+    }    
+    .second-image {
+      width: 94%;
+      position: relative;
+      top: 0rem;
+      left: 0rem;
       @media screen and (max-width: 576px) {
         width: 90%;
       }
     }
   }
-
   .product-details {
-    p {
-      margin-top: -10px;
-      font-size: .8em;
-    }
+    padding: 1.5rem;
+  }
+
+  .promotion {
+    top: .2rem;
+    right: 1.2rem;
+  }
+
+  .novelty {
+    top: .2rem;
+    right: 1.2rem;
   }
 }
 
+
+
+
+
+
 .product-details {
-  color: #6E6359;
   padding: 1rem;
 
   @media screen and (max-width: 576px) {
@@ -178,50 +238,4 @@
     }
   }
 
-  h2 {
-    font-family: "Roboto", sans-serif;
-    font-size: 1.3em;
-    color: #191919;
-    font-weight: 500;
-  }
-
-  h5 {
-    font-family: "Roboto", sans-serif;
-    font-size: 1.3em;
-    color: #191919;
-    font-weight: 300;
-
-    span {
-      color: #19191956;
-      text-decoration: line-through;
-    }
-
-    svg {
-      margin-top: -4px;
-    }
-  }
-
-  p {
-    font-size: .9em;
-  }
-
-  b {
-    font-size: .8em;
-  }
-
-
-
-
-  button {
-    color: #F1F1F1;
-    background: orangered;
-    border-radius: 50px;
-    font-size: .8em;
-  }
-
-  @media screen and (max-width: 576px) {
-    height: 150px;
-    max-width: 100% !important;
-
-  }
 }

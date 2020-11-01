@@ -19,51 +19,42 @@ const MotionFramer = props => {
 
       return (
          <>
-            {/* <Frame
-               name={"SliderApp"}
+            <Frame
+               name={"Mask"}
                width={"100%"}
-               height={"100%"}
-               // background={"#242424"}
-            > */}
+               height={450}
+               center
+               overflow={"hidden"}
+               background={"#F5F5F5"}
+               className={"motion-mask"}
+            >
                <Frame
-                  name={"Mask"}
-                  width={"100%"}
-                  height={450}
+                  name={"Image"}
+                  className={"motion-image"}
+                  scale={scale}
                   center
-                  overflow={"hidden"}
-                  background={"#F5F5F5"}
-                  className={"motion-mask"}
-               >
-                  <Frame
-                     name={"Image"}
-                     className={"motion-image"}
-                     scale={scale}
-                     center
-                     size={1280}
-                     image={imgs[0]}
-                     style={{ backgroundColor: "rgba(0, 0, 0, 0)", backgroundSize: "contain", backgroundPosition: "0px", backgroundRepeat: "no-repeat"}}
-                     drag
-                     dragElastic={0}
-                     dragMomentum={false}
-                     dragConstraints={{
-                        top: -constraint,
-                        bottom: constraint,
-                        left: -constraint,
-                        right: constraint
-                     }}
-                  />
-               </Frame>
-               <Slider 
-                  value={scale}
-                  min={0.25}
-                  max={1}
-                  onChange={function(newValue) {
-                     setScale(newValue)
+                  size={1280}
+                  image={imgs[0]}
+                  style={{ backgroundColor: "rgba(0, 0, 0, 0)", backgroundSize: "contain", backgroundPosition: "0px", backgroundRepeat: "no-repeat"}}
+                  drag
+                  dragElastic={0}
+                  dragMomentum={false}
+                  dragConstraints={{
+                     top: -constraint,
+                     bottom: constraint,
+                     left: -constraint,
+                     right: constraint
                   }}
                />
-            {/* </Frame> */}
-   
-         
+            </Frame>
+            <Slider 
+               value={scale}
+               min={0.25}
+               max={1}
+               onChange={function(newValue) {
+                  setScale(newValue)
+               }}
+            />
          </>
       );
    

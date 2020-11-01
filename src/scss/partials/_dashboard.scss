@@ -12,8 +12,11 @@
   button {
     outline: none;
   }
-
+  p {
+    font-size: 1em !important;
+  }
   h1 {
+    font-family: "quickSandRegular", sans-serif;
     display: inline-block;
     background: #ffffff;
     border: 1px solid #f50057;
@@ -26,10 +29,10 @@
 
   h2 {
     color: #f50057;
-
   }
 
   h3 {
+    font-size: 1.5em;
     display: inline-block;
     background: #ffffff;
     border: 1px solid #f50057;
@@ -150,10 +153,10 @@
     }
     .icon-dash {
       svg {
-        font-size: 5em;
+        font-size: 4em;
       }
 
-      width: 70px;
+      width: 65px;
       margin-top: -2rem;
       margin-left: -2rem;
       border-radius: 5px;

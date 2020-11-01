@@ -1,7 +1,5 @@
 // HOME_VIEW_TOP
 .home-best-cards {
-  min-height: 40rem;
-
 
   .MuiAppBar-root {
     max-width: 400px;
@@ -20,9 +18,9 @@
       }
 
       .MuiTab-wrapper {
+        font-family: "quickSandRegular", sans-serif;
         color: #191919;
         font-size: 1.6em;
-        font-weight: 400;
       }
     }
   }
@@ -53,6 +51,7 @@
         position: relative;
         left: -4rem;
         width: 23rem;
+
         @media (max-width: 576px) {
           left: -7rem;
           width: 35rem;
@@ -70,6 +69,7 @@
         height: 25rem;
         width: 100%;
         background-color: rgba(255, 255, 255, 0.5);
+
         @media (max-width: 576px) {
           top: -32rem;
         }
@@ -79,15 +79,17 @@
           bottom: -15rem;
           // margin-top: 5rem;
           width: 100%;
+
           @media (max-width: 576px) {
             bottom: -12rem;
           }
 
-          span {
-            color: #191919;
-            font-size: 1.3em;
+          h3 {
+            margin: auto;
+            transition: .7s;
+            padding: .5rem;
             border: 1px solid #191919;
-            padding: .3rem;
+            width: 120px;
 
             &:hover {
               color: #ffffff;
@@ -113,25 +115,6 @@
 
     .home-card-desc {
       padding: .5rem;
-
-      h2 {
-        font-size: 1.2em;
-      }
-
-      p {
-        color: $fade-color;
-        font-size: .9em;
-        margin: 0;
-      }
-
-      h5 {
-
-        span {
-          color: #19191960;
-          text-decoration: line-through;
-        }
-      }
-
     }
 
   }

@@ -74,13 +74,13 @@ export default function HomeCardsDisplay() {
 
         </Tabs>
       </AppBar>
-      <div className="container">
+      <div className="container" style={{minHeight:"35rem"}}>
 
       <TabPanel value={value} index={0}>
         <HomeCards val={topNote}/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-          <HomeCards val={topVente} />
+        <HomeCards val={topVente} />
       </TabPanel>
       {/* <TabPanel value={value} index={2}>
         Item Three

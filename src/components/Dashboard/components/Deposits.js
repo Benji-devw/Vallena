@@ -33,9 +33,9 @@ export default function Deposits(props) {
         </div>
 
         <div className="info text-right">
-          <div style={{ color: "#61B765", fontSize: "2em" }}>
-            Montant des ventes <br />
-           <span style={{ color: "#191919" }}><EuroRoundedIcon /> <AnimatedNumber value={props.onSumOrder} formatValue={formatValue} /></span> 
+          <div style={{ color: "#61B765", fontSize: "1.6em", marginTop:"-1.5rem" }}>
+            Montant des ventes <br /><br /><br />
+            <span style={{ color: "#191919"}}><EuroRoundedIcon style={{ marginTop: "-.5rem"}}/> <AnimatedNumber value={props.onSumOrder} formatValue={formatValue} /></span> 
           </div>
         </div>
        

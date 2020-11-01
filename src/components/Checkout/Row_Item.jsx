@@ -38,7 +38,7 @@ const RowItem = props => {
          <>
          <div className="row m-4 row-item align-items-center no-gutters">
             <div className="col-md-6 text-center">
-            <h2>{item.titleProduct}</h2>
+            <h3>{item.titleProduct}</h3>
             <Link to={`/product/${item._id}`}>
             <img
                onClick={() => props.onCloseModal(false)}
@@ -72,8 +72,8 @@ const RowItem = props => {
                   </div>
                </div>
                
-               <div className="col-sm-6 cart-price text-right">
-                  <h2>{qty * item.priceProduct} €</h2>
+               <div className="col-sm-6 pt-2 cart-price text-right">
+                  <h3>{qty * item.priceProduct} €</h3>
                   <IconButton aria-label="delete" className="btn-cart-remove"
                      onClick={() => {
                         if (window.confirm("Etes vous sur de vouloir supprimer le produit ?"))

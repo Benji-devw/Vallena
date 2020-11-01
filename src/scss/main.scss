@@ -3,6 +3,21 @@
 @import "./mixins.scss";
 // @import url(//db.onlinewebfonts.com/c/174b2ec3d1b18323f2021ce3fdda6028?family=SamsungOne);
 
+// Fonts
+@font-face {
+  font-family: 'quickSandLight';
+  src: url("./libs/Quicksand/static/Quicksand-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'quickSandRegular';
+  src: url("./libs/Quicksand/static/Quicksand-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'quickSandMedium';
+  src: url("./libs/Quicksand/static/Quicksand-Medium.ttf") format("truetype");
+}
+
+
 // Effects
 @import './appGuruz.scss';
 @import "~slick-carousel/slick/slick.css";
@@ -59,14 +74,15 @@ html {
 }
 
 body {
-  // font-family: usual, sans-serif;
-  font-family: "Roboto", sans-serif;
-  // background-color: $light-bg;
+  // font-family: Roboto, sans-serif;
+  font-family: "quickSandRegular", sans-serif !important;
 
-  font-style: normal;
-  line-height: 20px;
-  font-weight: 400;
-  letter-spacing: 0em;
+  font-size: 1em !important;
+
+  font-style: normal !important;
+  line-height: 20px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0em !important;
 
   -moz-user-select: auto !important;
   -webkit-user-select: auto !important;
@@ -89,14 +105,35 @@ main {
 }
 
 h1 {
+  font-family: satisfy, sans-serif;
+  font-size: 7em;
+  font-weight: bold;
 
-  font-size: 4rem;
-  color: $dark-color;
+  @media screen and (max-width: 576px) {
+    font-size: 4em;
+  }
 }
 
+h2 {
+  color: #191919;
+}
 
+h3 {  
+  font-family: "quickSandMedium", sans-serif !important;
+  color: #191919;
+  font-size: 1.2em;
+}
 
+h5 {
+  span {
+    color: #19191960;
+    text-decoration: line-through;
+  }
+}
 
+p {
+  font-size: .9em;
+}
 input {
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
 }
@@ -107,7 +144,10 @@ a {
   }
 }
 
-
+.tags {
+  color: $fade-color;
+  margin: 0;
+}
 
 
 
@@ -265,14 +305,33 @@ a {
 
 
 
-
-
-
-
-
-
-
 .MuiInputBase-input {
   background: #ffffff !important;
-
 }
+
+
+
+
+
+.scroll-top-btn {
+  position: fixed;
+  right: 2rem;
+  bottom: 4rem;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.3);
+  transform: rotate(180deg);
+  transition: all .5s;
+  svg {
+    font-size: 3em;
+  }
+  &:hover {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  // height: 70px;
+  // width: 70px;
+  // border-radius: 50%;
+  // text-align: center;
+  // background-color: #F5F5F5;
+}
+
+

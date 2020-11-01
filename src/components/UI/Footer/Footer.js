@@ -61,7 +61,7 @@ const footer = () => {
 
           <div className='col-md-4 col-style text-center'>
             <div className='footer-title'>
-              <h6>Contact Us</h6>
+              <h6>Contact</h6>
             </div>
             <div className='footer-content'>
               <p className='text-muted'>

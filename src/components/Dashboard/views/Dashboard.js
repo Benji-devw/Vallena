@@ -29,7 +29,7 @@ function Copyright() {
       {/* <Link color="inherit" href="https://vallena.fr/">
         Vallena.fr
       </Link>{' '} */}
-      Vallena.fr
+      Vallena.fr 
       {new Date().getFullYear()}
       {'.'}
     </Typography>

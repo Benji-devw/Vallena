@@ -78,65 +78,65 @@ const SlideItems = props => {
 
         <Slider {...settings}>
           <div>
-            <div className="container">
+          <div className="container">
           <div className="row slick-content content-one align-items-center">
 
-              <div className="col-md-6 test text-center">
-
+              <div className="col-md-6 text-center">
                   {/* <img src={Logo} alt="logo" className="logo-vallena" /> */}
-                <h2>Vallena.fr</h2>
+                <h1 className="m-0 p-0">Vallena.fr</h1>
                   {/* <p>Les produits sont fabriqués dans un petit atelier de couture d'Ardèche.<br />
                     Ils sont pour la plupart, fait à la main et donc en quantité réduite mais en majorité UNIQUE,...
                     </p> */}
                   <p>ATELIER DE COUTURE<br /> 
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec convallis justo. Nam finibus lobortis nisl, vel bibendum ex sollicitudin ultrices. Suspendisse potenti. Curabitur quis augue lorem.
                     </p>
-                    <Link to="/shop"  className="slideInUp">
-                      <Button variant="contained" color="secondary" className="btn-shop">
+                    <Link to="/shop">
+                      <Button variant="contained" color="secondary">
                         Boutique <MdKeyboardArrowRight className="ml-1" 
                           style={{fontSize:"1.7em"}} 
                         />
                       </Button>
                     </Link>
 
-                    </div>
-              <div className="col-md-6 test text-center">
-
+              </div>
+              <div className="col-md-6 text-center">
                     <img src={visage} alt="none"className="img-fluid text-right" />
+              </div>
+
+          </div>
+          </div>
           </div>
 
+                    
+          {productsDb.map(item => item.yearCollection === 2020 &&
+            <div key={item._id}>
+            <div className="container">
+            <div className="row slick-content content-two align-items-center p-3">
+              <div className="col-md-6">
+                <span className="collection">Collection 2020</span>
+                <h2>{item.titleProduct}</h2> <br />
+                <p>{item.descriptionProduct}</p>
+                  <h4>{item.priceProduct} €</h4>
+
+                  <Link to={`/product/${item._id}`}>
+                    <Button variant="outlined" color="secondary">
+                      Découvrir 
+                      <MdKeyboardArrowRight className="ml-1" 
+                      style={{ fontSize: "1.7em" }} />
+                    </Button>
+                  </Link>
               </div>
-          </div>
-          </div>
 
-          
-            {productsDb.map(item => item.yearCollection === 2020 &&
-              <div key={item._id}>
-              <div className="container">
-              <div className="row slick-content content-two align-items-center p-3">
-                <div className="col-md-6">
-                  <span className="collection">Collection 2020</span>
-                  <h3>{item.titleProduct}</h3> <br />
-                  <p>{item.descriptionProduct}</p>
-                    <h4>{item.priceProduct} €</h4>
-
-                    <Link to={`/product/${item._id}`}>
-                      <Button variant="outlined" color="secondary" className="btn-shop">
-                        Découvrir <MdKeyboardArrowRight className="ml-1" style={{ fontSize: "1.7em" }} />
-                      </Button>
-                    </Link>
-                </div>
-
-                <div className="col-md-6 p-2">
-                  {/* <img src={round} alt="round" className="round" /> */}
-                  <img src={item.imgCollection[0]} alt={item.titleProduct} className="img-fluid mx-auto" />
-
-                </div>
+              <div className="col-md-6 p-2">
+                {/* <img src={round} alt="round" className="round" /> */}
+                <img src={item.imgCollection[0]} alt={item.titleProduct} className="img-fluid mx-auto" />
 
               </div>
-              </div>
-              </div>
-            )}
+
+            </div>
+            </div>
+            </div>
+          )}
          
     
         </Slider>

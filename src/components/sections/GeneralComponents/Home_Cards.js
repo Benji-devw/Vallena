@@ -40,12 +40,12 @@ const HomeCards = (props) => {
                 <div className={`hover-tab-content text-center`}>
 
                   <div className={`hover-tab-quick-view text-left slideInLeft`}>
-                    <VisibilityIcon /> 
+                    <VisibilityIcon />
                     <br />
                     <FavoriteBorderIcon />
-                    </div>
+                  </div>
 
-                    <span className="fadeIn">Découvrir</span>
+                    <h3 className="fadeIn">Découvrir</h3>
 
                 </div>
               </div>
@@ -55,8 +55,8 @@ const HomeCards = (props) => {
 
 
           <div className="text-center home-card-desc">
-            <p>{item.tags}</p>
-            <h2>{item.titleProduct}</h2>
+            <p className="tags">{item.tags}</p>
+            <h3>{item.titleProduct}</h3>
 
             <h5>€ {item.priceProduct}  {item.promotionProduct && <span className="promo-price">€ {item.oldPriceProduct} </span>}  </h5>
             {item.quantityProduct < 1 && <Alert severity="error" className="rupture">Rupture</Alert>}

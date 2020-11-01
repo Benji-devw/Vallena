@@ -61,14 +61,14 @@ const HomeCollection = () => {
           >
             <Link to="/shop" onClick={() => homeDisplayFilters('Homme')}>
               <div className={`title ${toogleDisplay === 'men' ? 'hide-div' : 'fadeIn'}`}>
-                <h3>Homme</h3>
+                <h2>Homme</h2>
               </div>
               <div className="over-f">
                 <div className={`collection-after ${toogleDisplay === 'men' ? 'fadeIn' : 'hide-div'}`}>
-                  <h4>Homme</h4>
+                  <h2>Homme</h2>
                   <p>Lorem ipsum Lorem ipsum Lorem ipsum</p>
                   <div className="btn-after">
-                    <h5>Découvrir</h5>
+                    <h3>Découvrir</h3>
                   </div>
                 </div>
 
@@ -84,14 +84,14 @@ const HomeCollection = () => {
           >
             <Link to="/shop" onClick={() => homeDisplayFilters('Femme')}>
               <div className={`title ${toogleDisplay === 'women' ? 'hide-div' : 'fadeIn'}`}>
-                <h3>Femme</h3>
+                <h2>Femme</h2>
               </div>
               <div className="over-f">
                 <div className={`collection-after ${toogleDisplay === 'women' ? 'fadeIn' : 'hide-div'}`}>
-                  <h4>Femme</h4>
+                  <h2>Femme</h2>
                   <p>Lorem ipsum Lorem ipsum Lorem ipsum</p>
                   <div className="btn-after">
-                    <h5>Découvrir</h5>
+                    <h3>Découvrir</h3>
                   </div>
                 </div>
 
@@ -108,14 +108,14 @@ const HomeCollection = () => {
           >
             <Link to="/shop" onClick={() => homeDisplayFilters('Bébé')}>
               <div className={`title ${toogleDisplay === 'baby' ? 'hide-div' : 'fadeIn'}`}>
-                <h3>Bébé</h3>
+                <h2>Bébé</h2>
               </div>
               <div className="over-f">
                 <div className={`collection-after ${toogleDisplay === 'baby' ? 'fadeIn' : 'hide-div'}`}>
-                  <h4>Bébé</h4>
+                  <h2>Bébé</h2>
                   <p>Lorem ipsum Lorem ipsum Lorem ipsum</p>
                   <div className="btn-after">
-                    <h5>Découvrir</h5>
+                    <h3>Découvrir</h3>
                   </div>
                 </div>
 

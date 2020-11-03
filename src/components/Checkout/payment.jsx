@@ -80,7 +80,7 @@ const PaymentForm = () => {
 
                      <hr />
                      <div className="order-summary-total">
-                     <p className="text-left">Sous-total ({sum} articles):</p>
+                     <p className="text-left">Sous-total ({sum} {sum > 1 ? "articles" : "article"}):</p>
                      <p className="text-right">{subTotal.toFixed(2)} €</p>
 
                      <p className="text-left">Frais livraison</p>

@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 const FilterLeft = props => {
    const classes = useStyles();
    const filtersFromRedux = useSelector(state => state.filters)
-   
+
    const [expanded, setExpanded] = useState('panelCat');
    const [expandedMatter, setExpandedMatter] = useState(false);
    const [expandedColor, setExpandedColor] = useState(false);

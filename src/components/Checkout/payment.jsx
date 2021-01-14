@@ -2,12 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import PayPalButton from './Paypal'
 import RowItem from './Row_Item'
+// import DragNDrop from './Row_item_Drag'
 // import TransferList from './old/Transfer_List';
 // import { Redirect } from "react-router-dom";
 
 const PaymentForm = () => {
    const items = useSelector(state => state.items)
-
+   // const [datas, setDatas] = useState([])
+   // const data = [
+   //    { title: "Group 1", items: datas.slice(0, 3) },
+   //    { title: "Group 2", items: [] }
+   // ] 
+   
    // Calcul Quantity articles
    const getQty = items.map(e => e.quantity)
    let sum = getQty.reduce((a, b) => {
@@ -16,9 +22,9 @@ const PaymentForm = () => {
 
    const [subTotal, setSubTotal] = useState(0)
    const [total, setTotal] = useState(0)
+   const [shipping, setShipping] = useState(0)
 
 
-   const [shipping, setShipping] = useState(5.50)
 
    const [forMom, setForMom ] = useState(true)
    useEffect(() => {
@@ -26,29 +32,28 @@ const PaymentForm = () => {
          window.scrollTo({ top: 0 });
          setForMom(false)
       }
+
       let totals = items.map(item => {
          return item.quantity * item.details.priceProduct
       })
       setSubTotal(totals.reduce((item1, item2) => item1 + item2, 0))
       setTotal(subTotal + shipping)
-      if (total >= 30) {
-         setShipping(0.00)
-      } else { setShipping(4.95)}
-   }, [items, subTotal, total, setShipping, shipping]);
-   // const totalCmd = { total: total, shipping: shipping }
-   // console.log('totalCmd', totalCmd)
+
+      if (subTotal < 30) {
+         setShipping(4.95)
+      } else {
+         setShipping(0)
+      }
+      // setDatas(items)
+   }, [items, subTotal, total, setShipping, shipping, forMom]);
    
-   // window.scrollTo({ top: 0 });
-   // if (items.length <= 0) { return <Redirect to='/' /> }
+
+
 
    const closeModal = () => {
       return null
    }
-   // // Transfer list
-   // const [leftdiv, setLeft] = useState([]);
-   // const [rightdiv, setRight] = useState([]);
-   // const handleLeft = (data) => {setLeft({leftdiv: data})}
-   // const handleRight = (data) => {setRight({ rightdiv: data })}
+
    const [showDiv, setShowDiv] = useState(false)
    const handlePay = () => {
       setShowDiv(true)
@@ -75,7 +80,7 @@ const PaymentForm = () => {
                   {!showDiv ? (
                   <div className={`col-md-8 order-summary p-3`}>
                      {items.map((item, i) => <RowItem key={i} item={item} onCloseModal={closeModal}/>)}
-
+                        {/* <DragNDrop data={data} /> */}
                      {/* <TransferList onHandleLeft={handleLeft} onHandleRight={handleRight} /> */}
 
                      <hr />
@@ -84,7 +89,7 @@ const PaymentForm = () => {
                      <p className="text-right">{subTotal.toFixed(2)} €</p>
 
                      <p className="text-left">Frais livraison</p>
-                     <p className="text-right">{total < 30 ? shipping.toFixed(2) + ' €' : 'Offert'} <br /> <span style={{fontSize:".7em"}}>Livraison OFFERT à partir de 30€</span></p>
+                     <p className="text-right">{subTotal < 30 ? '€' + shipping : 'Offert'} <br /> <span style={{ fontSize: ".7em" }}>Livraison OFFERT à partir de 30€</span></p>
                      <hr />
                      <h3 className="text-left">Total</h3>
                      <h4 className="text-right">{subTotal === 0.00 ? "0.00 " : total.toFixed(2)} €</h4>

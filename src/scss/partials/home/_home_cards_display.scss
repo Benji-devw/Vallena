@@ -1,6 +1,5 @@
 // HOME_VIEW_TOP
 .home-best-cards {
-
   .MuiAppBar-root {
     max-width: 400px;
     box-shadow: none;
@@ -45,6 +44,7 @@
     .home-card-content {
       overflow: hidden;
       height: 20rem;
+      z-index: 100;
 
 
       img {
@@ -64,6 +64,7 @@
 
       .hover-tab {
         position: relative;
+
         top: -25rem;
         z-index: 50;
         height: 25rem;
@@ -93,7 +94,7 @@
 
             &:hover {
               color: #ffffff;
-              background-color: #191919;
+              background-color: rgba(0, 0, 0, 0.8);
             }
           }
 
@@ -102,13 +103,17 @@
             bottom: 10rem;
 
             svg {
-              color: $pink-color;
+              color: #f50057 !important;
               font-size: 1.8em;
+              cursor: pointer;
+
+              &:hover {
+                color: #f50056c1 !important;
+              }
             }
+
           }
         }
-
-
       }
 
     }
@@ -118,7 +123,6 @@
     }
 
   }
-
 
 
 }

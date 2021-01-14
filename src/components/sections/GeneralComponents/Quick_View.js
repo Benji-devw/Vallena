@@ -1,125 +1,206 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Slider from "react-slick";
-import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import apiCallProdcuts from '../../../apiCall/Call_Api'
+// import apiCallProdcuts from '../../../apiCall/Call_Api'
+import Alert from '@material-ui/lab/Alert';
+import { MdAddShoppingCart } from 'react-icons/md';
+import CenterMode from '../Shop/components/carousel'
+import Button from '@material-ui/core/Button';
+import Modal from 'react-bootstrap/Modal'
+import CloseSharpIcon from '@material-ui/icons/CloseSharp';
+// import { RiShoppingCart2Line } from 'react-icons/ri'
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import Tooltip from '@material-ui/core/Tooltip';
+import { useSelector, useDispatch } from 'react-redux';
+import { addtoCart } from '../../../lib/actions'
+import Comments from '../Shop/components/comments'
 
 
+const QuickView = (props) => {
 
+  const [data, setData] = useState([])
+  const [imgs, setImgs] = useState([])
+  const [show, setShow] = useState(false);
 
+  // const [open, setOpen] = useState(false);
+  // const handleClick = () => {
+  //   setOpen(false)
+  // };
+  // const handleClose = (event, reason) => {
+  //   if (reason === 'clickaway') {
+  //     return;
+  //   }
+  //   setOpen(false);
+  // };
 
-function SampleNextArrow(props) {
-  const { style, onClick } = props;
-  return (
-    <IoIosArrowForward
-      className={''}
-      style={{
-        ...style,
-        position: "absolute",
-        top: "30%",
-        right: "-2rem",
-        fontSize: "2.5em",
-        cursor: "pointer"
-      }}
-      onClick={onClick}
-    />
-  );
-}
-function SamplePrevArrow(props) {
-  const { style, onClick } = props;
-  return (
-    <IoIosArrowBack
-      className={''}
-      style={{
-        ...style,
-        position: "absolute",
-        top: "30%",
-        left: "-2rem",
-        zIndex: 100,
-        fontSize: "2.5em",
-        cursor: "pointer"
-      }}
-      onClick={onClick}
-    />
-  );
-}
+  // Redux
+  const itemsCart = useSelector(state => state.items)
 
+  const dispatch = useDispatch()                        // Call dispatch to send redux
+  const [qty, setQty] = useState(1)
+  const add = (item, quantity) => {
+    dispatch(addtoCart(item, quantity))
+  }
+  // Filtre add() si déja dans le panier
+  const searchIdProduct = itemsCart.map(e => e.details._id)
+  const findId = searchIdProduct.includes(data._id)
 
-
-
-const SlickComponent = (props) => {
-
-  const [productsDb, setProductsDb] = useState([])
-  const [ind, setInd] = useState('')
 
   useEffect(() => {
-    apiCallProdcuts.getProductsPost({ filters: {categoryProduct: props.cat} }).then(product => {
-      setProductsDb(product.data.products)
-    })
-  }, [props.cat]);
+    setData(props.data)
+    setImgs(props.data.imgCollection)
+  }, [props.cat, props.data]);
 
-  var settings = {
-    // dots: true,
-    infinite: false,
-    // speed: 500,
-    // autoplay: true,
-    // autoplaySpeed: 3000,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    initialSlide: 0,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-    responsive: [
-      {
-        breakpoint: 991,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 0
-        }
-      },
-      {
-        breakpoint: 468,
-        settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        initialSlide: 1
-      }
-    }]
-  };
+
+  const formatDescription = (str) => {
+    if (str) {
+      return (
+        str.split("<br />").map(function (test, id) {
+          return (
+            <p key={id} className="description p-0 m-0">
+              {test}
+              <br />
+            </p>
+          )
+        })
+      )
+    }
+  }
 
   return (
-
-    <div className="col slick-component">
-      <div className="container slick-content">
-        <Slider {...settings}>
-
-          {productsDb.map((item, index) => 
-            <div key={index}>
-              {/* {console.log('item.categoryProduct', props.cat)} */}
-              <div className="m-2">
-                <Link to={`/product/${item._id}`}
-                  onMouseEnter={() => setInd(index)} onMouseLeave={() => setInd(null)}
-                >
-                  <img src={item.imgCollection[0]} alt={item._id} className="img-fluid" />
-
-                  <div className={`after-img ${ind === index ? "fadeIn" : 'fadeOut'}`}>
-                    <span>Découvrir</span>
-                  </div>
-                </Link>
-              </div>
-              <div className={`text-center slick-dets`}>
-                <h2>{item.titleProduct}</h2>
-                <h5>€ {item.priceProduct}  {item.promotionProduct && <span className="promo-price">€ {item.oldPriceProduct} </span>}  </h5>
-              </div>
-            </div>
-          )}
-
-        </Slider>
+    <>
+      <div className="preview" onClick={() => setShow(true)}>
+        <VisibilityIcon/> apeçu
       </div>
-    </div>
+
+    <Modal
+        show={show}
+        onHide={() => setShow(false)}
+        className="quick-view"
+        centered
+      >
+        <div className="col-12 text-right close-modal">
+          <Button onClick={() => setShow(false)}
+          ><CloseSharpIcon />
+          </Button>
+        </div>
+
+        <Modal.Body className="quick-view-body">
+          <div className="row no-gutters">
+
+            <div className="col-lg-6 align-self-center quick-view-body-left">
+              {<CenterMode images={imgs} />}
+            </div>     
 
 
+            <div className="col-lg-6 quick-view-body-right">
+
+              <div className="col-12 title-product p-0 m-0">
+                <h2 className="title">{data.titleProduct}</h2>
+              </div>
+
+                <Comments product={data}/>
+
+              <div className="row">
+                <div className="col-sm-4">
+                  <h3>{data.priceProduct} € {data.promotionProduct && <span className="promo-price"> {data.oldPriceProduct} €</span>}</h3>
+                </div>
+                <div className="col-sm-4 mb-3">
+                  {data.promotionProduct && <div className="promotion">Promo</div>}
+                  {data.novelty && <div className="novelty">New</div>}
+                </div>
+              </div>
+                {formatDescription(data.descriptionProduct)} 
+                <p>
+                  <b>Taile :</b> {data.sizeProduct} <br />
+                  <b>Matière :</b> {data.matter} <br />
+                  <b>Tags :</b> {data.tags}
+                </p>
+
+              {data.quantityProduct > 0 ?
+                <div className="add-cart-content">
+                  {!findId ?
+                    <div className="">
+                        
+                      <div className="row btn-content mt-2 mb-2">
+                        <div className="col-2 mt-2 align-items-middle">
+                          <span className="qty-text">QTY:</span>
+                        </div>
+                        <div className="col-md-6">
+                          <div className="qty mt-2">
+                            <div className="btn-qty-cart text-center"
+                                onClick={() => setQty(qty > 1 ? qty - 1 : 1)}
+                            >-</div>
+
+                            <span className="btn btn-light">{qty}</span>
+
+                            <div className="btn-qty-cart text-center"
+                              onClick={() => setQty(data.quantityProduct > qty ? qty + 1 : qty)}
+                            >+</div>
+                          </div>
+                          
+                        </div>
+                        <div className="col-md-4 text-left">
+                          <Alert severity="info">
+                            <span>{data.quantityProduct} en stock</span>
+                          </Alert>
+                        </div>
+
+                      </div>
+
+                      <div className="row">
+                        <div className="col-md-5 p-2 m-2 add-to-cart text-center"
+                            onClick={() => {
+                                add(data, qty)
+                                // handleClick()
+                              }}
+                              >
+                            <MdAddShoppingCart size="1em" className="mr-2"/>
+                            Ajouter au panier
+                          </div>
+                          <div className="col-md-5 p-2 m-2 page-view text-center">
+                            <Link to={`/product/${data._id}`} style={{height:"40px"}}>
+                              Voir la page ...
+                            </Link>
+                          </div>
+                        </div>
+
+                    </div>
+                    :
+                      <div className="row">
+                      <div className="col-md-5 p-2 m-2 text-center">
+                        <Alert severity="success" className="fadeIn" style={{ width: "190px", height: "45px", marginTop:"-10px" }}>Dans votre panier !</Alert>
+                      </div>
+                        <div className="col-md-5 m-2 p-2 page-view text-center" style={{height:"40px"}}>
+                          <Link to={`/product/${data._id}`}>
+                            Voir la page ...
+                          </Link>
+                        </div>
+                      </div>
+                  }
+                </div> : 
+                  <div className="row">
+                    <div className="col-md-5 p-2 m-2 text-center">
+                        <Alert severity="error" className="fadeIn" style={{width: "190px", height: "45px", marginTop:"-10px"  }}>Rupture !</Alert>
+                      </div>
+                      <div className="col-md-5 m-2 p-2 page-view text-center" style={{height:"40px"}}>
+                        <Link to={`/product/${data._id}`}>
+                          Voir la page ...
+                        </Link>
+                      </div>
+                    </div>
+                }
+
+                {/* <h3 className="more">
+                  <Link to={`/product/${data._id}`}>
+                    Voir la page ...
+                  </Link>
+                </h3> */}
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
+
+    </>
   );
 };
-export default SlickComponent
+export default QuickView

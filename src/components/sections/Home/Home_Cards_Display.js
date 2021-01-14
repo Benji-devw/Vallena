@@ -60,7 +60,7 @@ export default function HomeCardsDisplay() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="inherit" className="mx-auto m-5 justify-content-center">
+      <AppBar position="static" color="inherit" className="mx-auto justify-content-center">
         <Tabs
           value={value}
           onChange={handleChange}

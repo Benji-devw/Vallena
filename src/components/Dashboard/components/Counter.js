@@ -29,13 +29,15 @@ export default function Counter() {
   const result = 2402 + sumCounter
 
   useEffect(() => {
-    const sumCounter = async () => {
-      const dataCount = await fetch("https://api.countapi.xyz/get/localhost3000/counterVisit")
-      const count = await dataCount.json()
-      setSumCounter(count.value)
-    }
-    sumCounter()
+      async function sumCounter () {
+        const dataCount = await fetch("https://api.countapi.xyz/get/localhost3000/counterVisit")
+        const count = await dataCount.json()
+        setSumCounter(count.value)
+      }
+      sumCounter()
   }, [])
+
+
   const data = [
     { name: 'jan', visits: 0 },
     { name: 'fev', visits: 0 },

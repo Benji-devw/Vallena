@@ -15,7 +15,7 @@ const PayPalBtn = (props) => {
    const {items} = props
    const [amount, setAmount] = useState()
    const [show, setShow] = useState(false)
-   
+
 
    const handleUpdateProduct = (id, data) => {
       var formData = new FormData();
@@ -74,7 +74,8 @@ const PayPalBtn = (props) => {
                   // Send order in db
                   const client = details.purchase_units
                   const payer = details.payer
-                  const payload = { items, payer, client, amount, statut }
+                  let orderNumber = Math.floor(Math.random() * (9999999999999 - 1111111111111)) + 'VL';
+                  const payload = { orderNumber, items, payer, client, amount, statut }
                   apiCallOrders.insertOrder(payload).then(res => {
                      // console.log("Order enregistré")
                      const reset = () => {
@@ -85,6 +86,7 @@ const PayPalBtn = (props) => {
 
                   localStorage.setItem('purchaseClient', JSON.stringify(details.purchase_units));
                   localStorage.setItem('purchaseClientItems', JSON.stringify(items));
+                  localStorage.setItem('orderNumber', JSON.stringify(orderNumber));
 
                }}
                options={{

@@ -87,7 +87,7 @@ export default function Orders() {
   const update = async (id) => {
     // console.log('id', id)
     // console.log(cmd._id);
-    if(id === cmd._id ) {
+    if (id === cmd._id ) {
       await apiCallOrders.updateOrderById(id, cmd).then(res => {
       })
       window.alert(`Status changé !`)
@@ -97,12 +97,12 @@ export default function Orders() {
   }
 
 
-    const [searchBar, setSearchBar] = useState("")
-    // console.log('searchBar', searchBar)
-    const handleVal = (e) => {
-      setSearchBar(e)
-    }
-        
+  const [searchBar, setSearchBar] = useState("")
+  // console.log('searchBar', searchBar)
+  const handleVal = (e) => {
+    setSearchBar(e)
+  }
+
 
   useEffect(() => {
     apiCallOrders.getAllOrders().then(order => {
@@ -115,6 +115,7 @@ export default function Orders() {
             fullList.filter(order =>
               // console.log('name', name.client[0].shipping.name.full_name.toLowerCase())
               order.client[0].shipping.name.full_name.toLowerCase().indexOf(term) > -1
+              // order.orderNumber.toLowerCase().indexOf(term) > -1
             ).reverse()
         })
         // setOrder(order.data.data.reverse())
@@ -176,10 +177,15 @@ export default function Orders() {
           >
             
             <div className="row no-gutters text-left" style={{width:"100%"}}>
+              <div className="col-12">
+                <p>N° Commande : <b>{commande.orderNumber}</b></p>
+              </div>
+
               {commande.client.map((client, id) => (
                 <React.Fragment key={id}>
                   <div key={id} className="col-md-8">
-                    <p  className="mb-0">
+                    
+                    <p className="mb-0">
                       <b><PersonOutlineOutlinedIcon /> </b> {client.shipping.name.full_name}
                       <br />
                       <b><LocalShippingIcon /> </b>

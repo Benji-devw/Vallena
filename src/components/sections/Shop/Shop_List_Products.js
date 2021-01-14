@@ -52,42 +52,38 @@ class ListProducts extends Component {
          <>
             <div ref={this.myRef} className="row top-filters">
 
-               <div className="col-md-6 toogle-display p-0">
-                  <ul>
-                     Afficher :
-                     <li onClick={() => { this.handleDisplay('grid-display col-lg-4 col-md-6 col-sm-6') }} className={`btn btn-sm color-icon ${this.state.display === 'grid-display col-lg-4 col-md-6 col-sm-6' ? 'secondary' : 'out'}`}><AppsIcon /></li>
-                     <li onClick={() => this.handleDisplay('list-display')} className={`btn btn-sm color-icon arttrack ${this.state.display === 'list-display' ? 'secondary' : 'out'}`}><ArtTrackIcon /></li>
-                     <span className="ml-3">Résultat: <b>{this.props.products.length}</b> sur <b>{this.props.counting}</b></span>
-                  </ul>
+               <div className="col-md-6 result-counter-card">
+                  <span>Résultat: <b>{this.props.products.length}</b> sur <b>{this.props.counting}</b></span>
                </div>
-
-               {/* <div className="col-md-4 p-0 result text-center">
-                  
-               </div> */}
 
                <div className="col-md-6 text-right filter-sort">
 
                   Trier par :
-                     <select style={{ width: "10rem", height: "2rem", marginLeft: ".5rem" }}
+                     <select style={{ width: "10rem", height: "2rem", marginLeft: ".5rem"}}
                      className="custom-select"
                      // value={this.props.sortByPromo === "Promotion" ? 'Promotions' : 'Nouveautés'}
                      onChange={this.props.handleSort}
-
                   >
                      <option value="" style={{ fontSize: ".8em", color: "gray" }}>{this.selectValue()}</option>
-
                      <option value="none" >---</option>
                      <option value="byDesc" >Le plus cher</option>
                      <option value="byAsc">Le moins cher</option>
                      <option value="byPromo" >Promotions</option>
                      <option value="byNovelty" >Nouveautés</option>
                   </select>
+                  <ul style={{display: "inline-block"}}>
+                     {/* Afficher : */}
+                     <li onClick={() => { this.handleDisplay('grid-display col-lg-4 col-md-6 col-sm-6') }} className={`btn btn-sm color-icon ${this.state.display === 'grid-display col-lg-4 col-md-6 col-sm-6' ? 'secondary' : 'out'}`}><AppsIcon /></li>
+                     <li onClick={() => this.handleDisplay('list-display')} className={`btn btn-sm color-icon arttrack ${this.state.display === 'list-display' ? 'secondary' : 'out'}`}><ArtTrackIcon style={{fontSize:"2.7em"}} /></li>
+
+                  </ul>
                </div>
+
                <div className="col-12 sep-filters mx-auto">
                   <h3 className="">
                      {/* <div className="filter-result">Produit {this.state.products.length}</div> */}
-                                 Filtres actifs :
-                           </h3>
+                     Filtres actifs :
+                  </h3>
                   <div className="mx-auto"></div>
                </div>
             </div>

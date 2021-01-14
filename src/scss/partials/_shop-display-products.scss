@@ -5,6 +5,10 @@
   min-height: 60rem;
   background: white;
 
+  .MuiTypography-root {
+    color: rgba(0, 0, 0, 0.6);
+
+  }
 
   .MuiFormControlLabel-label {
     font-family: "quickSandRegular", sans-serif;
@@ -16,7 +20,7 @@
 
     .MuiAccordionSummary-root {
       font-family: "quickSandRegular", sans-serif;
-      border-top: 1px solid rgba(0, 0, 0, 0.3);
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .MuiAccordion-root {
@@ -47,11 +51,6 @@
   }
 
   .filter-category {
-    // -webkit-user-select: none;
-    // -khtml-user-select: none;
-    // -moz-user-select: none;
-    // -o-user-select: none;
-    // user-select: none;
     padding: 0;
     width: 100%;
 

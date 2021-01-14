@@ -7,12 +7,12 @@ import Tab from '@material-ui/core/Tab';
 import DetailsIcon from '@material-ui/icons/Details';
 import DescriptionIcon from '@material-ui/icons/Description';
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
-import HelpIcon from '@material-ui/icons/Help';
+// import HelpIcon from '@material-ui/icons/Help';
 import Box from '@material-ui/core/Box';
 
 import MotionFramer from './motionScall/Motion_framer'
 import ScrollAnimation from 'react-animate-on-scroll'
-
+import CustomerComments from './tabPanel/Customer_Comments'
 
 
 function TabPanel(props) {
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
    },
 }));
 
-const ScrollableTabsButtonForce = props => {
+const TabsProductView = props => {
    const classes = useStyles();
    const [value, setValue] = React.useState(0);
    const data = props.data
@@ -67,7 +67,7 @@ const ScrollableTabsButtonForce = props => {
    };
 
    return (
-      <div className={classes.root}>
+      <div className={`${classes.root}`}>
          <AppBar position="static" color="default">
             <Tabs
                value={value}
@@ -80,8 +80,8 @@ const ScrollableTabsButtonForce = props => {
             >
                <Tab label="Details" icon={<DetailsIcon />} {...a11yProps(0)} />
                <Tab label="FICHE TECHNIQUE" icon={<DescriptionIcon />} {...a11yProps(1)} />
-               <Tab label="Avis" icon={<ChatOutlinedIcon />} {...a11yProps(2)} />
-               <Tab label="Item Four" icon={<HelpIcon />} {...a11yProps(3)} />
+               <Tab label="Avis clients" icon={<ChatOutlinedIcon />} {...a11yProps(2)} />
+               {/* <Tab label="Item Four" icon={<HelpIcon />} {...a11yProps(3)} /> */}
             </Tabs>
          </AppBar>
 
@@ -171,13 +171,13 @@ const ScrollableTabsButtonForce = props => {
             </table>
          </TabPanel>
          <TabPanel value={value} index={2}>
-               Item Three
+               <CustomerComments data={data}/>
          </TabPanel>
-         <TabPanel value={value} index={3}>
+         {/* <TabPanel value={value} index={3}>
             Item Four
-         </TabPanel>
+         </TabPanel> */}
 
       </div>
    );
 }
-export default ScrollableTabsButtonForce
+export default TabsProductView

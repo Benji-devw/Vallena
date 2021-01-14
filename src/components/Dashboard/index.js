@@ -3,6 +3,7 @@ import Dashboard from './views/Dashboard'
 import ListItemsView from './views/ListItems/ListItemsView'
 import Orders from './views/Orders/Orders'
 import Users from './views/Users/Users'
+import CommentsAdmin from './views/Comments/CommentsAdmin'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
@@ -118,7 +119,10 @@ const DisplayComponents = () => {
       return <ListItemsView />
   
     case '/dashboard/orders':
-      return <Orders />
+      return <Orders />    
+      
+    case '/dashboard/comments':
+      return <CommentsAdmin />
  
     case '/dashboard/users':
       return <Users />
@@ -168,7 +172,7 @@ const Admin = props => {
           </IconButton>
         </div>
         <Divider />
-        <List><MenuItems/></List>
+        <List className="dash-menu-items"><MenuItems/></List>
         <Divider />
         {/* <List>{secondaryListItems}</List> */}
       </Drawer>

@@ -8,6 +8,10 @@ const apiCallOrders = axios.create({
     // baseURL: '/api/orders',
     baseURL: 'http://localhost:8802/api',
 })
+const apiCallComments = axios.create({
+    // baseURL: '/api/comments',
+    baseURL: 'http://localhost:8800/api/comment',
+})
 
 
 /***** Products */
@@ -22,10 +26,17 @@ const getProductsPost = payload => apiCallProdcuts.post(`/getproductspost`, payl
 /***** Orders */
 /***** */
 const insertOrder = payload => apiCallOrders.post(`/order`, payload)
+const getOrderByOrderNumber = payload => apiCallOrders.post(`/getorderbyordernumber`, payload)
 const getAllOrders = payload => apiCallOrders.get(`/order`, payload)
 const deleteOrderById = id => apiCallOrders.delete(`/order/${id}`)
 const updateOrderById = (id, payload) => apiCallOrders.put(`/order/${id}`, payload)
 
+/***** Comments */
+/***** */
+const getComments = payload => apiCallComments.get(`/comment`, payload)
+const insertComment = payload => apiCallComments.post(`/comment`, payload)
+const updateComment = (id, payload) => apiCallComments.put(`/comment/${id}`, payload)
+const deleteComment = id => apiCallComments.delete(`/comment/${id}`)
 
 const apis = {
     insertProduct,
@@ -36,9 +47,15 @@ const apis = {
     getProductsPost,
 
     insertOrder,
+    getOrderByOrderNumber,
     getAllOrders,
     deleteOrderById,
     updateOrderById,
+
+    getComments,
+    insertComment,
+    updateComment,
+    deleteComment,
 }
 
 export default apis

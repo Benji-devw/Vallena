@@ -100,7 +100,7 @@ const SlideItems = props => {
 
               </div>
               <div className="col-md-6 text-center">
-                    <img src={visage} alt="none"className="img-fluid text-right" />
+                    <img src={visage} alt="123RF"className="text-right" />
               </div>
 
           </div>

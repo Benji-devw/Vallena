@@ -84,13 +84,13 @@ export class ProductUpdate extends Component {
     handleUpdateProduct = (e) => {
         e.preventDefault()
 
-        var formData = new FormData();
-        const id = this.state.id
+        let formData = new FormData();
+        // const id = this.state.id
         const { titleProduct, descriptionProduct, priceProduct, categoryProduct, 
             sizeProduct, weightProduct, quantityProduct, stockProduct, promotionProduct, 
             reporterProduct, visible, tags, matter, composition, fabrication, color, 
             oldPriceProduct, yearCollection, entretien, novelty, displaySlideHome } = this.state
-        
+            
             
         const newCollection = this.state.imgCollection
         // console.log('newCollection', newCollection)
@@ -103,8 +103,8 @@ export class ProductUpdate extends Component {
             for (const key of Object.keys(copyCollection)) {
                 formData.append('copyCollection', copyCollection[key])
             }
-
-       
+            
+            
         // formData.append('copyCollection', copyCollection)
         formData.append('titleProduct', titleProduct)
         formData.append('descriptionProduct', descriptionProduct)

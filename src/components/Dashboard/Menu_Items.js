@@ -15,6 +15,7 @@ import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import MessageOutlinedIcon from '@material-ui/icons/MessageOutlined';
 
 
 const logout = () => {
@@ -28,7 +29,7 @@ const logout = () => {
 const MainListItems = props => {
 
   return (
-    <div>
+    <div className="dash-menu-items">
     <Link to="/dashboard">
       <ListItem button>
         <ListItemIcon>
@@ -56,12 +57,21 @@ const MainListItems = props => {
     </ListItem>
     </Link>
 
+    <Link to="/dashboard/comments">
+    <ListItem button>
+      <ListItemIcon>
+        <MessageOutlinedIcon />
+      </ListItemIcon>
+      <ListItemText primary="Commentaires" />
+    </ListItem>
+    </Link>    
+    
     <Link to="/dashboard/users">
     <ListItem button>
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="Customers" />
+      <ListItemText primary="Admin" />
     </ListItem>
     </Link>
 
@@ -69,14 +79,14 @@ const MainListItems = props => {
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
-      <ListItemText primary="Reports" />
+      <ListItemText primary="Logistique" />
     </ListItem>
 
     <ListItem button>
       <ListItemIcon>
         <LayersIcon />
       </ListItemIcon>
-      <ListItemText primary="Integrations" />
+      <ListItemText primary="Interface" />
     </ListItem>    
     <hr />
     <ListItem button onClick={() => logout()}>

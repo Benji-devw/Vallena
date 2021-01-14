@@ -1,17 +1,21 @@
 import React from 'react';
 import ArrowDropDownCircleOutlinedIcon from '@material-ui/icons/ArrowDropDownCircleOutlined';
 
-const ScrollTop = (props) => {
+const ScrollTop = () => {
   const [display, setDisplay] = React.useState(false)
   const scrollTo = () => {window.scrollTo({ top: 0 });}
 
   React.useEffect(() => {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY >= 500) {
-      setDisplay(true)
-      }
-      else {  setDisplay(false)  }
-    });
+    let unmounted = true;
+    if (unmounted) {
+      window.addEventListener('scroll', () => {
+       if (window.scrollY >= 500) {
+       setDisplay(true)
+       }
+       else {  setDisplay(false)  }
+     });
+   }
+  return () => { unmounted = false };
   }, [])
 
   return (

@@ -35,8 +35,7 @@ function SamplePrevArrow(props) {
 
 const CenterMode = props => {
 	// const imgs = props.images.slice(1)		// cut first image
-	const imgs = props.images		// cut first image
-	// console.log('imgs', imgs)
+	const imgs = props.images
 
 		const settings = {
 			customPaging: function (i) {
@@ -50,7 +49,7 @@ const CenterMode = props => {
 			speed: 500,
 			slidesToShow: 1,
 			slidesToScroll: 1,
-			autoplay: true,
+			autoplay: false,
 			autoplaySpeed: 4000,
 			pauseOnHover: true,
 			nextArrow: <SampleNextArrow />,
@@ -58,9 +57,9 @@ const CenterMode = props => {
 		};
 		return (
 			<div>
-				<Slider {...settings}>
+				<Slider {...settings} style={{cursor:"pointer"}}>
 					{imgs.map((url, i) => (
-					<img key={i}
+					<img key={i} 
 						className=""
 						src={url}
 						alt={i}

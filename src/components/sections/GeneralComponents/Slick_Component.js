@@ -51,15 +51,16 @@ function SamplePrevArrow(props) {
 
 
 const SlickComponent = (props) => {
-
+  // console.log(props.currentId);
   const [productsDb, setProductsDb] = useState([])
   const [ind, setInd] = useState('')
 
   useEffect(() => {
     apiCallProdcuts.getProductsPost({ filters: {categoryProduct: props.cat} }).then(product => {
-      setProductsDb(product.data.products)
+      const filterCurrentIdex = product.data.products.filter(filtering => filtering._id !== props.currentId)
+      setProductsDb(filterCurrentIdex)
     })
-  }, [props.cat]);
+  }, [props.cat, props.currentId]);
 
   var settings = {
     // dots: true,
@@ -99,18 +100,16 @@ const SlickComponent = (props) => {
 
           {productsDb.map((item, index) => 
             <div key={index}>
-              {/* {console.log('item.categoryProduct', props.cat)} */}
               <div className="m-2">
+                
+                <img src={item.imgCollection[0]} alt={item._id} className="img-fluid" onMouseEnter={() => setInd(index)} onMouseLeave={() => setInd(null)} />
+                
                 <Link to={`/product/${item._id}`}
                   onMouseEnter={() => setInd(index)} onMouseLeave={() => setInd(null)}
                 >
-                  <img src={item.imgCollection[0]} alt={item._id} className="img-fluid" />
-
                   <div className={`after-img ${ind === index ? "fadeIn" : 'fadeOut'}`}>
                     <span>Découvrir</span>
                   </div>
-                {item.promotionProduct && <div className="promotion">Promo</div>}
-                {item.novelty && <div className="novelty">New</div>}
                 </Link>
               </div>
               <div className={`text-center slick-dets`}>
@@ -118,6 +117,9 @@ const SlickComponent = (props) => {
                 <h3>{item.titleProduct}</h3>
                 <h5>€ {item.priceProduct}  {item.promotionProduct && <span className="promo-price">€ {item.oldPriceProduct} </span>}  </h5>
                 {item.quantityProduct < 1 && <Alert severity="error" className="rupture mx-auto p-1" style={{width:"110px",}}>Rupture</Alert>}
+                
+                {/* {item.promotionProduct && <div className="promotion">Promo</div>}
+                {item.novelty && <div className="novelty">New</div>} */}
               </div>
             </div>
           )}

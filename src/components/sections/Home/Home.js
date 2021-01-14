@@ -32,11 +32,11 @@ const Home = () => {
         <HomePromoNews data={datas} />
       </div>
 
-      <div id="collection" className="collection-home pb-5  pt-5">
+      <div id="collection" className="collection-home pb-5 pt-5">
         <HomeCollection data={datas} />
       </div>     
 
-      <div id="home-best-cards" className="home-best-cards pb-5  pt-5">
+      <div id="home-best-cards" className="home-best-cards pb-5 pt-5">
         <HomeCardsDisplay data={datas} />
       </div>
 

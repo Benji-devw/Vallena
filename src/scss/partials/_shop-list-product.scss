@@ -33,7 +33,7 @@
 
 
 .sep-filters {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
   h3 {
     color: $pink-color;
@@ -48,6 +48,15 @@
 //   }
 // }
 
+
+.result-counter-card span{
+  position: absolute;
+  bottom: 20px;
+  @media screen and (max-width: 768px) {
+    position: relative;
+    top: 4rem;
+  }
+}
 
 
 
@@ -86,7 +95,7 @@
     right: 1.7rem;
     padding: .2rem;
     font-size: .8em;
-    background-color: #f54337;
+    background-color: #f44336;
     pointer-events: none;
   }
 
@@ -97,7 +106,7 @@
     right: 1.7rem;
     padding: .2rem;
     font-size: .8em;
-    background-color: #2979ff;
+    background-color: #2196f3;
     pointer-events: none;
   }
 
@@ -121,38 +130,65 @@
 
   // overflow: hidden;
   .product-item {
-    
+
     .first-image {
-      width: 90.6%;
+      width: 90.7%;
       position: absolute;
       top: 2rem;
       left: .9rem;
-      
+
       @media screen and (max-width: 1200px) {
         width: 89%;
       }
+
       @media screen and (max-width: 991px) {
         width: 92%;
-      }      
+      }
+
       @media screen and (max-width: 768px) {
         display: none;
       }
+
       // @media screen and (max-width: 576px) {
       //   display: none;
       // }
-    }    
+    }
+
     .second-image {
       width: 100%;
       position: relative;
       top: 0rem;
       left: 0rem;
+
       @media screen and (max-width: 576px) {
         width: 90%;
       }
     }
 
+    .rupture {
+      font-size: .8em;
+      width: 110px;
+      height: 30px;
+      margin-left: 1rem;
+      .MuiAlert-icon {
+        margin-top: -.5rem;
+        margin-left: -.3rem;
+      }
+      .MuiAlert-message {
+        margin-top: -.5rem;
+        margin-left: -.3rem;
+      }
+    }
   }
 }
+
+
+
+
+
+
+
+
 
 
 .list-display {
@@ -171,34 +207,57 @@
       width: 94%;
       position: absolute;
       top: 0rem;
-      left: .9rem;
+      left: .6rem;
+
       @media screen and (max-width: 1200px) {
         // width: 94%;
-        left: .7rem;
+        left: .5rem;
       }
+
       @media screen and (max-width: 991px) {
-        // width: 93%;
-      }      
+        left: .45rem;
+      }
+
       @media screen and (max-width: 768px) {
         // width: 94.7%;
         // left: .95em;
         display: none;
       }
-    }    
+    }
+
     .second-image {
       width: 94%;
       position: relative;
       top: 0rem;
       left: 0rem;
+
       @media screen and (max-width: 576px) {
         width: 90%;
       }
     }
-  }
-  .product-details {
-    padding: 1.5rem;
+
   }
 
+  .product-details {
+    padding: 1.5rem;
+
+    @media screen and (max-width: 768px) {
+      padding: .5rem;
+    }
+  }
+
+  .page-view {
+    cursor: pointer;
+    width: 200px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    margin-top: 2rem;
+    max-width: 300px;
+    a { color: black; }
+    &:hover {
+      a { color: white; }
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  }
   .promotion {
     top: .2rem;
     right: 1.2rem;
@@ -226,6 +285,10 @@
     font-size: .8em;
     height: 30px;
     max-width: 130px;
+    text-align: left;
+      @media screen and (max-width: 768px) {
+        margin: auto;
+      }
 
     .MuiAlert-icon {
       margin-top: -2px;

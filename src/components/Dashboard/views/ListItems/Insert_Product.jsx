@@ -40,14 +40,19 @@ export class InsertProduct extends Component {
         this.setState({ isLoading: true })
         window.scrollTo({ top: 0 });
     }
-    
-    handleChangeInputDescriptionProduct = async event => {
-        const descriptionProduct = event.target.validity.valid
-            ? event.target.value
-            : this.state.descriptionProduct
 
-        this.setState({ descriptionProduct })
+    textArea = (text) => {
+        let str = text.replace(/(?:\r\n|\r|\n)/g, '<br />')
+        this.setState({ descriptionProduct: str })
     }
+  
+    // handleChangeInputDescriptionProduct = async event => {
+    //     const descriptionProduct = event.target.validity.valid
+    //         ? event.target.value
+    //         : this.state.descriptionProduct
+
+    //     this.setState({ descriptionProduct })
+    // }
   
     handleChangeImgCollection = event => {
         var preview = document.querySelector('#preview')
@@ -219,7 +224,8 @@ export class InsertProduct extends Component {
                     <Form.Group as={Col} md="8" controlId="validationCustom03">
                         <Form.Control as="textarea" rows="5"
                             placeholder="Description de produit..."
-                            onChange={(e) => this.setState({ descriptionProduct: e.target.value })}
+                            // onChange={(e) => this.setState({ descriptionProduct: e.target.value })}
+                            onChange={(e) => this.textArea( e.target.value )}
                             required
                         />
                         <span className="text-danger">{this.state.alert === "descError" && "champ incorrect"}</span>
@@ -452,17 +458,16 @@ export class InsertProduct extends Component {
                         <Form.Check type="checkbox"
                             label="En Promotion"
                             checked={this.state.promotionProduct}
-                            onChange={(e) => this.setState({ promotionProduct: e.target.checked })} 
+                            onChange={(e) => this.setState({ promotionProduct: e.target.checked, novelty: false  })} 
                         />
                         {this.state.promotionProduct && 
                             <InputText className={`${this.state.promotionProduct ? '' : 'hide-div'}`}
                                 placeholder="Encien prix"
                                 type="number"
-                                onChange={(e) => this.setState({ oldPriceProduct: e.target.value })}
+                                onChange={(e) => this.setState({ oldPriceProduct: e.target.value})}
                                 required
                             />
                         }
-                        
                     </Form.Group>
 
 
@@ -470,7 +475,7 @@ export class InsertProduct extends Component {
                         <Form.Check type="checkbox"
                             label="Nouveauté"
                             checked={this.state.novelty}
-                            onChange={(e) => this.setState({ novelty: e.target.checked })}
+                            onChange={(e) => this.setState({ novelty: e.target.checked, promotionProduct: false })}
                         />
                     </Form.Group>
 

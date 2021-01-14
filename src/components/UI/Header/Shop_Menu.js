@@ -38,7 +38,7 @@ export default function ScrollingMenu() {
       })
       setForMom(false)
     }
-  }, [])
+  }, [forMom])
 
   return (
     <div className="scrolling-menu">

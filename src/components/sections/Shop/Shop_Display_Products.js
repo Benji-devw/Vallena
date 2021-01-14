@@ -104,6 +104,7 @@ const DisplayProducts = () => {
    const handleSort = (event) => {
       switch (event.target.value) {
          case "byDesc":
+
             break;
          case "byAsc":
             break;
@@ -127,11 +128,12 @@ const DisplayProducts = () => {
    const searchBar = (input) => {
       const fullListMap = allProducts.map(prod => prod)
       let fullList = fullListMap.flat()
-      setProducts(fullList.filter(product => {
-         const name = product.titleProduct.toLowerCase();
-         const term = input.toLowerCase()
-         return name.indexOf(term) > -1
-      })
+      let term = input.toLowerCase()
+      setProducts(fullList.filter(product => 
+         product.titleProduct.toLowerCase().indexOf(term) > -1 ||
+         product.categoryProduct.toLowerCase().indexOf(term) > -1 ||
+         product.tags.toLowerCase().indexOf(term) > -1
+      )
       )
    }
 

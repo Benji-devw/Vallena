@@ -67,7 +67,7 @@ class DeleteProduct extends React.Component {
 
 export default function ListItemsView() {
   const classes = useStyles();
-  const [ isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
   const [products, setProducts] = useState([])
   const [productsResultat, setProductsResultat] = useState()
 
@@ -260,9 +260,9 @@ export default function ListItemsView() {
                 data={products}
                 columns={columns}
                 loading={isLoading}
-                defaultPageSize={10}
+                defaultPageSize={5}
                 showPageSizeOptions={true}
-                minRows={0}
+                minRows={3}
               />
             )}
           </>) : (<PuffLoader size={50} color={"#f50057"} />)}

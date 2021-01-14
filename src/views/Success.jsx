@@ -8,15 +8,20 @@ import Button from '@material-ui/core/Button';
 
 
 
-const SuccessOk = props => {
+const SuccessOk = () => {
    const [order, setOrder] = useState([])
    const [items, setItems] = useState([])
+   const [orderNumber, setOrderNumber] = useState([])
 
-
+   
    useEffect(() => {
-         setOrder(JSON.parse(localStorage.getItem('purchaseClient')))
-         setItems(JSON.parse(localStorage.getItem('purchaseClientItems')))
-   }, [props.order])
+      if (JSON.parse(localStorage.getItem('purchaseClient')) === null && order.length <= 0) {
+         return window.location = '/';
+      }
+      setOrder(JSON.parse(localStorage.getItem('purchaseClient')))
+      setItems(JSON.parse(localStorage.getItem('purchaseClientItems')))
+      setOrderNumber(JSON.parse(localStorage.getItem('orderNumber')))
+   }, [order.length])
 
    const print = () => {
       window.print();
@@ -46,13 +51,14 @@ const SuccessOk = props => {
 
             <div className="col-md-12 text-center">
 
-            <h3>Récapitulatif de votre commande :</h3>
+               <h3>Récapitulatif de votre commande N° <b>{orderNumber}</b> </h3>
+               <p>Merci de conserver le n° de commande jusqu'à réception, il vous sera aussi demander si vous souhaitez donner votre avis !</p>
 
                <div className="row text-center success-client">
                    <div className="col-md-4">
                      <CreditCardIcon />
                      {order.map((client, id) =>
-                     <div key={id}>
+                     <div key={id} className="m-2">
                         <p><b>{client.amount.value} {client.amount.currency_code}</b></p>
                      </div>
                      )}
@@ -60,7 +66,7 @@ const SuccessOk = props => {
                   <div className="col-md-4">
                      <AccountCircleIcon />
                      {order.map((client, id) =>
-                     <div key={id}>
+                     <div key={id}  className="m-2">
                         <p><b>{client.shipping.name.full_name}</b></p>
                      </div>
                      )}
@@ -68,7 +74,7 @@ const SuccessOk = props => {
                   <div className="col-md-4">
                      <GiStorkDelivery />
                      {order.map((add, id) =>
-                        <div key={id}>
+                        <div key={id} className="m-2">
                            <p><b>{add.shipping.address.address_line_1}</b> <br />
                            <b>{add.shipping.address.address_line_2}</b><br />
                            <b>{add.shipping.address.admin_area_2}</b><br />
@@ -83,7 +89,7 @@ const SuccessOk = props => {
                <table className="table m-4 table-striped">
                   <thead>
                      <tr>
-                        <th scope="col">ID</th>
+                        {/* <th scope="col">ID</th> */}
                         <th scope="col">Article</th>
                         <th scope="col">Taille</th>
                         <th scope="col">Prix</th>
@@ -95,7 +101,8 @@ const SuccessOk = props => {
                      
                         {items.map((item, id) => 
                            <tr key={id}>
-                           <th scope="row">{item.details._id}</th>
+                           {/* <th scope="row">{item.details._id}</th> */}
+                           <th scope="row"></th>
                               <td>{item.details.titleProduct}</td>
                               <td>{item.details.sizeProduct}</td>
                               <td>{item.details.priceProduct}€</td>
@@ -116,7 +123,7 @@ const SuccessOk = props => {
                <h4>
                   Merci pour votre achat <br /> et <br />votre confiance !!! <br /> 
                </h4>
-               <h5> À bientôt...</h5>
+               <h5> À bientôt sur Vallena.fr</h5>
             </div>
          </div>
 

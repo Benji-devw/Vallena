@@ -7,7 +7,9 @@
 
     }
   }
-
+.test {
+  margin-top: -5rem;
+}
 
   .slick-slide {
 
@@ -41,7 +43,7 @@
   .promotion {
     position: relative;
     color: #ffffff;
-    top: -15.6rem;
+    top: -18.6rem;
     left: 11.5rem;
     width: 50px;
     padding: .2rem;
@@ -49,11 +51,11 @@
     background-color: #f54337;
     pointer-events: none;
     @media screen and (max-width: 1199px) {
-      top: -13.2rem;
+      top: -16.2rem;
       left: 8.8rem;
     }    
     @media screen and (max-width: 991px) {
-      top: -18rem;
+      top: -21rem;
       left: 14.2rem;
     }    
     @media screen and (max-width: 767px) {
@@ -64,7 +66,7 @@
   .novelty {
     position: relative;
     color: #ffffff;
-    top: -15.7rem;
+    top: -18.7rem;
     left: 12.5rem;
     width: 35px;
     padding: .2rem;
@@ -72,11 +74,11 @@
     background-color: #2979ff;
     pointer-events: none;
     @media screen and (max-width: 1199px) {
-      top: -13.2rem;
+      top: -16.2rem;
       left: 9.7rem;
     }    
     @media screen and (max-width: 991px) {
-      top: -18rem;
+      top: -21rem;
       left: 15rem;
     }    
     @media screen and (max-width: 767px) {

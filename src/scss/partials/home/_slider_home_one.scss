@@ -25,7 +25,7 @@
   // }
 
 
-  .slick-current{
+  .slick-current {
     position: relative;
     z-index: 50;
 
@@ -83,9 +83,14 @@
 
 
 
+      .content-one :not(input):not(textarea):not([contenteditable="true"]) {
+        -moz-user-select: none !important;
+        -webkit-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
+      }
 
 
-      
       .content-one {
         // background-image: url('./img/home/accessoires.jpg');
         // background-size: cover;
@@ -104,10 +109,12 @@
         // width: 100%;
         @media screen and (max-width: 1550px) {
           background-position: 0 -25rem;
-        }        
+        }
+
         @media screen and (max-width: 1300px) {
           background-position: 0 -15rem;
         }
+
         @media screen and (max-width: 1068px) {
           background-position: 0 0rem;
         }
@@ -134,11 +141,17 @@
 
 
 
-
+      .content-two :not(input):not(textarea):not([contenteditable="true"]) {
+        -moz-user-select: none !important;
+        -webkit-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
+      }
 
 
       .content-two {
         height: 30rem;
+
         img {
           max-height: 350px;
 
@@ -146,6 +159,7 @@
             padding-bottom: 5rem;
           }
         }
+
         p {
           @media screen and (max-width: 768px) {
             display: none;

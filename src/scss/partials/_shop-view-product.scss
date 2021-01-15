@@ -16,36 +16,30 @@
     }
   }
 
-
+  /***** SLICK *****/
   .slick-n {
-    top: 15rem !important;
+    top: 20rem !important;
     right: 1rem;
-
-    @media screen and (max-width: 650px) {
-      top: 10rem !important;
-      right: 0rem;
-    }
+      @media screen and (max-width: 500px) {
+        top: 15rem !important;
+        right: 0rem;
+      }
   }
-
-  .slick-p {
-    top: 15rem !important;
-    left: 1rem;
-
-    @media screen and (max-width: 650px) {
-      top: 10rem !important;
-      left: 0rem;
+    .slick-p {
+      top: 20rem !important;
+      left: 1rem;
+      @media screen and (max-width: 500px) {
+        top: 15rem !important;
+        right: 0rem;
+      }
     }
-  }
-
   .slick-dots {
     position: relative;
     top: 0rem;
-
     li {
       height: 100%;
       width: 100px;
     }
-
     img {
       height: 100px;
       padding: .5rem;
@@ -98,12 +92,20 @@
     }
 
 
+
+
+
     .shop-view-left {
       .slick-list {
         margin: auto;
         max-width: 37rem;
       }
     }
+
+
+
+
+
 
     .shop-view-right {
       .shop-view-right-infos {
@@ -127,18 +129,23 @@
           }
         }
 
-        h3 {
-          text-align: start;
-          font-size: 1.5em;
-          margin-top: .5rem;
-
-          .avis {
-            font-size: .6em;
-          }
-          .promo-price {
-            color: #19191956;
-            text-decoration: line-through;
-            font-size: .8em;
+        .price {
+            @media screen and (max-width: 576px) {
+              justify-content: center;
+            }
+          h3 {
+            text-align: start;
+            font-size: 1.5em;
+            margin-top: .5rem;
+            
+            .avis {
+              font-size: .6em;
+            }
+            .promo-price {
+              color: #19191956;
+              text-decoration: line-through;
+              font-size: .8em;
+            }
           }
         }
 
@@ -161,88 +168,97 @@
           }
         }
 
-  .add-cart-content {
-      -moz-user-select: none !important;
-      -webkit-user-select: none !important;
-      -ms-user-select: none !important;
-      user-select: none !important;
-    .MuiAlert-standardInfo{
-      width: 150px;
-      .MuiAlert-icon {
-        margin-top: -.5rem;
-      }
-    }
-    .MuiAlert-standardInfo .MuiSvgIcon-fontSizeInherit {
-      margin-top: .3rem;
-    }
-
-    .MuiAlert-root {
-      margin: .5rem 0 .5rem 0;
-      height: 40px;
-      span {
-        position: relative;
-        top: -5px;
-        font-size: .9em;
-      }
-    }
-
-    .btn-content {
-      -moz-user-select: none !important;
-      -webkit-user-select: none !important;
-      -ms-user-select: none !important;
-      user-select: none !important;
-
-      .qty-text {
-        position: relative;
-        top: 10px;
-        font-size: .9em;
-      }
-      .qty {
-        width: 150px;
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        -moz-user-select: none !important;
-        -webkit-user-select: none !important;
-        -ms-user-select: none !important;
-        user-select: none !important;
-        .btn-qty-cart {
-          width: 50px;
+        .add-cart-content {
+          -moz-user-select: none !important;
+          -webkit-user-select: none !important;
+          -ms-user-select: none !important;
+          user-select: none !important;
+        .MuiAlert-standardInfo{
+          width: 150px;
+          .MuiAlert-icon {
+            margin-top: -.5rem;
+          }
         }
-      }
-      .qty :not(input):not(textarea):not([contenteditable="true"]) {
-        -moz-user-select: none !important;
-        -webkit-user-select: none !important;
-        -ms-user-select: none !important;
-        user-select: none !important;
-      }
-      .btn-qty-cart {
-        display: inline;
-        cursor: pointer;
-        font-size: 20px;
-        color: rgb(168, 168, 168);
-        padding: 10px;
-        margin-left: 10px;
-        margin-right: 10px;
-  
-        &:hover {
-          color: black;
-          transition-duration: .5s;
+        .MuiAlert-standardInfo .MuiSvgIcon-fontSizeInherit {
+          margin-top: .3rem;
         }
-      }
 
-    }
+        .MuiAlert-root {
+          margin: .5rem 0 .5rem 0;
+          height: 40px;
+          span {
+            position: relative;
+            top: -5px;
+            font-size: .9em;
+          }
+        }
 
-    .add-to-cart {
-      color: black;
-      cursor: pointer;
-      width: 200px;
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      &:hover {
-        color: white;
-        background-color: rgba(0, 0, 0, 0.8);
-      }
-    }
+          .btn-content {
+            -moz-user-select: none !important;
+            -webkit-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
 
-  }
+              @media screen and (max-width: 576px) {
+                justify-content: center;
+              }
+            .qty-text {
+              position: relative;
+              top: 10px;
+              font-size: .9em;
+            }
+            .qty {
+              width: 150px;
+              border: 1px solid rgba(0, 0, 0, 0.2);
+              -moz-user-select: none !important;
+              -webkit-user-select: none !important;
+              -ms-user-select: none !important;
+              user-select: none !important;
+              .btn-qty-cart {
+                width: 50px;
+              }
+                @media screen and (max-width: 576px) {
+                  margin: auto;
+                }
+            }
+            .qty :not(input):not(textarea):not([contenteditable="true"]) {
+              -moz-user-select: none !important;
+              -webkit-user-select: none !important;
+              -ms-user-select: none !important;
+              user-select: none !important;
+            }
+            .btn-qty-cart {
+              display: inline;
+              cursor: pointer;
+              font-size: 20px;
+              color: rgb(168, 168, 168);
+              padding: 10px;
+              margin-left: 10px;
+              margin-right: 10px;
+        
+              &:hover {
+                color: black;
+                transition-duration: .5s;
+              }
+            }
+          }
+
+          .add-to {
+              @media screen and (max-width: 576px) {
+                justify-content: center;
+              }
+            .add-to-cart {
+              color: black;
+              cursor: pointer;
+              width: 200px;
+              border: 1px solid rgba(0, 0, 0, 0.2);
+              &:hover {
+                color: white;
+                background-color: rgba(0, 0, 0, 0.8);
+              }
+            }
+          }
+        }
 
         .promotion {
           color: #ffffff;
@@ -268,6 +284,8 @@
       }
     }
   }
+    
+  
 
 
 

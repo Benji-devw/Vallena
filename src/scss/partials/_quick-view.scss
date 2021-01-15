@@ -18,9 +18,9 @@
   .modal-content {
     border-radius: 0px;
     padding: 1.5rem;
-
-    @media screen and (max-width: 768) {
-      padding: 0rem;
+    
+    @media screen and (max-width: 768px) {
+      padding: 1.5rem .2rem 1.5rem .2rem;
     }
   }
 
@@ -38,47 +38,42 @@
 
 
 
-  // .shop-view-left {
-  //   .slick-list {
-  //     margin: auto;
-  //     // max-width: 37rem;
-  //   }
-  // }
 
+  /***** SLICK *****/
   .slick-n {
-    top: 15rem !important;
+    top: 20rem !important;
     right: 1rem;
-
-    @media screen and (max-width: 650px) {
-      top: 10rem !important;
-      right: 0rem;
-    }
+      @media screen and (max-width: 500px) {
+        top: 12rem !important;
+        right: 0rem;
+      }
   }
-
-  .slick-p {
-    top: 15rem !important;
-    left: 1rem;
-
-    @media screen and (max-width: 650px) {
-      top: 10rem !important;
-      left: 0rem;
+    .slick-p {
+      top: 20rem !important;
+      left: 1rem;
+      @media screen and (max-width: 500px) {
+        top: 12rem !important;
+        right: 0rem;
+      }
     }
-  }
-
   .slick-dots {
     position: relative;
     top: 0rem;
-
     li {
       height: 100%;
       width: 100px;
     }
-
     img {
       height: 100px;
       padding: .5rem;
     }
   }
+
+
+
+
+
+
 
   .quick-view-body {
     padding: 0;
@@ -95,7 +90,7 @@
       padding: 1.5rem;
 
       @media screen and (max-width: 768px) {
-        padding: 0rem;
+        padding: 1.5rem;
       }
 
       .title-product {
@@ -172,7 +167,12 @@
       -webkit-user-select: none !important;
       -ms-user-select: none !important;
       user-select: none !important;
+      .test {
 
+        @media screen and (max-width: 776px) {
+          margin: auto;
+        }
+      }
       .qty-text {
         position: relative;
         top: 10px;
@@ -180,7 +180,8 @@
       }
 
       .qty {
-        width: 150px;
+        padding: .3rem;
+        width: 160px;
         border: 1px solid rgba(0, 0, 0, 0.2);
         -moz-user-select: none !important;
         -webkit-user-select: none !important;

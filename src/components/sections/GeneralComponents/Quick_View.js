@@ -9,7 +9,6 @@ import Modal from 'react-bootstrap/Modal'
 import CloseSharpIcon from '@material-ui/icons/CloseSharp';
 // import { RiShoppingCart2Line } from 'react-icons/ri'
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import Tooltip from '@material-ui/core/Tooltip';
 import { useSelector, useDispatch } from 'react-redux';
 import { addtoCart } from '../../../lib/actions'
 import Comments from '../Shop/components/comments'
@@ -50,6 +49,14 @@ const QuickView = (props) => {
     setImgs(props.data.imgCollection)
   }, [props.cat, props.data]);
 
+  
+  const btnViewPage = (id) => {
+    return (
+      <Link to={`/product/${id}`} style={{ height: "40px" }}>
+        Voir la page ...
+      </Link>
+    )
+  }
 
   const formatDescription = (str) => {
     if (str) {
@@ -101,10 +108,10 @@ const QuickView = (props) => {
                 <Comments product={data}/>
 
               <div className="row">
-                <div className="col-sm-4">
+                <div className="col-4">
                   <h3>{data.priceProduct} € {data.promotionProduct && <span className="promo-price"> {data.oldPriceProduct} €</span>}</h3>
                 </div>
-                <div className="col-sm-4 mb-3">
+                <div className="col-4 mb-3">
                   {data.promotionProduct && <div className="promotion">Promo</div>}
                   {data.novelty && <div className="novelty">New</div>}
                 </div>
@@ -119,14 +126,13 @@ const QuickView = (props) => {
               {data.quantityProduct > 0 ?
                 <div className="add-cart-content">
                   {!findId ?
-                    <div className="">
-                        
+                    <>
                       <div className="row btn-content mt-2 mb-2">
-                        <div className="col-2 mt-2 align-items-middle">
+                        <div className="col-2 mt-2 mb-1 mx-auto">
                           <span className="qty-text">QTY:</span>
                         </div>
                         <div className="col-md-6">
-                          <div className="qty mt-2">
+                          <div className="qty mt-2 test">
                             <div className="btn-qty-cart text-center"
                                 onClick={() => setQty(qty > 1 ? qty - 1 : 1)}
                             >-</div>
@@ -140,14 +146,14 @@ const QuickView = (props) => {
                           
                         </div>
                         <div className="col-md-4 text-left">
-                          <Alert severity="info">
+                          <Alert severity="info" className="mx-auto">
                             <span>{data.quantityProduct} en stock</span>
                           </Alert>
                         </div>
 
                       </div>
 
-                      <div className="row">
+                      <div className="row justify-content-center">
                         <div className="col-md-5 p-2 m-2 add-to-cart text-center"
                             onClick={() => {
                                 add(data, qty)
@@ -158,43 +164,30 @@ const QuickView = (props) => {
                             Ajouter au panier
                           </div>
                           <div className="col-md-5 p-2 m-2 page-view text-center">
-                            <Link to={`/product/${data._id}`} style={{height:"40px"}}>
-                              Voir la page ...
-                            </Link>
+                            {btnViewPage(data._id)}
                           </div>
                         </div>
-
-                    </div>
+                    </>
                     :
-                      <div className="row">
-                      <div className="col-md-5 p-2 m-2 text-center">
-                        <Alert severity="success" className="fadeIn" style={{ width: "190px", height: "45px", marginTop:"-10px" }}>Dans votre panier !</Alert>
-                      </div>
+                      <div className="row justify-content-center">
+                        <div className="col-md-5 p-2 m-2 text-center">
+                          <Alert severity="success" className="fadeIn mx-auto" style={{ width: "190px", height: "45px", marginTop:"-10px" }}>Dans votre panier !</Alert>
+                        </div>
                         <div className="col-md-5 m-2 p-2 page-view text-center" style={{height:"40px"}}>
-                          <Link to={`/product/${data._id}`}>
-                            Voir la page ...
-                          </Link>
+                          {btnViewPage(data._id)}
                         </div>
                       </div>
                   }
                 </div> : 
-                  <div className="row">
+                  <div className="row justify-content-center">
                     <div className="col-md-5 p-2 m-2 text-center">
-                        <Alert severity="error" className="fadeIn" style={{width: "190px", height: "45px", marginTop:"-10px"  }}>Rupture !</Alert>
+                        <Alert severity="error" className="fadeIn mx-auto" style={{width: "190px", height: "45px", marginTop:"-10px"  }}>Rupture !</Alert>
                       </div>
                       <div className="col-md-5 m-2 p-2 page-view text-center" style={{height:"40px"}}>
-                        <Link to={`/product/${data._id}`}>
-                          Voir la page ...
-                        </Link>
+                        {btnViewPage(data._id)}
                       </div>
                     </div>
                 }
-
-                {/* <h3 className="more">
-                  <Link to={`/product/${data._id}`}>
-                    Voir la page ...
-                  </Link>
-                </h3> */}
             </div>
           </div>
         </Modal.Body>

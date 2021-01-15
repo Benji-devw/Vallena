@@ -1,7 +1,11 @@
 import React from 'react'
 import Slider from "react-slick";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-
+import {
+	SideBySideMagnifier,
+	MOUSE_ACTIVATION,
+	TOUCH_ACTIVATION
+} from "react-image-magnifiers";
 
 function SampleNextArrow(props) {
 	const { style, onClick } = props;
@@ -34,7 +38,6 @@ function SamplePrevArrow(props) {
 
 
 const CenterMode = props => {
-	// const imgs = props.images.slice(1)		// cut first image
 	const imgs = props.images
 
 		const settings = {
@@ -59,11 +62,22 @@ const CenterMode = props => {
 			<div>
 				<Slider {...settings} style={{cursor:"pointer"}}>
 					{imgs.map((url, i) => (
-					<img key={i} 
-						className=""
-						src={url}
-						alt={i}
-					/>
+						<SideBySideMagnifier
+							key={i}
+							className="input-position"
+							imageSrc={url}
+							alwaysInPlace={true}
+							overlayOpacity={0.6}
+							// switchSides={false}
+							zoomPosition="left"
+							// inPlaceMinBreakpoint={641}
+							// fillAvailableSpace={false}
+							// fillAlignTop={false}
+							mouseActivation={MOUSE_ACTIVATION.CLICK} // Optional
+							touchActivation={TOUCH_ACTIVATION.DOUBLE_TAP} // Optional
+							zoomContainerBorder="1px solid #ccc"
+							// zoomContainerBoxShadow="0 4px 8px rgba(0,0,0,.5)"
+						/>
 					))}
 				</Slider>
 			</div>

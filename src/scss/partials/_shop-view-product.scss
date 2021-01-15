@@ -208,6 +208,12 @@
           width: 50px;
         }
       }
+      .qty :not(input):not(textarea):not([contenteditable="true"]) {
+        -moz-user-select: none !important;
+        -webkit-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
+      }
       .btn-qty-cart {
         display: inline;
         cursor: pointer;

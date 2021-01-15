@@ -309,7 +309,7 @@ const CustomerComments = props => {
 										
 											<p className="m-2">Commentaire détaillé : *</p>
 											<Form.Group as={Col} md="12" controlId="validationCustom03">
-											<Form.Control as="textarea" rows="10"
+											<Form.Control as="textarea" rows="5"
 												placeholder="Pourquoi avez-vous donné cette note ? 
 																Détaillez ce que vous avez apprécié ou ce qui ne vous a pas plu sur ce produit..."
 												onChange={(e) => textArea( e.target.value )}

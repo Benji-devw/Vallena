@@ -30,7 +30,7 @@ export default function Chart() {
 
   return (
     <React.Fragment>
-      <Title>Vente 2020</Title>
+      <Title>Vente 2021</Title>
       <ResponsiveContainer>
         <LineChart
         width={500}

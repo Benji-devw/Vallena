@@ -22,8 +22,6 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-
-
 const Card = props => {
    const classes = useStyles();
    const product = props.product
@@ -38,10 +36,7 @@ const Card = props => {
          return (
             str.slice(0, 120).split("<br />").map(function (test, id) {
                return (
-                  <p key={id} className="description p-0 m-0">
-                     {test}
-                     <br />
-                  </p>
+                  <p key={id} className="description p-0 m-0"> {test} <br /> </p>
                )
             })
          )
@@ -121,6 +116,7 @@ const Card = props => {
                         </div>
                         <div className="col-12">
                            <div className={classes.root}>
+                              {/* Risque probleme Performances (call comments depuis le parent) */}
                               {<Comments  product={product}/>}
                            </div>
                         </div>

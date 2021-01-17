@@ -6,10 +6,7 @@ import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import { makeStyles } from '@material-ui/core/styles';
 import PuffLoader from "react-spinners/PuffLoader";
-
-// import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
-
 
 
 
@@ -44,61 +41,68 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-
-
 export default function CommentsAdmin() {
   const classes = useStyles();
   const [comments, setComments] = useState([]);
+  const [allComments, setAllComments] = useState([]);
   const [commentWait, setCommentWait] = useState();
   const [display, setDisplay] = useState(false)
-  const [short, setShort] = useState("false")
+
+  const [status, setStatus] = useState(false);
   const [isLoading, setIsLoading] = useState(true)
   const [preview, setPreview] = useState([])
-  
 
-  const [searchBar, setSearchBar] = useState("")
-  // console.log('searchBar', searchBar)
-  const handleVal = (e) => {
-    setSearchBar(e)
+
+
+
+  /***** Send Filters *****/
+  /***************************/
+  const showFilteredResult = (filters) => {
+    let payload = { filters: filters }
+
+    apiCallComments.commentsFilter(payload).then(comments => {
+        setComments([...comments.data.data])
+        setIsLoading(false)
+      })
   }
 
 
 
 
+
+  /***** Sort Filters *****/
+  /***************************/
+  const handleSort = (event) => {
+    switch (event) {
+      case "true":
+        setStatus(true)
+        break;
+      case "false":
+        setStatus(false)
+        break;
+      default:
+        setStatus(false)
+        break;
+    }
+  }
+
+  /***** SearchBar Filters *****/
+  /***************************/
+  const searchBar = (input) => {
+    const fullListMap = allComments.map(comm => comm)
+    let fullList = fullListMap.flat()
+    // const fullList = comments
+    const term = input.toLowerCase()
+      setComments( fullList.filter(comment =>
+          comment.orderNumber.toLowerCase().indexOf(term) > -1 ||
+          comment.idProduct.toLowerCase().indexOf(term) > -1
+      ))
+  }
   
-  useEffect(() => {
+  
 
-    apiCallProdcuts.getProducts().then(prodcuts => {
-      setPreview(prodcuts.data.products)
-    })
-
-    apiCallComments.getComments().then(comments => {
-      setComments(comments.data.data)
-
-      const term = searchBar.toLowerCase()
-      const fullList = comments.data.data
-      if (short === "false") {
-        setComments(
-            fullList.filter(comment =>
-              comment.orderNumber.toLowerCase().indexOf(term) > -1 ||
-              comment.idProduct.toLowerCase().indexOf(term) > -1
-            ).reverse()
-        )
-        setIsLoading(false)
-      } else {
-        setComments(
-            fullList.filter(comment =>
-              comment.orderNumber.toLowerCase().indexOf(term) > -1 ||
-              comment.idProduct.toLowerCase().indexOf(term) > -1
-            )
-        )
-        setIsLoading(false)
-      }
-    })
-  }, [short, searchBar ])
-
-
-
+  /***** Change Status *****/
+  /***************************/
   const Valider = (id) => {
     setCommentWait(commentWait => ({
       ...commentWait, status: true
@@ -116,7 +120,6 @@ export default function CommentsAdmin() {
     // }
   }
 
-
   const update = (id) => {
     if (id === commentWait._id) {
       apiCallComments.updateComment(id, commentWait)
@@ -132,18 +135,14 @@ export default function CommentsAdmin() {
     } else { document.location.reload();}
   } 
 
-
   const deleteComment = (id) => {
     console.log(id);
-    if (window.confirm(`Supprimer définitivement le commentaire : ${id}`,)) {
-      apiCallComments.deleteComment(id)
-      window.location.reload()
-      // alert('Suppression désactivé !')
+    if (window.confirm(`Supprimer définitivement le commentaire : ${id}`)) {
+      // apiCallComments.deleteComment(id)
+      // window.location.reload()
+      alert('Suppression désactivé !')
     }
   }
-
-
-
 
   const avisClient = (event) => {
     return (
@@ -153,7 +152,31 @@ export default function CommentsAdmin() {
     )
   }
 
-  
+
+
+  useEffect(() => {
+    const newVal = {}
+    newVal.status = status
+    showFilteredResult(newVal)
+
+    if (isLoading) {
+      if (allComments.length <= 0) {
+        apiCallProdcuts.getProducts().then(prodcuts => {
+          setPreview(prodcuts.data.products)
+        })
+        apiCallComments.getComments().then(comments => {
+          setAllComments(comments.data.data)
+          setIsLoading(false)
+        })
+      }
+    }
+
+  }, [status, isLoading, allComments.length])
+
+
+
+
+
   return (
     <React.Fragment>
       <div className={`comments-admin mt-5`}>
@@ -170,7 +193,7 @@ export default function CommentsAdmin() {
                 placeholder="N°commande ... ID" aria-label="search"
                 classes={{ root: classes.inputRoot, input: classes.inputInput }}
                 inputProps={{ 'aria-label': 'search' }}
-                onChange={(e) => handleVal(e.target.value)}
+                onChange={(e) => searchBar(e.target.value)}
               />
             </div>
           </div>
@@ -179,9 +202,9 @@ export default function CommentsAdmin() {
             Tri par
             <select style={{ width: "10rem", height: "2rem", marginLeft: "1rem" }}
               className="custom-select"
-              onClick={(e) => setShort(e.target.value)}>
-              <option value="true">Valider</option>
+              onChange={(e) => handleSort(e.target.value)}>
               <option value="false">A confirmer</option>
+              <option value="true">Valider</option>
             </select>
           </div>
         </div>
@@ -189,100 +212,96 @@ export default function CommentsAdmin() {
 
         {!isLoading ? (
           <>
-          {comments.map((message, id) =>
-              <div key={id} className="row p-3" style={{ borderTop: "1px solid #3f51b5", margin: "1rem" }}>
-                <div className="col-md-4">
-                  <div className="row text-center m-3">
-                    <b>Commande N° {message.orderNumber}</b> <br />
-                    <b>ID : {message.idProduct}</b>
+          {comments.length > 0 ? (
+            <>
+              {comments.map((message, id) =>
+                  <div key={id} className="row p-3" style={{ borderTop: "1px solid #3f51b5", margin: "1rem" }}>
+                    <div className="col-md-4">
+                      <div className="row text-center m-3">
+                        <b>Commande N° {message.orderNumber}</b> <br />
+                        <b>ID : {message.idProduct}</b>
+                        { preview.map((product, id) =>
+                            <div key={id}>
+                              {message.idProduct === product._id &&
+                                (
+                                  <img src={product.imgCollection[0]} alt={id} style={{ height: "170px" }} />
+                                )
+                              }
+                            </div>
+                        )}
+                      </div>
+                    </div>
 
-                    {
-                      preview.map((product, id) =>
-                        <div key={id}>
-                          {message.idProduct === product._id &&
-                            (
-                              <img src={product.imgCollection[0]} alt={id} style={{ height: "170px" }} />
-                            )
+                    <div className="col-md-8">
+                      <div className="row">
+                        <div className="col-12 text-left">
+                          <p>
+                            <b>par : {message.by}</b> <br />
+                            publié le {message.datePost} <br />
+                            Produit acheté le {message.dateBuy.slice(0, 10)} <br />
+                          </p>
+                        </div>
+                        <div className="col-12 text-left ratingClient">
+
+                          <div className="mt-1 mb-1">
+                            {avisClient(parseInt(message.note))}
+                            <b style={{ position: "absolute", paddingLeft: "5px" }}> - {message.messageTitle}</b>
+                          </div>
+                          {
+                            message.message.split("<br />").map(function (item, idx) {
+                              return ( <p key={idx}> {item} <br /> </p> )
+                            })
                           }
                         </div>
-                      )
-                    }
-                  </div>
-                </div>
 
-                <div className="col-md-8">
-                  <div className="row">
-                    <div className="col-12 text-left">
-                      <p>
-                        <b>par : {message.by}</b> <br />
-                  publié le {message.datePost} <br />
-                  Produit acheté le {message.dateBuy.slice(0, 10)} <br />
-                      </p>
-                    </div>
-                    <div className="col-12 text-left ratingClient">
-
-                      <div className="mt-1 mb-1">
-                        {avisClient(parseInt(message.note))}
-                        <b style={{ position: "absolute", paddingLeft: "5px" }}> - {message.messageTitle}</b>
                       </div>
-                      {
-                        message.message.split("<br />").map(function (item, idx) {
-                          return (
-                            <p key={idx}>
-                              {item}
-                              <br />
-                            </p>
-                          )
-                        })
-                      }
+
+
                     </div>
-
+                    <div className="col-8 mx-auto text-center" style={{ border: "1px solid #e0e0e0", margin: "1rem" }}>
+                      <h5>Status : {message.status ? <b className="text-success">Validé</b> : <b className="text-danger">A confirmer ...</b>}</h5>
+                      {!message.status ? (
+                        <>
+                          {display &&
+                            <Button className="mx-auto m-3" variant="contained" color="primary" style={{ borderRadius: "20px" }}
+                              onClick={() => update(message._id)
+                              }>Confirmer
+                        </Button>
+                          }
+                          {!display &&
+                            <Button className="mx-auto m-3" variant="contained" color="primary" style={{ borderRadius: "20px" }}
+                              onClick={() => {
+                                setCommentWait(message)
+                                Valider(message._id)
+                              }}>Valider
+                        </Button>
+                          }
+                        </>
+                      ) : (
+                          <>
+                            {display &&
+                              <Button className="mx-auto m-3" variant="contained" color="primary" style={{ borderRadius: "20px" }}
+                                onClick={() => updateForStopDisplay(message._id)
+                                }>Confirmer
+                        </Button>
+                            }
+                            {!display &&
+                              <Button className="mx-auto m-3" variant="contained" color="primary" style={{ borderRadius: "20px" }}
+                                onClick={() => {
+                                  setCommentWait(message)
+                                  stopDisplay(message._id)
+                                }}>Ne plus afficher
+                        </Button>
+                            }
+                          </>
+                        )}
+                      <Button className="mx-auto ml-2 text-danger" onClick={() => { deleteComment(message._id) }}>Supprimer </Button>
+                    </div>
                   </div>
-
-
-                </div>
-                <div className="col-8 mx-auto text-center" style={{ border: "1px solid #e0e0e0", margin: "1rem" }}>
-                  <h5>Status : {message.status ? <b className="text-success">Validé</b> : <b className="text-danger">A confirmer ...</b>}</h5>
-                  {!message.status ? (
-                    <>
-                      {display &&
-                        <Button className="mx-auto m-3" variant="contained" color="primary" style={{ borderRadius: "20px" }}
-                          onClick={() => update(message._id)
-                          }>Confirmer
-                    </Button>
-                      }
-                      {!display &&
-                        <Button className="mx-auto m-3" variant="contained" color="primary" style={{ borderRadius: "20px" }}
-                          onClick={() => {
-                            setCommentWait(message)
-                            Valider(message._id)
-                          }}>Valider
-                    </Button>
-                      }
-                    </>
-                  ) : (
-                      <>
-                        {display &&
-                          <Button className="mx-auto m-3" variant="contained" color="primary" style={{ borderRadius: "20px" }}
-                            onClick={() => updateForStopDisplay(message._id)
-                            }>Confirmer
-                    </Button>
-                        }
-                        {!display &&
-                          <Button className="mx-auto m-3" variant="contained" color="primary" style={{ borderRadius: "20px" }}
-                            onClick={() => {
-                              setCommentWait(message)
-                              stopDisplay(message._id)
-                            }}>Ne plus afficher
-                    </Button>
-                        }
-                      </>
-                    )}
-                  <Button className="mx-auto ml-2 text-danger" onClick={() => { deleteComment(message._id) }}>Supprimer </Button>
-                </div>
-              </div>
-            )
-          }
+                )
+              }
+            </>
+          ) : ( <p>Aucun résultat</p>)}
           </>
         ): (<PuffLoader size = { 50 } color = { "#f50057" }/>)}
         

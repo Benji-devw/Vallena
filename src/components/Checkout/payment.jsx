@@ -24,6 +24,7 @@ const PaymentForm = () => {
    const [total, setTotal] = useState(0)
    const [shipping, setShipping] = useState(0)
 
+   const [paypalScroll, setPaypalScroll] = useState('');
 
 
    const [forMom, setForMom ] = useState(true)
@@ -32,6 +33,14 @@ const PaymentForm = () => {
          window.scrollTo({ top: 0 });
          setForMom(false)
       }
+
+      window.addEventListener('scroll', () => {
+         let paypalScroll = '';
+         if (window.scrollY >= 300) {
+            paypalScroll = 'scrolled';
+         }
+         setPaypalScroll(paypalScroll);
+      });
 
       let totals = items.map(item => {
          return item.quantity * item.details.priceProduct
@@ -58,7 +67,7 @@ const PaymentForm = () => {
    const handlePay = () => {
       setShowDiv(true)
    }
-   
+
 
    return (
       <>
@@ -78,7 +87,7 @@ const PaymentForm = () => {
                   
                   {/* Order summary */}
                   {!showDiv ? (
-                  <div className={`col-md-8 order-summary p-3`}>
+                  <div className={`col-lg-8 order-summary p-3`}>
                      {items.map((item, i) => <RowItem key={i} item={item} onCloseModal={closeModal}/>)}
                         {/* <DragNDrop data={data} /> */}
                      {/* <TransferList onHandleLeft={handleLeft} onHandleRight={handleRight} /> */}
@@ -97,7 +106,8 @@ const PaymentForm = () => {
                   </div>
                   ) : ('')}
                  
-                  <div className={`${showDiv ? "col-md-6 fadeIn" : "col-md-4"}`} style={{userSelect:"auto"}}>
+                  <div className={`${showDiv ? "col-lg-6 fadeIn" : "col-lg-4"}`}>
+                     <div className={`paypal-btn ${paypalScroll === "scrolled" ? "scrolled" : ""}`}>
                         Card Type: <b>Visa</b> <br />
                         Card Number: <b>4020026056914040</b> <br />
                         Expiration Date: <b>04/2023</b> <br />
@@ -106,7 +116,9 @@ const PaymentForm = () => {
                         (<PayPalButton amount={total} items={items} handlePay={handlePay}/>)
                         : ('')
                      }
+                     </div>
                   </div>
+                  
                </div>
 
                </article>

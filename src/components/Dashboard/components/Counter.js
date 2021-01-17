@@ -36,20 +36,19 @@ export default function Counter() {
       }
       sumCounter()
   }, [])
-
-
+  
   const data = [
-    { name: 'jan', visits: 0 },
-    { name: 'fev', visits: 0 },
-    { name: 'mars', visits: 0 },
-    { name: 'avr', visits: 0 },
-    { name: 'mai', visits: 277 },
-    { name: 'juin', visits: 345 },
-    { name: 'juil', visits: 425 },
-    { name: 'aout', visits: 524 },
-    { name: 'sept', visits: 354 },
-    { name: 'oct', visits: 477 },
-    { name: 'nov', visits: sumCounter },
+    { name: 'jan', visits: sumCounter },
+    { name: 'fev', visits: undefined },
+    { name: 'mars', visits: undefined },
+    { name: 'avr', visits: undefined },
+    { name: 'mai', visits: undefined },
+    { name: 'juin', visits: undefined },
+    { name: 'juil', visits: undefined },
+    { name: 'aout', visits: undefined },
+    { name: 'sept', visits: undefined },
+    { name: 'oct', visits: undefined },
+    { name: 'nov', visits: undefined },
     { name: 'dec', visits: undefined },
   ];
   return (

@@ -14,7 +14,8 @@ const DisplayProducts = () => {
    const [allProducts, setAllProducts] = useState([])
    const [counting, setCounting] = useState()
 
-   // Redux
+   /***** Redux *****/
+   /***************************/
    const dispatch = useDispatch()
    const filtersFromRedux = useSelector(state => state.filters)
 
@@ -133,8 +134,7 @@ const DisplayProducts = () => {
          product.titleProduct.toLowerCase().indexOf(term) > -1 ||
          product.categoryProduct.toLowerCase().indexOf(term) > -1 ||
          product.tags.toLowerCase().indexOf(term) > -1
-      )
-      )
+      ))
    }
 
 

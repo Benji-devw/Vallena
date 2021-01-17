@@ -37,6 +37,7 @@ const getComments = payload => apiCallComments.get(`/comment`, payload)
 const insertComment = payload => apiCallComments.post(`/comment`, payload)
 const updateComment = (id, payload) => apiCallComments.put(`/comment/${id}`, payload)
 const deleteComment = id => apiCallComments.delete(`/comment/${id}`)
+const commentsFilter = payload => apiCallComments.post(`/commentsfilter`, payload)
 
 const apis = {
     insertProduct,
@@ -56,6 +57,7 @@ const apis = {
     insertComment,
     updateComment,
     deleteComment,
+    commentsFilter,
 }
 
 export default apis

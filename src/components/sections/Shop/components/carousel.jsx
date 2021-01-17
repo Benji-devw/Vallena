@@ -60,7 +60,7 @@ const CenterMode = props => {
 		};
 		return (
 			<div>
-				<Slider {...settings} style={{cursor:"pointer"}}>
+				<Slider {...settings}>
 					{imgs.map((url, i) => (
 						<SideBySideMagnifier
 							key={i}

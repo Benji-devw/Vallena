@@ -397,12 +397,7 @@ const CustomerComments = props => {
 									</div>
 										{
 											message.message.split("<br />").map(function (item, idx) {
-												return (
-													<p key={idx}>
-														{item}
-														<br />
-													</p>
-												)
+												return ( <p key={idx}> {item} <br /> </p> )
 											})
 										}
 								</div>

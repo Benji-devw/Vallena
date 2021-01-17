@@ -104,43 +104,49 @@
   }
 
 
-
-  .status-container {
-    @media screen and (max-width: 767px) {
-      position: absolute;
-      top: 1rem;
-      right: 0;
-      width: 100px;
+  .comments-admin {
+    min-height: 105vh;
+    .status-container {
+  
+      @media screen and (max-width: 767px) {
+        position: absolute;
+        top: 1rem;
+        right: 0;
+        width: 100px;
+      }
     }
-  }
-
-  .statut {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    margin: .2rem;
-
-    @media screen and (min-width: 767px) {
-      position: absolute;
+  
+    .statut {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin: .2rem;
+  
+      @media screen and (min-width: 767px) {
+        position: absolute;
+      }
     }
-  }
-
-  .statut-inprogress {
-    background: #00b0ff;
-  }
-
-  .statut-finish {
-    background: #4caf50;
-  }
-
-  .statut-order {
-    .MuiButton-root {
-      padding: .1em;
-      margin: .2em;
-      font-size: .8em;
+  
+    .statut-inprogress {
+      background: #00b0ff;
     }
+  
+    .statut-finish {
+      background: #4caf50;
+    }
+  
+    .statut-order {
+      .MuiButton-root {
+        padding: .1em;
+        margin: .2em;
+        font-size: .8em;
+      }
+    }
+
+
   }
+
 
 
 

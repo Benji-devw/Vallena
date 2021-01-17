@@ -340,8 +340,7 @@
       //   height: 30rem;
       // }
       .MuiBox-root {
-        min-height: 600px;
-        // background: #F5F5F5;
+        min-height: 400px;
       }
 
       .motion-slide {
@@ -438,7 +437,7 @@
   color: #191919;
   width: 70%;
   margin: auto;
-
+  font-size: .9em;
 
 
   @media screen and (max-width: 767px) {

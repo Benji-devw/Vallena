@@ -1,7 +1,23 @@
 #payment {
   min-height: 70vh;
+
   p {
     font-size: 1em;
+  }
+}
+
+
+.paypal-btn {
+  @keyframes scrolledPaypal {
+  0% { top: -50px; }
+  100% {  top: 70px; }
+  }
+  &.scrolled {
+    @media (min-width: 1450px) {
+      position: fixed;
+      width: 340px;
+      animation: scrolledPaypal 0.5s ease forwards;
+    }    
   }
 }
 
@@ -9,13 +25,14 @@
 
 
 .order-summary {
+
   // box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.3);
   .order-summary-total {
     width: 300px;
     // margin: auto;
     float: right;
-      // padding-left: 5rem;
-      // padding-right: 5rem;
+    // padding-left: 5rem;
+    // padding-right: 5rem;
   }
 }
 
@@ -31,6 +48,7 @@
     h1 {
       font-size: 4em;
       margin: 2rem;
+
       @media screen and (max-width: 768px) {
         font-size: 2.5em;
         margin: .5rem;

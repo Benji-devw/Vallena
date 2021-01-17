@@ -10,7 +10,7 @@ import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
 // import HelpIcon from '@material-ui/icons/Help';
 import Box from '@material-ui/core/Box';
 
-import MotionFramer from './motionScall/Motion_framer'
+// import MotionFramer from './motionScall/Motion_framer'
 import ScrollAnimation from 'react-animate-on-scroll'
 import CustomerComments from './tabPanel/Customer_Comments'
 
@@ -60,11 +60,26 @@ const TabsProductView = props => {
    const classes = useStyles();
    const [value, setValue] = React.useState(0);
    const data = props.data
-   const imgs = props.images
+   // const imgs = props.images
 
    const handleChange = (event, newValue) => {
       setValue(newValue);
    };
+
+   const formatDescription = (str) => {
+      if (str) {
+         return (
+            str.split("<br />").map(function (desc, id) {
+               return (
+                  <p key={id} className="text-left pl-4">
+                     {desc}
+                     <br />
+                  </p>
+               )
+            })
+         )
+      }
+   }
 
    return (
       <div className={`${classes.root}`}>
@@ -78,23 +93,30 @@ const TabsProductView = props => {
                textColor="primary"
                aria-label="scrollable force tabs example"
             >
-               <Tab label="Details" icon={<DetailsIcon />} {...a11yProps(0)} />
+               <Tab label="Description" icon={<DetailsIcon />} {...a11yProps(0)} />
                <Tab label="FICHE TECHNIQUE" icon={<DescriptionIcon />} {...a11yProps(1)} />
                <Tab label="Avis clients" icon={<ChatOutlinedIcon />} {...a11yProps(2)} />
                {/* <Tab label="Item Four" icon={<HelpIcon />} {...a11yProps(3)} /> */}
             </Tabs>
          </AppBar>
 
-         <TabPanel value={value} index={0}>
 
-            <div className="details-view-1">
-            <ScrollAnimation animateIn='fadeIn' delay={0}><p>{data.sizeProduct}</p></ScrollAnimation>
-            <ScrollAnimation animateIn='fadeIn' delay={300}><p>{data.weightProduct}</p></ScrollAnimation>
-            <ScrollAnimation animateIn='fadeIn' delay={600}><p>{data.matter}</p></ScrollAnimation>
-            <ScrollAnimation animateIn='fadeIn' delay={900}><p>{data.composition}</p></ScrollAnimation>
-            {/* <ScrollAnimation animateIn='FadeIn' delay={2000}><p>{data.fabrication}</p></ScrollAnimation> */}
+         <TabPanel value={value} index={0}>
+            <div className="row p-3 justify-content-center" style={{minHeight:"300px"}}>
+               <div className="col-sm-2 pt-2 text-left" style={{borderTop:"1px solid rgba(0,0,0, .3)"}}>
+                  <ScrollAnimation animateIn='fadeIn' delay={0}><p>Taille: {data.sizeProduct}</p></ScrollAnimation>
+                  <ScrollAnimation animateIn='fadeIn' delay={300}><p>Poids: {data.weightProduct}</p></ScrollAnimation>
+                  <ScrollAnimation animateIn='fadeIn' delay={600}><p>Matière: {data.matter}</p></ScrollAnimation>
+                  <ScrollAnimation animateIn='fadeIn' delay={900}><p>Composition: {data.composition}</p></ScrollAnimation>
+                  <ScrollAnimation animateIn='FadeIn' delay={1200}><p>Fabrication: {data.fabrication}</p></ScrollAnimation>
+               </div>
+               <div className="col-sm-8">
+               {formatDescription(data.descriptionProduct)}
+
+               </div>
             </div>
-            <MotionFramer images={imgs} />
+           
+            {/* <MotionFramer images={imgs} /> */}
          </TabPanel>
 
          <TabPanel value={value} index={1}>

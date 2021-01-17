@@ -1,7 +1,22 @@
 
 .cart-content {
+
   p {
     font-size: 1em;
+  }
+}
+  .modal-content {
+    margin: auto; 
+    border-radius: 0rem !important;
+  }
+.close-modal {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  z-index: 100;
+
+  .MuiButtonBase-root {
+    outline: none;
   }
 }
 
@@ -10,9 +25,7 @@
   max-width: 900px;
 }
 
-.modal-content {
-  margin: auto;
-}
+
 
 
 // .btn-cart {

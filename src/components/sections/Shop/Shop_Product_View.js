@@ -75,10 +75,10 @@ const ProductView = props => {
    const formatDescription = (str) => {
       if (str) {
          return (
-            str.split("<br />").map(function (test, id) {
+            str.split("<br />").map(function (desc, id) {
                return (
                   <p key={id} className="description p-0 m-0">
-                     {test}
+                     {desc}
                      <br />
                   </p>
                )

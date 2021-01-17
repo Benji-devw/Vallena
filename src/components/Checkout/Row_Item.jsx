@@ -46,7 +46,7 @@ const RowItem = props => {
          <div className="row mb-5 row-item align-items-center no-gutters">
             <div className="col-md-4 text-center">
             <Link to={`/product/${item._id}`}>
-            <img draggable
+            <img 
                onClick={() => props.onCloseModal(false)}
                src={item.imgCollection[0]}
                alt="none"

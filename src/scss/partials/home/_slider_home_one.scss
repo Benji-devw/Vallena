@@ -103,18 +103,22 @@
           right: -10rem;
           top: -15rem;
           z-index: -1;
-          height: 650px;
+          height: 750px;
+          @media screen and (max-width: 1300px) {
+            right: -15rem;
+          }
+          @media screen and (max-width: 991px) {
+            right: -25rem;
+          }
         }
 
         // width: 100%;
         @media screen and (max-width: 1550px) {
           background-position: 0 -25rem;
         }
-
         @media screen and (max-width: 1300px) {
           background-position: 0 -15rem;
         }
-
         @media screen and (max-width: 1068px) {
           background-position: 0 0rem;
         }

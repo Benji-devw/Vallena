@@ -5,7 +5,7 @@ import Modal from 'react-bootstrap/Modal'
 import { RiShoppingCart2Line } from 'react-icons/ri'
 import RowItem from '../Checkout/Row_Item'
 import Button from '@material-ui/core/Button';
-
+import CloseSharpIcon from '@material-ui/icons/CloseSharp';
 
 
 function CartHome() {
@@ -53,11 +53,16 @@ function CartHome() {
         show={show}
         onHide={() => setShow(false)}
       >
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>
             <RiShoppingCart2Line size="2em" style={{ padding: ".5rem", marginTop: "-10px" }} />
             Panier
           </Modal.Title>
+          <div className="col-12 text-right close-modal">
+            <Button onClick={() => setShow(false)}
+            ><CloseSharpIcon />
+            </Button>
+          </div>
         </Modal.Header>
 
         <Modal.Body>

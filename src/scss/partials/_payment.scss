@@ -10,7 +10,7 @@
 .paypal-btn {
   @keyframes scrolledPaypal {
   0% { top: -50px; }
-  100% {  top: 70px; }
+  100% {  top: 110px; }
   }
   &.scrolled {
     @media (min-width: 1450px) {

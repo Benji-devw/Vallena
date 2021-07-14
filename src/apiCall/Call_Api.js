@@ -1,16 +1,16 @@
 import axios from 'axios'
 
 const apiCallProdcuts = axios.create({
-    // baseURL: '/api/products',
-    baseURL: 'http://localhost:8800/api',
+    baseURL: '/api/products',
+    // baseURL: 'http://localhost:8800/api',
 })
 const apiCallOrders = axios.create({
-    // baseURL: '/api/orders',
-    baseURL: 'http://localhost:8802/api',
+    baseURL: '/api/orders',
+    // baseURL: 'http://localhost:8802/api',
 })
 const apiCallComments = axios.create({
-    // baseURL: '/api/comment',
-    baseURL: 'http://localhost:8800/api/comment',
+    baseURL: '/api/comment',
+    // baseURL: 'http://localhost:8800/api/comment',
 })
 
 

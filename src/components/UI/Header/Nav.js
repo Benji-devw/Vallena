@@ -21,12 +21,12 @@ import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
   search: {
-    position: 'relative',
+    // position: 'relative',
     borderRadius: theme.shape.borderRadius,
     marginLeft: 0,
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(1),
+      // marginLeft: theme.spacing(1),
       width: 'auto',
     },
   },
@@ -35,26 +35,31 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 2),
     height: '100%',
     position: 'absolute',
-    pointerEvents: 'none',
+    right: "5px",
+    bottom: "3px",
+    // pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
   inputRoot: {
+    width: "100%",
     color: 'inherit',
   },
   inputInput: {
+    border: "1px solid rgba(0,0,0, .3);",
     padding: theme.spacing(1, 1, 1, 0),
+    height: ".8rem",
     // vertical padding + font size from searchIcon
-    paddingLeft: `calc(.8em + ${theme.spacing(4)}px)`,
+    paddingLeft: `calc(.4em + ${theme.spacing(0)}px)`,
     transition: theme.transitions.create('width'),
     width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '12ch',
-      '&:focus': {
-        width: '20ch',
-      },
-    },
+    // [theme.breakpoints.up('sm')]: {
+      // width: '100%',
+      // '&:focus': {
+      //   width: '30ch',
+      // },
+    // },
   },
 
   list: {
@@ -164,9 +169,16 @@ const Nav = props => {
 
 
   return (
-    <nav className={`navbar navbar-expand-md no-gutters p-0 ${navClass}`}>
+    <nav className={`navbar navbar-expand-md no-gutters  ${navClass}`}>
       <div className='container'>
         <div className="row justify-content-center align-items-center" style={{ width: "100%" }}>
+
+        <div className="col-12 mt-1 pt-1 pb-1">
+        <div className="row">
+          
+          <div className="col-4 nav-title">
+            <Link to='/' className='navbar-brand text-center'>Vallena</Link>
+          </div>
 
           <div className="col-4 search-bar">
             <div className={classes.search}>
@@ -174,7 +186,7 @@ const Nav = props => {
                 <SearchIcon />
               </div>
               <InputBase
-                placeholder="Rechercher ..."
+                placeholder="Rechercher..."
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,
@@ -183,12 +195,6 @@ const Nav = props => {
               />
             </div>
           </div>
-
-
-          <div className="col-4 text-center nav-title">
-            <Link to='/' className='navbar-brand mx-auto'>Vallena</Link>
-          </div>
-
 
           <div className="col-4">
             <div className={`navbar-toggler mx-auto`}
@@ -209,38 +215,38 @@ const Nav = props => {
 
                   </ul>
                 </div>
-                <div className="col-2">
+                <div className="col-2 ml-5">
                   {TemporaryDrawer()}
                 </div>
               </div>
             </div>
 
-
-
             <div className={`collapse navbar-collapse `}>
               <ul className='navbar-nav ml-auto align-items-center'>
 
-                <ScrollingMenu />
-
-                <li className='nav-item'>
-                  <LinkScroll target='contact' classes='nav-link'>  Contact  </LinkScroll>
-                </li>
                 <li className="nav-icons">
                   <span className={`badge-icons badge-pill`}>0</span>
                   <FavoriteBorderIcon />
                 </li>
-                <li className="nav-icons ml-2">
+                <li className="nav-icons mr-2">
                   <CartModal />
+                </li>
+                <li className='nav-item'>
+                  <LinkScroll target='contact' classes='nav-link'>  Contact  </LinkScroll>
                 </li>
                 <li>
                   <LinksAdmin />
                 </li>
               </ul>
             </div>
-
           </div>
 
+        </div>
+        </div>
 
+        <div className="col-12 nav-items">
+              <ScrollingMenu />
+        </div>      
 
         </div>
       </div>

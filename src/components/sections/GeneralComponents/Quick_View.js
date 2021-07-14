@@ -8,10 +8,15 @@ import Button from '@material-ui/core/Button';
 import Modal from 'react-bootstrap/Modal'
 import CloseSharpIcon from '@material-ui/icons/CloseSharp';
 // import { RiShoppingCart2Line } from 'react-icons/ri'
-import VisibilityIcon from '@material-ui/icons/Visibility';
+// import VisibilityIcon from '@material-ui/icons/Visibility';
 import { useSelector, useDispatch } from 'react-redux';
 import { addtoCart } from '../../../lib/actions'
 import Comments from '../Shop/components/comments'
+import SeeIcon from '../../../scss/img/icons/SeePreview.svg'
+import Tooltip from '@material-ui/core/Tooltip';
+import WishBtn from './../../Wishlist/WishBtn';
+
+
 
 
 const QuickView = (props) => {
@@ -61,10 +66,10 @@ const QuickView = (props) => {
   const formatDescription = (str) => {
     if (str) {
       return (
-        str.split("<br />").map(function (test, id) {
+        str.split("<br />").map(function (desc, id) {
           return (
             <p key={id} className="description p-0 m-0">
-              {test}
+              {desc}
               <br />
             </p>
           )
@@ -76,7 +81,9 @@ const QuickView = (props) => {
   return (
     <>
       <div className="preview" onClick={() => setShow(true)}>
-        <VisibilityIcon/> apeçu
+        <Tooltip title="Aperçu" placement="left-start">
+          <img src={SeeIcon} alt="seeIcon" className="img-fluid" />
+        </Tooltip>
       </div>
 
     <Modal
@@ -112,8 +119,8 @@ const QuickView = (props) => {
                   <h3>{data.priceProduct} € {data.promotionProduct && <span className="promo-price"> {data.oldPriceProduct} €</span>}</h3>
                 </div>
                 <div className="col-4 mb-3">
-                  {data.promotionProduct && <div className="promotion">Promo</div>}
-                  {data.novelty && <div className="novelty">New</div>}
+                  {data.promotionProduct && <div className="promotion-product">Promo</div>}
+                  {data.novelty && <div className="novelty-product">New</div>}
                 </div>
               </div>
                 {formatDescription(data.descriptionProduct)} 
@@ -128,13 +135,13 @@ const QuickView = (props) => {
                   {!findId ?
                     <>
                       <div className="row btn-content mt-2 mb-2">
-                        <div className="col-2 mt-2 mb-1 mx-auto">
-                          <span className="qty-text">QTY:</span>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="qty mt-2 test">
+                        {/* <div className="col-2 mt-2 mb-1">
+                                    <span className="qty-text">QTY:</span>
+                                 </div> */}
+                        <div className="col-sm-6">
+                          <div className="qty mx-auto mt-2">
                             <div className="btn-qty-cart text-center"
-                                onClick={() => setQty(qty > 1 ? qty - 1 : 1)}
+                              onClick={() => setQty(qty > 1 ? qty - 1 : 1)}
                             >-</div>
 
                             <span className="btn btn-light">{qty}</span>
@@ -143,9 +150,9 @@ const QuickView = (props) => {
                               onClick={() => setQty(data.quantityProduct > qty ? qty + 1 : qty)}
                             >+</div>
                           </div>
-                          
+
                         </div>
-                        <div className="col-md-4 text-left">
+                        <div className="col-sm-6">
                           <Alert severity="info" className="mx-auto">
                             <span>{data.quantityProduct} en stock</span>
                           </Alert>
@@ -167,6 +174,8 @@ const QuickView = (props) => {
                             {btnViewPage(data._id)}
                           </div>
                         </div>
+
+                        
                     </>
                     :
                       <div className="row justify-content-center">
@@ -178,6 +187,10 @@ const QuickView = (props) => {
                         </div>
                       </div>
                   }
+                  
+                  <WishBtn />
+
+
                 </div> : 
                   <div className="row justify-content-center">
                     <div className="col-md-5 p-2 m-2 text-center">

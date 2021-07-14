@@ -114,12 +114,18 @@ h1 {
   }
 }
 
+// h2, h3, h4, h5, h6 {
+//   font-family: muli, sans-serif;
+//   font-weight: 400;
+//   font-style: normal;
+// }
+
 h2 {
   color: #191919;
 }
 
 h3 {
-  font-family: "quickSandMedium", sans-serif !important;
+  // font-family: "quickSandMedium", sans-serif !important;
   color: #191919;
   font-size: 1.2em;
 }
@@ -167,15 +173,18 @@ a {
 
 
 
-
-
 .slick-arrow {
-  color: rgba(0, 0, 0, .3) !important;
-  transition: .5s;
-
+  position: absolute;
+  bottom: 3rem;
+  background-image: url('./img/icons/arrow.svg');
+  background-color: white;
+  border-radius: 50%;
+  width:30px;
+  height: 30px;
+  opacity: .5;
   &:hover {
-    transition: .5s;
-    color: rgba(0, 0, 0, .8) !important;
+    opacity: 1;
+    transition-duration: .15s;
   }
 }
 
@@ -337,12 +346,3 @@ a {
   // text-align: center;
   // background-color: #F5F5F5;
 }
-
-
-
-
-
-
-
-
-

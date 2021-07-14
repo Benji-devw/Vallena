@@ -1,6 +1,6 @@
 import React from 'react';
 import InputBase from '@material-ui/core/InputBase';
-import SearchIcon from '@material-ui/icons/Search';
+import FilterListIcon from '@material-ui/icons/FilterList';
 import { makeStyles } from '@material-ui/core/styles';
 
 
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
       [theme.breakpoints.up('sm')]: {
          width: '12ch',
          '&:focus': {
-            width: '20ch',
+            width: '16ch',
          },
       },
    },
@@ -36,15 +36,15 @@ const FilterTop = props => {
 
 
       return (
-         <div className="row" style={{ width: "100%" }}>
+         <div style={{ width: "100%" }}>
 
             <div className="col-sm-6 p-0 filter-search">
                <div className={classes.search}>
                   <div className={classes.searchIcon}>
-                     <SearchIcon />
+                     <FilterListIcon />
                   </div>
                   <InputBase
-                     placeholder="Search…" aria-label="search"
+                     placeholder="Filtrer…" aria-label="search"
                      classes={{
                         root: classes.inputRoot,
                         input: classes.inputInput,

@@ -42,7 +42,6 @@
       // border-radius: 10px;
       box-shadow: none;
     }
-
     @media (max-width: 767px) {
       display: none;
     }
@@ -54,17 +53,15 @@
 
   .nav-title {
     @media (max-width: 767px) {
-      margin-left: -5rem;
+      margin-left: 1rem;
     }
   }
-
   .navbar-brand {
     font-family: satisfy, sans-serif;
     font-weight: 400;
     letter-spacing: 2px;
-    font-size: 2em;
+    font-size: 3em;
     color: #191919;
-
   }
 
 
@@ -72,7 +69,7 @@
 
 
   .navbar {
-    height: 50px;
+    // height: 100px;
     background-color: #F5F5F5;
     // box-shadow: 0px 2px 6px rgba(43, 73, 111, 0.2);
 
@@ -83,7 +80,7 @@
         right: 0;
         animation: scrolled 0.5s ease forwards;
         box-shadow: $boxShadow;
-        background: white;
+        background: #F5F5F5;
       }
     }
 
@@ -92,99 +89,72 @@
   .nav-link {
     text-transform: uppercase;
     color: #191919 !important;
-    font-size: 0.9rem;
-
+    font-size: 0.8rem;
     &:hover {
       color: darken($pink-color, 6%) !important;
     }
-
-    &.active {
-      color: lighten($pink-color, 5%) !important;
-    }
-
-    @media (min-width: 768px) {
-      padding: 1rem 1rem;
-    }
+    // &.active {
+    //   color: lighten($pink-color, 5%) !important;
+    // }
+    // @media (min-width: 768px) {
+    //   padding: 1rem 1rem;
+    // }
   }
 
+  .nav-items {
+    width: 100%;
+    background-color: #F5F5F5;
+    border-top: 1px solid rgba($color: #000000, $alpha: .3);
+  }
 
 
 
 
 
   .scrolling-menu {
+    background-color: #F5F5F5;
+      padding:0;
+      margin:0;
 
-    .nav-link-scrolling-menu {
+    a, li {
+      list-style-type: none;
+      // margin-left:2px;
+      float:left; /*pour IE*/
+      font-size: 0.8rem;
       text-transform: uppercase;
-      font-size: 0.9rem;
-      padding: 1rem 1rem;
-      // width: 250px !important;
-      // margin-right: 2rem;
-      // svg {
-      //   position: absolute;
-      //   left: 6rem;
-      // }
-    }
-    .nav-link-in { color: $pink-color; }    
-    .nav-link-out { color: #191919; }
-    .hovering {  background-color: #fce4ec; }
-
-    .nav-cat {
-      position: absolute;
-      top: 50px;
-      left: -6rem;
-      z-index: 100;
-      background-color: #fff;
-      padding: 0;
-      list-style: none;
+      // padding: .5rem .5rem;
+      color: #191919;
       cursor: pointer;
-      border-top: 1px solid rgba(0, 0, 0, 0.2);
-
-      .cat-list {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-        border-left: 1px solid rgba(0, 0, 0, 0.2);
-        color: #191919;
-        padding: 1.2rem;
+      &:after {
+        display: none;
       }
     }
 
-    .nav-prod {
-      position: absolute;
-      top: -1px;
-      left: 7.5rem;
-      z-index: -5 !important;
-      padding: 1rem;
-      list-style: none;
-      background-color: #fce4ec;
-      box-shadow: 3px 3px 3px rgba(0, 0, 0, .1);
-      border-top: 1px solid rgba(0, 0, 0, 0.2);
-      border-right: 1px solid rgba(0, 0, 0, 0.2);
 
-      li {
-        color: #191919;
-        font-size: .9em;
-        width: 200px;
-        padding: .5rem;
-        // text-transform: uppercase;
-
-        &:hover {
-          text-decoration: underline;
-        }
+      .dropdown-item.active, .dropdown-item:active {
+        background-color: #f500563c !important;
       }
-    }
+    
 
     
+    .nav-link-out { color: #191919; padding: .5rem 1rem; }
+    .nav-link-in { color: $pinkFade-color; }    
+    .hovering {  color: $pinkFade-color; }
+    
+
   }
 
 }
 
 
+/***** Preview item menu header *****/
+/*****/
 #tooltip-right > .tooltip-inner {
+  // margin-left: -5rem;
   padding: .3rem !important;
   background-color: #fff !important;
   border: 1px solid rgba(0,0,0,.5);
   box-shadow: 0px 0px 15px rgba(0, 0, 0, .3);
-
 }
 .bs-tooltip-auto[x-placement^="right"] .arrow::before, .bs-tooltip-right .arrow::before{
   border-right-color: rgba(0,0,0,.7);
@@ -195,9 +165,13 @@
 
 
 
+
+
+
+/***** Icons menu header *****/
+/*****/
 .btn-toggle-nav {
   outline: none;
-
 }
 
 .nav-icons {
@@ -211,23 +185,27 @@
   // }
   svg {
     padding: .2rem;
-    margin-top: -1.5rem;
-    color: rgba(0, 0, 0, .7);
-    font-size: 2em !important;
+    // margin-top: -1.5rem;
+    color: #191919;
+    font-size: 1.7em !important;
+    &:hover {
+      // color: #858585;
+      color: $pink-color;
+    }
   }
 
   span {
     position: relative;
-    top: -.1rem;
-    right: -1.2rem;
-    color: #fff;
+    top: -.5rem;
+    right: -2.3rem;
+    color: #191919;
     text-align: center;
-    font-size: .7rem;
+    font-size: .8rem;
     padding: .1rem .3rem;
     // user-select: none;
     pointer-events: none;
 
-    background-color: $pinkFade-color;
+    // background-color: $pinkFade-color;
 
     @media (max-width: 768px) {
       right: -3rem;
@@ -241,6 +219,29 @@
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***** Smart menu header *****/
+/*****/
 .nav-icons-small {
   cursor: pointer;
   position: absolute;

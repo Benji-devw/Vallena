@@ -9,7 +9,7 @@ const apiCallOrders = axios.create({
     baseURL: 'http://localhost:8802/api',
 })
 const apiCallComments = axios.create({
-    // baseURL: '/api/comments',
+    // baseURL: '/api/comment',
     baseURL: 'http://localhost:8800/api/comment',
 })
 

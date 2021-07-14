@@ -367,9 +367,9 @@ const CustomerComments = props => {
 				<h4>Avis sur {product.titleProduct}</h4>
 			</div>
 
-			<div className="col-sm-8 m-3 comments-clients">
 				{comments.length >= 1 ? (
 					<>
+			<div className="col-sm-8 m-3 comments-clients">
 					<div className="col-12 p-3 comments-general" style={{marginTop:"-2rem"}}>
 						<h5>NOTE GÉNÉRALE :</h5>
 						<p><b style={{fontSize:"1.5em"}}>{Math.floor(sumNote)}</b> <b> / 5</b></p>
@@ -391,7 +391,7 @@ const CustomerComments = props => {
 									</p>
 								</div>
 								<div className="col-sm-8 text-left ratingClient">
-									<div className="mt-1 mb-1">
+									<div className="mt-1 mb-3">
 										{avisClient(parseInt(message.note))} 
 										<b style={{position: "absolute",paddingLeft:"5px"}}> - {message.messageTitle}</b>
 									</div>
@@ -406,21 +406,24 @@ const CustomerComments = props => {
 							}
 						</div>
 					)}
+					</div>
 					</>
 				) : (
 					<>
-						<div className="row" style={{marginTop:"-10rem"}}>
-							<div className="col-12 m-3 comments-add">
+						<div className="col-sm-8 m-3">
+							<div className="row">
+								<div className="col-sm-12">
 								<p>Aucun commentaire</p>
 							</div>
-							<div className="col-12 m-3 comments-add">
+							<div className="col-sm-12">
 								{createComment()}
+							</div>
 							</div>
 						</div>
 					</>
 				)}
 				
-			</div>
+			
 
 		</div>
 	);

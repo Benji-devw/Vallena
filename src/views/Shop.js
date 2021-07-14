@@ -7,9 +7,7 @@ const Shop = () => {
   return (
     <Fragment>
       <main>
-        <div className="p-0">
         <DisplayProducts/>
-        </div>
       </main>
       <Footer />
     </Fragment>

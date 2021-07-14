@@ -4,21 +4,29 @@
 
 
   .title {
-    height: 5rem;
+    height: 80%;
 
     h2 {
-      width: 280px;
       position: relative;
       z-index: 50;
       display: block;
-      padding: .5rem;
       margin: auto;
       // user-select: none;
+      font-size: 1.8em;
+      // background-color: rgba(255, 255, 255, 0.8);
+      padding-top: 8rem;
+      margin-top: 0rem;
+      width: 80%;
+      height: 100%;
+      // border: 1px solid #fff;
+      text-align: center;
+      color: #ffffff;
+      transition-duration: .6s;
     }
   }
 
 
-  .novelty {
+  .nov {
     padding: .5rem;
     background-color: #ffffff;
     // margin-left: 10rem;
@@ -31,8 +39,9 @@
 
       &:hover {
         transition: all .5s;
-        box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.4);
+        // box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.4);
       }
+
 
       .home-novelty-content {
         background-image: url('./img/home/accessoires.jpg');
@@ -41,50 +50,19 @@
         background-repeat: no-repeat;
         height: 100%;
 
-        transition: background-size 2s ease-in;
-        -moz-transition: background-size 2s ease-in;
-        -ms-transition: background-size 2s ease-in;
-        -o-transition: background-size 2s ease-in;
-        -webkit-transition: background-size 2s ease-in;
+        transition: background-size 0.4s ease-in;
+        -moz-transition: background-size 0.4s ease-in;
+        -ms-transition: background-size 0.4s ease-in;
+        -o-transition: background-size 0.4s ease-in;
+        -webkit-transition: background-size 0.4s ease-in;
 
         &:hover {
-          background-size: 110% 110%;
-          transition: background-size 2s ease-in;
-          -moz-transition: background-size 2s ease-in;
-          -ms-transition: background-size 2s ease-in;
-          -o-transition: background-size 2s ease-in;
-          -webkit-transition: background-size 2s ease-in;
-        }
-
-        .nov {
-          position: absolute;
-          top: -10rem;
-          right: -10rem;
-          // background-color: #2978ffec;
-          background-color: rgba(255, 255, 255, 0.7);
-          border-radius: 50%;
-          transition: .7s;
-        }
-
-        h3 {
-          position: absolute;
-          right: .5rem;
-          top: 2rem;
-          z-index: 50;
-          padding: .5rem;
-          border: 1px solid #191919;
-          width: 130px;
-          transition: all .7s;
-
-          &:hover {
-            color: #ffffff;
-            background-color: #191919;
-          }
-        }
-
-        svg {
-          margin-left: .2rem;
-          font-size: .8em;
+          background-size: 102% 102%;
+          transition: background-size 0.4s ease-in;
+          -moz-transition: background-size 0.4s ease-in;
+          -ms-transition: background-size 0.4s ease-in;
+          -o-transition: background-size 0.4s ease-in;
+          -webkit-transition: background-size 0.4s ease-in;
         }
       }
     }
@@ -106,8 +84,9 @@
 
       &:hover {
         transition: all .5s;
-        box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.4);
+        // box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.4);
       }
+
 
       .home-promo-content {
         background-image: url('./img/home/mall-background-.jpg');
@@ -116,51 +95,19 @@
         background-repeat: no-repeat;
         height: 100%;
 
-        transition: background-size 2s ease-in;
-        -moz-transition: background-size 2s ease-in;
-        -ms-transition: background-size 2s ease-in;
-        -o-transition: background-size 2s ease-in;
-        -webkit-transition: background-size 2s ease-in;
+        transition: background-size 0.4s ease-in;
+        -moz-transition: background-size 0.4s ease-in;
+        -ms-transition: background-size 0.4s ease-in;
+        -o-transition: background-size 0.4s ease-in;
+        -webkit-transition: background-size 0.4s ease-in;
 
         &:hover {
-          background-size: 120% 110%;
-          transition: background-size 2s ease-in;
-          -moz-transition: background-size 2s ease-in;
-          -ms-transition: background-size 2s ease-in;
-          -o-transition: background-size 2s ease-in;
-          -webkit-transition: background-size 2s ease-in;
-        }
-
-        .prom {
-          position: absolute;
-          top: -10rem;
-          left: -10rem;
-          // background-color: #f54437ec;
-          background-color: rgba(255, 255, 255, 0.7);
-          border-radius: 50%;
-          transition: .7s;
-        }
-
-        h3 {
-          position: absolute;
-          left: .5rem;
-          top: 2rem;
-          z-index: 50;
-          transition: .7s;
-          padding: .5rem;
-          border: 1px solid #191919;
-          width: 130px;
-
-          &:hover {
-            color: #ffffff;
-            background-color: #191919;
-
-          }
-        }
-
-        svg {
-          margin-left: .2rem;
-          font-size: .8em;
+          background-size: 112% 102%;
+          transition: background-size 0.4s ease-in;
+          -moz-transition: background-size 0.4s ease-in;
+          -ms-transition: background-size 0.4s ease-in;
+          -o-transition: background-size 0.4s ease-in;
+          -webkit-transition: background-size 0.4s ease-in;
         }
       }
     }

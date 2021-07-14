@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 // import Parallax from 'react-rellax'
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import { makeStyles } from '@material-ui/core/styles';
+// import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+// import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+// import { makeStyles } from '@material-ui/core/styles';
 import { updateFilters } from '../../../lib/actions'
 import { useDispatch } from 'react-redux';
 
@@ -12,31 +12,31 @@ import { useDispatch } from 'react-redux';
 // import transitions from '@material-ui/core/styles/transitions';
 
 
-const useStyles = makeStyles((theme) => ({
-  imgConfNovelty: {
-    width: "20rem",
-    height: "20rem",
-  },
-  imgConfNoveltyHover: {
-    width: "30rem",
-    height: "30rem",
-  },
-  imgConfPromo: {
-    width: "20rem",
-    height: "20rem",
-  },
-  imgConfPromoHover: {
-    width: "30rem",
-    height: "30rem",
-  },
+// const useStyles = makeStyles((theme) => ({
+//   imgConfNovelty: {
+//     width: "20rem",
+//     height: "20rem",
+//   },
+//   imgConfNoveltyHover: {
+//     width: "30rem",
+//     height: "30rem",
+//   },
+//   imgConfPromo: {
+//     width: "20rem",
+//     height: "20rem",
+//   },
+//   imgConfPromoHover: {
+//     width: "30rem",
+//     height: "30rem",
+//   },
 
-}));
+// }));
 
 
 const HomePromoNews = () => {
-  const classes = useStyles();
-  const [hovNovelty, setHovNovelty] = useState(false)
-  const [hovPromo, setHovPromo] = useState(false)
+  // const classes = useStyles();
+  const [hovNovelty, setHovNovelty] = React.useState("#191919")
+  const [hovPromo, setHovPromo] = React.useState("#191919")
   const dispatch = useDispatch()
   // const saveFilterByCat = (cat) => {
   //   localStorage.setItem('filterByCat', cat)
@@ -57,24 +57,21 @@ const HomePromoNews = () => {
       <div className="col-md-6">
 
 
-          <div className="row novelty justify-content-center no-gutters">
+          <div className="row nov justify-content-center no-gutters">
 
             <div className="col-12 home-novelty">
-              <div className="row align-items-center home-novelty-content"
-                onMouseEnter={() => setHovNovelty(true)}
-                onMouseLeave={() => setHovNovelty(false)}
-              >
-                <div className="col title text-center">
-                  <h2 className="">NOUVEAUTÉS</h2>
-                </div>
-                  <div className={`nov text-left ${hovNovelty ? classes.imgConfNoveltyHover : classes.imgConfNovelty}`}>
+              <Link to="/shop" onClick={() => homeSort('novelty')}>
+                <div className="row align-items-center home-novelty-content" onMouseEnter={() => setHovNovelty("#fff")} onMouseLeave={() => setHovNovelty("#191919")}
+                  // onMouseEnter={() => setHovNovelty(true)}
+                  // onMouseLeave={() => setHovNovelty(false)}
+                >
+                  <div className="col title text-center align-items-center">
+                    <h2 style={{color:hovNovelty, border:`1px solid ${hovNovelty}`}} >NOUVEAUTÉS</h2>
                   </div>
-                  <Link to="/shop" onClick={() => homeSort('novelty')}>
-                  <h3 className={`no-move`}><ArrowBackIosIcon />Decouvrir</h3>
-                  </Link>
-              </div>
+                </div>
+              </Link>
             </div>
-         
+
           </div>
    
         </div>
@@ -83,22 +80,16 @@ const HomePromoNews = () => {
         <div className="row promo justify-content-center no-gutters">
 
             <div className="col-12 home-promo">
-              <div className="row align-items-center home-promo-content"
-                onMouseEnter={() => setHovPromo(true)}
-                onMouseLeave={() => setHovPromo(false)}
-              >
-                <div className="col title text-center">
-                   
-                  {/* <div className="test"></div> */}
-                  <h2 className="">PROMOTIONS</h2>
+              <Link to="/shop" onClick={() => homeSort('promo')}>
+                <div className="row align-items-center home-promo-content" onMouseEnter={() => setHovPromo("#fff")} onMouseLeave={() => setHovPromo("#191919")}
+                  // onMouseEnter={() => setHovPromo(true)}
+                  // onMouseLeave={() => setHovPromo(false)}
+                >
+                  <div className="col title text-center">
+                    <h2 style={{ color: hovPromo, border: `1px solid ${hovPromo}` }}>PROMOTIONS</h2>
+                  </div>
                 </div>
-                <div className={`prom text-left ${hovPromo ? classes.imgConfPromoHover : classes.imgConfPromo}`}>
-                </div>
-                <Link to="/shop" onClick={() => homeSort('promo')}>
-                  <h3 className={`no-move`}>Decouvrir<ArrowForwardIosIcon /></h3>
                 </Link>
-
-              </div>
             </div>
 
         </div>

@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function HomeCardsDisplay() {
+const HomeCardsDisplay = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const topNote = 5
@@ -60,7 +60,7 @@ export default function HomeCardsDisplay() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="inherit" className="mx-auto justify-content-center">
+      <AppBar position="static" color="inherit" className="justify-content-center mx-auto">
         <Tabs
           value={value}
           onChange={handleChange}
@@ -74,19 +74,20 @@ export default function HomeCardsDisplay() {
 
         </Tabs>
       </AppBar>
-      <div className="container" style={{minHeight:"35rem"}}>
 
-      <TabPanel value={value} index={0}>
-        <HomeCards val={topNote}/>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <HomeCards val={topVente} />
-      </TabPanel>
-      {/* <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel> */}
+      <div className="container">
+        <TabPanel value={value} index={0}>
+          <HomeCards val={topNote}/>
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <HomeCards val={topVente} />
+        </TabPanel>
+        {/* <TabPanel value={value} index={2}>
+          Item Three
+        </TabPanel> */}
       </div>
 
     </div>
   );
 }
+export default HomeCardsDisplay

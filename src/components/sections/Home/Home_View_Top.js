@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Slider from "react-slick";
-import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 import visage from '../../../scss/img/home/img-1.png';
@@ -15,11 +14,13 @@ import Button from '@material-ui/core/Button';
 function SampleNextArrow(props) {
   const { style, onClick } = props;
   return (
-    <IoIosArrowForward
+    <div
       className={'slick-arrow slick-n'}
       style={{ ...style, 
         display: "block", 
         fontSize: "2.5em",
+        transform: "rotate(180deg)",
+        zIndex: "100"
       }}
       onClick={onClick}
     />
@@ -28,7 +29,7 @@ function SampleNextArrow(props) {
 function SamplePrevArrow(props) {
   const { style, onClick } = props;
   return (
-    <IoIosArrowBack
+    <div
       className={'slick-arrow slick-p'}
       style={{
         ...style,
@@ -74,7 +75,7 @@ const SlideItems = props => {
   return (
 
       <div className="row justify-content-center no-gutters">
-        <div className="col-lg-12 pl-0 pl-lg-3 pr-0 pr-lg-3 mt-3">
+        <div className="col-lg-12 pl-0 pl-lg-3 pr-0 pr-lg-3 mt-5">
 
         <Slider {...settings}>
           <div>

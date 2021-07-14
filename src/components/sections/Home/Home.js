@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import SlideItems from './Home_View_Top'
-import HomeCollection from './Home_Collection'
-import HomeCardsDisplay from './Home_Cards_Display'
-import HomePromoNews from './Home_Promo_News'
-import apiCallProdcuts from '../../../apiCall/Call_Api'
+import SlideItems from './Home_View_Top';
+import HomeCollection from './Home_Collection';
+import HomeCardsDisplay from './Home_Cards_Display';
+import HomePromoNews from './Home_Promo_News';
+import apiCallProdcuts from '../../../apiCall/Call_Api';
 
-// import Parallax from 'react-rellax'
+// import Parallax from 'react-rellax';
 
 
 
@@ -36,7 +36,7 @@ const Home = () => {
         <HomeCollection data={datas} />
       </div>     
 
-      <div id="home-best-cards" className="home-best-cards pb-5 pt-5">
+      <div className="cards-home pb-5 pt-5">
         <HomeCardsDisplay data={datas} />
       </div>
 

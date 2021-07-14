@@ -1,3 +1,5 @@
+/***** Shop_List_Products.js *****/
+/*****/
 .top-filters {
   padding-left: 2rem;
   padding-right: 2rem;
@@ -8,36 +10,22 @@
   }
 }
 
-.toogle-display {
-
-  ul {
-    padding: 0;
-    margin: 0;
-  }
-
-  .arttrack {
-    font-size: 1.2em;
-
-  }
-
-
-
-  .MuiSvgIcon-root {
-    font-size: 1.8em;
-  }
-
-  @media screen and (max-width: 991px) {
-    width: 100%;
-  }
-}
-
-
 .sep-filters {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
   h3 {
     color: $pink-color;
     font-size: 1.2em;
+  }
+}
+
+.result-counter-card span {
+  position: absolute;
+  bottom: 20px;
+
+  @media screen and (max-width: 768px) {
+    position: relative;
+    top: 4rem;
   }
 }
 
@@ -49,133 +37,113 @@
 // }
 
 
-.result-counter-card span{
+
+
+
+
+
+/***** CARDS CAROUSEL *****/
+/*****/
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
   position: absolute;
-  bottom: 20px;
-  @media screen and (max-width: 768px) {
-    position: relative;
-    top: 4rem;
-  }
+  bottom: 3rem;
+  background-image: url('./img/icons/arrow.svg');
+  background-color: white;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
 }
 
-
-
-.product-images {
-  overflow: hidden;
-
-  // box-shadow: $boxShadow;
-  // background: #F1F1F1;
-  img {
-    border-radius: 2px;
-
-    &:hover {
-      transition: 2s;
-      // transform: scale(1.3);
-    }
-
-
-  }
-
-
-  .MuiAlert-icon {
-    margin: 0;
-    padding: 1px;
-  }
-
-  .MuiAlert-message {
-    padding: 3px;
-  }
-
-
-
-  .promotion {
-    position: absolute;
-    color: #ffffff;
-    top: 2rem;
-    right: 1.7rem;
-    padding: .2rem;
-    font-size: .8em;
-    background-color: #f44336;
-    pointer-events: none;
-  }
-
-  .novelty {
-    position: absolute;
-    color: #ffffff;
-    top: 2rem;
-    right: 1.7rem;
-    padding: .2rem;
-    font-size: .8em;
-    background-color: #2196f3;
-    pointer-events: none;
-  }
-
+.carousel-control-next-icon {
+  transform: rotate(180deg);
 }
 
+.carousel-control-prev-icon {}
 
+.carousel-indicators {
+  display: none;
+}
 
-
-
+.carousel-item {
+  transition: none !important;
+}
 
 
 
 /***** CARDS *****/
 /*****/
+.promotion {
+  position: absolute;
+  color: #ffffff;
+  top: 2rem;
+  right: 1.7rem;
+  padding: .2rem;
+  font-size: .8em;
+  background-color: #f44336;
+  pointer-events: none;
+}
+
+.novelty {
+  position: absolute;
+  color: #ffffff;
+  top: 2rem;
+  right: 1.7rem;
+  padding: .2rem;
+  font-size: .8em;
+  background-color: #2196f3;
+  pointer-events: none;
+}
+
+
+
+
+
+
 
 
 .grid-display {
   padding-top: 2rem;
-  text-align: center;
-  // transition: all .5s linear;
+  text-align: left;
 
-  // overflow: hidden;
+  h5 {
+    font-size: 1.2em !important;
+    // float: left !important;
+  }
+
+  h3 {
+    font-size: 1em !important;
+  }
+
+  .tags {
+    font-size: .8em !important;
+  }
+
   .product-item {
+    // .product-images {
+    //   height: 350px;
+    // }
 
-    .first-image {
-      width: 90.7%;
-      position: absolute;
-      top: 2rem;
-      left: .9rem;
-
-      @media screen and (max-width: 1200px) {
-        width: 89%;
-      }
-
-      @media screen and (max-width: 991px) {
-        width: 92%;
-      }
-
-      @media screen and (max-width: 768px) {
-        display: none;
-      }
-
-      // @media screen and (max-width: 576px) {
-      //   display: none;
-      // }
+    img {
+      width: 99.8%;
     }
 
-    .second-image {
-      width: 100%;
-      position: relative;
-      top: 0rem;
-      left: 0rem;
-
-      @media screen and (max-width: 576px) {
-        width: 90%;
-      }
-    }
 
     .rupture {
-      font-size: .8em;
-      width: 110px;
-      height: 30px;
-      margin-left: 1rem;
+      position: absolute;
+      right: 0;
+      bottom: .3rem;
+      font-size: .7em;
+      width: 105px;
+      height: 28px;
+
       .MuiAlert-icon {
-        margin-top: -.5rem;
+        margin-top: -.7rem;
         margin-left: -.3rem;
       }
+
       .MuiAlert-message {
-        margin-top: -.5rem;
+        margin-top: -.6rem;
         margin-left: -.3rem;
       }
     }
@@ -252,12 +220,20 @@
     border: 1px solid rgba(0, 0, 0, 0.2);
     margin-top: 2rem;
     max-width: 300px;
-    a { color: black; }
+
+    a {
+      color: black;
+    }
+
     &:hover {
-      a { color: white; }
+      a {
+        color: white;
+      }
+
       background-color: rgba(0, 0, 0, 0.8);
     }
   }
+
   .promotion {
     top: .2rem;
     right: 1.2rem;
@@ -286,9 +262,10 @@
     height: 30px;
     max-width: 130px;
     text-align: left;
-      @media screen and (max-width: 768px) {
-        margin: auto;
-      }
+
+    @media screen and (max-width: 768px) {
+      margin: auto;
+    }
 
     .MuiAlert-icon {
       margin-top: -2px;

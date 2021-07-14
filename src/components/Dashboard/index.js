@@ -146,7 +146,7 @@ const Admin = props => {
   // console.log(window.location.pathname);
 
   return (
-    <div id='dashboard' className={classes.root}>
+    <div id='dashboard' className={` ${classes.root}`}>
      <CssBaseline />
 
       <Drawer

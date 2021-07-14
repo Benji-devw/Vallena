@@ -1,10 +1,17 @@
 // HOME_VIEW_TOP
-.home-best-cards {
+.cards-home {
+  .MuiBox-root {
+    min-height: 33rem;
+    @media screen and (max-width: 768px) {
+      height: 20rem;
+    }
+  }
+
   .MuiAppBar-root {
     max-width: 400px;
     box-shadow: none;
 
-    .PrivateTabIndicator-colorSecondary-12 {
+    .MuiTabs-indicator {
       height: 1px !important;
       background-color: $pink-color !important;
     }
@@ -17,112 +24,105 @@
       }
 
       .MuiTab-wrapper {
-        font-family: "quickSandRegular", sans-serif;
+        font-family: "quickSandRegular", sans-serif !important;
         color: #191919;
-        font-size: 1.6em;
+        font-size: 1.3em;
       }
     }
   }
 
 
-
-
-  .MuiBox-root {
-    min-height: 30rem;
-  }
-
-
-
-  .home-card {
-    margin-bottom: 2rem;
-
-    transition: all .5s;
-    // &:hover {
-    //   box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
-    // }
-
-    .home-card-content {
-      overflow: hidden;
-      height: 20rem;
-      z-index: 100;
-
-
-      img {
-        position: relative;
-        left: -4rem;
-        width: 23rem;
-
-        @media (max-width: 576px) {
-          left: -7rem;
-          width: 35rem;
-        }
+  .slick-content-home {
+    .hover-view {
+      height: 22.5rem;
+      // font-size: .8em;
+      @media screen and (max-width: 768px) {
+        height: 15.5rem;
       }
 
-      .hover-tab-disable {
-        display: none;
-      }
-
-      .hover-tab {
+      .after-img {
         position: relative;
+        left: 0;
+        right: 0;
+        z-index: 500;
+        bottom: 6.7rem;
 
-        top: -25rem;
-        z-index: 50;
-        height: 25rem;
-        width: 100%;
-        background-color: rgba(255, 255, 255, 0.5);
-
-        @media (max-width: 576px) {
-          top: -32rem;
-        }
-
-        .hover-tab-content {
+        .preview {
           position: relative;
-          bottom: -15rem;
-          // margin-top: 5rem;
-          width: 100%;
+          top: -16rem;
+          left: 8.5rem;
 
-          @media (max-width: 576px) {
-            bottom: -12rem;
-          }
-
-          h3 {
-            margin: auto;
-            transition: .7s;
-            padding: .5rem;
-            border: 1px solid #191919;
-            width: 120px;
-
-            &:hover {
-              color: #ffffff;
-              background-color: rgba(0, 0, 0, 0.8);
-            }
-          }
-
-          .hover-tab-quick-view {
-            position: relative;
-            bottom: 10rem;
-
-            svg {
-              color: #f50057 !important;
-              font-size: 1.8em;
-              cursor: pointer;
-
-              &:hover {
-                color: #f50056c1 !important;
-              }
-            }
-
+          .img-fluid {
+            height: 35px;
           }
         }
+
+        span {
+          display: block;
+          width: 100%;
+          height: 40px;
+          margin: 0 auto;
+          padding-top: .7rem;
+          font-size: 1.2em;
+          text-align: center;
+          color: $dark-color;
+          background-color: rgba(255, 255, 255, 0.9);
+          transition: .5s;
+          &:hover {
+            transition: .5s;
+            color: $light-color;
+            background-color: rgba(0, 0, 0, 0.5);
+          }
+        }
+
       }
-
     }
 
-    .home-card-desc {
-      padding: .5rem;
+
+    .slick-dets {
+      font-size: .85em;
     }
+
+
 
   }
+
+
+
+
+
+  // .home-card {
+  //   margin-bottom: 2rem;
+  //   transition: all .5s;
+
+  // &:hover {
+  //   box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
+  // }
+
+  // .home-card-content {
+  //   overflow: hidden;
+  //   height: 15rem;
+  //   z-index: 100;
+
+
+  //   img {
+  //     position: relative;
+  //     left: -4rem;
+  //     width: 23rem;
+
+  //     @media (max-width: 576px) {
+  //       left: -7rem;
+  //       width: 35rem;
+  //     }
+  //   }
+
+  // }
+
+  // .home-card-desc {
+  //   padding: .5rem;
+  // }
+
+  // }
 
 
 }

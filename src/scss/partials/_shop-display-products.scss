@@ -1,33 +1,12 @@
 .shop-display {
   // background: #ca5116;
-  margin-top: 3rem;
+  margin-top: 100px;
   padding: 1rem;
   min-height: 60rem;
   background: white;
 
   .MuiTypography-root {
     color: rgba(0, 0, 0, 0.6);
-
-  }
-
-  .MuiFormControlLabel-label {
-    font-family: "quickSandRegular", sans-serif;
-    color: rgba(0, 0, 0, 0.7);
-  }
-
-  .filter-content-left {
-    padding: 1rem;
-
-    .MuiAccordionSummary-root {
-      font-family: "quickSandRegular", sans-serif;
-      border-top: 1px solid rgba(0, 0, 0, 0.1);
-    }
-
-    .MuiAccordion-root {
-      &::before {
-        display: none;
-      }
-    }
 
   }
 
@@ -41,6 +20,37 @@
   }
 
 
+  /***** Filters Left *****/
+  /*****/
+  .filter-content-left {
+    padding: 1rem;
+    font-size: .95em;
+
+    .MuiAccordionSummary-root {
+      font-family: "quickSandRegular", sans-serif;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .MuiAccordion-root {
+      &::before {
+        display: none;
+      }
+    }
+
+    // box filters
+    .MuiSvgIcon-root {
+      // color: rgba(0, 0, 0, 0.3);
+      font-size: .8em !important;
+    }
+
+  }
+
+  .MuiFormControlLabel-label {
+    font-family: "quickSandRegular", sans-serif;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: .95em;
+  }
+
   .MuiFormControlLabel-root {
     height: 20px;
     width: 100%;
@@ -50,15 +60,23 @@
     }
   }
 
+
+
+
+
+
+
+
+
+
+
+  .MuiAccordionDetails-root {
+    padding: 0 15px 0 15px !important;
+  }
+
   .filter-category {
     padding: 0;
     width: 100%;
-
-    h4 {
-      color: #f9b384;
-      font-size: 1em;
-    }
-
 
     .category-list {
       padding: 5px;
@@ -75,6 +93,7 @@
           margin-left: 1rem;
         }
       }
+
 
       ul {
         display: block;
@@ -106,7 +125,7 @@
     .active {
       margin-left: 10px;
       // background-color: rgba(0, 0, 0, 0.05);
-      border-left: 1px solid #f50057;
+      border-left: 1px solid #f50057 !important;
       color: #f50057 !important;
 
       @media screen and (max-width: 991px) {
@@ -120,10 +139,15 @@
 
 
 
+
+
+
+
 .shop-top {
   margin-top: 3rem;
   background-color: #F5F5F5;
-  border-bottom: 2px solid $pink-color;
+  // border-bottom: 1px solid $pink-color;
+  // height: 240px;
 
   .title-product-shop-top {
     h1 {

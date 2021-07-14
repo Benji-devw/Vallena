@@ -7,6 +7,10 @@ import { updateFilters } from '../../../lib/actions'
 import { useSelector, useDispatch } from 'react-redux';
 
 import ScrollTop from '../GeneralComponents/Scroll_Top_Btn'
+// import WomenBan from '../../../scss/img/Sans titre-2.jpg'
+// import ChildrendBan from '../../../scss/img/Sans titre-3.jpg'
+// import MendBan from '../../../scss/img/Sans titre-4.jpg'
+// import Shop from '../../../scss/img/Sans titre-5.jpg'
 
 
 const DisplayProducts = () => {
@@ -185,30 +189,46 @@ const DisplayProducts = () => {
    const collectionSet = new Set(allProducts.map(p => p.yearCollection.toString()));
    const collectionList = Array.from(collectionSet).sort();
 
+
+   /***** Background Top Images *****/
+   /***************************/
+   // const test = () => {
+   //    if (filterByCat === 'Femme') {
+   //       return (<img src={WomenBan} alt="e" className='img-fluid' />)
+   //    } else if (filterByCat === 'Bébé') {
+   //       return (<img src={ChildrendBan} alt="e" className='img-fluid' />)
+   //    }else if (filterByCat === 'Homme') {
+   //       return (<img src={MendBan} alt="e" className='img-fluid' />)
+   //    }
+   //    else {
+   //       return (<img src={Shop} alt="e" className='img-fluid' />)
+   //       // return (<h1 className="title" >Boutique</h1> )
+   //    }
+   // }
+
    // console.log(bySort);
+   // console.log(filterByCat);
    return (
       <>
-         <section className="row no-gutters shop-top">
+         {/* <section className="row no-gutters shop-top">
             <article className="container">
-               <div className="col-12 title-product-shop-top">
-                  <h1 className="title">Boutique</h1>
+               <div className="col-12 m-4 title-product-shop-top">
+                  {test()}
                </div>
-
             </article>
-         </section>
+         </section> */}
 
-         <section id="test" className="container shop-display">
+         <section className="container shop-display">
 
-            <div className="row">
-               <div className="col-12 filter-content-top">
-                  <FilterTop
-                     searchBar={searchBar}
-                  />
-               </div>
-            </div>
 
             <div className="row">
+       
                <div className="col-lg-2 mt-4 filter-content-left">
+                  <div className="filter-content-top">
+                     <FilterTop
+                        searchBar={searchBar}
+                     />
+                  </div>
 
                   <FilterLeft
                      catList={catList}

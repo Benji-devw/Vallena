@@ -72,7 +72,7 @@ const App = props => {
 
         {/* </ClientProfileContext> */}
       </Router>
-        {/* {SetCookie()} */}
+        {SetCookie()}
 
     </>
     );

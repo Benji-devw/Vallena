@@ -42,8 +42,12 @@ const Comments = props => {
 
    return (
       <div className="rating">
+         <div className="ml-1">
          <Rating style={{ fontSize: "1em" }} className="" name="half-rating-read" value={parseInt(sumNote)} precision={1} readOnly size="small" />
-         <em className="ml-1" style={{ color: '#bdbdbd', fontSize: ".8em", position: "relative", top:'-3px' }}>( {comments.length} avis client )</em>
+            <span style={{ fontSize: ".8em", position: "relative", top:'-3px' }}>( {comments.length} avis client ) </span>
+            <span style={{ color: '#666', fontSize: ".8em", marginLeft:"1rem"}}>Ref:{product._id}</span>
+         </div>
+         <p> </p>
       </div>
    )
 }

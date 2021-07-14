@@ -23,7 +23,6 @@
 
 
 
-
 .order-summary {
 
   // box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.3);
@@ -40,9 +39,12 @@
 
 
 .payment-header {
-  margin-top: 3rem;
+  margin-top: 5rem;
   background-color: #F5F5F5;
   padding: .7rem;
+  @media screen and (max-width: 768px) {
+    margin-top: 8rem;
+  }
 
   .title {
     h1 {

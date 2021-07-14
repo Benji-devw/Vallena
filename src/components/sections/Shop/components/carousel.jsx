@@ -1,6 +1,6 @@
 import React from 'react'
 import Slider from "react-slick";
-import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+// import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import {
 	SideBySideMagnifier,
 	MOUSE_ACTIVATION,
@@ -10,27 +10,21 @@ import {
 function SampleNextArrow(props) {
 	const { style, onClick } = props;
 	return (
-		<IoIosArrowForward
+		<svg
 			className={'slick-arrow slick-n'}
 			style={{
 				...style,
-				display: "block",
-				fontSize: "2.5em",
+				transform: 'rotate(180deg)',
 			}}
 			onClick={onClick}
 		/>
 	);
 }
 function SamplePrevArrow(props) {
-	const { style, onClick } = props;
+	const { onClick } = props;
 	return (
-		<IoIosArrowBack
+		<svg
 			className={'slick-arrow slick-p'}
-			style={{
-				...style,
-				display: "block",
-				fontSize: "2.5em",
-			}}
 			onClick={onClick}
 		/>
 	);
@@ -64,7 +58,7 @@ const CenterMode = props => {
 					{imgs.map((url, i) => (
 						<SideBySideMagnifier
 							key={i}
-							className="input-position"
+							className=""
 							imageSrc={url}
 							alwaysInPlace={true}
 							overlayOpacity={0.6}

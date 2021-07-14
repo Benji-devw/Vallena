@@ -1,12 +1,12 @@
 #dashboard {
-
+  margin-top: 4rem;
   background-image: url('img/config2.svg');
   background-position: 150% 2rem;
   background-repeat: no-repeat;
   background-size: 50rem;
 
   @media screen and (max-width: 767px) {
-    margin-top: 5rem;
+    margin-top: 8rem;
   }
 
   .MuiDrawer-paperAnchorDockedLeft {
@@ -56,7 +56,7 @@
   }
 
   .MuiDrawer-paper {
-    margin: 5rem 0 0 .5rem;
+    margin: 8rem 0 0 .5rem;
     border-radius: 10px;
     border: 1px solid #f50057;
     box-shadow: $boxShadow;
@@ -65,7 +65,7 @@
 
     @media screen and (max-width: 767px) {
       position: absolute;
-      top: 5rem;
+      top: 9rem;
       width: 90%;
       height: 50px;
       margin: auto;
@@ -106,8 +106,9 @@
 
   .comments-admin {
     min-height: 105vh;
+
     .status-container {
-  
+
       @media screen and (max-width: 767px) {
         position: absolute;
         top: 1rem;
@@ -115,27 +116,27 @@
         width: 100px;
       }
     }
-  
+
     .statut {
       display: inline-block;
       width: 12px;
       height: 12px;
       border-radius: 50%;
       margin: .2rem;
-  
+
       @media screen and (min-width: 767px) {
         position: absolute;
       }
     }
-  
+
     .statut-inprogress {
       background: #00b0ff;
     }
-  
+
     .statut-finish {
       background: #4caf50;
     }
-  
+
     .statut-order {
       .MuiButton-root {
         padding: .1em;

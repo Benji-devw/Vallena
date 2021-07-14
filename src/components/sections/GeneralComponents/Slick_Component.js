@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Slider from "react-slick";
-import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+import Arrow from '../../../scss/img/icons/arrow.svg'
+
 import apiCallProdcuts from '../../../apiCall/Call_Api'
 import Alert from '@material-ui/lab/Alert';
-
-
+import QuickView from './Quick_View'
 
 
 
 function SampleNextArrow(props) {
   const { style, onClick } = props;
   return (
-    <IoIosArrowForward
+    <img src={Arrow} alt="next"
       className={''}
       style={{
         ...style,
         position: "absolute",
-        top: "30%",
+        top: "40%",
         right: "-2rem",
-        color:"rgba(0, 0, 0, 0.3)",
-        fontSize: "2.5em",
-        cursor: "pointer"
+        height: "1.6em",
+        cursor: "pointer",
+        transform: "rotate(180deg)"
       }}
       onClick={onClick}
     />
@@ -30,16 +30,15 @@ function SampleNextArrow(props) {
 function SamplePrevArrow(props) {
   const { style, onClick } = props;
   return (
-    <IoIosArrowBack
+    <img src={Arrow} alt="prev"
       className={''}
       style={{
         ...style,
         position: "absolute",
-        top: "30%",
+        top: "40%",
         left: "-2rem",
         zIndex: 100,
-        color: "rgba(0, 0, 0, 0.3)",
-        fontSize: "2.5em",
+        height: "1.6em",
         cursor: "pointer"
       }}
       onClick={onClick}
@@ -64,10 +63,10 @@ const SlickComponent = (props) => {
 
   var settings = {
     // dots: true,
-    infinite: false,
-    // speed: 500,
-    // autoplay: true,
-    // autoplaySpeed: 3000,
+    infinite: true,
+    speed: 500,
+    autoplay: true,
+    autoplaySpeed: 5000,
     slidesToShow: 4,
     slidesToScroll: 4,
     initialSlide: 0,
@@ -104,15 +103,18 @@ const SlickComponent = (props) => {
                 
                 <img src={item.imgCollection[0]} alt={item._id} className="img-fluid" onMouseEnter={() => setInd(index)} onMouseLeave={() => setInd(null)} />
                 
-                <Link to={`/product/${item._id}`}
-                  onMouseEnter={() => setInd(index)} onMouseLeave={() => setInd(null)}
-                >
-                  <div className={`after-img ${ind === index ? "fadeIn" : 'fadeOut'}`}>
-                    <span>Découvrir</span>
+                <div className={`after-img ${ind === index ? "fadeIn" : 'fadeOut'}`}>
+                  <div onMouseEnter={() => setInd(index)} onMouseLeave={() => setInd(null)}>
+                    <QuickView data={item} />
                   </div>
-                </Link>
+                  <Link to={`/product/${item._id}`}
+                    onMouseEnter={() => setInd(index)} onMouseLeave={() => setInd(null)}
+                  >
+                    <span>Découvrir</span>
+                  </Link>
+                </div>
               </div>
-              <div className={`text-center slick-dets`}>
+              <div className={`pl-2 slick-dets text-center`}>
                 <p className="tags">{item.tags}</p> 
                 <h3>{item.titleProduct}</h3>
                 <h5>€ {item.priceProduct}  {item.promotionProduct && <span className="promo-price">€ {item.oldPriceProduct} </span>}  </h5>

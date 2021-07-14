@@ -75,7 +75,7 @@ const PaymentForm = () => {
                <div className="row no-gutters payment-header">
                   <article className="container">
                      <div className="col-12 title">
-                        <h1 className="title">Votre Commande : </h1>
+                        <h1 className="title">Votre Commande </h1>
                      </div>
                   </article>
                </div>
@@ -107,7 +107,7 @@ const PaymentForm = () => {
                   ) : ('')}
                  
                   <div className={`${showDiv ? "col-lg-6 fadeIn" : "col-lg-4"}`}>
-                     <div className={`paypal-btn ${paypalScroll === "scrolled" ? "scrolled" : ""}`}>
+                     <div className={`paypal-btn ${(paypalScroll === "scrolled") && (!showDiv) ? "scrolled" : ""}`}>
                         Card Type: <b>Visa</b> <br />
                         Card Number: <b>4020026056914040</b> <br />
                         Expiration Date: <b>04/2023</b> <br />
